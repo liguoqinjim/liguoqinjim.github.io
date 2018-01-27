@@ -10,5 +10,23 @@
 	<atom:link href="https://liguoqinjim.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
     
     
+    <item>
+      <title>Golang</title>
+      <link>https://liguoqinjim.github.io/categories/golang/</link>
+      <pubDate>Sat, 27 Jan 2018 11:43:13 +0800</pubDate>
+      
+      <guid>https://liguoqinjim.github.io/categories/golang/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>杂</title>
+      <link>https://liguoqinjim.github.io/categories/%E6%9D%82/</link>
+      <pubDate>Fri, 26 Jan 2018 17:57:36 +0800</pubDate>
+      
+      <guid>https://liguoqinjim.github.io/categories/%E6%9D%82/</guid>
+      <description></description>
+    </item>
+    
   </channel>
 </rss>
