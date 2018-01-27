@@ -6,10 +6,26 @@
     <description>Recent content in 杂 on Liguoqinjim&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 26 Jan 2018 17:57:36 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 27 Jan 2018 12:37:47 +0800</lastBuildDate>
     
 	<atom:link href="https://liguoqinjim.github.io/tags/%E6%9D%82/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Hugo的使用</title>
+      <link>https://liguoqinjim.github.io/post/tool/hugo%E7%9A%84%E4%BD%BF%E7%94%A8/</link>
+      <pubDate>Sat, 27 Jan 2018 12:37:47 +0800</pubDate>
+      
+      <guid>https://liguoqinjim.github.io/post/tool/hugo%E7%9A%84%E4%BD%BF%E7%94%A8/</guid>
+      <description> Hugo的使用 Hugo安装 直接使用go get的方式安装: go get -u -v github.com/gohugoio/hugo
+Hugo新建一个站点 hugo new site path/to/site，运行之后会在运行路径下生成path/to/site的文件夹。
+Hugo新建一篇文章 hugo new post/directory/new.md，这样就会生成一篇新的文章。 会生成在content/post/directory文件夹下。
+安装主题 拷贝主题到themes文件夹下，然后在config.toml加上theme = &amp;quot;hugo-theme-dream&amp;quot;， 值就填要用的主题的文件夹的名字就可以了。
+修改config.toml 要是要发布到github.io的话，要在config.toml里面把baseURL改成https://liguoqinjim.github.io
+本机预览 hugo server -D就可以实现本机预览了
+发布 hugo -D，这里-D的意思是把draft: ture的文章也发布出来。运行完命令之后，生成的博客就在public文件夹里面了， 我们只要把public文件夹发布到github.io的库就可以了
+参考资料  http://www.gohugo.org/  </description>
+    </item>
     
     <item>
       <title>我的第一篇文章</title>
