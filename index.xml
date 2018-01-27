@@ -29,5 +29,14 @@
       <description>First Article 这是我的第一篇文章，以后我会在博客里面写文章。</description>
     </item>
     
+    <item>
+      <title>About</title>
+      <link>https://liguoqinjim.github.io/about/</link>
+      <pubDate>Fri, 26 Jan 2018 17:57:27 +0800</pubDate>
+      
+      <guid>https://liguoqinjim.github.io/about/</guid>
+      <description>这是我的博客，记录一些东西</description>
+    </item>
+    
   </channel>
 </rss>
