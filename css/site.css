@@ -118,10 +118,11 @@ a.ui.label {
   display: inline;
 }
 
-.post-content code {
-  background: #ccc;
-  padding: .2em .5em;
-}
+/*代码高亮*/
+/*.post-content code {*/
+  /*background: #ccc;*/
+  /*padding: .2em .5em;*/
+/*}*/
 
 .post-content ul li {
   padding: .2em 0;
