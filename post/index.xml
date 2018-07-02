@@ -5,11 +5,23 @@
     <link>https://liguoqinjim.github.io/post/</link>
     <description>Recent content in Posts on Liguoqinjim&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <lastBuildDate>Sat, 27 Jan 2018 16:12:40 +0800</lastBuildDate>
+    <language>en</language>
+    <copyright>© This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you wish to quote or reproduce.</copyright>
+    <lastBuildDate>Mon, 02 Jul 2018 14:54:55 +0800</lastBuildDate>
     
 	<atom:link href="https://liguoqinjim.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>工具整理</title>
+      <link>https://liguoqinjim.github.io/post/tool/%E5%B7%A5%E5%85%B7%E6%95%B4%E7%90%86/</link>
+      <pubDate>Mon, 02 Jul 2018 14:54:55 +0800</pubDate>
+      
+      <guid>https://liguoqinjim.github.io/post/tool/%E5%B7%A5%E5%85%B7%E6%95%B4%E7%90%86/</guid>
+      <description>&lt;p&gt;Cut out summary from your post content here.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>Markdown的格式实验2</title>
@@ -17,20 +29,9 @@
       <pubDate>Sat, 27 Jan 2018 16:12:40 +0800</pubDate>
       
       <guid>https://liguoqinjim.github.io/post/tool/markdown%E7%9A%84%E6%A0%BC%E5%BC%8F%E5%AE%9E%E9%AA%8C2/</guid>
-      <description>1. 斜体和粗体 使用 * 和 ** 表示斜体和粗体。
-示例：
-这是 *斜体*，这是 粗体。
-2. 分级标题 使用 === 表示一级标题，使用 &amp;mdash; 表示二级标题。
-示例：
-这是一个一级标题 ============================ 这是一个二级标题 -------------------------------------------------- ### 这是一个三级标题  你也可以选择在行首加井号表示不同级别的标题 (H1-H6)，例如：# H1, ## H2, ### H3，#### H4。
-3. 外链接 使用 [描述](链接地址) 为文字增加外链接。
-示例：
-这是去往 本人博客 的链接。
-4. 无序列表 使用 *，+，- 表示无序列表。
-示例：
- 无序列表项 一 无序列表项 二 无序列表项 三  5. 有序列表 使用数字和点表示有序列表。
-示例：
- 有序列表项 一 有序列表项 二 有序列表项 三  6.</description>
+      <description>&lt;p&gt;在这篇文章里面，我用了作业部落的markdown的示例来演示hugo里面markdown最终会实现的效果。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -39,13 +40,9 @@
       <pubDate>Sat, 27 Jan 2018 14:36:30 +0800</pubDate>
       
       <guid>https://liguoqinjim.github.io/post/tool/markdown%E7%9A%84%E6%A0%BC%E5%BC%8F/</guid>
-      <description>Markdown的格式实验 在这篇文章里面，我用了作业部落的markdown的示例来演示hugo里面markdown最终会实现的效果。
-我们理解您需要更便捷更高效的工具记录思想，整理笔记、知识，并将其中承载的价值传播给他人，Cmd Markdown 是我们给出的答案 —— 我们为记录思想和分享知识提供更专业的工具。
-您可以使用 Cmd Markdown：
-  整理知识，学习笔记 发布日记，杂文，所见所想 撰写发布技术文稿（代码支持） 撰写发布学术论文（LaTeX 公式支持）   请保留此份 Cmd Markdown 的欢迎稿兼使用说明，如需撰写新稿件，点击顶部工具栏右侧的  新文稿 或者使用快捷键 Ctrl+Alt+N。
-什么是 Markdown Markdown 是一种方便记忆、书写的纯文本标记语言，用户可以使用这些标记符号以最小的输入代价生成极富表现力的文档：譬如您正在阅读的这份文档。它使用简单的符号标记不同的标题，分割不同的段落，粗体 或者 斜体 某些文字，更棒的是，它还可以
-书写一个质能守恒公式1粗体文本 $$E=mc^2$$
-高亮一段代码2 @requires_authorization class SomeClass: pass if __name__ == &#39;__main__&#39;: # A comment print &#39;hello world&#39;  绘制表格2    Name Age Class     Bob 27 1   Alice 23 2   Kitty 14 3    更详细语法说明 想要查看更详细的语法说明，可以参考我们准备的 Cmd Markdown 简明语法手册，进阶用户可以参考 Cmd Markdown 高阶语法手册了解更多高级功能。</description>
+      <description>&lt;p&gt;在这篇文章里面，我用了作业部落的markdown的示例来演示hugo里面markdown最终会实现的效果。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -54,14 +51,8 @@
       <pubDate>Sat, 27 Jan 2018 12:37:47 +0800</pubDate>
       
       <guid>https://liguoqinjim.github.io/post/tool/hugo%E7%9A%84%E4%BD%BF%E7%94%A8/</guid>
-      <description> Hugo的使用 Hugo安装 直接使用go get的方式安装: go get -u -v github.com/gohugoio/hugo
-Hugo新建一个站点 hugo new site path/to/site，运行之后会在运行路径下生成path/to/site的文件夹。
-Hugo新建一篇文章 hugo new post/directory/new.md，这样就会生成一篇新的文章。 会生成在content/post/directory文件夹下。
-安装主题 拷贝主题到themes文件夹下，然后在config.toml加上theme = &amp;quot;hugo-theme-dream&amp;quot;， 值就填要用的主题的文件夹的名字就可以了。
-修改config.toml 要是要发布到github.io的话，要在config.toml里面把baseURL改成https://liguoqinjim.github.io
-本机预览 hugo server -D就可以实现本机预览了
-发布 hugo -D，这里-D的意思是把draft: ture的文章也发布出来。运行完命令之后，生成的博客就在public文件夹里面了， 我们只要把public文件夹发布到github.io的库就可以了
-参考资料  http://www.gohugo.org/  </description>
+      <description>&lt;p&gt;Hugo是由Go语言实现的静态网站生成器。简单、易用、高效、易扩展、快速部署。
+&lt;/p&gt;</description>
     </item>
     
     <item>

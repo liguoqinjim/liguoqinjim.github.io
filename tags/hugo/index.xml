@@ -5,7 +5,8 @@
     <link>https://liguoqinjim.github.io/tags/hugo/</link>
     <description>Recent content in Hugo on Liguoqinjim&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
+    <language>en</language>
+    <copyright>© This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you wish to quote or reproduce.</copyright>
     <lastBuildDate>Sat, 27 Jan 2018 16:12:40 +0800</lastBuildDate>
     
 	<atom:link href="https://liguoqinjim.github.io/tags/hugo/index.xml" rel="self" type="application/rss+xml" />
@@ -17,20 +18,9 @@
       <pubDate>Sat, 27 Jan 2018 16:12:40 +0800</pubDate>
       
       <guid>https://liguoqinjim.github.io/post/tool/markdown%E7%9A%84%E6%A0%BC%E5%BC%8F%E5%AE%9E%E9%AA%8C2/</guid>
-      <description>1. 斜体和粗体 使用 * 和 ** 表示斜体和粗体。
-示例：
-这是 *斜体*，这是 粗体。
-2. 分级标题 使用 === 表示一级标题，使用 &amp;mdash; 表示二级标题。
-示例：
-这是一个一级标题 ============================ 这是一个二级标题 -------------------------------------------------- ### 这是一个三级标题  你也可以选择在行首加井号表示不同级别的标题 (H1-H6)，例如：# H1, ## H2, ### H3，#### H4。
-3. 外链接 使用 [描述](链接地址) 为文字增加外链接。
-示例：
-这是去往 本人博客 的链接。
-4. 无序列表 使用 *，+，- 表示无序列表。
-示例：
- 无序列表项 一 无序列表项 二 无序列表项 三  5. 有序列表 使用数字和点表示有序列表。
-示例：
- 有序列表项 一 有序列表项 二 有序列表项 三  6.</description>
+      <description>&lt;p&gt;在这篇文章里面，我用了作业部落的markdown的示例来演示hugo里面markdown最终会实现的效果。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -39,13 +29,9 @@
       <pubDate>Sat, 27 Jan 2018 14:36:30 +0800</pubDate>
       
       <guid>https://liguoqinjim.github.io/post/tool/markdown%E7%9A%84%E6%A0%BC%E5%BC%8F/</guid>
-      <description>Markdown的格式实验 在这篇文章里面，我用了作业部落的markdown的示例来演示hugo里面markdown最终会实现的效果。
-我们理解您需要更便捷更高效的工具记录思想，整理笔记、知识，并将其中承载的价值传播给他人，Cmd Markdown 是我们给出的答案 —— 我们为记录思想和分享知识提供更专业的工具。
-您可以使用 Cmd Markdown：
-  整理知识，学习笔记 发布日记，杂文，所见所想 撰写发布技术文稿（代码支持） 撰写发布学术论文（LaTeX 公式支持）   请保留此份 Cmd Markdown 的欢迎稿兼使用说明，如需撰写新稿件，点击顶部工具栏右侧的  新文稿 或者使用快捷键 Ctrl+Alt+N。
-什么是 Markdown Markdown 是一种方便记忆、书写的纯文本标记语言，用户可以使用这些标记符号以最小的输入代价生成极富表现力的文档：譬如您正在阅读的这份文档。它使用简单的符号标记不同的标题，分割不同的段落，粗体 或者 斜体 某些文字，更棒的是，它还可以
-书写一个质能守恒公式1粗体文本 $$E=mc^2$$
-高亮一段代码2 @requires_authorization class SomeClass: pass if __name__ == &#39;__main__&#39;: # A comment print &#39;hello world&#39;  绘制表格2    Name Age Class     Bob 27 1   Alice 23 2   Kitty 14 3    更详细语法说明 想要查看更详细的语法说明，可以参考我们准备的 Cmd Markdown 简明语法手册，进阶用户可以参考 Cmd Markdown 高阶语法手册了解更多高级功能。</description>
+      <description>&lt;p&gt;在这篇文章里面，我用了作业部落的markdown的示例来演示hugo里面markdown最终会实现的效果。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
     </item>
     
   </channel>
