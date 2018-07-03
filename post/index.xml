@@ -7,10 +7,33 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>© This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you wish to quote or reproduce.</copyright>
-    <lastBuildDate>Mon, 02 Jul 2018 14:54:55 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 03 Jul 2018 14:12:17 +0800</lastBuildDate>
     
 	<atom:link href="https://liguoqinjim.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>设置markdown里面的图片大小</title>
+      <link>https://liguoqinjim.github.io/post/markdown/%E8%AE%BE%E7%BD%AEmarkdown%E9%87%8C%E9%9D%A2%E7%9A%84%E5%9B%BE%E7%89%87%E5%A4%A7%E5%B0%8F/</link>
+      <pubDate>Tue, 03 Jul 2018 14:12:17 +0800</pubDate>
+      
+      <guid>https://liguoqinjim.github.io/post/markdown/%E8%AE%BE%E7%BD%AEmarkdown%E9%87%8C%E9%9D%A2%E7%9A%84%E5%9B%BE%E7%89%87%E5%A4%A7%E5%B0%8F/</guid>
+      <description>&lt;p&gt;在markdown里面添加图片的时候，图片显示出来可能会比我们需要的大很多。
+这时候我们会需要设置图片的大小。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>使用IFTTT发送自定义的Notifications</title>
+      <link>https://liguoqinjim.github.io/post/tool/%E4%BD%BF%E7%94%A8ifttt%E5%8F%91%E9%80%81%E8%87%AA%E5%AE%9A%E4%B9%89%E7%9A%84notifications/</link>
+      <pubDate>Mon, 02 Jul 2018 18:20:02 +0800</pubDate>
+      
+      <guid>https://liguoqinjim.github.io/post/tool/%E4%BD%BF%E7%94%A8ifttt%E5%8F%91%E9%80%81%E8%87%AA%E5%AE%9A%E4%B9%89%E7%9A%84notifications/</guid>
+      <description>&lt;p&gt;使用IFTTT来发送一个自定义的Notifications&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>工具整理</title>
@@ -18,7 +41,7 @@
       <pubDate>Mon, 02 Jul 2018 14:54:55 +0800</pubDate>
       
       <guid>https://liguoqinjim.github.io/post/tool/%E5%B7%A5%E5%85%B7%E6%95%B4%E7%90%86/</guid>
-      <description>&lt;p&gt;Cut out summary from your post content here.&lt;/p&gt;
+      <description>&lt;p&gt;自己平时使用的软件，插件等整理&lt;/p&gt;
 
 &lt;p&gt;&lt;/p&gt;</description>
     </item>
@@ -26,7 +49,7 @@
     <item>
       <title>Markdown的格式实验2</title>
       <link>https://liguoqinjim.github.io/post/tool/markdown%E7%9A%84%E6%A0%BC%E5%BC%8F%E5%AE%9E%E9%AA%8C2/</link>
-      <pubDate>Sat, 27 Jan 2018 16:12:40 +0800</pubDate>
+      <pubDate>Tue, 27 Feb 2018 16:12:40 +0800</pubDate>
       
       <guid>https://liguoqinjim.github.io/post/tool/markdown%E7%9A%84%E6%A0%BC%E5%BC%8F%E5%AE%9E%E9%AA%8C2/</guid>
       <description>&lt;p&gt;在这篇文章里面，我用了作业部落的markdown的示例来演示hugo里面markdown最终会实现的效果。&lt;/p&gt;
@@ -37,7 +60,7 @@
     <item>
       <title>Markdown的格式实验1</title>
       <link>https://liguoqinjim.github.io/post/tool/markdown%E7%9A%84%E6%A0%BC%E5%BC%8F/</link>
-      <pubDate>Sat, 27 Jan 2018 14:36:30 +0800</pubDate>
+      <pubDate>Tue, 27 Feb 2018 14:36:30 +0800</pubDate>
       
       <guid>https://liguoqinjim.github.io/post/tool/markdown%E7%9A%84%E6%A0%BC%E5%BC%8F/</guid>
       <description>&lt;p&gt;在这篇文章里面，我用了作业部落的markdown的示例来演示hugo里面markdown最终会实现的效果。&lt;/p&gt;

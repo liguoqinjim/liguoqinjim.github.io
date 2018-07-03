@@ -7,7 +7,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>© This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you wish to quote or reproduce.</copyright>
-    <lastBuildDate>Sat, 27 Jan 2018 16:12:40 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 27 Feb 2018 16:12:40 +0800</lastBuildDate>
     
 	<atom:link href="https://liguoqinjim.github.io/tags/hugo/index.xml" rel="self" type="application/rss+xml" />
     
@@ -15,7 +15,7 @@
     <item>
       <title>Markdown的格式实验2</title>
       <link>https://liguoqinjim.github.io/post/tool/markdown%E7%9A%84%E6%A0%BC%E5%BC%8F%E5%AE%9E%E9%AA%8C2/</link>
-      <pubDate>Sat, 27 Jan 2018 16:12:40 +0800</pubDate>
+      <pubDate>Tue, 27 Feb 2018 16:12:40 +0800</pubDate>
       
       <guid>https://liguoqinjim.github.io/post/tool/markdown%E7%9A%84%E6%A0%BC%E5%BC%8F%E5%AE%9E%E9%AA%8C2/</guid>
       <description>&lt;p&gt;在这篇文章里面，我用了作业部落的markdown的示例来演示hugo里面markdown最终会实现的效果。&lt;/p&gt;
@@ -26,7 +26,7 @@
     <item>
       <title>Markdown的格式实验1</title>
       <link>https://liguoqinjim.github.io/post/tool/markdown%E7%9A%84%E6%A0%BC%E5%BC%8F/</link>
-      <pubDate>Sat, 27 Jan 2018 14:36:30 +0800</pubDate>
+      <pubDate>Tue, 27 Feb 2018 14:36:30 +0800</pubDate>
       
       <guid>https://liguoqinjim.github.io/post/tool/markdown%E7%9A%84%E6%A0%BC%E5%BC%8F/</guid>
       <description>&lt;p&gt;在这篇文章里面，我用了作业部落的markdown的示例来演示hugo里面markdown最终会实现的效果。&lt;/p&gt;

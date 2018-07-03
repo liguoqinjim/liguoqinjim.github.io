@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Markdown on Liguoqinjim&#39;s Blog</title>
+    <link>https://liguoqinjim.github.io/tags/markdown/</link>
+    <description>Recent content in Markdown on Liguoqinjim&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>© This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you wish to quote or reproduce.</copyright>
+    <lastBuildDate>Tue, 03 Jul 2018 14:12:17 +0800</lastBuildDate>
+    
+	<atom:link href="https://liguoqinjim.github.io/tags/markdown/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>设置markdown里面的图片大小</title>
+      <link>https://liguoqinjim.github.io/post/markdown/%E8%AE%BE%E7%BD%AEmarkdown%E9%87%8C%E9%9D%A2%E7%9A%84%E5%9B%BE%E7%89%87%E5%A4%A7%E5%B0%8F/</link>
+      <pubDate>Tue, 03 Jul 2018 14:12:17 +0800</pubDate>
+      
+      <guid>https://liguoqinjim.github.io/post/markdown/%E8%AE%BE%E7%BD%AEmarkdown%E9%87%8C%E9%9D%A2%E7%9A%84%E5%9B%BE%E7%89%87%E5%A4%A7%E5%B0%8F/</guid>
+      <description>&lt;p&gt;在markdown里面添加图片的时候，图片显示出来可能会比我们需要的大很多。
+这时候我们会需要设置图片的大小。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>
