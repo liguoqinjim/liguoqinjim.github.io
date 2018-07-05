@@ -7,10 +7,21 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>© This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you wish to quote or reproduce.</copyright>
-    <lastBuildDate>Tue, 03 Jul 2018 14:12:17 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 04 Jul 2018 16:42:54 +0800</lastBuildDate>
     
 	<atom:link href="https://liguoqinjim.github.io/tags/markdown/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Hugo的TOC</title>
+      <link>https://liguoqinjim.github.io/post/markdown/hugo%E7%9A%84toc/</link>
+      <pubDate>Wed, 04 Jul 2018 16:42:54 +0800</pubDate>
+      
+      <guid>https://liguoqinjim.github.io/post/markdown/hugo%E7%9A%84toc/</guid>
+      <description>&lt;p&gt;Cut out summary from your post content here.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>设置markdown里面的图片大小</title>
