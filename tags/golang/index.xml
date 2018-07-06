@@ -5,8 +5,7 @@
     <link>https://liguoqinjim.github.io/tags/golang/</link>
     <description>Recent content in Golang on Liguoqinjim&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en</language>
-    <copyright>© This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you wish to quote or reproduce.</copyright>
+    <language>en-us</language>
     <lastBuildDate>Mon, 02 Jul 2018 18:20:02 +0800</lastBuildDate>
     
 	<atom:link href="https://liguoqinjim.github.io/tags/golang/index.xml" rel="self" type="application/rss+xml" />
@@ -14,22 +13,13 @@
     
     <item>
       <title>用golang触发IFTTT，发送自定义的Notifications</title>
-      <link>https://liguoqinjim.github.io/post/tool/%E7%94%A8golang%E8%A7%A6%E5%8F%91ifttt%E5%8F%91%E9%80%81%E8%87%AA%E5%AE%9A%E4%B9%89%E7%9A%84notifications/</link>
+      <link>https://liguoqinjim.github.io/2018/07/%E7%94%A8golang%E8%A7%A6%E5%8F%91ifttt%E5%8F%91%E9%80%81%E8%87%AA%E5%AE%9A%E4%B9%89%E7%9A%84notifications/</link>
       <pubDate>Mon, 02 Jul 2018 18:20:02 +0800</pubDate>
       
-      <guid>https://liguoqinjim.github.io/post/tool/%E7%94%A8golang%E8%A7%A6%E5%8F%91ifttt%E5%8F%91%E9%80%81%E8%87%AA%E5%AE%9A%E4%B9%89%E7%9A%84notifications/</guid>
+      <guid>https://liguoqinjim.github.io/2018/07/%E7%94%A8golang%E8%A7%A6%E5%8F%91ifttt%E5%8F%91%E9%80%81%E8%87%AA%E5%AE%9A%E4%B9%89%E7%9A%84notifications/</guid>
       <description>&lt;p&gt;IFTTT众多的service里面，有一个非常强大的service，就是webhooks。当我们在IFTTT里面connect了这个service之后，我们会得到一个唯一的链接，我们访问这个链接就会被视作触发了这个service。&lt;/p&gt;
 
 &lt;p&gt;&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>Go Test</title>
-      <link>https://liguoqinjim.github.io/post/golang/go-test/</link>
-      <pubDate>Sat, 27 Jan 2018 11:43:13 +0800</pubDate>
-      
-      <guid>https://liguoqinjim.github.io/post/golang/go-test/</guid>
-      <description></description>
     </item>
     
   </channel>
