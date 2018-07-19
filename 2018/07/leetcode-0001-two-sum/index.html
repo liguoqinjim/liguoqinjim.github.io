@@ -1,5 +1,9 @@
 
 
+  
+    
+  
+
 
   
 
@@ -16,25 +20,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="Hugo 0.43-DEV with theme Tranquilpeak 0.4.3-BETA">
-    <title>Tool</title>
+    <title>LeetCode-0001-Two Sum</title>
     <meta name="author" content="Liguoqinjim">
-    <meta name="keywords" content="">
+    <meta name="keywords" content="leetcode golang">
 
     <link rel="icon" href="https://liguoqinjim.github.io/favicon.png">
     
-      <link rel="alternate" type="application/rss+xml" title="RSS" href="https://liguoqinjim.github.io/tags/tool/index.xml">
-    
 
     
-    <meta name="description" content="Liguoqinjim&#39;s Blog">
-    <meta property="og:description" content="Liguoqinjim&#39;s Blog">
+    <meta name="description" content="">
+    <meta property="og:description" content="">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="Tool">
-    <meta property="og:url" content="/tags/tool/">
+    <meta property="og:title" content="LeetCode-0001-Two Sum">
+    <meta property="og:url" content="/2018/07/leetcode-0001-two-sum/">
     <meta property="og:site_name" content="Liguoqinjim&#39;s Blog">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="Liguoqinjim&#39;s Blog">
-    <meta name="twitter:description" content="Liguoqinjim&#39;s Blog">
+    <meta name="twitter:description" content="">
     
     
 
@@ -82,7 +84,7 @@ if (!doNotTrack) {
 
   <body>
     <div id="blog">
-      <header id="header" data-behavior="1">
+      <header id="header" data-behavior="4">
   <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
   <div class="header-title">
     <a class="header-title-link" href="https://liguoqinjim.github.io/">Liguoqinjim&#39;s Blog</a>
@@ -102,7 +104,7 @@ if (!doNotTrack) {
   
 </header>
 
-      <nav id="sidebar" data-behavior="1">
+      <nav id="sidebar" data-behavior="4">
   <div class="sidebar-container">
     
       <div class="sidebar-profile">
@@ -211,44 +213,26 @@ if (!doNotTrack) {
 </nav>
 
       
-        
 
-      
-      <div id="main" data-behavior="1"
+      <div id="main" data-behavior="4"
         class="
                hasCoverMetaIn
                ">
-        
-          <section class="postShorten-group main-content-wrap">
-            
-            
-              
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+          
+            <div class="post-header main-content-wrap text-left">
   
-    
-      
-        
-      
-    
+    <h1 class="post-title" itemprop="headline">
+      LeetCode-0001-Two Sum
+    </h1>
   
-
-
   
-
-<article class="postShorten postShorten--thumbnailimg-bottom" itemscope itemType="http://schema.org/BlogPosting">
-  <div class="postShorten-wrap">
-    
-    <div class="postShorten-header">
-      <h1 class="postShorten-title" itemprop="headline">
-        <a class="link-unstyled" href="https://liguoqinjim.github.io/2018/07/%E8%AE%BE%E7%BD%AEmarkdown%E9%87%8C%E9%9D%A2%E7%9A%84%E5%9B%BE%E7%89%87%E5%A4%A7%E5%B0%8F/">
-          设置markdown里面的图片大小
-        </a>
-      </h1>
-      
   <div class="postShorten-meta post-meta">
     
-      <time itemprop="datePublished" datetime="2018-07-03T14:12:17&#43;08:00">
+      <time itemprop="datePublished" datetime="2018-07-19T15:07:59&#43;08:00">
         
-  七月 3, 2018
+  七月 19, 2018
 
       </time>
     
@@ -257,135 +241,166 @@ if (!doNotTrack) {
   
     <span>发布在</span>
     
-      <a class="category-link" href="https://liguoqinjim.github.io/categories/markdown">markdown</a>
+      <a class="category-link" href="https://liguoqinjim.github.io/categories/leetcode">leetcode</a>
     
   
 
   </div>
 
-    </div>
-    <div class="postShorten-excerpt" itemprop="articleBody">
-      <p>在markdown里面添加图片的时候，图片显示出来可能会比我们需要的大很多。
-这时候我们会需要设置图片的大小。</p>
+</div>
+          
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">
+              <p></p>
 
-<p></p>
-      <p>
-        <a href="https://liguoqinjim.github.io/2018/07/%E8%AE%BE%E7%BD%AEmarkdown%E9%87%8C%E9%9D%A2%E7%9A%84%E5%9B%BE%E7%89%87%E5%A4%A7%E5%B0%8F/" class="postShorten-excerpt_link link">阅读全文</a>
+<h1 id="table-of-contents">目录</h1><nav id="TableOfContents">
+<ul>
+<li><a href="#题目">题目</a></li>
+<li><a href="#解法">解法</a>
+<ul>
+<li><a href="#解法1">解法1</a></li>
+<li><a href="#解法2">解法2</a></li>
+</ul></li>
+<li><a href="#总结">总结</a></li>
+<li><a href="#源代码">源代码</a></li>
+</ul>
+</nav>
+
+<h1 id="题目">题目</h1>
+
+<p>Given an array of integers, return indices of the two numbers such that they add up to a specific target.
+You may assume that each input would have exactly one solution, and you may not use the same element twice.</p>
+
+<p>Example:</p>
+
+<pre><code>Given nums = [2, 7, 11, 15], target = 9,
+
+Because nums[0] + nums[1] = 2 + 7 = 9,
+return [0, 1].
+</code></pre>
+
+<h1 id="解法">解法</h1>
+
+<h2 id="解法1">解法1</h2>
+
+<pre><code>func twoSum(nums []int, target int) []int {
+    as := make([]int, 2)
+    for i := 0; i &lt; len(nums); i++ {
+        for j := i + 1; j &lt; len(nums); j++ {
+            if nums[i]+nums[j] == target {
+                as[0] = i
+                as[1] = j
+            }
+        }
+    }
+
+    return as
+}
+</code></pre>
+
+<h2 id="解法2">解法2</h2>
+
+<pre><code>func twoSum2(nums []int, target int) []int {
+    r := make([]int, 2)
+    result := make(map[int]int) //key是nums的值,value是值对应的下标
+    for n, v := range nums {
+        if value, ok := result[target-v]; ok {
+            r[0] = value
+            r[1] = n
+            break
+        }
+        result[v] = n
+    }
+
+    return r
+}
+
+</code></pre>
+
+<h1 id="总结">总结</h1>
+
+<p>解法1就是最简单的循环相加，时间复杂度是O(n^2)。解法2的话因为题目里面是假设了肯定是有解的，那么就直接用一个循环来完成，时间复杂度使用O(n)</p>
+
+<h1 id="源代码">源代码</h1>
+
+<p><a href="https://github.com/liguoqinjim/leetcodeGo/tree/master/problems/lab0001">https://github.com/liguoqinjim/leetcodeGo/tree/master/problems/lab0001</a></p>
+              
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">标签</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="https://liguoqinjim.github.io/tags/leetcode/">leetcode</a>
+
+                  </div>
+                
+              
+            
+            
+  <div class="post-actions-wrap">
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--disabled">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://liguoqinjim.github.io/2018/07/hugo%E7%9A%84toc/" data-tooltip="Hugo的TOC">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
         
-      </p>
-    </div>
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#table-of-contents">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
   </div>
-  
-</article>
+
 
             
               
-  
-    
-      
-        
-      
-    
-  
-
-
-  
-
-<article class="postShorten postShorten--thumbnailimg-bottom" itemscope itemType="http://schema.org/BlogPosting">
-  <div class="postShorten-wrap">
-    
-    <div class="postShorten-header">
-      <h1 class="postShorten-title" itemprop="headline">
-        <a class="link-unstyled" href="https://liguoqinjim.github.io/2018/07/%E7%94%A8golang%E8%A7%A6%E5%8F%91ifttt%E5%8F%91%E9%80%81%E8%87%AA%E5%AE%9A%E4%B9%89%E7%9A%84notifications/">
-          用golang触发IFTTT，发送自定义的Notifications
-        </a>
-      </h1>
-      
-  <div class="postShorten-meta post-meta">
-    
-      <time itemprop="datePublished" datetime="2018-07-02T18:20:02&#43;08:00">
-        
-  七月 2, 2018
-
-      </time>
-    
-    
-  </div>
-
-    </div>
-    <div class="postShorten-excerpt" itemprop="articleBody">
-      <p>IFTTT众多的service里面，有一个非常强大的service，就是webhooks。当我们在IFTTT里面connect了这个service之后，我们会得到一个唯一的链接，我们访问这个链接就会被视作触发了这个service。</p>
-
-<p></p>
-      <p>
-        <a href="https://liguoqinjim.github.io/2018/07/%E7%94%A8golang%E8%A7%A6%E5%8F%91ifttt%E5%8F%91%E9%80%81%E8%87%AA%E5%AE%9A%E4%B9%89%E7%9A%84notifications/" class="postShorten-excerpt_link link">阅读全文</a>
-        
-      </p>
-    </div>
-  </div>
-  
-</article>
-
-            
+                <div id="disqus_thread">
+  <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
               
-  
-    
-      
-        
-      
-    
-  
-
-
-  
-
-<article class="postShorten postShorten--thumbnailimg-bottom" itemscope itemType="http://schema.org/BlogPosting">
-  <div class="postShorten-wrap">
-    
-    <div class="postShorten-header">
-      <h1 class="postShorten-title" itemprop="headline">
-        <a class="link-unstyled" href="https://liguoqinjim.github.io/2018/01/hugo%E7%9A%84%E4%BD%BF%E7%94%A8/">
-          Hugo的使用
-        </a>
-      </h1>
-      
-  <div class="postShorten-meta post-meta">
-    
-      <time itemprop="datePublished" datetime="2018-01-27T12:37:47&#43;08:00">
-        
-  一月 27, 2018
-
-      </time>
-    
-    
-  
-  
-    <span>发布在</span>
-    
-      <a class="category-link" href="https://liguoqinjim.github.io/categories/tool">tool</a>
-    
-  
-
-  </div>
-
-    </div>
-    <div class="postShorten-excerpt" itemprop="articleBody">
-      <p>Hugo是由Go语言实现的静态网站生成器。简单、易用、高效、易扩展、快速部署。
-</p>
-      <p>
-        <a href="https://liguoqinjim.github.io/2018/01/hugo%E7%9A%84%E4%BD%BF%E7%94%A8/" class="postShorten-excerpt_link link">阅读全文</a>
-        
-      </p>
-    </div>
-  </div>
-  
-</article>
-
             
-            
-
-          </section>
-        
+          </div>
+        </article>
         <footer id="footer" class="main-content-wrap">
   <span class="copyrights">
     &copy; 2018 Liguoqinjim. All Rights Reserved
@@ -393,6 +408,66 @@ if (!doNotTrack) {
 </footer>
 
       </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="4">
+        
+  <div class="post-actions-wrap">
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--disabled">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://liguoqinjim.github.io/2018/07/hugo%E7%9A%84toc/" data-tooltip="Hugo的TOC">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#table-of-contents">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+
+      </div>
+      <div id="share-options-bar" class="share-options-bar" data-behavior="4">
+  <i id="btn-close-shareoptions" class="fa fa-close"></i>
+  <ul class="share-options">
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
     </div>
     
     <div id="about">
@@ -573,6 +648,32 @@ $(document).ready(function() {
 });
 </script>
 
+
+  
+    
+      <script>
+        var disqus_config = function () {
+          this.page.url = 'https:\/\/liguoqinjim.github.io\/2018\/07\/leetcode-0001-two-sum\/';
+          
+            this.page.identifier = '\/2018\/07\/leetcode-0001-two-sum\/'
+          
+        };
+        (function() {
+          
+          
+          if (window.location.hostname == "localhost") {
+            return;
+          }
+          var d = document, s = d.createElement('script');
+          var disqus_shortname = 'liguoqinjim';
+          s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+        })();
+      </script>
+    
+  
 
 
 

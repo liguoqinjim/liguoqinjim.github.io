@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://liguoqinjim.github.io/2018/07/leetcode-0001-two-sum/</loc>
+    <lastmod>2018-07-19T15:07:59+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://liguoqinjim.github.io/2018/07/hugo%E7%9A%84toc/</loc>
     <lastmod>2018-07-04T16:42:54+08:00</lastmod>
   </url>
@@ -50,8 +55,20 @@
   </url>
   
   <url>
+    <loc>https://liguoqinjim.github.io/tags/leetcode/</loc>
+    <lastmod>2018-07-19T15:07:59+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://liguoqinjim.github.io/categories/leetcode/</loc>
+    <lastmod>2018-07-19T15:07:59+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://liguoqinjim.github.io/</loc>
-    <lastmod>2018-07-04T16:42:54+08:00</lastmod>
+    <lastmod>2018-07-19T15:07:59+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -69,7 +86,7 @@
   
   <url>
     <loc>https://liguoqinjim.github.io/post/</loc>
-    <lastmod>2018-07-04T16:42:54+08:00</lastmod>
+    <lastmod>2018-07-19T15:07:59+08:00</lastmod>
     <priority>0</priority>
   </url>
   
