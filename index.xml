@@ -6,10 +6,19 @@
     <description>Recent content on Liguoqinjim&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 20 Jul 2018 14:10:48 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 21 Jul 2018 23:56:08 +0800</lastBuildDate>
     
 	<atom:link href="https://liguoqinjim.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>LeetCode-0035-Search Insert Position</title>
+      <link>https://liguoqinjim.github.io/2018/07/leetcode-0035-search-insert-position/</link>
+      <pubDate>Sat, 21 Jul 2018 23:56:08 +0800</pubDate>
+      
+      <guid>https://liguoqinjim.github.io/2018/07/leetcode-0035-search-insert-position/</guid>
+      <description>&lt;p&gt;&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>LeetCode-0007-Reverse Integer</title>
