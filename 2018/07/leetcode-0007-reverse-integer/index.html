@@ -19,7 +19,7 @@
     
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="generator" content="Hugo 0.44 with theme Tranquilpeak 0.4.3-BETA">
+    <meta name="generator" content="Hugo 0.43-DEV with theme Tranquilpeak 0.4.3-BETA">
     <title>LeetCode-0007-Reverse Integer</title>
     <meta name="author" content="Liguoqinjim">
     <meta name="keywords" content="leetcode golang">
@@ -276,47 +276,47 @@ if (!doNotTrack) {
 <h2 id="解法1">解法1</h2>
 
 <pre><code>func reverse(x int) int {
-	if x &gt;= math.MaxInt32 || x &lt;= math.MinInt32 {
-		return 0
-	}
+    if x &gt;= math.MaxInt32 || x &lt;= math.MinInt32 {
+        return 0
+    }
 
-	i := 10
-	num := make([]int, 0)
-	for {
-		rem := x % i
-		num = append(num, rem/(i/10))
-		if rem == x {
-			break
-		}
-		i *= 10
-	}
-	result := 0
-	for n, v := range num {
-		result += v * int(math.Pow(10, float64(len(num)-1-n)))
-	}
+    i := 10
+    num := make([]int, 0)
+    for {
+        rem := x % i
+        num = append(num, rem/(i/10))
+        if rem == x {
+            break
+        }
+        i *= 10
+    }
+    result := 0
+    for n, v := range num {
+        result += v * int(math.Pow(10, float64(len(num)-1-n)))
+    }
 
-	if result &gt;= math.MaxInt32 || result &lt;= math.MinInt32 {
-		return 0
-	}
+    if result &gt;= math.MaxInt32 || result &lt;= math.MinInt32 {
+        return 0
+    }
 
-	return result
+    return result
 }
 </code></pre>
 
 <h2 id="解法2">解法2</h2>
 
 <pre><code>func reverse2(x int) int {
-	var result int32 = 0
-	for x != 0 {
-		tail := int32(x) % 10
-		newResult := result*10 + tail
-		if (newResult-tail)/10 != result { //overflow，因为从数学来考虑，这个等式是肯定相等的。如果不相等，就出现了数字超过范围的情况了
-			return 0
-		}
-		result = newResult
-		x /= 10
-	}
-	return int(result)
+    var result int32 = 0
+    for x != 0 {
+        tail := int32(x) % 10
+        newResult := result*10 + tail
+        if (newResult-tail)/10 != result { //overflow，因为从数学来考虑，这个等式是肯定相等的。如果不相等，就出现了数字超过范围的情况了
+            return 0
+        }
+        result = newResult
+        x /= 10
+    }
+    return int(result)
 }
 </code></pre>
 
@@ -517,6 +517,23 @@ if (!doNotTrack) {
           <div class="media">
             
             <div class="media-body">
+              <a class="link-unstyled" href="https://liguoqinjim.github.io/2018/07/leetcode-0014-longest-common-prefix/">
+                <h3 class="media-heading">LeetCode-0014-Longest Common Prefix</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Jul 7, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p></p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
               <a class="link-unstyled" href="https://liguoqinjim.github.io/2018/07/leetcode-0035-search-insert-position/">
                 <h3 class="media-heading">LeetCode-0035-Search Insert Position</h3>
               </a>
@@ -648,7 +665,7 @@ if (!doNotTrack) {
          data-message-zero=""
          data-message-one=""
          data-message-other="">
-         7 posts found
+         8 posts found
       </p>
     </div>
   </div>

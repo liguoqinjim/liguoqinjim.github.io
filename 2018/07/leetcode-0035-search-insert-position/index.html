@@ -19,7 +19,7 @@
     
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="generator" content="Hugo 0.44 with theme Tranquilpeak 0.4.3-BETA">
+    <meta name="generator" content="Hugo 0.43-DEV with theme Tranquilpeak 0.4.3-BETA">
     <title>LeetCode-0035-Search Insert Position</title>
     <meta name="author" content="Liguoqinjim">
     <meta name="keywords" content="leetcode golang">
@@ -277,30 +277,30 @@ if (!doNotTrack) {
 <h2 id="解法1">解法1</h2>
 
 <pre><code>func searchInsert(nums []int, target int) int {
-	for n, v := range nums {
-		if target &lt;= v {
-			return n
-		}
-	}
-	return len(nums)
+    for n, v := range nums {
+        if target &lt;= v {
+            return n
+        }
+    }
+    return len(nums)
 }
 </code></pre>
 
 <h2 id="解法2">解法2</h2>
 
 <pre><code>func searchInsert2(nums []int, target int) int {
-	low, high := 0, len(nums)-1
-	for low &lt;= high {
-		mid := (low + high) / 2
-		if nums[mid] == target {
-			return mid
-		} else if nums[mid] &gt; target {
-			high = mid - 1
-		} else {
-			low = mid + 1
-		}
-	}
-	return low
+    low, high := 0, len(nums)-1
+    for low &lt;= high {
+        mid := (low + high) / 2
+        if nums[mid] == target {
+            return mid
+        } else if nums[mid] &gt; target {
+            high = mid - 1
+        } else {
+            low = mid + 1
+        }
+    }
+    return low
 }
 </code></pre>
 
@@ -337,7 +337,7 @@ if (!doNotTrack) {
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--disabled">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://liguoqinjim.github.io/2018/07/leetcode-0014-longest-common-prefix/" data-tooltip="LeetCode-0014-Longest Common Prefix">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
@@ -405,7 +405,7 @@ if (!doNotTrack) {
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--disabled">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://liguoqinjim.github.io/2018/07/leetcode-0014-longest-common-prefix/" data-tooltip="LeetCode-0014-Longest Common Prefix">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
@@ -500,6 +500,23 @@ if (!doNotTrack) {
       <div class="no-result text-color-light text-center"></div>
       <div class="results">
         
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://liguoqinjim.github.io/2018/07/leetcode-0014-longest-common-prefix/">
+                <h3 class="media-heading">LeetCode-0014-Longest Common Prefix</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Jul 7, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p></p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
         
           <div class="media">
             
@@ -635,7 +652,7 @@ if (!doNotTrack) {
          data-message-zero=""
          data-message-one=""
          data-message-other="">
-         7 posts found
+         8 posts found
       </p>
     </div>
   </div>

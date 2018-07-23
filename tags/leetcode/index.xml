@@ -6,10 +6,19 @@
     <description>Recent content in Leetcode on Liguoqinjim&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 21 Jul 2018 23:56:08 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 22 Jul 2018 15:07:56 +0800</lastBuildDate>
     
 	<atom:link href="https://liguoqinjim.github.io/tags/leetcode/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>LeetCode-0014-Longest Common Prefix</title>
+      <link>https://liguoqinjim.github.io/2018/07/leetcode-0014-longest-common-prefix/</link>
+      <pubDate>Sun, 22 Jul 2018 15:07:56 +0800</pubDate>
+      
+      <guid>https://liguoqinjim.github.io/2018/07/leetcode-0014-longest-common-prefix/</guid>
+      <description>&lt;p&gt;&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>LeetCode-0035-Search Insert Position</title>

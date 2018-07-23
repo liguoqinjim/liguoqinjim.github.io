@@ -19,7 +19,7 @@
     
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="generator" content="Hugo 0.44 with theme Tranquilpeak 0.4.3-BETA">
+    <meta name="generator" content="Hugo 0.43-DEV with theme Tranquilpeak 0.4.3-BETA">
     <title>LeetCode-0001-Two Sum</title>
     <meta name="author" content="Liguoqinjim">
     <meta name="keywords" content="leetcode golang">
@@ -284,35 +284,35 @@ return [0, 1].
 <h2 id="解法1">解法1</h2>
 
 <pre><code>func twoSum(nums []int, target int) []int {
-	as := make([]int, 2)
-	for i := 0; i &lt; len(nums); i++ {
-		for j := i + 1; j &lt; len(nums); j++ {
-			if nums[i]+nums[j] == target {
-				as[0] = i
-				as[1] = j
-			}
-		}
-	}
+    as := make([]int, 2)
+    for i := 0; i &lt; len(nums); i++ {
+        for j := i + 1; j &lt; len(nums); j++ {
+            if nums[i]+nums[j] == target {
+                as[0] = i
+                as[1] = j
+            }
+        }
+    }
 
-	return as
+    return as
 }
 </code></pre>
 
 <h2 id="解法2">解法2</h2>
 
 <pre><code>func twoSum2(nums []int, target int) []int {
-	r := make([]int, 2)
-	result := make(map[int]int) //key是nums的值,value是值对应的下标
-	for n, v := range nums {
-		if value, ok := result[target-v]; ok {
-			r[0] = value
-			r[1] = n
-			break
-		}
-		result[v] = n
-	}
+    r := make([]int, 2)
+    result := make(map[int]int) //key是nums的值,value是值对应的下标
+    for n, v := range nums {
+        if value, ok := result[target-v]; ok {
+            r[0] = value
+            r[1] = n
+            break
+        }
+        result[v] = n
+    }
 
-	return r
+    return r
 }
 
 </code></pre>
@@ -515,6 +515,23 @@ return [0, 1].
           <div class="media">
             
             <div class="media-body">
+              <a class="link-unstyled" href="https://liguoqinjim.github.io/2018/07/leetcode-0014-longest-common-prefix/">
+                <h3 class="media-heading">LeetCode-0014-Longest Common Prefix</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Jul 7, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p></p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
               <a class="link-unstyled" href="https://liguoqinjim.github.io/2018/07/leetcode-0035-search-insert-position/">
                 <h3 class="media-heading">LeetCode-0035-Search Insert Position</h3>
               </a>
@@ -646,7 +663,7 @@ return [0, 1].
          data-message-zero=""
          data-message-one=""
          data-message-other="">
-         7 posts found
+         8 posts found
       </p>
     </div>
   </div>
