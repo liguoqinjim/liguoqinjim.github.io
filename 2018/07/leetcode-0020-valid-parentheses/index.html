@@ -20,7 +20,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="Hugo 0.43-DEV with theme Tranquilpeak 0.4.3-BETA">
-    <title>LeetCode-0014-Longest Common Prefix</title>
+    <title>LeetCode-0020-Valid Parentheses</title>
     <meta name="author" content="Liguoqinjim">
     <meta name="keywords" content="leetcode golang">
 
@@ -31,8 +31,8 @@
     <meta name="description" content="">
     <meta property="og:description" content="">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="LeetCode-0014-Longest Common Prefix">
-    <meta property="og:url" content="/2018/07/leetcode-0014-longest-common-prefix/">
+    <meta property="og:title" content="LeetCode-0020-Valid Parentheses">
+    <meta property="og:url" content="/2018/07/leetcode-0020-valid-parentheses/">
     <meta property="og:site_name" content="Liguoqinjim&#39;s Blog">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="Liguoqinjim&#39;s Blog">
@@ -224,15 +224,15 @@ if (!doNotTrack) {
             <div class="post-header main-content-wrap text-left">
   
     <h1 class="post-title" itemprop="headline">
-      LeetCode-0014-Longest Common Prefix
+      LeetCode-0020-Valid Parentheses
     </h1>
   
   
   <div class="postShorten-meta post-meta">
     
-      <time itemprop="datePublished" datetime="2018-07-22T15:07:56&#43;08:00">
+      <time itemprop="datePublished" datetime="2018-07-23T14:01:09&#43;08:00">
         
-  七月 22, 2018
+  七月 23, 2018
 
       </time>
     
@@ -255,77 +255,67 @@ if (!doNotTrack) {
 
 <h1 id="table-of-contents">目录</h1><nav id="TableOfContents">
 <ul>
-<li><a href="#题目-https-leetcode-com-problems-longest-common-prefix-description"><a href="https://leetcode.com/problems/longest-common-prefix/description/#">题目</a></a></li>
+<li><a href="#题目-https-leetcode-com-problems-valid-parentheses-description"><a href="https://leetcode.com/problems/valid-parentheses/description/">题目</a></a></li>
 <li><a href="#解法">解法</a>
 <ul>
 <li><a href="#解法1">解法1</a></li>
-<li><a href="#解法2">解法2</a></li>
 </ul></li>
 <li><a href="#总结">总结</a></li>
 </ul>
 </nav>
 
-<h1 id="题目-https-leetcode-com-problems-longest-common-prefix-description"><a href="https://leetcode.com/problems/longest-common-prefix/description/#">题目</a></h1>
+<h1 id="题目-https-leetcode-com-problems-valid-parentheses-description"><a href="https://leetcode.com/problems/valid-parentheses/description/">题目</a></h1>
 
-<p>Write a function to find the longest common prefix string amongst an array of strings.
-If there is no common prefix, return an empty string &ldquo;&rdquo;.</p>
+<p>Given a string containing just the characters &lsquo;(&rsquo;, &lsquo;)&rsquo;, &lsquo;{&rsquo;, &lsquo;}&rsquo;, &lsquo;[&rsquo; and &lsquo;]&rsquo;, determine if the input string is valid.</p>
 
-<p>在一组给出的字符串里面，找出最长的相同前缀。如果没有相同的前缀，返回&rdquo;&rdquo;</p>
+<p>An input string is valid if:</p>
+
+<ol>
+<li>Open brackets must be closed by the same type of brackets.</li>
+<li>Open brackets must be closed in the correct order.</li>
+</ol>
+
+<p>Note that an empty string is also considered valid.</p>
+
+<p>就是要判断括号的顺序是否是正确的。</p>
 
 <h1 id="解法">解法</h1>
 
 <h2 id="解法1">解法1</h2>
 
-<pre><code>func longestCommonPrefix(strs []string) string {
-    if len(strs) == 0 {
-        return &quot;&quot;
-    }
-    if len(strs) == 1 {
-        return strs[0]
+<pre><code>func isValid(s string) bool { //这个解法用到了acsii值
+    if len(s) == 0 {
+        return true
     }
 
-    n := 0
-    end := false
-    for !end {
-        for i := 0; i &lt; len(strs)-1; i++ {
-            if n == len(strs[i]) || n == len(strs[i+1]) {
-                end = true
-                break
-            }
-            if strs[i][n] != strs[i+1][n] {
-                end = true
-                break
-            }
+    left := make([]int, 1)
+    left[0] = int(s[0])
+    for i := 1; i &lt; len(s); i++ {
+        a := int(s[i])
+        if len(left) == 0 {
+            left = append(left, a)
+            continue
         }
-        if !end {
-            n++
+        if a-left[len(left)-1] != 1 &amp;&amp; a-left[len(left)-1] != 2 {
+            left = append(left, a)
+        } else {
+            left = left[:len(left)-1]
         }
     }
 
-    return strs[0][:n]
-}
-</code></pre>
-
-<h2 id="解法2">解法2</h2>
-
-<pre><code>func longestCommonPrefix2(strs []string) string {
-    if strs == nil || len(strs) == 0 {
-        return &quot;&quot;
+    if len(left) == 0 {
+        return true
+    } else {
+        return false
     }
-    pre := strs[0]
-    for _, v := range strs {
-        for !strings.HasPrefix(v, pre) {
-            pre = pre[:len(pre)-1]
-        }
-    }
-    return pre
 }
 </code></pre>
 
 <h1 id="总结">总结</h1>
 
 <ul>
-<li>解法2里面，使用了golang的strings自带的判断前缀的方法</li>
+<li>解法1里面，我们使用的ascii码来判断，括号的顺序是否是对的。但是要注意的是，用ascii码来判断是有前提的，
+就是题目里面说了字符串只会出现这6个字符，不会出现其他的字符。不然这样的判断是不对的。</li>
 </ul>
               
             </div>
@@ -351,7 +341,7 @@ If there is no common prefix, return an empty string &ldquo;&rdquo;.</p>
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://liguoqinjim.github.io/2018/07/leetcode-0020-valid-parentheses/" data-tooltip="LeetCode-0020-Valid Parentheses">
+                <a class="post-action-btn btn btn--disabled">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
@@ -359,7 +349,7 @@ If there is no common prefix, return an empty string &ldquo;&rdquo;.</p>
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://liguoqinjim.github.io/2018/07/leetcode-0035-search-insert-position/" data-tooltip="LeetCode-0035-Search Insert Position">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://liguoqinjim.github.io/2018/07/leetcode-0014-longest-common-prefix/" data-tooltip="LeetCode-0014-Longest Common Prefix">
               
                   <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
                   <i class="fa fa-angle-right"></i>
@@ -419,7 +409,7 @@ If there is no common prefix, return an empty string &ldquo;&rdquo;.</p>
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://liguoqinjim.github.io/2018/07/leetcode-0020-valid-parentheses/" data-tooltip="LeetCode-0020-Valid Parentheses">
+                <a class="post-action-btn btn btn--disabled">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
@@ -427,7 +417,7 @@ If there is no common prefix, return an empty string &ldquo;&rdquo;.</p>
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://liguoqinjim.github.io/2018/07/leetcode-0035-search-insert-position/" data-tooltip="LeetCode-0035-Search Insert Position">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://liguoqinjim.github.io/2018/07/leetcode-0014-longest-common-prefix/" data-tooltip="LeetCode-0014-Longest Common Prefix">
               
                   <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
                   <i class="fa fa-angle-right"></i>
@@ -724,9 +714,9 @@ $(document).ready(function() {
     
       <script>
         var disqus_config = function () {
-          this.page.url = 'https:\/\/liguoqinjim.github.io\/2018\/07\/leetcode-0014-longest-common-prefix\/';
+          this.page.url = 'https:\/\/liguoqinjim.github.io\/2018\/07\/leetcode-0020-valid-parentheses\/';
           
-            this.page.identifier = '\/2018\/07\/leetcode-0014-longest-common-prefix\/'
+            this.page.identifier = '\/2018\/07\/leetcode-0020-valid-parentheses\/'
           
         };
         (function() {
