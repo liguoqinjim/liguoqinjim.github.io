@@ -2,57 +2,57 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on Liguoqinjim&#39;s Blog</title>
-    <link>https://liguoqinjim.github.io/tags/</link>
+    <link>https://liguoqinjim.com/tags/</link>
     <description>Recent content in Tags on Liguoqinjim&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 02 Jul 2018 18:20:02 +0800</lastBuildDate>
     
-	<atom:link href="https://liguoqinjim.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://liguoqinjim.com/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Golang</title>
-      <link>https://liguoqinjim.github.io/tags/golang/</link>
+      <link>https://liguoqinjim.com/tags/golang/</link>
       <pubDate>Mon, 02 Jul 2018 18:20:02 +0800</pubDate>
       
-      <guid>https://liguoqinjim.github.io/tags/golang/</guid>
+      <guid>https://liguoqinjim.com/tags/golang/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Hugo</title>
-      <link>https://liguoqinjim.github.io/tags/hugo/</link>
+      <link>https://liguoqinjim.com/tags/hugo/</link>
       <pubDate>Wed, 04 Jul 2018 16:42:54 +0800</pubDate>
       
-      <guid>https://liguoqinjim.github.io/tags/hugo/</guid>
+      <guid>https://liguoqinjim.com/tags/hugo/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Leetcode</title>
-      <link>https://liguoqinjim.github.io/tags/leetcode/</link>
+      <link>https://liguoqinjim.com/tags/leetcode/</link>
       <pubDate>Tue, 24 Jul 2018 11:46:25 +0800</pubDate>
       
-      <guid>https://liguoqinjim.github.io/tags/leetcode/</guid>
+      <guid>https://liguoqinjim.com/tags/leetcode/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Markdown</title>
-      <link>https://liguoqinjim.github.io/tags/markdown/</link>
+      <link>https://liguoqinjim.com/tags/markdown/</link>
       <pubDate>Wed, 04 Jul 2018 16:42:54 +0800</pubDate>
       
-      <guid>https://liguoqinjim.github.io/tags/markdown/</guid>
+      <guid>https://liguoqinjim.com/tags/markdown/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Tool</title>
-      <link>https://liguoqinjim.github.io/tags/tool/</link>
+      <link>https://liguoqinjim.com/tags/tool/</link>
       <pubDate>Tue, 03 Jul 2018 14:12:17 +0800</pubDate>
       
-      <guid>https://liguoqinjim.github.io/tags/tool/</guid>
+      <guid>https://liguoqinjim.com/tags/tool/</guid>
       <description></description>
     </item>
     

@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tool on Liguoqinjim&#39;s Blog</title>
-    <link>https://liguoqinjim.github.io/tags/tool/</link>
+    <link>https://liguoqinjim.com/tags/tool/</link>
     <description>Recent content in Tool on Liguoqinjim&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Tue, 03 Jul 2018 14:12:17 +0800</lastBuildDate>
     
-	<atom:link href="https://liguoqinjim.github.io/tags/tool/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://liguoqinjim.com/tags/tool/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>设置markdown里面的图片大小</title>
-      <link>https://liguoqinjim.github.io/2018/07/%E8%AE%BE%E7%BD%AEmarkdown%E9%87%8C%E9%9D%A2%E7%9A%84%E5%9B%BE%E7%89%87%E5%A4%A7%E5%B0%8F/</link>
+      <link>https://liguoqinjim.com/2018/07/%E8%AE%BE%E7%BD%AEmarkdown%E9%87%8C%E9%9D%A2%E7%9A%84%E5%9B%BE%E7%89%87%E5%A4%A7%E5%B0%8F/</link>
       <pubDate>Tue, 03 Jul 2018 14:12:17 +0800</pubDate>
       
-      <guid>https://liguoqinjim.github.io/2018/07/%E8%AE%BE%E7%BD%AEmarkdown%E9%87%8C%E9%9D%A2%E7%9A%84%E5%9B%BE%E7%89%87%E5%A4%A7%E5%B0%8F/</guid>
+      <guid>https://liguoqinjim.com/2018/07/%E8%AE%BE%E7%BD%AEmarkdown%E9%87%8C%E9%9D%A2%E7%9A%84%E5%9B%BE%E7%89%87%E5%A4%A7%E5%B0%8F/</guid>
       <description>&lt;p&gt;在markdown里面添加图片的时候，图片显示出来可能会比我们需要的大很多。
 这时候我们会需要设置图片的大小。&lt;/p&gt;
 
@@ -25,10 +25,10 @@
     
     <item>
       <title>用golang触发IFTTT，发送自定义的Notifications</title>
-      <link>https://liguoqinjim.github.io/2018/07/%E7%94%A8golang%E8%A7%A6%E5%8F%91ifttt%E5%8F%91%E9%80%81%E8%87%AA%E5%AE%9A%E4%B9%89%E7%9A%84notifications/</link>
+      <link>https://liguoqinjim.com/2018/07/%E7%94%A8golang%E8%A7%A6%E5%8F%91ifttt%E5%8F%91%E9%80%81%E8%87%AA%E5%AE%9A%E4%B9%89%E7%9A%84notifications/</link>
       <pubDate>Mon, 02 Jul 2018 18:20:02 +0800</pubDate>
       
-      <guid>https://liguoqinjim.github.io/2018/07/%E7%94%A8golang%E8%A7%A6%E5%8F%91ifttt%E5%8F%91%E9%80%81%E8%87%AA%E5%AE%9A%E4%B9%89%E7%9A%84notifications/</guid>
+      <guid>https://liguoqinjim.com/2018/07/%E7%94%A8golang%E8%A7%A6%E5%8F%91ifttt%E5%8F%91%E9%80%81%E8%87%AA%E5%AE%9A%E4%B9%89%E7%9A%84notifications/</guid>
       <description>&lt;p&gt;IFTTT众多的service里面，有一个非常强大的service，就是webhooks。当我们在IFTTT里面connect了这个service之后，我们会得到一个唯一的链接，我们访问这个链接就会被视作触发了这个service。&lt;/p&gt;
 
 &lt;p&gt;&lt;/p&gt;</description>
@@ -36,10 +36,10 @@
     
     <item>
       <title>Hugo的使用</title>
-      <link>https://liguoqinjim.github.io/2018/01/hugo%E7%9A%84%E4%BD%BF%E7%94%A8/</link>
+      <link>https://liguoqinjim.com/2018/01/hugo%E7%9A%84%E4%BD%BF%E7%94%A8/</link>
       <pubDate>Sat, 27 Jan 2018 12:37:47 +0800</pubDate>
       
-      <guid>https://liguoqinjim.github.io/2018/01/hugo%E7%9A%84%E4%BD%BF%E7%94%A8/</guid>
+      <guid>https://liguoqinjim.com/2018/01/hugo%E7%9A%84%E4%BD%BF%E7%94%A8/</guid>
       <description>&lt;p&gt;Hugo是由Go语言实现的静态网站生成器。简单、易用、高效、易扩展、快速部署。
 &lt;/p&gt;</description>
     </item>

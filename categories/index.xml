@@ -2,38 +2,38 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Categories on Liguoqinjim&#39;s Blog</title>
-    <link>https://liguoqinjim.github.io/categories/</link>
+    <link>https://liguoqinjim.com/categories/</link>
     <description>Recent content in Categories on Liguoqinjim&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     
-	<atom:link href="https://liguoqinjim.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://liguoqinjim.com/categories/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Leetcode</title>
-      <link>https://liguoqinjim.github.io/categories/leetcode/</link>
+      <link>https://liguoqinjim.com/categories/leetcode/</link>
       <pubDate>Tue, 24 Jul 2018 11:46:25 +0800</pubDate>
       
-      <guid>https://liguoqinjim.github.io/categories/leetcode/</guid>
+      <guid>https://liguoqinjim.com/categories/leetcode/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Markdown</title>
-      <link>https://liguoqinjim.github.io/categories/markdown/</link>
+      <link>https://liguoqinjim.com/categories/markdown/</link>
       <pubDate>Wed, 04 Jul 2018 16:42:54 +0800</pubDate>
       
-      <guid>https://liguoqinjim.github.io/categories/markdown/</guid>
+      <guid>https://liguoqinjim.com/categories/markdown/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Tool</title>
-      <link>https://liguoqinjim.github.io/categories/tool/</link>
+      <link>https://liguoqinjim.com/categories/tool/</link>
       <pubDate>Sat, 27 Jan 2018 12:37:47 +0800</pubDate>
       
-      <guid>https://liguoqinjim.github.io/categories/tool/</guid>
+      <guid>https://liguoqinjim.com/categories/tool/</guid>
       <description></description>
     </item>
     

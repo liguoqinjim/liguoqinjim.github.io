@@ -2,75 +2,75 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Liguoqinjim&#39;s Blog</title>
-    <link>https://liguoqinjim.github.io/</link>
+    <link>https://liguoqinjim.com/</link>
     <description>Recent content on Liguoqinjim&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Tue, 24 Jul 2018 11:46:25 +0800</lastBuildDate>
     
-	<atom:link href="https://liguoqinjim.github.io/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://liguoqinjim.com/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>LeetCode-0008-String to Integer (atoi)</title>
-      <link>https://liguoqinjim.github.io/2018/07/leetcode-0008-string-to-integer-atoi/</link>
+      <link>https://liguoqinjim.com/2018/07/leetcode-0008-string-to-integer-atoi/</link>
       <pubDate>Tue, 24 Jul 2018 11:46:25 +0800</pubDate>
       
-      <guid>https://liguoqinjim.github.io/2018/07/leetcode-0008-string-to-integer-atoi/</guid>
+      <guid>https://liguoqinjim.com/2018/07/leetcode-0008-string-to-integer-atoi/</guid>
       <description>&lt;p&gt;&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>LeetCode-0020-Valid Parentheses</title>
-      <link>https://liguoqinjim.github.io/2018/07/leetcode-0020-valid-parentheses/</link>
+      <link>https://liguoqinjim.com/2018/07/leetcode-0020-valid-parentheses/</link>
       <pubDate>Mon, 23 Jul 2018 14:01:09 +0800</pubDate>
       
-      <guid>https://liguoqinjim.github.io/2018/07/leetcode-0020-valid-parentheses/</guid>
+      <guid>https://liguoqinjim.com/2018/07/leetcode-0020-valid-parentheses/</guid>
       <description>&lt;p&gt;&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>LeetCode-0014-Longest Common Prefix</title>
-      <link>https://liguoqinjim.github.io/2018/07/leetcode-0014-longest-common-prefix/</link>
+      <link>https://liguoqinjim.com/2018/07/leetcode-0014-longest-common-prefix/</link>
       <pubDate>Sun, 22 Jul 2018 15:07:56 +0800</pubDate>
       
-      <guid>https://liguoqinjim.github.io/2018/07/leetcode-0014-longest-common-prefix/</guid>
+      <guid>https://liguoqinjim.com/2018/07/leetcode-0014-longest-common-prefix/</guid>
       <description>&lt;p&gt;&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>LeetCode-0035-Search Insert Position</title>
-      <link>https://liguoqinjim.github.io/2018/07/leetcode-0035-search-insert-position/</link>
+      <link>https://liguoqinjim.com/2018/07/leetcode-0035-search-insert-position/</link>
       <pubDate>Sat, 21 Jul 2018 23:56:08 +0800</pubDate>
       
-      <guid>https://liguoqinjim.github.io/2018/07/leetcode-0035-search-insert-position/</guid>
+      <guid>https://liguoqinjim.com/2018/07/leetcode-0035-search-insert-position/</guid>
       <description>&lt;p&gt;&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>LeetCode-0007-Reverse Integer</title>
-      <link>https://liguoqinjim.github.io/2018/07/leetcode-0007-reverse-integer/</link>
+      <link>https://liguoqinjim.com/2018/07/leetcode-0007-reverse-integer/</link>
       <pubDate>Fri, 20 Jul 2018 14:10:48 +0800</pubDate>
       
-      <guid>https://liguoqinjim.github.io/2018/07/leetcode-0007-reverse-integer/</guid>
+      <guid>https://liguoqinjim.com/2018/07/leetcode-0007-reverse-integer/</guid>
       <description>&lt;p&gt;&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>LeetCode-0001-Two Sum</title>
-      <link>https://liguoqinjim.github.io/2018/07/leetcode-0001-two-sum/</link>
+      <link>https://liguoqinjim.com/2018/07/leetcode-0001-two-sum/</link>
       <pubDate>Thu, 19 Jul 2018 15:07:59 +0800</pubDate>
       
-      <guid>https://liguoqinjim.github.io/2018/07/leetcode-0001-two-sum/</guid>
+      <guid>https://liguoqinjim.com/2018/07/leetcode-0001-two-sum/</guid>
       <description>&lt;p&gt;&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>Hugo的TOC</title>
-      <link>https://liguoqinjim.github.io/2018/07/hugo%E7%9A%84toc/</link>
+      <link>https://liguoqinjim.com/2018/07/hugo%E7%9A%84toc/</link>
       <pubDate>Wed, 04 Jul 2018 16:42:54 +0800</pubDate>
       
-      <guid>https://liguoqinjim.github.io/2018/07/hugo%E7%9A%84toc/</guid>
+      <guid>https://liguoqinjim.com/2018/07/hugo%E7%9A%84toc/</guid>
       <description>&lt;p&gt;在hugo里面使用TOC显示目录。但是这个需要使用的主题是支持的。我现在使用的是&lt;code&gt;hugo-tranquilpeak-theme&lt;/code&gt;这个标题。在markdown里面加上&lt;code&gt;&amp;lt;!--toc--&amp;gt;&lt;/code&gt;就会在文章里面自动生成TOC了。&lt;/p&gt;
 
 &lt;p&gt;&lt;/p&gt;</description>
@@ -78,10 +78,10 @@
     
     <item>
       <title>设置markdown里面的图片大小</title>
-      <link>https://liguoqinjim.github.io/2018/07/%E8%AE%BE%E7%BD%AEmarkdown%E9%87%8C%E9%9D%A2%E7%9A%84%E5%9B%BE%E7%89%87%E5%A4%A7%E5%B0%8F/</link>
+      <link>https://liguoqinjim.com/2018/07/%E8%AE%BE%E7%BD%AEmarkdown%E9%87%8C%E9%9D%A2%E7%9A%84%E5%9B%BE%E7%89%87%E5%A4%A7%E5%B0%8F/</link>
       <pubDate>Tue, 03 Jul 2018 14:12:17 +0800</pubDate>
       
-      <guid>https://liguoqinjim.github.io/2018/07/%E8%AE%BE%E7%BD%AEmarkdown%E9%87%8C%E9%9D%A2%E7%9A%84%E5%9B%BE%E7%89%87%E5%A4%A7%E5%B0%8F/</guid>
+      <guid>https://liguoqinjim.com/2018/07/%E8%AE%BE%E7%BD%AEmarkdown%E9%87%8C%E9%9D%A2%E7%9A%84%E5%9B%BE%E7%89%87%E5%A4%A7%E5%B0%8F/</guid>
       <description>&lt;p&gt;在markdown里面添加图片的时候，图片显示出来可能会比我们需要的大很多。
 这时候我们会需要设置图片的大小。&lt;/p&gt;
 
@@ -90,10 +90,10 @@
     
     <item>
       <title>用golang触发IFTTT，发送自定义的Notifications</title>
-      <link>https://liguoqinjim.github.io/2018/07/%E7%94%A8golang%E8%A7%A6%E5%8F%91ifttt%E5%8F%91%E9%80%81%E8%87%AA%E5%AE%9A%E4%B9%89%E7%9A%84notifications/</link>
+      <link>https://liguoqinjim.com/2018/07/%E7%94%A8golang%E8%A7%A6%E5%8F%91ifttt%E5%8F%91%E9%80%81%E8%87%AA%E5%AE%9A%E4%B9%89%E7%9A%84notifications/</link>
       <pubDate>Mon, 02 Jul 2018 18:20:02 +0800</pubDate>
       
-      <guid>https://liguoqinjim.github.io/2018/07/%E7%94%A8golang%E8%A7%A6%E5%8F%91ifttt%E5%8F%91%E9%80%81%E8%87%AA%E5%AE%9A%E4%B9%89%E7%9A%84notifications/</guid>
+      <guid>https://liguoqinjim.com/2018/07/%E7%94%A8golang%E8%A7%A6%E5%8F%91ifttt%E5%8F%91%E9%80%81%E8%87%AA%E5%AE%9A%E4%B9%89%E7%9A%84notifications/</guid>
       <description>&lt;p&gt;IFTTT众多的service里面，有一个非常强大的service，就是webhooks。当我们在IFTTT里面connect了这个service之后，我们会得到一个唯一的链接，我们访问这个链接就会被视作触发了这个service。&lt;/p&gt;
 
 &lt;p&gt;&lt;/p&gt;</description>
@@ -101,20 +101,20 @@
     
     <item>
       <title>Hugo的使用</title>
-      <link>https://liguoqinjim.github.io/2018/01/hugo%E7%9A%84%E4%BD%BF%E7%94%A8/</link>
+      <link>https://liguoqinjim.com/2018/01/hugo%E7%9A%84%E4%BD%BF%E7%94%A8/</link>
       <pubDate>Sat, 27 Jan 2018 12:37:47 +0800</pubDate>
       
-      <guid>https://liguoqinjim.github.io/2018/01/hugo%E7%9A%84%E4%BD%BF%E7%94%A8/</guid>
+      <guid>https://liguoqinjim.com/2018/01/hugo%E7%9A%84%E4%BD%BF%E7%94%A8/</guid>
       <description>&lt;p&gt;Hugo是由Go语言实现的静态网站生成器。简单、易用、高效、易扩展、快速部署。
 &lt;/p&gt;</description>
     </item>
     
     <item>
       <title>About</title>
-      <link>https://liguoqinjim.github.io/about/</link>
+      <link>https://liguoqinjim.com/about/</link>
       <pubDate>Fri, 26 Jan 2018 17:57:27 +0800</pubDate>
       
-      <guid>https://liguoqinjim.github.io/about/</guid>
+      <guid>https://liguoqinjim.com/about/</guid>
       <description>这是我的博客，记录了一些东西</description>
     </item>
     
