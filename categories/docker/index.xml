@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Docker on Liguoqinjim&#39;s Blog</title>
+    <link>https://liguoqinjim.com/categories/docker/</link>
+    <description>Recent content in Docker on Liguoqinjim&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 28 Aug 2018 13:36:04 +0800</lastBuildDate>
+    
+	<atom:link href="https://liguoqinjim.com/categories/docker/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>系统学习Docker 践行DevOps理念 笔记(二)|Docker的镜像和容器</title>
+      <link>https://liguoqinjim.com/2018/08/%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0docker-%E8%B7%B5%E8%A1%8Cdevops%E7%90%86%E5%BF%B5-%E7%AC%94%E8%AE%B0%E4%BA%8Cdocker%E7%9A%84%E9%95%9C%E5%83%8F%E5%92%8C%E5%AE%B9%E5%99%A8/</link>
+      <pubDate>Tue, 28 Aug 2018 13:36:04 +0800</pubDate>
+      
+      <guid>https://liguoqinjim.com/2018/08/%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0docker-%E8%B7%B5%E8%A1%8Cdevops%E7%90%86%E5%BF%B5-%E7%AC%94%E8%AE%B0%E4%BA%8Cdocker%E7%9A%84%E9%95%9C%E5%83%8F%E5%92%8C%E5%AE%B9%E5%99%A8/</guid>
+      <description>&lt;p&gt;Docker的镜像和容器，是课程第三章的内容&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>系统学习Docker 践行DevOps理念 笔记(一)|Docker的安装</title>
+      <link>https://liguoqinjim.com/2018/08/%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0docker-%E8%B7%B5%E8%A1%8Cdevops%E7%90%86%E5%BF%B5-%E7%AC%94%E8%AE%B0%E4%B8%80docker%E7%9A%84%E5%AE%89%E8%A3%85/</link>
+      <pubDate>Tue, 28 Aug 2018 11:50:22 +0800</pubDate>
+      
+      <guid>https://liguoqinjim.com/2018/08/%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0docker-%E8%B7%B5%E8%A1%8Cdevops%E7%90%86%E5%BF%B5-%E7%AC%94%E8%AE%B0%E4%B8%80docker%E7%9A%84%E5%AE%89%E8%A3%85/</guid>
+      <description>&lt;p&gt;Docker的安装&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>
