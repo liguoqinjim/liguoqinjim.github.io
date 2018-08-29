@@ -20,25 +20,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="Hugo 0.48-DEV with theme Tranquilpeak 0.4.3-BETA">
-    <title>Hugo的使用</title>
+    <title>系统学习Docker 践行DevOps理念 笔记(三)|Docker的网络</title>
     <meta name="author" content="Liguoqinjim">
-    <meta name="keywords" content="">
+    <meta name="keywords" content="docker">
 
     <link rel="icon" href="https://liguoqinjim.com/favicon.png">
     
 
     
-    <meta name="description" content="Hugo是由Go语言实现的静态网站生成器。简单、易用、高效、易扩展、快速部署。
+    <meta name="description" content="Docker的网络，是课程第四章的内容
+
 ">
-    <meta property="og:description" content="Hugo是由Go语言实现的静态网站生成器。简单、易用、高效、易扩展、快速部署。
+    <meta property="og:description" content="Docker的网络，是课程第四章的内容
+
 ">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="Hugo的使用">
-    <meta property="og:url" content="/2018/01/hugo%E7%9A%84%E4%BD%BF%E7%94%A8/">
+    <meta property="og:title" content="系统学习Docker 践行DevOps理念 笔记(三)|Docker的网络">
+    <meta property="og:url" content="/2018/08/%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0docker-%E8%B7%B5%E8%A1%8Cdevops%E7%90%86%E5%BF%B5-%E7%AC%94%E8%AE%B0%E4%B8%89docker%E7%9A%84%E7%BD%91%E7%BB%9C/">
     <meta property="og:site_name" content="Liguoqinjim&#39;s Blog">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="Liguoqinjim&#39;s Blog">
-    <meta name="twitter:description" content="Hugo是由Go语言实现的静态网站生成器。简单、易用、高效、易扩展、快速部署。
+    <meta name="twitter:description" content="Docker的网络，是课程第四章的内容
+
 ">
     
     
@@ -227,15 +230,15 @@ if (!doNotTrack) {
             <div class="post-header main-content-wrap text-left">
   
     <h1 class="post-title" itemprop="headline">
-      Hugo的使用
+      系统学习Docker 践行DevOps理念 笔记(三)|Docker的网络
     </h1>
   
   
   <div class="postShorten-meta post-meta">
     
-      <time itemprop="datePublished" datetime="2018-01-27T12:37:47&#43;08:00">
+      <time itemprop="datePublished" datetime="2018-08-28T17:25:59&#43;08:00">
         
-  一月 27, 2018
+  八月 28, 2018
 
       </time>
     
@@ -244,7 +247,7 @@ if (!doNotTrack) {
   
     <span>发布在</span>
     
-      <a class="category-link" href="https://liguoqinjim.com/categories/tool">tool</a>
+      <a class="category-link" href="https://liguoqinjim.com/categories/docker">docker</a>
     
   
 
@@ -254,70 +257,277 @@ if (!doNotTrack) {
           
           <div class="post-content markdown" itemprop="articleBody">
             <div class="main-content-wrap">
-              <p>Hugo是由Go语言实现的静态网站生成器。简单、易用、高效、易扩展、快速部署。
-</p>
+              <p>Docker的网络，是课程第四章的内容</p>
+
+<p></p>
 
 <h1 id="table-of-contents">目录</h1><nav id="TableOfContents">
 <ul>
-<li><a href="#1-hugo安装">1.Hugo安装</a>
+<li><a href="#1-本章概述和实验环境介绍">1.本章概述和实验环境介绍</a></li>
+<li><a href="#2-网络基础回顾">2.网络基础回顾</a></li>
+<li><a href="#3-linux网络命名空间">3.Linux网络命名空间</a>
 <ul>
-<li><a href="#1-1-go安装">1.1 Go安装</a></li>
-<li><a href="#1-2-brew安装">1.2 Brew安装</a></li>
+<li><a href="#3-1linux网络命名空间">3.1Linux网络命名空间</a></li>
+<li><a href="#3-2network-namespace连通">3.2Network namespace连通</a></li>
+<li><a href="#3-3创建veth">3.3创建veth</a></li>
 </ul></li>
-<li><a href="#2-hugo新建一个站点">2.Hugo新建一个站点</a></li>
-<li><a href="#3-hugo新建一篇文章">3.Hugo新建一篇文章</a></li>
-<li><a href="#4-安装主题">4.安装主题</a></li>
-<li><a href="#5-修改config-toml">5.修改config.toml</a></li>
-<li><a href="#6-本机预览">6.本机预览</a></li>
-<li><a href="#7-发布">7.发布</a></li>
-<li><a href="#参考资料">参考资料</a></li>
+<li><a href="#4-docker-bridge0详解">4.Docker bridge0详解</a>
+<ul>
+<li><a href="#4-1docker-network的相关命令">4.1Docker Network的相关命令</a></li>
+<li><a href="#4-2查看bridge的情况">4.2查看bridge的情况</a></li>
+<li><a href="#4-3bridge-network的情况">4.3Bridge Network的情况</a></li>
+<li><a href="#notice">NOTICE</a></li>
+</ul></li>
+<li><a href="#5-容器之间的link">5.容器之间的link</a>
+<ul>
+<li><a href="#5-1docker-link">5.1docker link</a></li>
+<li><a href="#5-2docker-network相关命令">5.2docker network相关命令</a></li>
+<li><a href="#notice-1">NOTICE</a></li>
+</ul></li>
+<li><a href="#6-容器的端口映射">6.容器的端口映射</a></li>
+<li><a href="#7-容器网络之host和none">7.容器网络之host和none</a>
+<ul>
+<li><a href="#7-1none网络">7.1none网络</a></li>
+<li><a href="#7-2host网络">7.2host网络</a></li>
+</ul></li>
+<li><a href="#8-多容器复杂应用的部署演示">8.多容器复杂应用的部署演示</a>
+<ul>
+<li><a href="#8-1部署演示">8.1部署演示</a></li>
+<li><a href="#8-2docker-env">8.2docker env</a></li>
+</ul></li>
+<li><a href="#9-overlay和underlay的通俗解释">9.Overlay和Underlay的通俗解释</a></li>
+<li><a href="#10-docker-overlay网络和etcd实现多机容器通信">10.Docker Overlay网络和etcd实现多机容器通信</a>
+<ul>
+<li><a href="#10-1多机容器通信">10.1多机容器通信</a></li>
+<li><a href="#10-2启动参数">10.2启动参数</a></li>
+</ul></li>
 </ul>
 </nav>
 
-<h1 id="1-hugo安装">1.Hugo安装</h1>
+<h1 id="1-本章概述和实验环境介绍">1.本章概述和实验环境介绍</h1>
 
-<h2 id="1-1-go安装">1.1 Go安装</h2>
+<p>实验环境使用vagrant创建虚拟机，Vargantfile可以去docker-labs里面查看</p>
 
-<p>直接使用go get的方式安装:
-<code>go get -u -v github.com/gohugoio/hugo</code></p>
+<h1 id="2-网络基础回顾">2.网络基础回顾</h1>
 
-<h2 id="1-2-brew安装">1.2 Brew安装</h2>
+<p>一些基本的网络知识，略</p>
 
-<p>在mac下可以使用brew安装:
-<code>brew install hugo</code></p>
+<h1 id="3-linux网络命名空间">3.Linux网络命名空间</h1>
 
-<h1 id="2-hugo新建一个站点">2.Hugo新建一个站点</h1>
+<h2 id="3-1linux网络命名空间">3.1Linux网络命名空间</h2>
 
-<p><code>hugo new site path/to/site</code>，运行之后会在运行路径下生成<code>path/to/site</code>的文件夹。</p>
-
-<h1 id="3-hugo新建一篇文章">3.Hugo新建一篇文章</h1>
-
-<p><code>hugo new post/directory/new.md</code>，这样就会生成一篇新的文章。
-会生成在<code>content/post/directory</code>文件夹下。</p>
-
-<h1 id="4-安装主题">4.安装主题</h1>
-
-<p>拷贝主题到themes文件夹下，然后在<code>config.toml</code>加上<code>theme = &quot;hugo-theme-dream&quot;</code>，
-值就填要用的主题的文件夹的名字就可以了。</p>
-
-<h1 id="5-修改config-toml">5.修改config.toml</h1>
-
-<p>要是要发布到github.io的话，要在config.toml里面把<code>baseURL</code>改成<code>https://liguoqinjim.github.io</code></p>
-
-<h1 id="6-本机预览">6.本机预览</h1>
-
-<p><code>hugo server -D</code>就可以实现本机预览了</p>
-
-<h1 id="7-发布">7.发布</h1>
-
-<p><code>hugo -D</code>，这里<code>-D</code>的意思是把<code>draft: ture</code>的文章也发布出来，也就是在草稿状态中的文章。运行完命令之后，生成的博客就在public文件夹里面了，
-我们只要把public文件夹发布到github.io的库就可以了</p>
-
-<h1 id="参考资料">参考资料</h1>
+<p>相关命令：</p>
 
 <ul>
-<li><a href="http://www.gohugo.org/">http://www.gohugo.org/</a></li>
+<li><code>ip netns list</code>，列出现在有多少network namespace(netns)</li>
+<li><code>ip netns add test1</code>，添加一个netns，name是test1</li>
+<li><code>ip netns delete test1</code>，删除一个netns</li>
+<li><code>ip netns exec test1 ip a</code>，在test1这个netns下，执行ip a命令</li>
+<li><code>ip a</code>显示现在的网络设置</li>
+<li><code>ip link</code>，类似ip a，但是信息略少</li>
+<li><code>ip netns exec test1 ip link set dev lo up</code>，设置设备lo的状态为up，但是会变成unknown，因为要变成up需要满足两端是连起来的这个条件</li>
 </ul>
+
+<h2 id="3-2network-namespace连通">3.2Network namespace连通</h2>
+
+<p><img src="https://liguoqinjim.com/img/docker/note3/netns.png" alt="netns" />
+要在两个之间加上veth，veth就是一对pair，要把一个放到eth0里面，另一个放到eth1里面。这样eth0和eth1就会连通了。</p>
+
+<h2 id="3-3创建veth">3.3创建veth</h2>
+
+<ol>
+<li><code>netns add test1</code>，创建名为test1的network namespace(netns)</li>
+<li><code>netns add test2</code>，创建test2</li>
+<li><code>ip link add veth-test1 type veth peer name veth-test2</code>，创建veth，一端是veth-test1，一端是veth-test2</li>
+<li><code>ip link</code>，查看创建的veth</li>
+<li><code>ip link set veth-test1 netns test1</code>，把veth-test1添加到test1这个netns里面，运行完成之后test1里面会多一个veth，但是本机里面的veth就会没有了。相当于移动到test1里面</li>
+<li><code>ip netns exec test1 ip addr add 192.168.1.1/24 dev veth-test1</code>，给veth-test1这个设备添加ip地址</li>
+<li><code>ip netns exec test1 ip link set dev veth-test1 up</code>，设置veth-test1这个设备的状态为up</li>
+<li><code>ip link set veth-test2 netns test2</code><br />
+<code>ip netns exec test2 ip addr add 192.168.1.2/24 dev veth-test2</code><br />
+<code>ip netns exec test2 ip link set dev veth-test2 up</code>，对test2进行相同操作</li>
+<li><code>ip netns exec test1 ping 192.168.1.2</code>，在test1下ping test2的ip，要是设置正确的话，因为已经有了veth，所以两边是会通的</li>
+</ol>
+
+<h1 id="4-docker-bridge0详解">4.Docker bridge0详解</h1>
+
+<h2 id="4-1docker-network的相关命令">4.1Docker Network的相关命令</h2>
+
+<ol>
+<li><code>docker network ls</code>，查看docker的网络情况</li>
+<li><code>docker network inspect network_id</code>，可以查看有哪个容器是在这个network里面的</li>
+</ol>
+
+<h2 id="4-2查看bridge的情况">4.2查看bridge的情况</h2>
+
+<p>可以使用brctl这个工具来查看bridge的情况<br />
+安装：<code>yum install -y bridge-utils</code><br />
+使用：<code>brctl show</code></p>
+
+<h2 id="4-3bridge-network的情况">4.3Bridge Network的情况</h2>
+
+<p><img src="https://liguoqinjim.com/img/docker/note3/bridge.png" alt="BridgeNetwork" /></p>
+
+<ul>
+<li>我们创建了一个docker容器之后，使用<code>ip a</code>，会看到多了一个网络设备，这个设备就是veth的一端，另一端是在创建的容器里面的。这样容器就可以和我们本机连通了</li>
+<li>在本机这一边的所有veth又是都连接到docker0的，是通过bridge的方式。我们可以通过<code>brctl show</code>这个命令来查看。那么所有的docker容器之间就可以互相访问了</li>
+<li>docker0又使用NAT的方式和eth0连接，这样docker容器就可以访问互联网了</li>
+</ul>
+
+<h2 id="notice">NOTICE</h2>
+
+<p>有的时候我们需要测试网络情况等等，会需要启动一个docker容器，但是不需要什么功能，只要是个容器就行了，那我们肯定希望这个容器越简单越好，我们可以使用busybox来创建
+<code>sudo docker run -d --name test busybox /bin/sh -c &quot;while true; do sleep 3600; done&quot;</code></p>
+
+<h1 id="5-容器之间的link">5.容器之间的link</h1>
+
+<h2 id="5-1docker-link">5.1docker link</h2>
+
+<p>docker容器启动的时候带上link参数：</p>
+
+<pre><code># 创建test1容器
+docker run -d --name test1 busybox /bin/sh -c &quot;while true; do sleep 3600; done&quot;
+# 创建test2容器，link到test1
+docker run -d --name test2 --link test1 busybox /bin/sh -c &quot;while true; do sleep 3600; done&quot;
+# test1，test2互相ping对方的ip，是可以ping通的
+docker exec test1 ping 172.17.0.3
+docker exec test2 ping 172.17.0.2
+# 在test2里ping test1
+docker run exec test2 ping test1
+</code></pre>
+
+<p>启动test2容器，link了test1。因为test1和test2都是连接到docker0上的，所以test1和test2之间是互通的，我们只要ping双方的ip就可以了。但是现在test2已经link到test1了，那么我们在test2里面ping test1(注意是ping test1，不用ping test1的ip)，也是可以的。但是要注意，test1里面用ping test2是不可以的，因为link有一个方向的概念。</p>
+
+<h2 id="5-2docker-network相关命令">5.2docker network相关命令</h2>
+
+<ul>
+<li><code>docker network ls</code>，可以查看现在的network</li>
+<li><code>docker network create -d bridge my-bridge</code>，创建一个名为my-bridge的network，-d指定类型为bridge</li>
+<li><code>docker run -d --name test3 --network my-bridge busybox /bin/sh -c &quot;while true; do sleep 3600; done&quot;</code>，在创建容器的时候指定&ndash;network，那么容器就会连接到这个network上，可以使用brctl show来查看</li>
+<li><code>docker network inspect my-bridge</code>，也是可以查看连接到network的容器</li>
+<li><code>docker network connect my-bridge test2</code>，指定已经存在的容器连接到my-bridge这个network，但是容器还是会连接原本连接的那个network</li>
+</ul>
+
+<h2 id="notice-1">NOTICE</h2>
+
+<p>我们用<code>docker network connect my-bridge test2</code>这个命令之后，那么原本就在my-bridge这个network里面的容器，可以直接ping test2(注意这里是直接ping test2就可以了，不用ping test2的ip也是可以的)，也是会成功的。这是因为所有连接在<strong>自己创建的bridge上面的容器</strong>，相互之间都是可以默认用name来ping的。test2一旦加入my-bridge，也是可以直接ping这个网络内的其他容器的，比如ping test3</p>
+
+<h1 id="6-容器的端口映射">6.容器的端口映射</h1>
+
+<ol>
+<li><code>docker run --name web -d -p 80:80 nginx</code>，这样在docker容器启动起来之后，我们在本机curl 127.0.0.1，访问的就是docker容器里面的nginx</li>
+<li><code>docker run --name web -d -p 81:80 nginx</code>，注意，这里是本机的81端口和docker容器的80端口，也就是说这时候在本机要访问 curl <a href="http://127.0.0.1:81">http://127.0.0.1:81</a> ，这样才会访问到docker容器里面</li>
+</ol>
+
+<h1 id="7-容器网络之host和none">7.容器网络之host和none</h1>
+
+<h2 id="7-1none网络">7.1none网络</h2>
+
+<ol>
+<li><code>docker run -d --name test1 --network none busybox /bin/sh -c &quot;while true; do sleep 3600; done&quot;</code>，使用&ndash;network指定连接到none这个network<br /></li>
+<li><code>docker network inspect none</code>，可以查看none的网络情况<br /></li>
+</ol>
+
+<p>none网络里面的容器，只有一个回环地址，没有其他的网络设备，也就是除了docker exec -it这种方式进入内部，外部是根本没有办法访问到这个容器的。我们可能会问用了none网络的容器有什么用？可能这个容器是一种工具，比如生成密码的，需要安全性，所以就用none网络，限制外部访问。</p>
+
+<h2 id="7-2host网络">7.2host网络</h2>
+
+<ol>
+<li><code>docker run -d --name test1 --network host busybox /bin/sh -c &quot;while true; do sleep 3600; done&quot;</code>，指定连接到host网络<br /></li>
+<li><code>docker network inspect host</code>，可以查看host的网络情况<br /></li>
+</ol>
+
+<p>host网络里面的容器，我们使用docker exec -it进入内部之后，可以看到ip a的结果和我们本机的ip a的结果是一样的。也就是容器和本机是用相同的网络的。这样的方式可能出现的问题是端口的占用，比如本机已经有其他软件使用了80端口，那么容器就没有办法使用80端口了</p>
+
+<h1 id="8-多容器复杂应用的部署演示">8.多容器复杂应用的部署演示</h1>
+
+<h2 id="8-1部署演示">8.1部署演示</h2>
+
+<ol>
+<li>先启动redis容器<br />
+docker run -d &ndash;name redis redis，不用使用-p参数把端口绑定到本机，因为这个redis只是给之后的flask-redis容器使用的，不是给本机使用的。</li>
+<li>启动我们的flask程序<br />
+docker run -d &ndash;link redis &ndash;name flask-redis -p 5000:5000 -e REDIS_HOST=redis liguoqinjim/flask-redis，首先是使用&ndash;link连接到redis容器，那么flask-redis这个容器里面ping redis得到的就是redis容器的ip，-p把5000端口映射到本机，-e给这个容器设置环境变量REDIS_HOST。那么我们程序里面会去取这个环境变量，得到的就是redis，那因为已经link过了，所以redis就相当于redis容器的ip了。</li>
+</ol>
+
+<h2 id="8-2docker-env">8.2docker env</h2>
+
+<ol>
+<li><code>docker run -d --name test1 -e ENV_TEST=123 busybox /bin/sh -c &quot;while true; do sleep 3600; done&quot;</code>，-e设置容器的环境变量。</li>
+<li><code>docker exec test1 env</code>，查看test1容器的环境变量，可以看到ENV_TEST这个变量</li>
+</ol>
+
+<h1 id="9-overlay和underlay的通俗解释">9.Overlay和Underlay的通俗解释</h1>
+
+<p>不同机器上的docker容器之间的通信，是靠VXLAN来实现的。VXLAN又需要overlay和underlay来完成整个过程。</p>
+
+<p><img src="https://liguoqinjim.com/img/docker/note3/overlay.png" alt="overlay" /></p>
+
+<p>VXLAN的大致实现的思路是：本来我们两个机器之前ping，最简单包里面的数据就是有一个src有一个dst，分别是自己的地址和目的地址。那么现在不同机器里面的容器，要去向别的机器的容器。我们把这个数据包整个加载到之前的机器的ping数据包里面。在机器间数据包到达目标机器的时候，解包之后再去向目标容器</p>
+
+<h1 id="10-docker-overlay网络和etcd实现多机容器通信">10.Docker Overlay网络和etcd实现多机容器通信</h1>
+
+<p>在多个机器上的容器要相互通信，要有一个大前提，也就是每个容器的ip不能一样，不同机器的不同容器的ip都是不能一样的。因为要是一样，那数据包肯定是无法到达目标机器的。<br />
+所以我们为了保证每个容器的ip是不一样的，我们要使用一个第三方的分布式工具来保证ip不一样。这个实验里面我们使用etcd这个分布式工具</p>
+
+<h2 id="10-1多机容器通信">10.1多机容器通信</h2>
+
+<ol>
+<li>首先要在不同机器之间创建一个etcd的集群</li>
+<li>要重启docker，参数里面要带上集群的参数</li>
+<li>创建overlay的docker网络，我们在一台机器上创建一个overlay网络就可以了，因为有了etcd，每个机器上的docker都已经自动同步了，其他机器上也会有一个overlay网络。比如我们在机器1上面创建一个name为test1的容器，这个时候我们在机器2上面创建一个name为test1的容器时，docker是会报错的。因为docker不允许有两个name一样的容器。机器2的docker会知道已经有test1就是因为etcd的关系</li>
+<li>运行容器，注意要使用&ndash;network命令，把容器连接到overlay的network里面。当两个容器都在overlay网络里面的时候，我们就可以相互ping了</li>
+<li>这个时候我们使用docker network ls，我们会发现多了一个network，类型为bridge，name应该是docker_gwbridge。这个network是干什么的呢？这个network给容器访问外网的。具体可以查看下面的图片。</li>
+</ol>
+
+<p><img src="https://liguoqinjim.com/img/docker/note3/docker_gwbridge.png" alt="docker_gwbridge" /></p>
+
+<h2 id="10-2启动参数">10.2启动参数</h2>
+
+<pre><code>## 启动命令
+### 下载etcd
+wget https://github.com/coreos/etcd/releases/download/v3.3.9/etcd-v3.3.9-linux-amd64.tar.gz
+
+### docker-node1启动etcd
+nohup ./etcd --name docker-node1 --initial-advertise-peer-urls http://192.168.205.10:2380 \
+--listen-peer-urls http://192.168.205.10:2380 \
+--listen-client-urls http://192.168.205.10:2379,http://127.0.0.1:2379 \
+--advertise-client-urls http://192.168.205.10:2379 \
+--initial-cluster-token etcd-cluster \
+--initial-cluster docker-node1=http://192.168.205.10:2380,docker-node2=http://192.168.205.11:2380 \
+--initial-cluster-state new&amp;
+
+### docker-node2启动etcd
+nohup ./etcd --name docker-node2 --initial-advertise-peer-urls http://192.168.205.11:2380 \
+--listen-peer-urls http://192.168.205.11:2380 \
+--listen-client-urls http://192.168.205.11:2379,http://127.0.0.1:2379 \
+--advertise-client-urls http://192.168.205.11:2379 \
+--initial-cluster-token etcd-cluster \
+--initial-cluster docker-node1=http://192.168.205.10:2380,docker-node2=http://192.168.205.11:2380 \
+--initial-cluster-state new&amp;
+
+### 检查etcd启动是否正确
+./etcdctl cluster-health
+
+### 重新启动docker-node1
+sudo service docker stop
+sudo /usr/bin/dockerd -H tcp://0.0.0.0:2375 -H unix:///var/run/docker.sock --cluster-store=etcd://192.168.205.10:2379 --cluster-advertise=192.168.205.10:2375&amp;
+
+### 重新启动docker-node2
+sudo service docker stop
+sudo /usr/bin/dockerd -H tcp://0.0.0.0:2375 -H unix:///var/run/docker.sock --cluster-store=etcd://192.168.205.11:2379 --cluster-advertise=192.168.205.11:2375&amp;
+
+### 在docker-node1机器上创建overlay网络
+docker network create -d overlay demo
+docker network ls
+
+### 在docker-node1里面 查看etcd里面的数据
+./etcdctl ls /docker/network/v1.0/network
+
+### test1容器ping test2
+docker network inspect demo，用来查看overlay网络里面容器的ip
+docker exec test1 ping ...
+</code></pre>
               
             </div>
           </div>
@@ -329,7 +539,7 @@ if (!doNotTrack) {
                   <div class="post-footer-tags">
                     <span class="text-color-light text-small">标签</span><br/>
                     
-  <a class="tag tag--primary tag--small" href="https://liguoqinjim.com/tags/tool/">tool</a>
+  <a class="tag tag--primary tag--small" href="https://liguoqinjim.com/tags/docker/">docker</a>
 
                   </div>
                 
@@ -342,7 +552,7 @@ if (!doNotTrack) {
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://liguoqinjim.com/2018/07/%E7%94%A8golang%E8%A7%A6%E5%8F%91ifttt%E5%8F%91%E9%80%81%E8%87%AA%E5%AE%9A%E4%B9%89%E7%9A%84notifications/" data-tooltip="用golang触发IFTTT，发送自定义的Notifications">
+                <a class="post-action-btn btn btn--disabled">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
@@ -350,7 +560,7 @@ if (!doNotTrack) {
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--disabled">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://liguoqinjim.com/2018/08/%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0docker-%E8%B7%B5%E8%A1%8Cdevops%E7%90%86%E5%BF%B5-%E7%AC%94%E8%AE%B0%E4%BA%8Cdocker%E7%9A%84%E9%95%9C%E5%83%8F%E5%92%8C%E5%AE%B9%E5%99%A8/" data-tooltip="系统学习Docker 践行DevOps理念 笔记(二)|Docker的镜像和容器">
               
                   <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
                   <i class="fa fa-angle-right"></i>
@@ -410,7 +620,7 @@ if (!doNotTrack) {
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://liguoqinjim.com/2018/07/%E7%94%A8golang%E8%A7%A6%E5%8F%91ifttt%E5%8F%91%E9%80%81%E8%87%AA%E5%AE%9A%E4%B9%89%E7%9A%84notifications/" data-tooltip="用golang触发IFTTT，发送自定义的Notifications">
+                <a class="post-action-btn btn btn--disabled">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
@@ -418,7 +628,7 @@ if (!doNotTrack) {
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--disabled">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://liguoqinjim.com/2018/08/%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0docker-%E8%B7%B5%E8%A1%8Cdevops%E7%90%86%E5%BF%B5-%E7%AC%94%E8%AE%B0%E4%BA%8Cdocker%E7%9A%84%E9%95%9C%E5%83%8F%E5%92%8C%E5%AE%B9%E5%99%A8/" data-tooltip="系统学习Docker 践行DevOps理念 笔记(二)|Docker的镜像和容器">
               
                   <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
                   <i class="fa fa-angle-right"></i>
@@ -732,9 +942,9 @@ $(document).ready(function() {
     
       <script>
         var disqus_config = function () {
-          this.page.url = 'https:\/\/liguoqinjim.com\/2018\/01\/hugo%E7%9A%84%E4%BD%BF%E7%94%A8\/';
+          this.page.url = 'https:\/\/liguoqinjim.com\/2018\/08\/%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0docker-%E8%B7%B5%E8%A1%8Cdevops%E7%90%86%E5%BF%B5-%E7%AC%94%E8%AE%B0%E4%B8%89docker%E7%9A%84%E7%BD%91%E7%BB%9C\/';
           
-            this.page.identifier = '\/2018\/01\/hugo%E7%9A%84%E4%BD%BF%E7%94%A8\/'
+            this.page.identifier = '\/2018\/08\/%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0docker-%E8%B7%B5%E8%A1%8Cdevops%E7%90%86%E5%BF%B5-%E7%AC%94%E8%AE%B0%E4%B8%89docker%E7%9A%84%E7%BD%91%E7%BB%9C\/'
           
         };
         (function() {

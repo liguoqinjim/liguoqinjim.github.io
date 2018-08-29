@@ -305,10 +305,12 @@ if (!doNotTrack) {
 <li><a href="#notice-3">NOTICE</a></li>
 </ul></li>
 </ul></li>
-<li><a href="#8-镜像的发布">8.镜像的发布</a></li>
+<li><a href="#8-镜像的发布">8.镜像的发布</a>
+<ul>
 <li><a href="#8-1docker-push">8.1docker push</a></li>
 <li><a href="#8-2docker-hub和github相连接">8.2docker hub和github相连接</a></li>
 <li><a href="#8-3自建docker-registry">8.3自建docker registry</a></li>
+</ul></li>
 <li><a href="#9-dockerfile实战">9.Dockerfile实战</a>
 <ul>
 <li><a href="#notice-4">NOTICE</a></li>
@@ -565,7 +567,7 @@ ENTRYPOINT [&quot;bin/echo&quot;,&quot;hello $name&quot;]
 <li>自建docker registry</li>
 </ol>
 
-<h1 id="8-1docker-push">8.1docker push</h1>
+<h2 id="8-1docker-push">8.1docker push</h2>
 
 <pre><code>#登录docker hub的账号
 docker login
@@ -573,11 +575,11 @@ docker login
 docker push liguoqinjim/hello-world
 </code></pre>
 
-<h1 id="8-2docker-hub和github相连接">8.2docker hub和github相连接</h1>
+<h2 id="8-2docker-hub和github相连接">8.2docker hub和github相连接</h2>
 
 <p><img src="https://liguoqinjim.com/img/docker/note2/DockerHub.png" alt="Dockerhub" /></p>
 
-<h1 id="8-3自建docker-registry">8.3自建docker registry</h1>
+<h2 id="8-3自建docker-registry">8.3自建docker registry</h2>
 
 <ol>
 <li>启动docker registry，<code>docker run -d -p 5000:5000 --restart always --name registry registry:2</code></li>
@@ -678,7 +680,7 @@ docker run --cpu-shares=5 --name=test2 liguoqinjim/ubuntu-stress --cpu 1
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--disabled">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://liguoqinjim.com/2018/08/%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0docker-%E8%B7%B5%E8%A1%8Cdevops%E7%90%86%E5%BF%B5-%E7%AC%94%E8%AE%B0%E4%B8%89docker%E7%9A%84%E7%BD%91%E7%BB%9C/" data-tooltip="系统学习Docker 践行DevOps理念 笔记(三)|Docker的网络">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
@@ -746,7 +748,7 @@ docker run --cpu-shares=5 --name=test2 liguoqinjim/ubuntu-stress --cpu 1
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--disabled">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://liguoqinjim.com/2018/08/%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0docker-%E8%B7%B5%E8%A1%8Cdevops%E7%90%86%E5%BF%B5-%E7%AC%94%E8%AE%B0%E4%B8%89docker%E7%9A%84%E7%BD%91%E7%BB%9C/" data-tooltip="系统学习Docker 践行DevOps理念 笔记(三)|Docker的网络">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
@@ -841,6 +843,25 @@ docker run --cpu-shares=5 --name=test2 liguoqinjim/ubuntu-stress --cpu 1
       <div class="no-result text-color-light text-center"></div>
       <div class="results">
         
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://liguoqinjim.com/2018/08/%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0docker-%E8%B7%B5%E8%A1%8Cdevops%E7%90%86%E5%BF%B5-%E7%AC%94%E8%AE%B0%E4%B8%89docker%E7%9A%84%E7%BD%91%E7%BB%9C/">
+                <h3 class="media-heading">系统学习Docker 践行DevOps理念 笔记(三)|Docker的网络</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Aug 8, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>Docker的网络，是课程第四章的内容</p>
+
+<p></p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
         
           <div class="media">
             
@@ -1001,26 +1022,6 @@ docker run --cpu-shares=5 --name=test2 liguoqinjim/ubuntu-stress --cpu 1
             <hr>
           </div>
         
-          <div class="media">
-            
-            <div class="media-body">
-              <a class="link-unstyled" href="https://liguoqinjim.com/2018/07/%E8%AE%BE%E7%BD%AEmarkdown%E9%87%8C%E9%9D%A2%E7%9A%84%E5%9B%BE%E7%89%87%E5%A4%A7%E5%B0%8F/">
-                <h3 class="media-heading">设置markdown里面的图片大小</h3>
-              </a>
-              <span class="media-meta">
-                <span class="media-date text-small">
-                  Jul 7, 2018
-                </span>
-              </span>
-              <div class="media-content hide-xs font-merryweather"><p>在markdown里面添加图片的时候，图片显示出来可能会比我们需要的大很多。
-这时候我们会需要设置图片的大小。</p>
-
-<p></p></div>
-            </div>
-            <div style="clear:both;"></div>
-            <hr>
-          </div>
-        
       </div>
     </div>
     <div class="modal-footer">
@@ -1028,7 +1029,7 @@ docker run --cpu-shares=5 --name=test2 liguoqinjim/ubuntu-stress --cpu 1
          data-message-zero=""
          data-message-one=""
          data-message-other="">
-         12 posts found
+         13 posts found
       </p>
     </div>
   </div>
