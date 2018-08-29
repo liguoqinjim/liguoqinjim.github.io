@@ -1,5 +1,9 @@
 
 
+  
+    
+  
+
 
   
 
@@ -16,25 +20,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="Hugo 0.48-DEV with theme Tranquilpeak 0.4.3-BETA">
-    <title>Liguoqinjim&#39;s Blog</title>
+    <title>系统学习Docker 践行DevOps理念 笔记(五)|Docker Compose多容器部署</title>
     <meta name="author" content="Liguoqinjim">
-    <meta name="keywords" content="">
+    <meta name="keywords" content="docker">
 
     <link rel="icon" href="https://liguoqinjim.com/favicon.png">
     
-      <link rel="alternate" type="application/rss+xml" title="RSS" href="https://liguoqinjim.com/index.xml">
-    
 
     
-    <meta name="description" content="Liguoqinjim&#39;s Blog">
-    <meta property="og:description" content="Liguoqinjim&#39;s Blog">
+    <meta name="description" content="Docker Compose多容器部署，是课程第六章的内容
+
+">
+    <meta property="og:description" content="Docker Compose多容器部署，是课程第六章的内容
+
+">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="Liguoqinjim&#39;s Blog">
-    <meta property="og:url" content="/">
+    <meta property="og:title" content="系统学习Docker 践行DevOps理念 笔记(五)|Docker Compose多容器部署">
+    <meta property="og:url" content="/2018/08/%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0docker-%E8%B7%B5%E8%A1%8Cdevops%E7%90%86%E5%BF%B5-%E7%AC%94%E8%AE%B0%E4%BA%94docker-compose%E5%A4%9A%E5%AE%B9%E5%99%A8%E9%83%A8%E7%BD%B2/">
     <meta property="og:site_name" content="Liguoqinjim&#39;s Blog">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="Liguoqinjim&#39;s Blog">
-    <meta name="twitter:description" content="Liguoqinjim&#39;s Blog">
+    <meta name="twitter:description" content="Docker Compose多容器部署，是课程第六章的内容
+
+">
     
     
 
@@ -82,7 +90,7 @@ if (!doNotTrack) {
 
   <body>
     <div id="blog">
-      <header id="header" data-behavior="1">
+      <header id="header" data-behavior="4">
   <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
   <div class="header-title">
     <a class="header-title-link" href="https://liguoqinjim.com/">Liguoqinjim&#39;s Blog</a>
@@ -102,7 +110,7 @@ if (!doNotTrack) {
   
 </header>
 
-      <nav id="sidebar" data-behavior="1">
+      <nav id="sidebar" data-behavior="4">
   <div class="sidebar-container">
     
       <div class="sidebar-profile">
@@ -212,35 +220,20 @@ if (!doNotTrack) {
 
       
 
-      <div id="main" data-behavior="1"
+      <div id="main" data-behavior="4"
         class="
                hasCoverMetaIn
                ">
-        <section class="postShorten-group main-content-wrap">
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
           
           
-            
+            <div class="post-header main-content-wrap text-left">
   
-    
-      
-        
-      
-    
+    <h1 class="post-title" itemprop="headline">
+      系统学习Docker 践行DevOps理念 笔记(五)|Docker Compose多容器部署
+    </h1>
   
-
-
   
-
-<article class="postShorten postShorten--thumbnailimg-bottom" itemscope itemType="http://schema.org/BlogPosting">
-  <div class="postShorten-wrap">
-    
-    <div class="postShorten-header">
-      <h1 class="postShorten-title" itemprop="headline">
-        <a class="link-unstyled" href="https://liguoqinjim.com/2018/08/%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0docker-%E8%B7%B5%E8%A1%8Cdevops%E7%90%86%E5%BF%B5-%E7%AC%94%E8%AE%B0%E4%BA%94docker-compose%E5%A4%9A%E5%AE%B9%E5%99%A8%E9%83%A8%E7%BD%B2/">
-          系统学习Docker 践行DevOps理念 笔记(五)|Docker Compose多容器部署
-        </a>
-      </h1>
-      
   <div class="postShorten-meta post-meta">
     
       <time itemprop="datePublished" datetime="2018-08-29T15:24:16&#43;08:00">
@@ -260,373 +253,209 @@ if (!doNotTrack) {
 
   </div>
 
-    </div>
-    <div class="postShorten-excerpt" itemprop="articleBody">
-      <p>Docker Compose多容器部署，是课程第六章的内容</p>
+</div>
+          
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">
+              <p>Docker Compose多容器部署，是课程第六章的内容</p>
 
 <p></p>
-      <p>
-        <a href="https://liguoqinjim.com/2018/08/%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0docker-%E8%B7%B5%E8%A1%8Cdevops%E7%90%86%E5%BF%B5-%E7%AC%94%E8%AE%B0%E4%BA%94docker-compose%E5%A4%9A%E5%AE%B9%E5%99%A8%E9%83%A8%E7%BD%B2/" class="postShorten-excerpt_link link">阅读全文</a>
-        
-      </p>
-    </div>
-  </div>
-  
-</article>
 
-          
+<h1 id="table-of-contents">目录</h1><nav id="TableOfContents">
+<ul>
+<li><a href="#1-根据前面所学部署一个wordpress">1.根据前面所学部署一个wordpress</a></li>
+<li><a href="#2-docker-compose到底是什么">2.Docker Compose到底是什么</a>
+<ul>
+<li><a href="#2-1docker-compose是什么">2.1Docker compose是什么</a></li>
+<li><a href="#2-2docker-compose-file">2.2Docker compose file</a></li>
+<li><a href="#2-3services">2.3Services</a></li>
+<li><a href="#2-4networks">2.4Networks</a></li>
+<li><a href="#2-5volumes">2.5Volumes</a></li>
+</ul></li>
+<li><a href="#3-docker-compose的安装和基本使用">3.Docker Compose的安装和基本使用</a>
+<ul>
+<li><a href="#3-1安装">3.1安装</a></li>
+<li><a href="#3-2相关命令">3.2相关命令</a></li>
+</ul></li>
+<li><a href="#4-水平扩展和负载均衡">4.水平扩展和负载均衡</a>
+<ul>
+<li><a href="#水平扩展">水平扩展</a></li>
+<li><a href="#负载均衡">负载均衡</a></li>
+</ul></li>
+<li><a href="#5-部署一个复杂的投票应用">5.部署一个复杂的投票应用</a>
+<ul>
+<li><a href="#notice">NOTICE</a></li>
+</ul></li>
+</ul>
+</nav>
+
+<h1 id="1-根据前面所学部署一个wordpress">1.根据前面所学部署一个wordpress</h1>
+
+<p>启动两个容器，一个mysql一个wordpress，wordpress依赖mysql服务。</p>
+
+<ol>
+<li><code>docker run -d --name mysql -v mysql-data:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=xphone123 -e MYSQL_DATABASE=wordpress mysql</code>
+这个是启动mysql容器的，-v指定了一个volume,-e指定了两个环境变量</li>
+<li><code>docker run -d --name workpress --link mysql -p 8080:80 -e WORDPRESS_DB_HOST=mysql:3306 wordpress</code>
+这个是启动wordpress容器的，先link到mysql容器，那么mysql:3306，就会自动解析到mysql容器的ip:3306，link之后，wordpress容器还会去读取mysql容器的环境变量作为己用</li>
+</ol>
+
+<h1 id="2-docker-compose到底是什么">2.Docker Compose到底是什么</h1>
+
+<h2 id="2-1docker-compose是什么">2.1Docker compose是什么</h2>
+
+<ul>
+<li>Docker Compose是一个工具</li>
+<li>这个工具可以通过一个yml文件定义多容器的docker应用</li>
+<li>通过一条命令就可以根据yml文件的定义去创建或管理这多个容器</li>
+</ul>
+
+<h2 id="2-2docker-compose-file">2.2Docker compose file</h2>
+
+<p>docker compose file，也就是这个配置文件，是有version的，推荐使用version=3的，因为version=2的，只能在单机环境下使用。虽然version=3默认也是在单机环境下使用的，但是version=3是可以在多个机器的环境下使用的</p>
+
+<p><img src="https://liguoqinjim.com/img/docker/note5/docker_compose.png" alt="docker_compose" /></p>
+
+<h2 id="2-3services">2.3Services</h2>
+
+<ul>
+<li>一个service代表一个container，这个container可以从dockerhub的image来创建，或者从本地的Dockerfile build出来的image来创建</li>
+<li>service的启动类似docker run，我们可以给其指定network和volume，所以可以给service指定network和volume的引用</li>
+</ul>
+
+<p><img src="https://liguoqinjim.com/img/docker/note5/service1.png" alt="service1" /></p>
+
+<p><img src="https://liguoqinjim.com/img/docker/note5/service2.png" alt="service2" /></p>
+
+<h2 id="2-4networks">2.4Networks</h2>
+
+<p><img src="https://liguoqinjim.com/img/docker/note5/network.png" alt="network" /></p>
+
+<h2 id="2-5volumes">2.5Volumes</h2>
+
+<p><img src="https://liguoqinjim.com/img/docker/note5/volume2.png" alt="volume2" /></p>
+
+<h1 id="3-docker-compose的安装和基本使用">3.Docker Compose的安装和基本使用</h1>
+
+<h2 id="3-1安装">3.1安装</h2>
+
+<ol>
+<li><a href="https://docs.docker.com/compose/install/#prerequisites">https://docs.docker.com/compose/install/#prerequisites</a> ，下载</li>
+<li>chmod +x docker-composes</li>
+<li>可能需要重新打开terminal</li>
+</ol>
+
+<h2 id="3-2相关命令">3.2相关命令</h2>
+
+<ol>
+<li><code>docker-compose up -d</code>，-d表示在后台，需要在docker-compose.yml所在的文件夹运行</li>
+<li><code>docker-compose ps</code>，</li>
+<li><code>docker-compose stop</code>，停止所有的services</li>
+<li><code>docker-compose down</code>，停止所有的services，并且删除所有包括volumes和networks，但是要删除volumes需要加上-v参数</li>
+<li><code>docker-compose start</code>，启动</li>
+<li><code>docker-compose images</code>，打印出compose里面的container，以及container使用的image</li>
+<li><code>docker-compose exec service_name bash</code>，就可以进入我们定义的service里面，bash是运行的命令</li>
+<li><code>docker-compose logs</code>，可以查看日志</li>
+</ol>
+
+<h1 id="4-水平扩展和负载均衡">4.水平扩展和负载均衡</h1>
+
+<h2 id="水平扩展">水平扩展</h2>
+
+<p><code>docker-compose up -d --scale web=3</code>，这样就会启动3个web这个service，需要注意的是，这个是可以动态运行的。比如我已经运行过docker-compose up -d了，那么就有一个web的service了，然后我运行&ndash;scale web=3这个命令，运行之后，web的service总数就变成3，而不是加3。也可以变小，比如现在有10个，然后&ndash;scale web=3，那么运行完之后就变成3个了</p>
+
+<h2 id="负载均衡">负载均衡</h2>
+
+<p>可以使用haproxy这个image来做负载均衡，大致原理如下：
+<img src="https://liguoqinjim.com/img/docker/note5/haproxy.png" alt="haproxy" /></p>
+
+<h1 id="5-部署一个复杂的投票应用">5.部署一个复杂的投票应用</h1>
+
+<p>具体可以查看<a href="https://github.com/liguoqinjim/docker-labs">https://github.com/liguoqinjim/docker-labs</a></p>
+
+<h2 id="notice">NOTICE</h2>
+
+<ol>
+<li><code>docker-compose build</code>，要是compose下的Dockerfile有修改的话，使用up命令是会直接启动的，不会再去build了，所以这时候要使用build命令先打包镜像</li>
+<li>docker-compose是用于本地开发的一个工具，不是部署生产环境app的工具</li>
+</ol>
+              
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
             
-  
-    
-      
-        
-      
-    
-  
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">标签</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="https://liguoqinjim.com/tags/docker/">docker</a>
 
-
-  
-
-<article class="postShorten postShorten--thumbnailimg-bottom" itemscope itemType="http://schema.org/BlogPosting">
-  <div class="postShorten-wrap">
-    
-    <div class="postShorten-header">
-      <h1 class="postShorten-title" itemprop="headline">
-        <a class="link-unstyled" href="https://liguoqinjim.com/2018/08/%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0docker-%E8%B7%B5%E8%A1%8Cdevops%E7%90%86%E5%BF%B5-%E7%AC%94%E8%AE%B0%E5%9B%9Bdocker%E7%9A%84%E6%8C%81%E4%B9%85%E5%8C%96%E5%AD%98%E5%82%A8%E5%92%8C%E6%95%B0%E6%8D%AE%E5%85%B1%E4%BA%AB/">
-          系统学习Docker 践行DevOps理念 笔记(四)|Docker的持久化存储和数据共享
-        </a>
-      </h1>
-      
-  <div class="postShorten-meta post-meta">
-    
-      <time itemprop="datePublished" datetime="2018-08-29T14:30:38&#43;08:00">
-        
-  八月 29, 2018
-
-      </time>
-    
-    
-  
-  
-    <span>发布在</span>
-    
-      <a class="category-link" href="https://liguoqinjim.com/categories/docker">docker</a>
-    
-  
-
-  </div>
-
-    </div>
-    <div class="postShorten-excerpt" itemprop="articleBody">
-      <p>Docker的持久化存储和数据共享，是课程第五章的内容</p>
-
-<p></p>
-      <p>
-        <a href="https://liguoqinjim.com/2018/08/%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0docker-%E8%B7%B5%E8%A1%8Cdevops%E7%90%86%E5%BF%B5-%E7%AC%94%E8%AE%B0%E5%9B%9Bdocker%E7%9A%84%E6%8C%81%E4%B9%85%E5%8C%96%E5%AD%98%E5%82%A8%E5%92%8C%E6%95%B0%E6%8D%AE%E5%85%B1%E4%BA%AB/" class="postShorten-excerpt_link link">阅读全文</a>
-        
-      </p>
-    </div>
-  </div>
-  
-</article>
-
-          
+                  </div>
+                
+              
             
-  
-    
-      
-        
-      
-    
-  
-
-
-  
-
-<article class="postShorten postShorten--thumbnailimg-bottom" itemscope itemType="http://schema.org/BlogPosting">
-  <div class="postShorten-wrap">
-    
-    <div class="postShorten-header">
-      <h1 class="postShorten-title" itemprop="headline">
-        <a class="link-unstyled" href="https://liguoqinjim.com/2018/08/%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0docker-%E8%B7%B5%E8%A1%8Cdevops%E7%90%86%E5%BF%B5-%E7%AC%94%E8%AE%B0%E4%B8%89docker%E7%9A%84%E7%BD%91%E7%BB%9C/">
-          系统学习Docker 践行DevOps理念 笔记(三)|Docker的网络
-        </a>
-      </h1>
-      
-  <div class="postShorten-meta post-meta">
-    
-      <time itemprop="datePublished" datetime="2018-08-28T17:25:59&#43;08:00">
-        
-  八月 28, 2018
-
-      </time>
-    
-    
-  
-  
-    <span>发布在</span>
-    
-      <a class="category-link" href="https://liguoqinjim.com/categories/docker">docker</a>
-    
-  
-
-  </div>
-
-    </div>
-    <div class="postShorten-excerpt" itemprop="articleBody">
-      <p>Docker的网络，是课程第四章的内容</p>
-
-<p></p>
-      <p>
-        <a href="https://liguoqinjim.com/2018/08/%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0docker-%E8%B7%B5%E8%A1%8Cdevops%E7%90%86%E5%BF%B5-%E7%AC%94%E8%AE%B0%E4%B8%89docker%E7%9A%84%E7%BD%91%E7%BB%9C/" class="postShorten-excerpt_link link">阅读全文</a>
-        
-      </p>
-    </div>
-  </div>
-  
-</article>
-
-          
             
-  
-    
+  <div class="post-actions-wrap">
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--disabled">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://liguoqinjim.com/2018/08/%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0docker-%E8%B7%B5%E8%A1%8Cdevops%E7%90%86%E5%BF%B5-%E7%AC%94%E8%AE%B0%E5%9B%9Bdocker%E7%9A%84%E6%8C%81%E4%B9%85%E5%8C%96%E5%AD%98%E5%82%A8%E5%92%8C%E6%95%B0%E6%8D%AE%E5%85%B1%E4%BA%AB/" data-tooltip="系统学习Docker 践行DevOps理念 笔记(四)|Docker的持久化存储和数据共享">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
       
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
         
       
-    
-  
-
-
-  
-
-<article class="postShorten postShorten--thumbnailimg-bottom" itemscope itemType="http://schema.org/BlogPosting">
-  <div class="postShorten-wrap">
-    
-    <div class="postShorten-header">
-      <h1 class="postShorten-title" itemprop="headline">
-        <a class="link-unstyled" href="https://liguoqinjim.com/2018/08/%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0docker-%E8%B7%B5%E8%A1%8Cdevops%E7%90%86%E5%BF%B5-%E7%AC%94%E8%AE%B0%E4%BA%8Cdocker%E7%9A%84%E9%95%9C%E5%83%8F%E5%92%8C%E5%AE%B9%E5%99%A8/">
-          系统学习Docker 践行DevOps理念 笔记(二)|Docker的镜像和容器
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#table-of-contents">
+        
+          <i class="fa fa-list"></i>
         </a>
-      </h1>
-      
-  <div class="postShorten-meta post-meta">
-    
-      <time itemprop="datePublished" datetime="2018-08-28T13:36:04&#43;08:00">
-        
-  八月 28, 2018
-
-      </time>
-    
-    
-  
-  
-    <span>发布在</span>
-    
-      <a class="category-link" href="https://liguoqinjim.com/categories/docker">docker</a>
-    
-  
-
-  </div>
-
-    </div>
-    <div class="postShorten-excerpt" itemprop="articleBody">
-      <p>Docker的镜像和容器，是课程第三章的内容</p>
-
-<p></p>
-      <p>
-        <a href="https://liguoqinjim.com/2018/08/%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0docker-%E8%B7%B5%E8%A1%8Cdevops%E7%90%86%E5%BF%B5-%E7%AC%94%E8%AE%B0%E4%BA%8Cdocker%E7%9A%84%E9%95%9C%E5%83%8F%E5%92%8C%E5%AE%B9%E5%99%A8/" class="postShorten-excerpt_link link">阅读全文</a>
-        
-      </p>
-    </div>
-  </div>
-  
-</article>
-
-          
-            
-  
-    
-      
-        
-      
-    
-  
-
-
-  
-
-<article class="postShorten postShorten--thumbnailimg-bottom" itemscope itemType="http://schema.org/BlogPosting">
-  <div class="postShorten-wrap">
-    
-    <div class="postShorten-header">
-      <h1 class="postShorten-title" itemprop="headline">
-        <a class="link-unstyled" href="https://liguoqinjim.com/2018/08/%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0docker-%E8%B7%B5%E8%A1%8Cdevops%E7%90%86%E5%BF%B5-%E7%AC%94%E8%AE%B0%E4%B8%80docker%E7%9A%84%E5%AE%89%E8%A3%85/">
-          系统学习Docker 践行DevOps理念 笔记(一)|Docker的安装
-        </a>
-      </h1>
-      
-  <div class="postShorten-meta post-meta">
-    
-      <time itemprop="datePublished" datetime="2018-08-28T11:50:22&#43;08:00">
-        
-  八月 28, 2018
-
-      </time>
-    
-    
-  
-  
-    <span>发布在</span>
-    
-      <a class="category-link" href="https://liguoqinjim.com/categories/docker">docker</a>
-    
-  
-
-  </div>
-
-    </div>
-    <div class="postShorten-excerpt" itemprop="articleBody">
-      <p>Docker的安装</p>
-
-<p></p>
-      <p>
-        <a href="https://liguoqinjim.com/2018/08/%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0docker-%E8%B7%B5%E8%A1%8Cdevops%E7%90%86%E5%BF%B5-%E7%AC%94%E8%AE%B0%E4%B8%80docker%E7%9A%84%E5%AE%89%E8%A3%85/" class="postShorten-excerpt_link link">阅读全文</a>
-        
-      </p>
-    </div>
-  </div>
-  
-</article>
-
-          
-            
-  
-    
-      
-        
-      
-    
-  
-
-
-  
-
-<article class="postShorten postShorten--thumbnailimg-bottom" itemscope itemType="http://schema.org/BlogPosting">
-  <div class="postShorten-wrap">
-    
-    <div class="postShorten-header">
-      <h1 class="postShorten-title" itemprop="headline">
-        <a class="link-unstyled" href="https://liguoqinjim.com/2018/07/leetcode-0008-string-to-integer-atoi/">
-          LeetCode-0008-String to Integer (atoi)
-        </a>
-      </h1>
-      
-  <div class="postShorten-meta post-meta">
-    
-      <time itemprop="datePublished" datetime="2018-07-24T11:46:25&#43;08:00">
-        
-  七月 24, 2018
-
-      </time>
-    
-    
-  
-  
-    <span>发布在</span>
-    
-      <a class="category-link" href="https://liguoqinjim.com/categories/leetcode">leetcode</a>
-    
-  
-
-  </div>
-
-    </div>
-    <div class="postShorten-excerpt" itemprop="articleBody">
-      <p></p>
-      <p>
-        <a href="https://liguoqinjim.com/2018/07/leetcode-0008-string-to-integer-atoi/" class="postShorten-excerpt_link link">阅读全文</a>
-        
-      </p>
-    </div>
-  </div>
-  
-</article>
-
-          
-            
-  
-    
-      
-        
-      
-    
-  
-
-
-  
-
-<article class="postShorten postShorten--thumbnailimg-bottom" itemscope itemType="http://schema.org/BlogPosting">
-  <div class="postShorten-wrap">
-    
-    <div class="postShorten-header">
-      <h1 class="postShorten-title" itemprop="headline">
-        <a class="link-unstyled" href="https://liguoqinjim.com/2018/07/leetcode-0020-valid-parentheses/">
-          LeetCode-0020-Valid Parentheses
-        </a>
-      </h1>
-      
-  <div class="postShorten-meta post-meta">
-    
-      <time itemprop="datePublished" datetime="2018-07-23T14:01:09&#43;08:00">
-        
-  七月 23, 2018
-
-      </time>
-    
-    
-  
-  
-    <span>发布在</span>
-    
-      <a class="category-link" href="https://liguoqinjim.com/categories/leetcode">leetcode</a>
-    
-  
-
-  </div>
-
-    </div>
-    <div class="postShorten-excerpt" itemprop="articleBody">
-      <p></p>
-      <p>
-        <a href="https://liguoqinjim.com/2018/07/leetcode-0020-valid-parentheses/" class="postShorten-excerpt_link link">阅读全文</a>
-        
-      </p>
-    </div>
-  </div>
-  
-</article>
-
-          
-          
-  <div class="pagination-bar">
-    <ul class="pagination">
-      
-        
-        
-          <li class="pagination-next">
-            <a class="btn btn--default btn--small" href="https://liguoqinjim.com/page/2/">
-              <span>下一页</span>
-              <i class="fa fa-angle-right text-base icon-ml"></i>
-            </a>
-          </li>
-        
-      
-      <li class="pagination-number">第 1 页 共 3 页</li>
+      </li>
     </ul>
   </div>
 
 
-        </section>
+            
+              
+                <div id="disqus_thread">
+  <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+              
+            
+          </div>
+        </article>
         <footer id="footer" class="main-content-wrap">
   <span class="copyrights">
     &copy; 2018 Liguoqinjim. All Rights Reserved
@@ -634,6 +463,66 @@ if (!doNotTrack) {
 </footer>
 
       </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="4">
+        
+  <div class="post-actions-wrap">
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--disabled">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://liguoqinjim.com/2018/08/%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0docker-%E8%B7%B5%E8%A1%8Cdevops%E7%90%86%E5%BF%B5-%E7%AC%94%E8%AE%B0%E5%9B%9Bdocker%E7%9A%84%E6%8C%81%E4%B9%85%E5%8C%96%E5%AD%98%E5%82%A8%E5%92%8C%E6%95%B0%E6%8D%AE%E5%85%B1%E4%BA%AB/" data-tooltip="系统学习Docker 践行DevOps理念 笔记(四)|Docker的持久化存储和数据共享">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#table-of-contents">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+
+      </div>
+      <div id="share-options-bar" class="share-options-bar" data-behavior="4">
+  <i id="btn-close-shareoptions" class="fa fa-close"></i>
+  <ul class="share-options">
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
     </div>
     
     <div id="about">
@@ -902,8 +791,35 @@ $(document).ready(function() {
 </script>
 
 
+  
+    
+      <script>
+        var disqus_config = function () {
+          this.page.url = 'https:\/\/liguoqinjim.com\/2018\/08\/%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0docker-%E8%B7%B5%E8%A1%8Cdevops%E7%90%86%E5%BF%B5-%E7%AC%94%E8%AE%B0%E4%BA%94docker-compose%E5%A4%9A%E5%AE%B9%E5%99%A8%E9%83%A8%E7%BD%B2\/';
+          
+            this.page.identifier = '\/2018\/08\/%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0docker-%E8%B7%B5%E8%A1%8Cdevops%E7%90%86%E5%BF%B5-%E7%AC%94%E8%AE%B0%E4%BA%94docker-compose%E5%A4%9A%E5%AE%B9%E5%99%A8%E9%83%A8%E7%BD%B2\/'
+          
+        };
+        (function() {
+          
+          
+          if (window.location.hostname == "localhost") {
+            return;
+          }
+          var d = document, s = d.createElement('script');
+          var disqus_shortname = 'liguoqinjim';
+          s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+        })();
+      </script>
+    
+  
+
 
 
     
   </body>
 </html>
+
