@@ -19,7 +19,7 @@
     
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="generator" content="Hugo 0.48-DEV with theme Tranquilpeak 0.4.3-BETA">
+    <meta name="generator" content="Hugo 0.44 with theme Tranquilpeak 0.4.3-BETA">
     <title>用golang触发IFTTT，发送自定义的Notifications</title>
     <meta name="author" content="Liguoqinjim">
     <meta name="keywords" content="">
@@ -71,7 +71,7 @@
 
     
       
-<script type="application/javascript">
+<script>
 var doNotTrack = false;
 if (!doNotTrack) {
 	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -368,54 +368,54 @@ if (!doNotTrack) {
 <pre><code class="language-golang">package main
 
 import (
-    &quot;bytes&quot;
-    &quot;encoding/json&quot;
-    &quot;fmt&quot;
-    &quot;io/ioutil&quot;
-    &quot;log&quot;
-    &quot;net/http&quot;
+	&quot;bytes&quot;
+	&quot;encoding/json&quot;
+	&quot;fmt&quot;
+	&quot;io/ioutil&quot;
+	&quot;log&quot;
+	&quot;net/http&quot;
 )
 
 type ConfStruct struct {
-    Key       string `json:&quot;key&quot;`
-    EventName string `json:&quot;event_name&quot;`
-    UrlFormat string `json:&quot;url_format&quot;`
-    Value1    string `json:&quot;value1&quot;`
-    Value2    string `json:&quot;value2&quot;`
-    Value3    string `json:&quot;value3&quot;`
+	Key       string `json:&quot;key&quot;`
+	EventName string `json:&quot;event_name&quot;`
+	UrlFormat string `json:&quot;url_format&quot;`
+	Value1    string `json:&quot;value1&quot;`
+	Value2    string `json:&quot;value2&quot;`
+	Value3    string `json:&quot;value3&quot;`
 }
 
 var conf = new(ConfStruct)
 
 func main() {
-    //读取配置文件
-    data, err := ioutil.ReadFile(&quot;conf.json&quot;)
-    if err != nil {
-        log.Fatalf(&quot;ioutil.ReadFile error:%v&quot;, err)
-    }
-    log.Printf(&quot;data=\n%s&quot;, data)
+	//读取配置文件
+	data, err := ioutil.ReadFile(&quot;conf.json&quot;)
+	if err != nil {
+		log.Fatalf(&quot;ioutil.ReadFile error:%v&quot;, err)
+	}
+	log.Printf(&quot;data=\n%s&quot;, data)
 
-    err = json.Unmarshal(data, conf)
-    if err != nil {
-        log.Fatalf(&quot;json.Unmarshal error:%v&quot;, err)
-    }
+	err = json.Unmarshal(data, conf)
+	if err != nil {
+		log.Fatalf(&quot;json.Unmarshal error:%v&quot;, err)
+	}
 
-    //拼接url
-    u := fmt.Sprintf(conf.UrlFormat, conf.EventName, conf.Key)
-    log.Printf(&quot;url=%s&quot;, u)
+	//拼接url
+	u := fmt.Sprintf(conf.UrlFormat, conf.EventName, conf.Key)
+	log.Printf(&quot;url=%s&quot;, u)
 
-    //post
-    values := map[string]string{&quot;value1&quot;: conf.Value1, &quot;value2&quot;: conf.Value2, &quot;value3&quot;: conf.Value3}
-    jsonStr, _ := json.Marshal(values)
-    resp, err := http.Post(u, &quot;application/json&quot;, bytes.NewBuffer(jsonStr))
-    if err != nil {
-        log.Fatalf(&quot;http.Post error:%v&quot;, err)
-    }
-    d, err := ioutil.ReadAll(resp.Body)
-    if err != nil {
-        log.Fatalf(&quot;ioutil.ReadAll error:%v&quot;, err)
-    }
-    log.Printf(&quot;resp:\n%s&quot;, d)
+	//post
+	values := map[string]string{&quot;value1&quot;: conf.Value1, &quot;value2&quot;: conf.Value2, &quot;value3&quot;: conf.Value3}
+	jsonStr, _ := json.Marshal(values)
+	resp, err := http.Post(u, &quot;application/json&quot;, bytes.NewBuffer(jsonStr))
+	if err != nil {
+		log.Fatalf(&quot;http.Post error:%v&quot;, err)
+	}
+	d, err := ioutil.ReadAll(resp.Body)
+	if err != nil {
+		log.Fatalf(&quot;ioutil.ReadAll error:%v&quot;, err)
+	}
+	log.Printf(&quot;resp:\n%s&quot;, d)
 }
 
 </code></pre>
@@ -425,46 +425,46 @@ func main() {
 <pre><code class="language-golang">...
 
 func main() {
-    //读取配置文件
-    data, err := ioutil.ReadFile(&quot;conf.json&quot;)
-    if err != nil {
-        log.Fatalf(&quot;ioutil.ReadFile error:%v&quot;, err)
-    }
-    log.Printf(&quot;data=\n%s&quot;, data)
+	//读取配置文件
+	data, err := ioutil.ReadFile(&quot;conf.json&quot;)
+	if err != nil {
+		log.Fatalf(&quot;ioutil.ReadFile error:%v&quot;, err)
+	}
+	log.Printf(&quot;data=\n%s&quot;, data)
 
-    err = json.Unmarshal(data, conf)
-    if err != nil {
-        log.Fatalf(&quot;json.Unmarshal error:%v&quot;, err)
-    }
+	err = json.Unmarshal(data, conf)
+	if err != nil {
+		log.Fatalf(&quot;json.Unmarshal error:%v&quot;, err)
+	}
 
-    //拼接url
-    u := fmt.Sprintf(conf.UrlFormat, conf.EventName, conf.Key)
-    log.Printf(&quot;url=%s&quot;, u)
+	//拼接url
+	u := fmt.Sprintf(conf.UrlFormat, conf.EventName, conf.Key)
+	log.Printf(&quot;url=%s&quot;, u)
 
-    //client
-    client := &amp;http.Client{}
-    values := map[string]string{
-        &quot;value1&quot;: conf.Value1,
-        &quot;value2&quot;: conf.Value2,
-        &quot;value3&quot;: conf.Value3,
-    }
-    jsonStr, _ := json.Marshal(values)
+	//client
+	client := &amp;http.Client{}
+	values := map[string]string{
+		&quot;value1&quot;: conf.Value1,
+		&quot;value2&quot;: conf.Value2,
+		&quot;value3&quot;: conf.Value3,
+	}
+	jsonStr, _ := json.Marshal(values)
 
-    req, err := http.NewRequest(http.MethodPost, u, bytes.NewBuffer(jsonStr))
-    if err != nil {
-        log.Fatalf(&quot;http.NewRequest error:%v&quot;, err)
-    }
-    req.Header.Add(&quot;Content-Type&quot;, &quot;application/json&quot;)
+	req, err := http.NewRequest(http.MethodPost, u, bytes.NewBuffer(jsonStr))
+	if err != nil {
+		log.Fatalf(&quot;http.NewRequest error:%v&quot;, err)
+	}
+	req.Header.Add(&quot;Content-Type&quot;, &quot;application/json&quot;)
 
-    resp, err := client.Do(req)
-    if err != nil {
-        log.Fatalf(&quot;client.Do error:%v&quot;, err)
-    }
-    d, err := ioutil.ReadAll(resp.Body)
-    if err != nil {
-        log.Fatalf(&quot;ioutil.ReadAll error:%v&quot;, err)
-    }
-    log.Printf(&quot;resp:\n%s&quot;, d)
+	resp, err := client.Do(req)
+	if err != nil {
+		log.Fatalf(&quot;client.Do error:%v&quot;, err)
+	}
+	d, err := ioutil.ReadAll(resp.Body)
+	if err != nil {
+		log.Fatalf(&quot;ioutil.ReadAll error:%v&quot;, err)
+	}
+	log.Printf(&quot;resp:\n%s&quot;, d)
 }
 </code></pre>
 
@@ -473,43 +473,43 @@ func main() {
 <pre><code class="language-golang">...
 
 func main() {
-    //读取配置文件
-    data, err := ioutil.ReadFile(&quot;conf.json&quot;)
-    if err != nil {
-        log.Fatalf(&quot;ioutil.ReadFile error:%v&quot;, err)
-    }
-    log.Printf(&quot;data=\n%s&quot;, data)
+	//读取配置文件
+	data, err := ioutil.ReadFile(&quot;conf.json&quot;)
+	if err != nil {
+		log.Fatalf(&quot;ioutil.ReadFile error:%v&quot;, err)
+	}
+	log.Printf(&quot;data=\n%s&quot;, data)
 
-    err = json.Unmarshal(data, conf)
-    if err != nil {
-        log.Fatalf(&quot;json.Unmarshal error:%v&quot;, err)
-    }
+	err = json.Unmarshal(data, conf)
+	if err != nil {
+		log.Fatalf(&quot;json.Unmarshal error:%v&quot;, err)
+	}
 
-    //拼接url
-    u := fmt.Sprintf(conf.UrlFormat, conf.EventName, conf.Key)
-    log.Printf(&quot;url=%s&quot;, u)
+	//拼接url
+	u := fmt.Sprintf(conf.UrlFormat, conf.EventName, conf.Key)
+	log.Printf(&quot;url=%s&quot;, u)
 
-    type ValueStruct struct {
-        Value1 string `json:&quot;value1&quot;`
-        Value2 string `json:&quot;value2&quot;`
-        Value3 string `json:&quot;value3&quot;`
-    }
-    val := ValueStruct{Value1: conf.Value1, Value2: conf.Value2, Value3: conf.Value3}
-    request := gorequest.New()
-    //http://httpbin.org/post
-    resp, body, errs := request.Post(u).
-        Send(val).
-        End()
-    if errs != nil {
-        log.Fatalf(&quot;errs:%+v&quot;, errs)
-    }
-    d, err := ioutil.ReadAll(resp.Body)
-    if err != nil {
-        log.Fatalf(&quot;ioutil.ReadAll error:%v&quot;, err)
-    }
-    log.Printf(&quot;resp=\n%s&quot;, d)
-    log.Println(&quot;body.length=&quot;, len(body))
-    log.Println(&quot;body=&quot;, body)
+	type ValueStruct struct {
+		Value1 string `json:&quot;value1&quot;`
+		Value2 string `json:&quot;value2&quot;`
+		Value3 string `json:&quot;value3&quot;`
+	}
+	val := ValueStruct{Value1: conf.Value1, Value2: conf.Value2, Value3: conf.Value3}
+	request := gorequest.New()
+	//http://httpbin.org/post
+	resp, body, errs := request.Post(u).
+		Send(val).
+		End()
+	if errs != nil {
+		log.Fatalf(&quot;errs:%+v&quot;, errs)
+	}
+	d, err := ioutil.ReadAll(resp.Body)
+	if err != nil {
+		log.Fatalf(&quot;ioutil.ReadAll error:%v&quot;, err)
+	}
+	log.Printf(&quot;resp=\n%s&quot;, d)
+	log.Println(&quot;body.length=&quot;, len(body))
+	log.Println(&quot;body=&quot;, body)
 }
 </code></pre>
               
@@ -705,6 +705,25 @@ func main() {
           <div class="media">
             
             <div class="media-body">
+              <a class="link-unstyled" href="https://liguoqinjim.com/2018/08/%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0docker-%E8%B7%B5%E8%A1%8Cdevops%E7%90%86%E5%BF%B5-%E7%AC%94%E8%AE%B0%E5%85%AD%E5%AE%B9%E5%99%A8%E7%BC%96%E6%8E%92docker-swarm/">
+                <h3 class="media-heading">系统学习Docker 践行DevOps理念 笔记(六)|容器编排Docker Swarm</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Aug 8, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>容器编排Docker Swarm，是课程第七章的内容</p>
+
+<p></p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
               <a class="link-unstyled" href="https://liguoqinjim.com/2018/08/%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0docker-%E8%B7%B5%E8%A1%8Cdevops%E7%90%86%E5%BF%B5-%E7%AC%94%E8%AE%B0%E4%BA%94docker-compose%E5%A4%9A%E5%AE%B9%E5%99%A8%E9%83%A8%E7%BD%B2/">
                 <h3 class="media-heading">系统学习Docker 践行DevOps理念 笔记(五)|Docker Compose多容器部署</h3>
               </a>
@@ -865,23 +884,6 @@ func main() {
             <hr>
           </div>
         
-          <div class="media">
-            
-            <div class="media-body">
-              <a class="link-unstyled" href="https://liguoqinjim.com/2018/07/leetcode-0007-reverse-integer/">
-                <h3 class="media-heading">LeetCode-0007-Reverse Integer</h3>
-              </a>
-              <span class="media-meta">
-                <span class="media-date text-small">
-                  Jul 7, 2018
-                </span>
-              </span>
-              <div class="media-content hide-xs font-merryweather"><p></p></div>
-            </div>
-            <div style="clear:both;"></div>
-            <hr>
-          </div>
-        
       </div>
     </div>
     <div class="modal-footer">
@@ -889,7 +891,7 @@ func main() {
          data-message-zero=""
          data-message-one=""
          data-message-other="">
-         15 posts found
+         16 posts found
       </p>
     </div>
   </div>

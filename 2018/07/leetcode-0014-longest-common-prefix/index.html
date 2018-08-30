@@ -19,7 +19,7 @@
     
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="generator" content="Hugo 0.48-DEV with theme Tranquilpeak 0.4.3-BETA">
+    <meta name="generator" content="Hugo 0.44 with theme Tranquilpeak 0.4.3-BETA">
     <title>LeetCode-0014-Longest Common Prefix</title>
     <meta name="author" content="Liguoqinjim">
     <meta name="keywords" content="leetcode golang">
@@ -65,7 +65,7 @@
 
     
       
-<script type="application/javascript">
+<script>
 var doNotTrack = false;
 if (!doNotTrack) {
 	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -277,48 +277,48 @@ If there is no common prefix, return an empty string &ldquo;&rdquo;.</p>
 <h2 id="解法1">解法1</h2>
 
 <pre><code>func longestCommonPrefix(strs []string) string {
-    if len(strs) == 0 {
-        return &quot;&quot;
-    }
-    if len(strs) == 1 {
-        return strs[0]
-    }
+	if len(strs) == 0 {
+		return &quot;&quot;
+	}
+	if len(strs) == 1 {
+		return strs[0]
+	}
 
-    n := 0
-    end := false
-    for !end {
-        for i := 0; i &lt; len(strs)-1; i++ {
-            if n == len(strs[i]) || n == len(strs[i+1]) {
-                end = true
-                break
-            }
-            if strs[i][n] != strs[i+1][n] {
-                end = true
-                break
-            }
-        }
-        if !end {
-            n++
-        }
-    }
+	n := 0
+	end := false
+	for !end {
+		for i := 0; i &lt; len(strs)-1; i++ {
+			if n == len(strs[i]) || n == len(strs[i+1]) {
+				end = true
+				break
+			}
+			if strs[i][n] != strs[i+1][n] {
+				end = true
+				break
+			}
+		}
+		if !end {
+			n++
+		}
+	}
 
-    return strs[0][:n]
+	return strs[0][:n]
 }
 </code></pre>
 
 <h2 id="解法2">解法2</h2>
 
 <pre><code>func longestCommonPrefix2(strs []string) string {
-    if strs == nil || len(strs) == 0 {
-        return &quot;&quot;
-    }
-    pre := strs[0]
-    for _, v := range strs {
-        for !strings.HasPrefix(v, pre) {
-            pre = pre[:len(pre)-1]
-        }
-    }
-    return pre
+	if strs == nil || len(strs) == 0 {
+		return &quot;&quot;
+	}
+	pre := strs[0]
+	for _, v := range strs {
+		for !strings.HasPrefix(v, pre) {
+			pre = pre[:len(pre)-1]
+		}
+	}
+	return pre
 }
 </code></pre>
 
@@ -518,6 +518,25 @@ If there is no common prefix, return an empty string &ldquo;&rdquo;.</p>
           <div class="media">
             
             <div class="media-body">
+              <a class="link-unstyled" href="https://liguoqinjim.com/2018/08/%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0docker-%E8%B7%B5%E8%A1%8Cdevops%E7%90%86%E5%BF%B5-%E7%AC%94%E8%AE%B0%E5%85%AD%E5%AE%B9%E5%99%A8%E7%BC%96%E6%8E%92docker-swarm/">
+                <h3 class="media-heading">系统学习Docker 践行DevOps理念 笔记(六)|容器编排Docker Swarm</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Aug 8, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>容器编排Docker Swarm，是课程第七章的内容</p>
+
+<p></p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
               <a class="link-unstyled" href="https://liguoqinjim.com/2018/08/%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0docker-%E8%B7%B5%E8%A1%8Cdevops%E7%90%86%E5%BF%B5-%E7%AC%94%E8%AE%B0%E4%BA%94docker-compose%E5%A4%9A%E5%AE%B9%E5%99%A8%E9%83%A8%E7%BD%B2/">
                 <h3 class="media-heading">系统学习Docker 践行DevOps理念 笔记(五)|Docker Compose多容器部署</h3>
               </a>
@@ -678,23 +697,6 @@ If there is no common prefix, return an empty string &ldquo;&rdquo;.</p>
             <hr>
           </div>
         
-          <div class="media">
-            
-            <div class="media-body">
-              <a class="link-unstyled" href="https://liguoqinjim.com/2018/07/leetcode-0007-reverse-integer/">
-                <h3 class="media-heading">LeetCode-0007-Reverse Integer</h3>
-              </a>
-              <span class="media-meta">
-                <span class="media-date text-small">
-                  Jul 7, 2018
-                </span>
-              </span>
-              <div class="media-content hide-xs font-merryweather"><p></p></div>
-            </div>
-            <div style="clear:both;"></div>
-            <hr>
-          </div>
-        
       </div>
     </div>
     <div class="modal-footer">
@@ -702,7 +704,7 @@ If there is no common prefix, return an empty string &ldquo;&rdquo;.</p>
          data-message-zero=""
          data-message-one=""
          data-message-other="">
-         15 posts found
+         16 posts found
       </p>
     </div>
   </div>

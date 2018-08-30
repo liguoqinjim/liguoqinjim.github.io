@@ -6,10 +6,21 @@
     <description>Recent content on Liguoqinjim&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 29 Aug 2018 15:24:16 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 29 Aug 2018 17:40:55 +0800</lastBuildDate>
     
 	<atom:link href="https://liguoqinjim.com/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>系统学习Docker 践行DevOps理念 笔记(六)|容器编排Docker Swarm</title>
+      <link>https://liguoqinjim.com/2018/08/%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0docker-%E8%B7%B5%E8%A1%8Cdevops%E7%90%86%E5%BF%B5-%E7%AC%94%E8%AE%B0%E5%85%AD%E5%AE%B9%E5%99%A8%E7%BC%96%E6%8E%92docker-swarm/</link>
+      <pubDate>Wed, 29 Aug 2018 17:40:55 +0800</pubDate>
+      
+      <guid>https://liguoqinjim.com/2018/08/%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0docker-%E8%B7%B5%E8%A1%8Cdevops%E7%90%86%E5%BF%B5-%E7%AC%94%E8%AE%B0%E5%85%AD%E5%AE%B9%E5%99%A8%E7%BC%96%E6%8E%92docker-swarm/</guid>
+      <description>&lt;p&gt;容器编排Docker Swarm，是课程第七章的内容&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>系统学习Docker 践行DevOps理念 笔记(五)|Docker Compose多容器部署</title>
