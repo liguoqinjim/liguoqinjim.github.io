@@ -20,23 +20,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="Hugo 0.44 with theme Tranquilpeak 0.4.3-BETA">
-    <title>LeetCode-0014-Longest Common Prefix</title>
+    <title>系统学习Docker 践行DevOps理念 笔记(八)|容器的的运维和监控</title>
     <meta name="author" content="Liguoqinjim">
-    <meta name="keywords" content="leetcode golang">
+    <meta name="keywords" content="docker">
 
     <link rel="icon" href="https://liguoqinjim.com/favicon.png">
     
 
     
-    <meta name="description" content="">
-    <meta property="og:description" content="">
+    <meta name="description" content="容器的的运维和监控，是课程第十章的内容
+
+">
+    <meta property="og:description" content="容器的的运维和监控，是课程第十章的内容
+
+">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="LeetCode-0014-Longest Common Prefix">
-    <meta property="og:url" content="/2018/07/leetcode-0014-longest-common-prefix/">
+    <meta property="og:title" content="系统学习Docker 践行DevOps理念 笔记(八)|容器的的运维和监控">
+    <meta property="og:url" content="/2018/08/%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0docker-%E8%B7%B5%E8%A1%8Cdevops%E7%90%86%E5%BF%B5-%E7%AC%94%E8%AE%B0%E5%85%AB%E5%AE%B9%E5%99%A8%E7%9A%84%E7%9A%84%E8%BF%90%E7%BB%B4%E5%92%8C%E7%9B%91%E6%8E%A7/">
     <meta property="og:site_name" content="Liguoqinjim&#39;s Blog">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="Liguoqinjim&#39;s Blog">
-    <meta name="twitter:description" content="">
+    <meta name="twitter:description" content="容器的的运维和监控，是课程第十章的内容
+
+">
     
     
 
@@ -224,15 +230,15 @@ if (!doNotTrack) {
             <div class="post-header main-content-wrap text-left">
   
     <h1 class="post-title" itemprop="headline">
-      LeetCode-0014-Longest Common Prefix
+      系统学习Docker 践行DevOps理念 笔记(八)|容器的的运维和监控
     </h1>
   
   
   <div class="postShorten-meta post-meta">
     
-      <time itemprop="datePublished" datetime="2018-07-22T15:07:56&#43;08:00">
+      <time itemprop="datePublished" datetime="2018-08-30T22:18:05&#43;08:00">
         
-  七月 22, 2018
+  八月 30, 2018
 
       </time>
     
@@ -241,7 +247,7 @@ if (!doNotTrack) {
   
     <span>发布在</span>
     
-      <a class="category-link" href="https://liguoqinjim.com/categories/leetcode">leetcode</a>
+      <a class="category-link" href="https://liguoqinjim.com/categories/docker">docker</a>
     
   
 
@@ -251,82 +257,106 @@ if (!doNotTrack) {
           
           <div class="post-content markdown" itemprop="articleBody">
             <div class="main-content-wrap">
-              <p></p>
+              <p>容器的的运维和监控，是课程第十章的内容</p>
+
+<p></p>
 
 <h1 id="table-of-contents">目录</h1><nav id="TableOfContents">
 <ul>
-<li><a href="#题目-https-leetcode-com-problems-longest-common-prefix-description"><a href="https://leetcode.com/problems/longest-common-prefix/description/#">题目</a></a></li>
-<li><a href="#解法">解法</a>
+<li><a href="#1-容器的基本监控">1.容器的基本监控</a>
 <ul>
-<li><a href="#解法1">解法1</a></li>
-<li><a href="#解法2">解法2</a></li>
+<li><a href="#1-1weavework工具">1.1weavework工具</a></li>
 </ul></li>
-<li><a href="#总结">总结</a></li>
+<li><a href="#2-k8s集群运行资源监控-heapster-grafana-influxdb">2.k8s集群运行资源监控——Heapster+Grafana+InfluxDB</a></li>
+<li><a href="#3-根据资源占用自动横向伸缩">3.根据资源占用自动横向伸缩</a>
+<ul>
+<li><a href="#notice">NOTICE</a></li>
+</ul></li>
+<li><a href="#4-k8s集群log的采集和展示-elk-fluentd">4.k8s集群Log的采集和展示——ELK+Fluentd</a>
+<ul>
+<li><a href="#notice-1">NOTICE</a></li>
+</ul></li>
+<li><a href="#5-k8s集群监控方案prometheus">5.k8s集群监控方案Prometheus</a></li>
 </ul>
 </nav>
 
-<h1 id="题目-https-leetcode-com-problems-longest-common-prefix-description"><a href="https://leetcode.com/problems/longest-common-prefix/description/#">题目</a></h1>
+<h1 id="1-容器的基本监控">1.容器的基本监控</h1>
 
-<p>Write a function to find the longest common prefix string amongst an array of strings.
-If there is no common prefix, return an empty string &ldquo;&rdquo;.</p>
+<p>相关命令：</p>
 
-<p>在一组给出的字符串里面，找出最长的相同前缀。如果没有相同的前缀，返回&rdquo;&rdquo;</p>
+<ol>
+<li>docker top d1ea6fa01bbd，top后面跟上容器名称可以查看docker的情况</li>
+<li>docker stats，查看容器的使用情况</li>
+</ol>
 
-<h1 id="解法">解法</h1>
+<h2 id="1-1weavework工具">1.1weavework工具</h2>
 
-<h2 id="解法1">解法1</h2>
+<ol>
+<li>安装，<a href="https://github.com/weaveworks/scope">https://github.com/weaveworks/scope</a></li>
+<li>scope launch 192.168.210.10，192.168.210.10是那个机器的外部可以访问的地址，然后就可以在网页里面查看docker的运行情况了</li>
+<li>scope stop，可以关闭scope</li>
+<li>scope lannch后面可以跟多个ip，只要能连通就可以了</li>
+</ol>
 
-<pre><code>func longestCommonPrefix(strs []string) string {
-	if len(strs) == 0 {
-		return &quot;&quot;
-	}
-	if len(strs) == 1 {
-		return strs[0]
-	}
+<h1 id="2-k8s集群运行资源监控-heapster-grafana-influxdb">2.k8s集群运行资源监控——Heapster+Grafana+InfluxDB</h1>
 
-	n := 0
-	end := false
-	for !end {
-		for i := 0; i &lt; len(strs)-1; i++ {
-			if n == len(strs[i]) || n == len(strs[i+1]) {
-				end = true
-				break
-			}
-			if strs[i][n] != strs[i+1][n] {
-				end = true
-				break
-			}
-		}
-		if !end {
-			n++
-		}
-	}
+<p>heapster: <a href="https://github.com/kubernetes/heapster">https://github.com/kubernetes/heapster</a><br />
+详见lab010/lab002的三个yml文件，然后启动三个文件就可以了。</p>
 
-	return strs[0][:n]
-}
-</code></pre>
+<p>相关命令：</p>
 
-<h2 id="解法2">解法2</h2>
+<ol>
+<li>kubectl get namespace，查看现在的namespace，默认我们创建的是创建在default的namespace下的</li>
+<li>kubectl get svc &ndash;namespace kube-system，这个是得到kube-system这个namespace下的service</li>
+<li>可以看到有一个kubernetes-dashboard的service，是NodePort的，我们可以进去看一下，是一个k8s的dashboard</li>
+<li>grafana的默认密码是admin,admin</li>
+<li>把grafana这个yml文件里面的service的type换成NodePort，我们就可以在外部访问了</li>
+</ol>
 
-<pre><code>func longestCommonPrefix2(strs []string) string {
-	if strs == nil || len(strs) == 0 {
-		return &quot;&quot;
-	}
-	pre := strs[0]
-	for _, v := range strs {
-		for !strings.HasPrefix(v, pre) {
-			pre = pre[:len(pre)-1]
-		}
-	}
-	return pre
-}
-</code></pre>
+<h1 id="3-根据资源占用自动横向伸缩">3.根据资源占用自动横向伸缩</h1>
 
-<h1 id="总结">总结</h1>
+<p>我们可以通过监控系统资源，比如cpu的使用率，来自动横向伸缩。比如cpu超过50%的使用率的时候，我们就自动新加一个机器。要是使用率低的，我们可以再减少一点机器。</p>
 
-<ul>
-<li>解法2里面，使用了golang的strings自带的判断前缀的方法</li>
-</ul>
+<p>相关命令：</p>
+
+<ol>
+<li>删除10-2里面的3个yml文件创建的资源</li>
+<li>minikube addons list，查看minikube的addons，会看到enable还是disable</li>
+<li>minikube addons enable heapster，enable heapster这个addons</li>
+<li>minikube stop</li>
+<li>minikube start &ndash;extra-config=controller-manager.HorizontalPodAutoscalerUseRESTClients=false，这个minikube的启动参数可以让创建autoscale的时候，可以获得cpu试用率</li>
+<li>kubectl run php-apache &ndash;image=k8s.gcr.io/hpa-example &ndash;requests=cpu=200m &ndash;expose &ndash;port=80，按照k8s给出的教程，启动一个测试pod，&ndash;requests=cpu=200m这个参数限定了cpu的使用量</li>
+<li>kubectl autoscale deployment php-apache &ndash;cpu-percent=50 &ndash;min=1 &ndash;max=10，创建一个autoscale，&ndash;cpu-percent表示cpu百分比多少的时候要添加pod，最少要一个pod，最多是10个pod</li>
+<li>kubectl get horizontalpodautoscaler，得到现在集群里面的autoscaler，还有target的负载情况</li>
+</ol>
+
+<h2 id="notice">NOTICE</h2>
+
+<ol>
+<li>autoscale得到负载情况是需要时间的，通常会有一点延迟，不会是很实时的。</li>
+<li>得到负载情况到完成自动伸缩，也是需要一点时间的</li>
+</ol>
+
+<h1 id="4-k8s集群log的采集和展示-elk-fluentd">4.k8s集群Log的采集和展示——ELK+Fluentd</h1>
+
+<p><img src="https://liguoqinjim.com/img/docker/note8/elk.png" alt="elk" /></p>
+
+<p>这里没有logstash，而是用fluentd。LogTrail算是kibana里面的一个插件，看日志比较方便</p>
+
+<h2 id="notice-1">NOTICE</h2>
+
+<ol>
+<li>所以要打日志的节点都要写加一个label，使用命令
+kubectl label node &ndash;all beta.kubernetes.io/fluentd-ds-ready=true</li>
+<li>kubecte create -f，后面可以跟文件夹，那么文件夹里面所有配置文件都会被创建3</li>
+<li>具体的配置文件可以看视频里面，然后去docker-lab里面找</li>
+</ol>
+
+<h1 id="5-k8s集群监控方案prometheus">5.k8s集群监控方案Prometheus</h1>
+
+<p><a href="https://prometheus.io/">https://prometheus.io/</a><br />
+prometheus和别的监控方案有一个不一样的地方，就是他是采取拉的方式。elk或者其他的这种都是推的方式，也就是应用把日志主动的推向elk。但是prometheus是主动去拉数据，这是一个不一样的地方。<br />
+具体配置文件见docker-labs</p>
               
             </div>
           </div>
@@ -338,7 +368,7 @@ If there is no common prefix, return an empty string &ldquo;&rdquo;.</p>
                   <div class="post-footer-tags">
                     <span class="text-color-light text-small">标签</span><br/>
                     
-  <a class="tag tag--primary tag--small" href="https://liguoqinjim.com/tags/leetcode/">leetcode</a>
+  <a class="tag tag--primary tag--small" href="https://liguoqinjim.com/tags/docker/">docker</a>
 
                   </div>
                 
@@ -351,7 +381,7 @@ If there is no common prefix, return an empty string &ldquo;&rdquo;.</p>
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://liguoqinjim.com/2018/07/leetcode-0020-valid-parentheses/" data-tooltip="LeetCode-0020-Valid Parentheses">
+                <a class="post-action-btn btn btn--disabled">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
@@ -359,7 +389,7 @@ If there is no common prefix, return an empty string &ldquo;&rdquo;.</p>
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://liguoqinjim.com/2018/07/leetcode-0035-search-insert-position/" data-tooltip="LeetCode-0035-Search Insert Position">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://liguoqinjim.com/2018/08/%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0docker-%E8%B7%B5%E8%A1%8Cdevops%E7%90%86%E5%BF%B5-%E7%AC%94%E8%AE%B0%E4%B8%83%E5%AE%B9%E5%99%A8%E7%BC%96%E6%8E%92kubernetes/" data-tooltip="系统学习Docker 践行DevOps理念 笔记(七)|容器编排Kubernetes">
               
                   <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
                   <i class="fa fa-angle-right"></i>
@@ -419,7 +449,7 @@ If there is no common prefix, return an empty string &ldquo;&rdquo;.</p>
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://liguoqinjim.com/2018/07/leetcode-0020-valid-parentheses/" data-tooltip="LeetCode-0020-Valid Parentheses">
+                <a class="post-action-btn btn btn--disabled">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
@@ -427,7 +457,7 @@ If there is no common prefix, return an empty string &ldquo;&rdquo;.</p>
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://liguoqinjim.com/2018/07/leetcode-0035-search-insert-position/" data-tooltip="LeetCode-0035-Search Insert Position">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://liguoqinjim.com/2018/08/%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0docker-%E8%B7%B5%E8%A1%8Cdevops%E7%90%86%E5%BF%B5-%E7%AC%94%E8%AE%B0%E4%B8%83%E5%AE%B9%E5%99%A8%E7%BC%96%E6%8E%92kubernetes/" data-tooltip="系统学习Docker 践行DevOps理念 笔记(七)|容器编排Kubernetes">
               
                   <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
                   <i class="fa fa-angle-right"></i>
@@ -749,9 +779,9 @@ $(document).ready(function() {
     
       <script>
         var disqus_config = function () {
-          this.page.url = 'https:\/\/liguoqinjim.com\/2018\/07\/leetcode-0014-longest-common-prefix\/';
+          this.page.url = 'https:\/\/liguoqinjim.com\/2018\/08\/%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0docker-%E8%B7%B5%E8%A1%8Cdevops%E7%90%86%E5%BF%B5-%E7%AC%94%E8%AE%B0%E5%85%AB%E5%AE%B9%E5%99%A8%E7%9A%84%E7%9A%84%E8%BF%90%E7%BB%B4%E5%92%8C%E7%9B%91%E6%8E%A7\/';
           
-            this.page.identifier = '\/2018\/07\/leetcode-0014-longest-common-prefix\/'
+            this.page.identifier = '\/2018\/08\/%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0docker-%E8%B7%B5%E8%A1%8Cdevops%E7%90%86%E5%BF%B5-%E7%AC%94%E8%AE%B0%E5%85%AB%E5%AE%B9%E5%99%A8%E7%9A%84%E7%9A%84%E8%BF%90%E7%BB%B4%E5%92%8C%E7%9B%91%E6%8E%A7\/'
           
         };
         (function() {

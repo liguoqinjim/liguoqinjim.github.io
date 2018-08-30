@@ -20,23 +20,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="Hugo 0.44 with theme Tranquilpeak 0.4.3-BETA">
-    <title>LeetCode-0014-Longest Common Prefix</title>
+    <title>系统学习Docker 践行DevOps理念 笔记(七)|容器编排Kubernetes</title>
     <meta name="author" content="Liguoqinjim">
-    <meta name="keywords" content="leetcode golang">
+    <meta name="keywords" content="docker">
 
     <link rel="icon" href="https://liguoqinjim.com/favicon.png">
     
 
     
-    <meta name="description" content="">
-    <meta property="og:description" content="">
+    <meta name="description" content="容器编排Kubernetes，是课程第九章的内容
+
+">
+    <meta property="og:description" content="容器编排Kubernetes，是课程第九章的内容
+
+">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="LeetCode-0014-Longest Common Prefix">
-    <meta property="og:url" content="/2018/07/leetcode-0014-longest-common-prefix/">
+    <meta property="og:title" content="系统学习Docker 践行DevOps理念 笔记(七)|容器编排Kubernetes">
+    <meta property="og:url" content="/2018/08/%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0docker-%E8%B7%B5%E8%A1%8Cdevops%E7%90%86%E5%BF%B5-%E7%AC%94%E8%AE%B0%E4%B8%83%E5%AE%B9%E5%99%A8%E7%BC%96%E6%8E%92kubernetes/">
     <meta property="og:site_name" content="Liguoqinjim&#39;s Blog">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="Liguoqinjim&#39;s Blog">
-    <meta name="twitter:description" content="">
+    <meta name="twitter:description" content="容器编排Kubernetes，是课程第九章的内容
+
+">
     
     
 
@@ -224,15 +230,15 @@ if (!doNotTrack) {
             <div class="post-header main-content-wrap text-left">
   
     <h1 class="post-title" itemprop="headline">
-      LeetCode-0014-Longest Common Prefix
+      系统学习Docker 践行DevOps理念 笔记(七)|容器编排Kubernetes
     </h1>
   
   
   <div class="postShorten-meta post-meta">
     
-      <time itemprop="datePublished" datetime="2018-07-22T15:07:56&#43;08:00">
+      <time itemprop="datePublished" datetime="2018-08-30T15:28:22&#43;08:00">
         
-  七月 22, 2018
+  八月 30, 2018
 
       </time>
     
@@ -241,7 +247,7 @@ if (!doNotTrack) {
   
     <span>发布在</span>
     
-      <a class="category-link" href="https://liguoqinjim.com/categories/leetcode">leetcode</a>
+      <a class="category-link" href="https://liguoqinjim.com/categories/docker">docker</a>
     
   
 
@@ -251,82 +257,405 @@ if (!doNotTrack) {
           
           <div class="post-content markdown" itemprop="articleBody">
             <div class="main-content-wrap">
-              <p></p>
+              <p>容器编排Kubernetes，是课程第九章的内容</p>
+
+<p></p>
 
 <h1 id="table-of-contents">目录</h1><nav id="TableOfContents">
 <ul>
-<li><a href="#题目-https-leetcode-com-problems-longest-common-prefix-description"><a href="https://leetcode.com/problems/longest-common-prefix/description/#">题目</a></a></li>
-<li><a href="#解法">解法</a>
+<li><a href="#1-kubenetes简介">1.Kubenetes简介</a>
 <ul>
-<li><a href="#解法1">解法1</a></li>
-<li><a href="#解法2">解法2</a></li>
+<li><a href="#1-1为什么简写是k8s">1.1为什么简写是k8s</a></li>
 </ul></li>
-<li><a href="#总结">总结</a></li>
+<li><a href="#2-minikube快速搭建k8s单节点环境">2.Minikube快速搭建K8S单节点环境</a>
+<ul>
+<li><a href="#2-1配置k8s环境">2.1配置K8S环境</a></li>
+<li><a href="#2-2安装kubetcl">2.2安装kubetcl</a></li>
+<li><a href="#2-3minikube">2.3minikube</a></li>
+<li><a href="#2-4kubectl">2.4kubectl</a></li>
+</ul></li>
+<li><a href="#3-k8s最小调度单位pod">3.K8S最小调度单位Pod</a>
+<ul>
+<li><a href="#notice">NOTICE</a></li>
+</ul></li>
+<li><a href="#4-replicaset和replicationcontroller">4.ReplicaSet和ReplicationController</a>
+<ul>
+<li><a href="#notice-1">NOTICE</a></li>
+</ul></li>
+<li><a href="#5-deployment">5.Deployment</a>
+<ul>
+<li><a href="#notice-2">NOTICE</a></li>
+</ul></li>
+<li><a href="#6-使用tectonic在本地搭建多节点k8s集群">6.使用Tectonic在本地搭建多节点K8S集群</a>
+<ul>
+<li><a href="#notice-3">NOTICE</a></li>
+</ul></li>
+<li><a href="#7-k8s基础网络cluster-network">7.k8s基础网络Cluster Network</a></li>
+<li><a href="#8-service简介和演示">8.Service简介和演示</a>
+<ul>
+<li><a href="#8-1不要直接使用和管理pods">8.1不要直接使用和管理Pods</a></li>
+<li><a href="#8-2service">8.2Service</a></li>
+</ul></li>
+<li><a href="#9-nodeport类型service以及label的简单实用">9.NodePort类型Service以及Label的简单实用</a>
+<ul>
+<li><a href="#9-1nodeport类型service">9.1NodePort类型Service</a></li>
+<li><a href="#9-2label">9.2Label</a></li>
+<li><a href="#notice-4">NOTICE</a></li>
+</ul></li>
+<li><a href="#10-准备工作-使用kops在亚马逊aws上搭建k8s集群">10.准备工作——使用kops在亚马逊AWS上搭建k8s集群</a></li>
+<li><a href="#11-使用kops在亚马逊aws上搭建k8s集群">11.使用kops在亚马逊AWS上搭建k8s集群</a></li>
+<li><a href="#12-loadblancer类型service以及aws的dns服务配置">12.LoadBlancer类型Service以及AWS的DNS服务配置</a></li>
+<li><a href="#13-在亚马逊k8s集群上部署wordpress">13.在亚马逊k8s集群上部署wordpress</a></li>
 </ul>
 </nav>
 
-<h1 id="题目-https-leetcode-com-problems-longest-common-prefix-description"><a href="https://leetcode.com/problems/longest-common-prefix/description/#">题目</a></h1>
+<h1 id="1-kubenetes简介">1.Kubenetes简介</h1>
 
-<p>Write a function to find the longest common prefix string amongst an array of strings.
-If there is no common prefix, return an empty string &ldquo;&rdquo;.</p>
+<p><img src="https://liguoqinjim.com/img/docker/note7/k8s.png" alt="k8s" /></p>
 
-<p>在一组给出的字符串里面，找出最长的相同前缀。如果没有相同的前缀，返回&rdquo;&rdquo;</p>
+<h2 id="1-1为什么简写是k8s">1.1为什么简写是k8s</h2>
 
-<h1 id="解法">解法</h1>
+<p>因为kubernetes，k和s之间一共有8个字母</p>
 
-<h2 id="解法1">解法1</h2>
+<h1 id="2-minikube快速搭建k8s单节点环境">2.Minikube快速搭建K8S单节点环境</h1>
 
-<pre><code>func longestCommonPrefix(strs []string) string {
-	if len(strs) == 0 {
-		return &quot;&quot;
-	}
-	if len(strs) == 1 {
-		return strs[0]
-	}
+<h2 id="2-1配置k8s环境">2.1配置K8S环境</h2>
 
-	n := 0
-	end := false
-	for !end {
-		for i := 0; i &lt; len(strs)-1; i++ {
-			if n == len(strs[i]) || n == len(strs[i+1]) {
-				end = true
-				break
-			}
-			if strs[i][n] != strs[i+1][n] {
-				end = true
-				break
-			}
-		}
-		if !end {
-			n++
-		}
-	}
+<ol>
+<li><a href="https://github.com/kelseyhightower/kubernetes-the-hard-way">https://github.com/kelseyhightower/kubernetes-the-hard-way</a>
+这个是k8s的从头开始安装的方法</li>
+<li><a href="https://github.com/kubernetes/minikube">https://github.com/kubernetes/minikube</a>
+这个是在本地跑一个最简单的k8s，只有一个节点。类似vagrant，是要借助virtual box这种的</li>
+</ol>
 
-	return strs[0][:n]
-}
-</code></pre>
+<h2 id="2-2安装kubetcl">2.2安装kubetcl</h2>
 
-<h2 id="解法2">解法2</h2>
+<p><a href="https://kubernetes.io/docs/tasks/tools/install-kubectl/">https://kubernetes.io/docs/tasks/tools/install-kubectl/</a></p>
 
-<pre><code>func longestCommonPrefix2(strs []string) string {
-	if strs == nil || len(strs) == 0 {
-		return &quot;&quot;
-	}
-	pre := strs[0]
-	for _, v := range strs {
-		for !strings.HasPrefix(v, pre) {
-			pre = pre[:len(pre)-1]
-		}
-	}
-	return pre
-}
-</code></pre>
+<h2 id="2-3minikube">2.3minikube</h2>
 
-<h1 id="总结">总结</h1>
+<p>minikube相关命令：</p>
+
+<ol>
+<li>minikube start，启动minikube节点</li>
+<li>minikube ssh，连接到minikube内部</li>
+<li>minikube stop</li>
+</ol>
+
+<h2 id="2-4kubectl">2.4kubectl</h2>
+
+<p>kubectl context:<br />
+里面存着一个kubernetes集群的信息，比如集群的host。kubectl下可能有多个context，我们可以通过context去管理多个k8s集群</p>
+
+<p>相关命令：</p>
+
+<ol>
+<li>kubectl config view</li>
+<li>kubectl config get-contexts，得到现在是用的哪个context</li>
+<li>kubectl cluster-info，得到集群信息</li>
+<li>kubectl version</li>
+</ol>
+
+<h1 id="3-k8s最小调度单位pod">3.K8S最小调度单位Pod</h1>
+
+<p>k8s不对容器进行操作，因为最小单位是pod。同一个pod里面的容器，是在一个namespace下的，这里的namespace包括所有的namespace(如network namespace)</p>
+
+<p>相关命令：</p>
 
 <ul>
-<li>解法2里面，使用了golang的strings自带的判断前缀的方法</li>
+<li>kubectl create -f pod_nginx.yml，创建pod</li>
+<li>kubectl delete -f pod_nginx.yml，删除pod</li>
+<li>kubectl get pods，查看pods的情况</li>
+<li>kubectl get pods -o wide，加了wide参数之后，会显示更多信息</li>
+<li>上面的命令，可以看到pod里面的容器具体是在哪个机器上的，要进入这个容器，我们先ssh到这个机器上，然后docker exec -it container_name sh，</li>
+<li>kubectl describe pods nginx，查看pods的具体信息</li>
+<li>kubectl port-forward nginx 8080:80，映射本地的8080端口和pod的80端口，nginx是pod name，但是要注意的是，这个命令一旦ctrl+c退出，映射就结束了。8080端口是运行了kubectl的机器的端口，不是pod所在的容器的端口。</li>
 </ul>
+
+<p>pod_nginx.yml：</p>
+
+<pre><code>apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx
+  labels:
+    app: nginx
+spec:
+  containers:
+  - name: nginx
+    image: nginx #使用的镜像
+    ports:
+    - containerPort: 80
+</code></pre>
+
+<h2 id="notice">NOTICE</h2>
+
+<p>kubectl create之后，可能pod会一直不启动，这个时候可以通过minikube logs查看错误日志。我遇到的问题的是不能拉取镜像，是要翻墙的网址。
+解决这个问题可以在启动minikube的时候，指定代理：</p>
+
+<pre><code>minikube start --docker-env=HTTP_PROXY=http://$YOURPROXY:PORT \
+                 --docker-env=HTTPS_PROXY=https://$YOURPROXY:PORT
+</code></pre>
+
+<p>参考资料：<a href="https://github.com/kubernetes/minikube/blob/master/docs/http_proxy.md">https://github.com/kubernetes/minikube/blob/master/docs/http_proxy.md</a></p>
+
+<h1 id="4-replicaset和replicationcontroller">4.ReplicaSet和ReplicationController</h1>
+
+<p>ReplicaSet是新一代的ReplicationController。这里的replica就是我们之前docker里面遇到的是一样的。也是多个，这里就是多个pod。下面简称rc或者rs</p>
+
+<p>相关命令：</p>
+
+<ul>
+<li>kubectl create -f rc_nginx.yml，创建replicationController，rc_nginx.yml见docker_labs</li>
+<li>kubectl get rc，可以查看rc的情况</li>
+<li>kubectl get pods，查看pod的情况</li>
+<li>kubectl delete pods nginx-6cznp，删除这个一个pod</li>
+<li>kubectl scale rc nginx &ndash;replicas=2，修改rc的pod数量</li>
+<li>kubectl delete rc nginx，删除replicationController
+-kubectl create -f rs_nginx.yml，创建replicaSet，ns_nginx.yml见docker-labs</li>
+<li>kubectl get rs，查看rs的情况</li>
+<li>kubectl scale rs nginx &ndash;replicas=2，对rs进行scale</li>
+</ul>
+
+<p>rc_nginx.yml：</p>
+
+<pre><code>apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: nginx
+spec:
+  replicas: 3
+  selector:
+    app: nginx
+  template:
+    metadata:
+      name: nginx
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: nginx
+        image: nginx #使用nginx镜像
+        ports:
+        - containerPort: 80
+</code></pre>
+
+<p>rs_nginx.yml:</p>
+
+<pre><code>apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: nginx
+  labels:
+    tier: frontend
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      tier: frontend
+  template:
+    metadata:
+      name: nginx
+      labels:
+        tier: frontend
+    spec:
+      containers:
+      - name: nginx
+        image: nginx #使用nginx镜像
+        ports:
+        - containerPort: 80
+</code></pre>
+
+<h2 id="notice-1">NOTICE</h2>
+
+<p>要是我们在rc或者rs下创建pod，然后我们去强制删除这个pod，删除之后，rc和rs会自动再去创建一个pod。rc和rs会保持pod的数量，所以就算只创建一个pod，也推荐使用rc或者rs。因为这会保持pod的数量。</p>
+
+<h1 id="5-deployment">5.Deployment</h1>
+
+<p>Deployment描述了一种希望的状态，是对pods和replicaset的希望达到的一个状态。比如我希望这个replicaset是有3个replica的，pods的image是nginx。之后我们要修改的话，只要把希望的状态改变，deployment就会自动帮我们完成。
+需要注意的是，我们通过deployment创建的replicaset和pod，创建了之后，我们就不能独立的对replicaset和pod进行删除了，我们一定要对deployment进行操作</p>
+
+<p>相关命令：</p>
+
+<ol>
+<li>kubectl create -f deployment_nginx.yml，创建deployment，详见docker-lab</li>
+<li>kubectl get deployment，得到deployment的情况</li>
+<li>kubectl get deployment -o wide，得到详细情况</li>
+<li>kubectl set image deployment nginx-deployment nginx=nginx:1.13，更新镜像，nginx-deployment是deployment的name，nginx:1.13是新的镜像</li>
+<li>kubectl rollout history deployment nginx-deployment，查看deployment的历史版本</li>
+<li>kubectl rollout undo deployment nginx-deployment，撤销之前的操作，比如我们先更新了一个镜像，然后我们使用undo，就会变回原来的镜像了</li>
+<li>kubectl get node -o wide，查看k8s node的情况</li>
+<li>kubectl expose deployment nginx-deployment &ndash;type=NodePort，会暴露到node的一个随机端口上，是暴露到最终运行pod的机器上，不是运行kubectl的机器上，具体可以看9-8</li>
+<li>kubectl get services，查看services的情况，因为我们用了8的命令，所以service会随机一个端口绑定到容器的80端口。是绑定到最终运行pod的node上的，不是运行kubectl的机器</li>
+<li>kubectl delete service nginx-deployment，删除service</li>
+</ol>
+
+<p>deployment_nginx.yml：</p>
+
+<pre><code>apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+  labels:
+    app: nginx
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:1.12.2 #先指定这个版本的nginx,之后可以更新
+        ports:
+        - containerPort: 80
+</code></pre>
+
+<h2 id="notice-2">NOTICE</h2>
+
+<p>deployment下的replicaset和pods的name，replicaset的前缀是deployment的name，pods的name的前缀是replicaset的name</p>
+
+<h1 id="6-使用tectonic在本地搭建多节点k8s集群">6.使用Tectonic在本地搭建多节点K8S集群</h1>
+
+<p>tectonic的脚本详见docker-lab，要注意的是，vagrant up的时候用的脚本，访问的基本都是被墙的网址，在脚本里面设置代理很麻烦，我最后是直接在路由器上安装了代理，才安装好。</p>
+
+<p>相关命令：</p>
+
+<ol>
+<li>kubectl config get-contexts，查看kubectl的context</li>
+<li>kubectl config use-context tectonic，切换到tectonic这个context</li>
+</ol>
+
+<h2 id="notice-3">NOTICE</h2>
+
+<p>我一开始用kubectl_1.11的版本使用命令kubectl get nodes的时候，会返回错误，然后我就用了kubectl的1.8这个版本，就正确了。</p>
+
+<p>参考资料：<a href="https://github.com/kubernetes/kubernetes/issues/65575">https://github.com/kubernetes/kubernetes/issues/65575</a></p>
+
+<h1 id="7-k8s基础网络cluster-network">7.k8s基础网络Cluster Network</h1>
+
+<p><img src="https://liguoqinjim.com/img/docker/note7/k8s_network.png" alt="k8s_network" /></p>
+
+<p>这个flannel其实是一个k8s的网络插件，也可以不用flannel，可以用的别的网络插件。
+k8s的网络插件，要符合最基本的3个规则，详见：<br />
+<a href="https://kubernetes.io/docs/concepts/cluster-administration/networking/">https://kubernetes.io/docs/concepts/cluster-administration/networking/</a></p>
+
+<h1 id="8-service简介和演示">8.Service简介和演示</h1>
+
+<h2 id="8-1不要直接使用和管理pods">8.1不要直接使用和管理Pods</h2>
+
+<p><img src="https://liguoqinjim.com/img/docker/note7/pods.png" alt="pods" /></p>
+
+<p>这里创建新的pods倒是没问题，但是最关键的是，新创建的pod可能ip会变。我们现在打个比方，我有两个pod，一个是nginx，还有一个是db，现在我db的pod被terminated然后创建了一个新的。这个时候要是db的ip变了，nginx是没办法修改的。所以我们需要用到service来解决这个问题，service就会给一个不变的ip和pod的ip相当于映射住，service的ip是不变的。那我们访问service的ip就可以了。然后我们要是用deployment这种，replica设成多个，我们可以在deployment上创建service，那么这个service会自动帮我们在多个replica之间做负载均衡。</p>
+
+<h2 id="8-2service">8.2Service</h2>
+
+<p><img src="https://liguoqinjim.com/img/docker/note7/services.png" alt="services" /></p>
+
+<p>本节课说的是ClusterIP的，这种service是在cluster内部，任何一台机器都可以访问的，但是也仅限于cluster内部</p>
+
+<p>相关命令：</p>
+
+<ol>
+<li>kubectl expose pods nginx-pod，创建service，默认是ClusterIP</li>
+<li>kubectl get svc/services，svc是简写</li>
+<li>kubectl expose deployment service-test，在deployment上创建一个service，会为deployment里面的pods自动做负载均衡</li>
+<li>kubectl edit deployment service-test，这样可以更新service-test这个deployment的配置，然后k8s会帮我们自己更新</li>
+</ol>
+
+<h1 id="9-nodeport类型service以及label的简单实用">9.NodePort类型Service以及Label的简单实用</h1>
+
+<h2 id="9-1nodeport类型service">9.1NodePort类型Service</h2>
+
+<p>创建NodePort的service，有两种方式，一种用命令创建，一种是用yml文件来创建。
+NodePort是可以给外网访问的，而且是集群内，所有node的ip加上这个service的port都可以访问。NodePort的端口是有范围的，是从30000-32767</p>
+
+<p>用命令创建：</p>
+
+<ol>
+<li>kubectl create -f pod_nginx.yml，创建pod_nginx，yml见docker-lab</li>
+<li>kubectl expose pods nginx-pod &ndash;type=NodePort，创建NodePort的service</li>
+<li>kubectl get svc，查看创建的sevice，注意，在service我们会看到NodePort类型的service，会随机一个端口映射到pod的端口。这个时候所有node的ip+这个端口，就可以访问pod</li>
+</ol>
+
+<p>用文件创建：</p>
+
+<p>pod_nginx.yml:</p>
+
+<pre><code>apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx-pod
+  labels:
+    app: nginx
+spec:
+  containers:
+  - name: nginx-container
+    image: nginx
+    ports:
+    - name: nginx-port #这个name，service_nginx.yml里面会使用到
+      containerPort: 80
+</code></pre>
+
+<p>service_nginx.yml</p>
+
+<pre><code>apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-service
+spec:
+  ports:
+  - port: 32333
+    nodePort: 32333
+    targetPort: nginx-port #pod_nginx.yml里面的ports下的name
+    protocol: TCP
+  selector:
+    app: nginx # label
+  type: NodePort
+</code></pre>
+
+<ol>
+<li>targetPort后面要跟pod的yml文件里面的ports下的name</li>
+<li>selector后面的值是label的key和value，通过这个值去选择有这个label的pod去创建这个service</li>
+</ol>
+
+<h2 id="9-2label">9.2Label</h2>
+
+<p>k8s里面，几乎所有的resource，如pod，deployment等等，我们都可以设置标签。比如我们可以指定nodeSelector，那么我们在创建pod的时候，就可以指定我们这个pod是要创建在哪个node上。</p>
+
+<p>相关命令：</p>
+
+<ol>
+<li>kubectl label node w1.tectonicsandbox.com hardware=good，这个就是给w1这个node添加了一个label</li>
+<li>kubectl get node &ndash;show-labels，可以查看label</li>
+</ol>
+
+<h2 id="notice-4">NOTICE</h2>
+
+<ol>
+<li>在生产环境里面，ClusterIP因为只能在cluster内部访问，外部是不能访问的，所以不会用。NodePort的端口又是有限的，所以一般也不会使用，但是是可以使用的。</li>
+<li>NodePort的端口是有范围的，是从30000-32767</li>
+</ol>
+
+<h1 id="10-准备工作-使用kops在亚马逊aws上搭建k8s集群">10.准备工作——使用kops在亚马逊AWS上搭建k8s集群</h1>
+
+<p>kops: <a href="https://github.com/kubernetes/kops">https://github.com/kubernetes/kops</a></p>
+
+<h1 id="11-使用kops在亚马逊aws上搭建k8s集群">11.使用kops在亚马逊AWS上搭建k8s集群</h1>
+
+<p>使用kops，在AWS创建k8s集群</p>
+
+<h1 id="12-loadblancer类型service以及aws的dns服务配置">12.LoadBlancer类型Service以及AWS的DNS服务配置</h1>
+
+<p>service里面还有一个类型是，loadblancer，这个类型是需要云服务商的支持的，本地是没法测试的。这个service会给出一个url，然后加上给出的端口就可以访问了。因为这个url会很长，所以我们还可以使用dns来添加ANAME来映射到一个短的sub domain</p>
+
+<h1 id="13-在亚马逊k8s集群上部署wordpress">13.在亚马逊k8s集群上部署wordpress</h1>
+
+<p>略</p>
               
             </div>
           </div>
@@ -338,7 +667,7 @@ If there is no common prefix, return an empty string &ldquo;&rdquo;.</p>
                   <div class="post-footer-tags">
                     <span class="text-color-light text-small">标签</span><br/>
                     
-  <a class="tag tag--primary tag--small" href="https://liguoqinjim.com/tags/leetcode/">leetcode</a>
+  <a class="tag tag--primary tag--small" href="https://liguoqinjim.com/tags/docker/">docker</a>
 
                   </div>
                 
@@ -351,7 +680,7 @@ If there is no common prefix, return an empty string &ldquo;&rdquo;.</p>
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://liguoqinjim.com/2018/07/leetcode-0020-valid-parentheses/" data-tooltip="LeetCode-0020-Valid Parentheses">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://liguoqinjim.com/2018/08/%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0docker-%E8%B7%B5%E8%A1%8Cdevops%E7%90%86%E5%BF%B5-%E7%AC%94%E8%AE%B0%E5%85%AB%E5%AE%B9%E5%99%A8%E7%9A%84%E7%9A%84%E8%BF%90%E7%BB%B4%E5%92%8C%E7%9B%91%E6%8E%A7/" data-tooltip="系统学习Docker 践行DevOps理念 笔记(八)|容器的的运维和监控">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
@@ -359,7 +688,7 @@ If there is no common prefix, return an empty string &ldquo;&rdquo;.</p>
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://liguoqinjim.com/2018/07/leetcode-0035-search-insert-position/" data-tooltip="LeetCode-0035-Search Insert Position">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://liguoqinjim.com/2018/08/%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0docker-%E8%B7%B5%E8%A1%8Cdevops%E7%90%86%E5%BF%B5-%E7%AC%94%E8%AE%B0%E5%85%AD%E5%AE%B9%E5%99%A8%E7%BC%96%E6%8E%92docker-swarm/" data-tooltip="系统学习Docker 践行DevOps理念 笔记(六)|容器编排Docker Swarm">
               
                   <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
                   <i class="fa fa-angle-right"></i>
@@ -419,7 +748,7 @@ If there is no common prefix, return an empty string &ldquo;&rdquo;.</p>
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://liguoqinjim.com/2018/07/leetcode-0020-valid-parentheses/" data-tooltip="LeetCode-0020-Valid Parentheses">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://liguoqinjim.com/2018/08/%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0docker-%E8%B7%B5%E8%A1%8Cdevops%E7%90%86%E5%BF%B5-%E7%AC%94%E8%AE%B0%E5%85%AB%E5%AE%B9%E5%99%A8%E7%9A%84%E7%9A%84%E8%BF%90%E7%BB%B4%E5%92%8C%E7%9B%91%E6%8E%A7/" data-tooltip="系统学习Docker 践行DevOps理念 笔记(八)|容器的的运维和监控">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
@@ -427,7 +756,7 @@ If there is no common prefix, return an empty string &ldquo;&rdquo;.</p>
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://liguoqinjim.com/2018/07/leetcode-0035-search-insert-position/" data-tooltip="LeetCode-0035-Search Insert Position">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://liguoqinjim.com/2018/08/%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0docker-%E8%B7%B5%E8%A1%8Cdevops%E7%90%86%E5%BF%B5-%E7%AC%94%E8%AE%B0%E5%85%AD%E5%AE%B9%E5%99%A8%E7%BC%96%E6%8E%92docker-swarm/" data-tooltip="系统学习Docker 践行DevOps理念 笔记(六)|容器编排Docker Swarm">
               
                   <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
                   <i class="fa fa-angle-right"></i>
@@ -749,9 +1078,9 @@ $(document).ready(function() {
     
       <script>
         var disqus_config = function () {
-          this.page.url = 'https:\/\/liguoqinjim.com\/2018\/07\/leetcode-0014-longest-common-prefix\/';
+          this.page.url = 'https:\/\/liguoqinjim.com\/2018\/08\/%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0docker-%E8%B7%B5%E8%A1%8Cdevops%E7%90%86%E5%BF%B5-%E7%AC%94%E8%AE%B0%E4%B8%83%E5%AE%B9%E5%99%A8%E7%BC%96%E6%8E%92kubernetes\/';
           
-            this.page.identifier = '\/2018\/07\/leetcode-0014-longest-common-prefix\/'
+            this.page.identifier = '\/2018\/08\/%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0docker-%E8%B7%B5%E8%A1%8Cdevops%E7%90%86%E5%BF%B5-%E7%AC%94%E8%AE%B0%E4%B8%83%E5%AE%B9%E5%99%A8%E7%BC%96%E6%8E%92kubernetes\/'
           
         };
         (function() {
