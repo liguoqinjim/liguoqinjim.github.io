@@ -333,13 +333,12 @@ spec:
 </ul>
 
 <p>rc_nginx.yml：</p>
-
-<pre><code>apiVersion: v1
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yml" data-lang="yml">apiVersion: v1
 kind: ReplicationController
 metadata:
   name: nginx
 spec:
-  replicas: 3
+  replicas: <span style="color:#ae81ff">3</span>
   selector:
     app: nginx
   template:
@@ -350,21 +349,18 @@ spec:
     spec:
       containers:
       - name: nginx
-        image: nginx #使用nginx镜像
+        image: nginx <span style="color:#75715e">#使用nginx镜像</span>
         ports:
-        - containerPort: 80
-</code></pre>
-
+        - containerPort: <span style="color:#ae81ff">80</span></code></pre></div>
 <p>rs_nginx.yml:</p>
-
-<pre><code>apiVersion: apps/v1
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yml" data-lang="yml">apiVersion: apps/v1
 kind: ReplicaSet
 metadata:
   name: nginx
   labels:
     tier: frontend
 spec:
-  replicas: 3
+  replicas: <span style="color:#ae81ff">3</span>
   selector:
     matchLabels:
       tier: frontend
@@ -376,11 +372,9 @@ spec:
     spec:
       containers:
       - name: nginx
-        image: nginx #使用nginx镜像
+        image: nginx <span style="color:#75715e">#使用nginx镜像</span>
         ports:
-        - containerPort: 80
-</code></pre>
-
+        - containerPort: <span style="color:#ae81ff">80</span></code></pre></div>
 <h2 id="notice-1">NOTICE</h2>
 
 <p>要是我们在rc或者rs下创建pod，然后我们去强制删除这个pod，删除之后，rc和rs会自动再去创建一个pod。rc和rs会保持pod的数量，所以就算只创建一个pod，也推荐使用rc或者rs。因为这会保持pod的数量。</p>
@@ -406,15 +400,14 @@ spec:
 </ol>
 
 <p>deployment_nginx.yml：</p>
-
-<pre><code>apiVersion: apps/v1
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yml" data-lang="yml">apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: nginx-deployment
   labels:
     app: nginx
 spec:
-  replicas: 3
+  replicas: <span style="color:#ae81ff">3</span>
   selector:
     matchLabels:
       app: nginx
@@ -425,11 +418,9 @@ spec:
     spec:
       containers:
       - name: nginx
-        image: nginx:1.12.2 #先指定这个版本的nginx,之后可以更新
+        image: nginx:<span style="color:#ae81ff">1.12</span>.<span style="color:#ae81ff">2</span> <span style="color:#75715e">#先指定这个版本的nginx,之后可以更新</span>
         ports:
-        - containerPort: 80
-</code></pre>
-
+        - containerPort: <span style="color:#ae81ff">80</span></code></pre></div>
 <h2 id="notice-2">NOTICE</h2>
 
 <p>deployment下的replicaset和pods的name，replicaset的前缀是deployment的name，pods的name的前缀是replicaset的name</p>
@@ -500,8 +491,7 @@ NodePort是可以给外网访问的，而且是集群内，所有node的ip加上
 <p>用文件创建：</p>
 
 <p>pod_nginx.yml:</p>
-
-<pre><code>apiVersion: v1
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yml" data-lang="yml">apiVersion: v1
 kind: Pod
 metadata:
   name: nginx-pod
@@ -512,27 +502,22 @@ spec:
   - name: nginx-container
     image: nginx
     ports:
-    - name: nginx-port #这个name，service_nginx.yml里面会使用到
-      containerPort: 80
-</code></pre>
-
+    - name: nginx-port <span style="color:#75715e">#这个name，service_nginx.yml里面会使用到</span>
+      containerPort: <span style="color:#ae81ff">80</span></code></pre></div>
 <p>service_nginx.yml</p>
-
-<pre><code>apiVersion: v1
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yml" data-lang="yml">apiVersion: v1
 kind: Service
 metadata:
   name: nginx-service
 spec:
   ports:
-  - port: 32333
-    nodePort: 32333
-    targetPort: nginx-port #pod_nginx.yml里面的ports下的name
+  - port: <span style="color:#ae81ff">32333</span>
+    nodePort: <span style="color:#ae81ff">32333</span>
+    targetPort: nginx-port <span style="color:#75715e">#pod_nginx.yml里面的ports下的name</span>
     protocol: TCP
   selector:
-    app: nginx # label
-  type: NodePort
-</code></pre>
-
+    app: nginx <span style="color:#75715e"># label</span>
+  type: NodePort</code></pre></div>
 <ol>
 <li>targetPort后面要跟pod的yml文件里面的ports下的name</li>
 <li>selector后面的值是label的key和value，通过这个值去选择有这个label的pod去创建这个service</li>

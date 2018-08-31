@@ -356,14 +356,13 @@ tcp dpt:8000 MARK set 0x102，MARK set 0x102就是表示IPVS会进行负载均�
 </ol>
 
 <p>docker-compose.yml:</p>
-
-<pre><code>version : '3'
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yml" data-lang="yml">version : <span style="color:#e6db74">&#39;3&#39;</span>
 
 services:
   web:
     image: wordpress
     ports:
-     - 8080:80
+     - <span style="color:#ae81ff">8080</span>:<span style="color:#ae81ff">80</span>
     environment:
       WORDPRESS_DB_HOST: mysql
       WORDPRESS_DB_PASSWORD: xphone123
@@ -373,13 +372,13 @@ services:
       - mysql
     deploy:
       mode: replicated
-      replicas: 3 #replicas个数为3
+      replicas: <span style="color:#ae81ff">3</span> <span style="color:#75715e">#replicas个数为3</span>
       restart_policy:
         condition: on-failure
         delay: 5s
-        max_attempts: 3
+        max_attempts: <span style="color:#ae81ff">3</span>
       update_config:
-        parallelism: 1
+        parallelism: <span style="color:#ae81ff">1</span>
         delay: 10s
   
   mysql:
@@ -395,18 +394,16 @@ services:
       mode: global
       placement:
         constraints:
-          - node.role == manager # 这个service的容器要运行在manager节点上
+          - node.role == manager <span style="color:#75715e"># 这个service的容器要运行在manager节点上</span>
 
-# 指定volume
+<span style="color:#75715e"># 指定volume</span>
 volumes:
   mysql-data:
 
-# 指定network
+<span style="color:#75715e"># 指定network</span>
 networks:
   my-network:
-    driver: overlay #type是overlay
-</code></pre>
-
+    driver: overlay <span style="color:#75715e">#type是overlay</span></code></pre></div>
 <h1 id="8-作业解答之部署投票应用">8.作业解答之部署投票应用</h1>
 
 <p>具体docker-compose.yml可以查看docker-labs</p>
@@ -414,20 +411,17 @@ networks:
 <h2 id="8-1stack可视化">8.1stack可视化</h2>
 
 <p>dockersamples/visualizer:stable，使用这个镜像，可以可视化整个stack</p>
-
-<pre><code>#这个service的配置
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yml" data-lang="yml"><span style="color:#75715e">#这个service的配置</span>
 visualizer:
     image: dockersamples/visualizer:stable
     ports:
-      - &quot;8080:8080&quot;
+      - <span style="color:#e6db74">&#34;8080:8080&#34;</span>
     stop_grace_period: 1m30s
     volumes:
-      - &quot;/var/run/docker.sock:/var/run/docker.sock&quot;
+      - <span style="color:#e6db74">&#34;/var/run/docker.sock:/var/run/docker.sock&#34;</span>
     deploy:
       placement:
-        constraints: [node.role == manager]
-</code></pre>
-
+        constraints: [node.role == manager]</code></pre></div>
 <h1 id="9-docker-secret管理和使用">9.Docker Secret管理和使用</h1>
 
 <h2 id="9-1什么是secret">9.1什么是Secret</h2>
@@ -460,18 +454,15 @@ echo &ldquo;adminadmin&rdquo; | docker secret create my-pw2 -，注意最后的<
 <h1 id="10-docker-secret在stack中的使用">10.Docker Secret在Stack中的使用</h1>
 
 <p>docker-compose.yml配置文件里面虽然可以写上secret的配置，可以去读取一个文件然后自动生成一个docker secret。但是毕竟这样的方式会存在文件，会不安全。所以开始推荐要用的时候先在命令行里面手动创建docker secret</p>
-
-<pre><code># 使用文件创建secret，不推荐这种方式
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yml" data-lang="yml"><span style="color:#75715e"># 使用文件创建secret，不推荐这种方式</span>
 secrets:
   my-pw:
     file: ./password
 
-# 在启动之前先手动创建secret，推荐这种方式
+<span style="color:#75715e"># 在启动之前先手动创建secret，推荐这种方式</span>
 secrets:
   mysql-pw:
-    external: true
-</code></pre>
-
+    external: <span style="color:#66d9ef">true</span></code></pre></div>
 <h1 id="11-service更新">11.Service更新</h1>
 
 <p>对service可以更新很多内容，比如更新镜像(镜像里面的代码逻辑需要更新比如)，容器端口的更新</p>

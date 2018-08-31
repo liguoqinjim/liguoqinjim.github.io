@@ -245,19 +245,14 @@
 <h2 id="centos安装加速">centos安装加速</h2>
 
 <p>因为网络问题，官方给出的这个源安装会很慢，我们可以换成国内的源然后安装</p>
-
-<pre><code>sudo yum-config-manager --add-repo https://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">sudo yum-config-manager --add-repo https://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo
 sudo yum makecache fast
-sudo yum install docker-ce
-</code></pre>
-
+sudo yum install docker-ce</code></pre></div>
 <h1 id="验证安装是否成功">验证安装是否成功</h1>
-
-<pre><code># 查看docker版本
-sudo docker version
-# 运行一个hello-world的镜像
-sudo docker run hello-world
-</code></pre></article>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#75715e"># 查看docker版本
+</span><span style="color:#75715e"></span>sudo docker version
+<span style="color:#75715e"># 运行一个hello-world的镜像
+</span><span style="color:#75715e"></span>sudo docker run hello-world</code></pre></div></article>
     <footer class="post-footer">
       
       <ul class="post-tags">

@@ -231,52 +231,46 @@
 <h1 id="解法">解法</h1>
 
 <h2 id="解法1">解法1</h2>
-
-<pre><code>func reverse(x int) int {
-    if x &gt;= math.MaxInt32 || x &lt;= math.MinInt32 {
-        return 0
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">reverse</span>(<span style="color:#a6e22e">x</span> <span style="color:#66d9ef">int</span>) <span style="color:#66d9ef">int</span> {
+    <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">x</span> <span style="color:#f92672">&gt;=</span> <span style="color:#a6e22e">math</span>.<span style="color:#a6e22e">MaxInt32</span> <span style="color:#f92672">||</span> <span style="color:#a6e22e">x</span> <span style="color:#f92672">&lt;=</span> <span style="color:#a6e22e">math</span>.<span style="color:#a6e22e">MinInt32</span> {
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>
     }
 
-    i := 10
-    num := make([]int, 0)
-    for {
-        rem := x % i
-        num = append(num, rem/(i/10))
-        if rem == x {
-            break
+    <span style="color:#a6e22e">i</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">10</span>
+    <span style="color:#a6e22e">num</span> <span style="color:#f92672">:=</span> make([]<span style="color:#66d9ef">int</span>, <span style="color:#ae81ff">0</span>)
+    <span style="color:#66d9ef">for</span> {
+        <span style="color:#a6e22e">rem</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">x</span> <span style="color:#f92672">%</span> <span style="color:#a6e22e">i</span>
+        <span style="color:#a6e22e">num</span> = append(<span style="color:#a6e22e">num</span>, <span style="color:#a6e22e">rem</span><span style="color:#f92672">/</span>(<span style="color:#a6e22e">i</span><span style="color:#f92672">/</span><span style="color:#ae81ff">10</span>))
+        <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">rem</span> <span style="color:#f92672">==</span> <span style="color:#a6e22e">x</span> {
+            <span style="color:#66d9ef">break</span>
         }
-        i *= 10
+        <span style="color:#a6e22e">i</span> <span style="color:#f92672">*=</span> <span style="color:#ae81ff">10</span>
     }
-    result := 0
-    for n, v := range num {
-        result += v * int(math.Pow(10, float64(len(num)-1-n)))
-    }
-
-    if result &gt;= math.MaxInt32 || result &lt;= math.MinInt32 {
-        return 0
+    <span style="color:#a6e22e">result</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">0</span>
+    <span style="color:#66d9ef">for</span> <span style="color:#a6e22e">n</span>, <span style="color:#a6e22e">v</span> <span style="color:#f92672">:=</span> <span style="color:#66d9ef">range</span> <span style="color:#a6e22e">num</span> {
+        <span style="color:#a6e22e">result</span> <span style="color:#f92672">+=</span> <span style="color:#a6e22e">v</span> <span style="color:#f92672">*</span> int(<span style="color:#a6e22e">math</span>.<span style="color:#a6e22e">Pow</span>(<span style="color:#ae81ff">10</span>, float64(len(<span style="color:#a6e22e">num</span>)<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span><span style="color:#f92672">-</span><span style="color:#a6e22e">n</span>)))
     }
 
-    return result
-}
-</code></pre>
+    <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">result</span> <span style="color:#f92672">&gt;=</span> <span style="color:#a6e22e">math</span>.<span style="color:#a6e22e">MaxInt32</span> <span style="color:#f92672">||</span> <span style="color:#a6e22e">result</span> <span style="color:#f92672">&lt;=</span> <span style="color:#a6e22e">math</span>.<span style="color:#a6e22e">MinInt32</span> {
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>
+    }
 
+    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">result</span>
+}</code></pre></div>
 <h2 id="解法2">解法2</h2>
-
-<pre><code>func reverse2(x int) int {
-    var result int32 = 0
-    for x != 0 {
-        tail := int32(x) % 10
-        newResult := result*10 + tail
-        if (newResult-tail)/10 != result { //overflow，因为从数学来考虑，这个等式是肯定相等的。如果不相等，就出现了数字超过范围的情况了
-            return 0
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">reverse2</span>(<span style="color:#a6e22e">x</span> <span style="color:#66d9ef">int</span>) <span style="color:#66d9ef">int</span> {
+    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">result</span> <span style="color:#66d9ef">int32</span> = <span style="color:#ae81ff">0</span>
+    <span style="color:#66d9ef">for</span> <span style="color:#a6e22e">x</span> <span style="color:#f92672">!=</span> <span style="color:#ae81ff">0</span> {
+        <span style="color:#a6e22e">tail</span> <span style="color:#f92672">:=</span> int32(<span style="color:#a6e22e">x</span>) <span style="color:#f92672">%</span> <span style="color:#ae81ff">10</span>
+        <span style="color:#a6e22e">newResult</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">result</span><span style="color:#f92672">*</span><span style="color:#ae81ff">10</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">tail</span>
+        <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">newResult</span><span style="color:#f92672">-</span><span style="color:#a6e22e">tail</span>)<span style="color:#f92672">/</span><span style="color:#ae81ff">10</span> <span style="color:#f92672">!=</span> <span style="color:#a6e22e">result</span> { <span style="color:#75715e">//overflow，因为从数学来考虑，这个等式是肯定相等的。如果不相等，就出现了数字超过范围的情况了
+</span><span style="color:#75715e"></span>            <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>
         }
-        result = newResult
-        x /= 10
+        <span style="color:#a6e22e">result</span> = <span style="color:#a6e22e">newResult</span>
+        <span style="color:#a6e22e">x</span> <span style="color:#f92672">/=</span> <span style="color:#ae81ff">10</span>
     }
-    return int(result)
-}
-</code></pre>
-
+    <span style="color:#66d9ef">return</span> int(<span style="color:#a6e22e">result</span>)
+}</code></pre></div>
 <h1 id="总结">总结</h1>
 
 <ul>

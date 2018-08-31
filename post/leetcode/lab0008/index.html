@@ -231,125 +231,119 @@
 <h1 id="解法">解法</h1>
 
 <h2 id="解法1">解法1</h2>
-
-<pre><code>func myAtoi(str string) int {
-    if len(str) == 0 {
-        return 0
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">myAtoi</span>(<span style="color:#a6e22e">str</span> <span style="color:#66d9ef">string</span>) <span style="color:#66d9ef">int</span> {
+    <span style="color:#66d9ef">if</span> len(<span style="color:#a6e22e">str</span>) <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> {
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>
     }
 
-    result := 0
-    u := -1 //有无符号
-    e := -1 //错误位第几位
-    for n, v := range str {
-        if v &lt; 48 || v &gt; 57 {
-            if v == 43 || v == 45 { //+-号
-                if result != 0 {
-                    e = n
-                    break
+    <span style="color:#a6e22e">result</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">0</span>
+    <span style="color:#a6e22e">u</span> <span style="color:#f92672">:=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> <span style="color:#75715e">//有无符号
+</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">e</span> <span style="color:#f92672">:=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> <span style="color:#75715e">//错误位第几位
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">for</span> <span style="color:#a6e22e">n</span>, <span style="color:#a6e22e">v</span> <span style="color:#f92672">:=</span> <span style="color:#66d9ef">range</span> <span style="color:#a6e22e">str</span> {
+        <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">v</span> &lt; <span style="color:#ae81ff">48</span> <span style="color:#f92672">||</span> <span style="color:#a6e22e">v</span> &gt; <span style="color:#ae81ff">57</span> {
+            <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">v</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">43</span> <span style="color:#f92672">||</span> <span style="color:#a6e22e">v</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">45</span> { <span style="color:#75715e">//+-号
+</span><span style="color:#75715e"></span>                <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">result</span> <span style="color:#f92672">!=</span> <span style="color:#ae81ff">0</span> {
+                    <span style="color:#a6e22e">e</span> = <span style="color:#a6e22e">n</span>
+                    <span style="color:#66d9ef">break</span>
                 }
-                if u &gt;= 0 {
-                    return 0
+                <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">u</span> <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">0</span> {
+                    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>
                 }
-                u = n
-                continue
+                <span style="color:#a6e22e">u</span> = <span style="color:#a6e22e">n</span>
+                <span style="color:#66d9ef">continue</span>
             }
-            if v == 32 { //空格
-                if result != 0 {
-                    e = n
-                    break
+            <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">v</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">32</span> { <span style="color:#75715e">//空格
+</span><span style="color:#75715e"></span>                <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">result</span> <span style="color:#f92672">!=</span> <span style="color:#ae81ff">0</span> {
+                    <span style="color:#a6e22e">e</span> = <span style="color:#a6e22e">n</span>
+                    <span style="color:#66d9ef">break</span>
                 }
-                if u &gt;= 0 { //这里默认符号之后只能跟数字
-                    return 0
+                <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">u</span> <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">0</span> { <span style="color:#75715e">//这里默认符号之后只能跟数字
+</span><span style="color:#75715e"></span>                    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>
                 }
-                continue
+                <span style="color:#66d9ef">continue</span>
             }
-            e = n
-            break
+            <span style="color:#a6e22e">e</span> = <span style="color:#a6e22e">n</span>
+            <span style="color:#66d9ef">break</span>
         }
-        result += int(v-48) * int(math.Pow(10, float64(len(str)-n-1)))
+        <span style="color:#a6e22e">result</span> <span style="color:#f92672">+=</span> int(<span style="color:#a6e22e">v</span><span style="color:#f92672">-</span><span style="color:#ae81ff">48</span>) <span style="color:#f92672">*</span> int(<span style="color:#a6e22e">math</span>.<span style="color:#a6e22e">Pow</span>(<span style="color:#ae81ff">10</span>, float64(len(<span style="color:#a6e22e">str</span>)<span style="color:#f92672">-</span><span style="color:#a6e22e">n</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>)))
     }
-    if e &gt;= 0 {
-        result /= int(math.Pow(10, float64(len(str)-e)))
+    <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">e</span> <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">0</span> {
+        <span style="color:#a6e22e">result</span> <span style="color:#f92672">/=</span> int(<span style="color:#a6e22e">math</span>.<span style="color:#a6e22e">Pow</span>(<span style="color:#ae81ff">10</span>, float64(len(<span style="color:#a6e22e">str</span>)<span style="color:#f92672">-</span><span style="color:#a6e22e">e</span>)))
     }
-    if u &gt;= 0 {
-        if str[u] == 45 {
-            result = -result
+    <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">u</span> <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">0</span> {
+        <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">str</span>[<span style="color:#a6e22e">u</span>] <span style="color:#f92672">==</span> <span style="color:#ae81ff">45</span> {
+            <span style="color:#a6e22e">result</span> = <span style="color:#f92672">-</span><span style="color:#a6e22e">result</span>
         }
     }
-    if result &gt; math.MaxInt32 {
-        if u &gt;= 0 {
-            if str[u] == 45 {
-                return math.MinInt32
-            }
-        }
-        result = math.MaxInt32
-    }
-    if result &lt; math.MinInt32 {
-        if u &lt; 0 {
-            return math.MaxInt32
-        } else {
-            if str[u] != 45 {
-                return math.MaxInt32
+    <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">result</span> &gt; <span style="color:#a6e22e">math</span>.<span style="color:#a6e22e">MaxInt32</span> {
+        <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">u</span> <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">0</span> {
+            <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">str</span>[<span style="color:#a6e22e">u</span>] <span style="color:#f92672">==</span> <span style="color:#ae81ff">45</span> {
+                <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">math</span>.<span style="color:#a6e22e">MinInt32</span>
             }
         }
-        result = math.MinInt32
+        <span style="color:#a6e22e">result</span> = <span style="color:#a6e22e">math</span>.<span style="color:#a6e22e">MaxInt32</span>
+    }
+    <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">result</span> &lt; <span style="color:#a6e22e">math</span>.<span style="color:#a6e22e">MinInt32</span> {
+        <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">u</span> &lt; <span style="color:#ae81ff">0</span> {
+            <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">math</span>.<span style="color:#a6e22e">MaxInt32</span>
+        } <span style="color:#66d9ef">else</span> {
+            <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">str</span>[<span style="color:#a6e22e">u</span>] <span style="color:#f92672">!=</span> <span style="color:#ae81ff">45</span> {
+                <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">math</span>.<span style="color:#a6e22e">MaxInt32</span>
+            }
+        }
+        <span style="color:#a6e22e">result</span> = <span style="color:#a6e22e">math</span>.<span style="color:#a6e22e">MinInt32</span>
     }
 
-    return result
-}
-</code></pre>
-
+    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">result</span>
+}</code></pre></div>
 <h2 id="解法2">解法2</h2>
-
-<pre><code>func myAtoi2(str string) int {
-    //empty string
-    if len(str) == 0 {
-        return 0
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">myAtoi2</span>(<span style="color:#a6e22e">str</span> <span style="color:#66d9ef">string</span>) <span style="color:#66d9ef">int</span> {
+    <span style="color:#75715e">//empty string
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">if</span> len(<span style="color:#a6e22e">str</span>) <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> {
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>
     }
 
-    index, sign, result := 0, 1, 0
-    //remove space
-    for i := 0; i &lt; len(str); i++ {
-        if str[i] == ' ' {
-            index++
-        } else {
-            break
+    <span style="color:#a6e22e">index</span>, <span style="color:#a6e22e">sign</span>, <span style="color:#a6e22e">result</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>
+    <span style="color:#75715e">//remove space
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">for</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">0</span>; <span style="color:#a6e22e">i</span> &lt; len(<span style="color:#a6e22e">str</span>); <span style="color:#a6e22e">i</span><span style="color:#f92672">++</span> {
+        <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">str</span>[<span style="color:#a6e22e">i</span>] <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39; &#39;</span> {
+            <span style="color:#a6e22e">index</span><span style="color:#f92672">++</span>
+        } <span style="color:#66d9ef">else</span> {
+            <span style="color:#66d9ef">break</span>
         }
     }
 
-    //handle sign
-    if str[index] == '+' || str[index] == '-' {
-        if str[index] == '-' {
-            sign = -1
+    <span style="color:#75715e">//handle sign
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">str</span>[<span style="color:#a6e22e">index</span>] <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;+&#39;</span> <span style="color:#f92672">||</span> <span style="color:#a6e22e">str</span>[<span style="color:#a6e22e">index</span>] <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;-&#39;</span> {
+        <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">str</span>[<span style="color:#a6e22e">index</span>] <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;-&#39;</span> {
+            <span style="color:#a6e22e">sign</span> = <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>
         }
-        index++
+        <span style="color:#a6e22e">index</span><span style="color:#f92672">++</span>
     }
 
-    //Convert number and avoid overflow
-    for i := index; i &lt; len(str); i++ {
-        digit := int(str[i] - '0')
-        if digit &lt; 0 || digit &gt; 9 {
-            break
+    <span style="color:#75715e">//Convert number and avoid overflow
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">for</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">index</span>; <span style="color:#a6e22e">i</span> &lt; len(<span style="color:#a6e22e">str</span>); <span style="color:#a6e22e">i</span><span style="color:#f92672">++</span> {
+        <span style="color:#a6e22e">digit</span> <span style="color:#f92672">:=</span> int(<span style="color:#a6e22e">str</span>[<span style="color:#a6e22e">i</span>] <span style="color:#f92672">-</span> <span style="color:#e6db74">&#39;0&#39;</span>)
+        <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">digit</span> &lt; <span style="color:#ae81ff">0</span> <span style="color:#f92672">||</span> <span style="color:#a6e22e">digit</span> &gt; <span style="color:#ae81ff">9</span> {
+            <span style="color:#66d9ef">break</span>
         }
 
-        if sign == 1 {
-            if math.MaxInt32/10 == result || math.MaxInt32/10 &lt; result &amp;&amp; math.MaxInt32%10 &lt; digit {
-                return math.MaxInt32
+        <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">sign</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span> {
+            <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">math</span>.<span style="color:#a6e22e">MaxInt32</span><span style="color:#f92672">/</span><span style="color:#ae81ff">10</span> <span style="color:#f92672">==</span> <span style="color:#a6e22e">result</span> <span style="color:#f92672">||</span> <span style="color:#a6e22e">math</span>.<span style="color:#a6e22e">MaxInt32</span><span style="color:#f92672">/</span><span style="color:#ae81ff">10</span> &lt; <span style="color:#a6e22e">result</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#a6e22e">math</span>.<span style="color:#a6e22e">MaxInt32</span><span style="color:#f92672">%</span><span style="color:#ae81ff">10</span> &lt; <span style="color:#a6e22e">digit</span> {
+                <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">math</span>.<span style="color:#a6e22e">MaxInt32</span>
             }
-        } else {
-            if (math.MaxInt32/10 == result || math.MaxInt32/10 &lt; result) &amp;&amp; digit &gt; 8 {
-                return math.MinInt32
+        } <span style="color:#66d9ef">else</span> {
+            <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">math</span>.<span style="color:#a6e22e">MaxInt32</span><span style="color:#f92672">/</span><span style="color:#ae81ff">10</span> <span style="color:#f92672">==</span> <span style="color:#a6e22e">result</span> <span style="color:#f92672">||</span> <span style="color:#a6e22e">math</span>.<span style="color:#a6e22e">MaxInt32</span><span style="color:#f92672">/</span><span style="color:#ae81ff">10</span> &lt; <span style="color:#a6e22e">result</span>) <span style="color:#f92672">&amp;&amp;</span> <span style="color:#a6e22e">digit</span> &gt; <span style="color:#ae81ff">8</span> {
+                <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">math</span>.<span style="color:#a6e22e">MinInt32</span>
             }
         }
 
-        result = result*10 + digit
-        index++
+        <span style="color:#a6e22e">result</span> = <span style="color:#a6e22e">result</span><span style="color:#f92672">*</span><span style="color:#ae81ff">10</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">digit</span>
+        <span style="color:#a6e22e">index</span><span style="color:#f92672">++</span>
     }
 
-    return result * sign
-}
-</code></pre>
-
+    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">result</span> <span style="color:#f92672">*</span> <span style="color:#a6e22e">sign</span>
+}</code></pre></div>
 <h1 id="总结">总结</h1>
 
 <ul>
