@@ -5,7 +5,8 @@
     <link>https://liguoqinjim.com/tags/docker/</link>
     <description>Recent content in Docker on Liguoqinjim&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
+    <language>zh-cn</language>
+    <copyright>© This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you wish to quote or reproduce.</copyright>
     <lastBuildDate>Thu, 30 Aug 2018 22:18:05 +0800</lastBuildDate>
     
 	<atom:link href="https://liguoqinjim.com/tags/docker/index.xml" rel="self" type="application/rss+xml" />
@@ -13,10 +14,10 @@
     
     <item>
       <title>系统学习Docker 践行DevOps理念 笔记(八)|容器的的运维和监控</title>
-      <link>https://liguoqinjim.com/2018/08/%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0docker-%E8%B7%B5%E8%A1%8Cdevops%E7%90%86%E5%BF%B5-%E7%AC%94%E8%AE%B0%E5%85%AB%E5%AE%B9%E5%99%A8%E7%9A%84%E7%9A%84%E8%BF%90%E7%BB%B4%E5%92%8C%E7%9B%91%E6%8E%A7/</link>
+      <link>https://liguoqinjim.com/post/docker/%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0docker-%E8%B7%B5%E8%A1%8Cdevops%E7%90%86%E5%BF%B5-%E7%AC%94%E8%AE%B0%E5%85%AB/</link>
       <pubDate>Thu, 30 Aug 2018 22:18:05 +0800</pubDate>
       
-      <guid>https://liguoqinjim.com/2018/08/%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0docker-%E8%B7%B5%E8%A1%8Cdevops%E7%90%86%E5%BF%B5-%E7%AC%94%E8%AE%B0%E5%85%AB%E5%AE%B9%E5%99%A8%E7%9A%84%E7%9A%84%E8%BF%90%E7%BB%B4%E5%92%8C%E7%9B%91%E6%8E%A7/</guid>
+      <guid>https://liguoqinjim.com/post/docker/%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0docker-%E8%B7%B5%E8%A1%8Cdevops%E7%90%86%E5%BF%B5-%E7%AC%94%E8%AE%B0%E5%85%AB/</guid>
       <description>&lt;p&gt;容器的的运维和监控，是课程第十章的内容&lt;/p&gt;
 
 &lt;p&gt;&lt;/p&gt;</description>
@@ -24,10 +25,10 @@
     
     <item>
       <title>系统学习Docker 践行DevOps理念 笔记(七)|容器编排Kubernetes</title>
-      <link>https://liguoqinjim.com/2018/08/%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0docker-%E8%B7%B5%E8%A1%8Cdevops%E7%90%86%E5%BF%B5-%E7%AC%94%E8%AE%B0%E4%B8%83%E5%AE%B9%E5%99%A8%E7%BC%96%E6%8E%92kubernetes/</link>
+      <link>https://liguoqinjim.com/post/docker/%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0docker-%E8%B7%B5%E8%A1%8Cdevops%E7%90%86%E5%BF%B5-%E7%AC%94%E8%AE%B0%E4%B8%83/</link>
       <pubDate>Thu, 30 Aug 2018 15:28:22 +0800</pubDate>
       
-      <guid>https://liguoqinjim.com/2018/08/%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0docker-%E8%B7%B5%E8%A1%8Cdevops%E7%90%86%E5%BF%B5-%E7%AC%94%E8%AE%B0%E4%B8%83%E5%AE%B9%E5%99%A8%E7%BC%96%E6%8E%92kubernetes/</guid>
+      <guid>https://liguoqinjim.com/post/docker/%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0docker-%E8%B7%B5%E8%A1%8Cdevops%E7%90%86%E5%BF%B5-%E7%AC%94%E8%AE%B0%E4%B8%83/</guid>
       <description>&lt;p&gt;容器编排Kubernetes，是课程第九章的内容&lt;/p&gt;
 
 &lt;p&gt;&lt;/p&gt;</description>
@@ -35,10 +36,10 @@
     
     <item>
       <title>系统学习Docker 践行DevOps理念 笔记(六)|容器编排Docker Swarm</title>
-      <link>https://liguoqinjim.com/2018/08/%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0docker-%E8%B7%B5%E8%A1%8Cdevops%E7%90%86%E5%BF%B5-%E7%AC%94%E8%AE%B0%E5%85%AD%E5%AE%B9%E5%99%A8%E7%BC%96%E6%8E%92docker-swarm/</link>
+      <link>https://liguoqinjim.com/post/docker/%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0docker-%E8%B7%B5%E8%A1%8Cdevops%E7%90%86%E5%BF%B5-%E7%AC%94%E8%AE%B0%E5%85%AD/</link>
       <pubDate>Wed, 29 Aug 2018 17:40:55 +0800</pubDate>
       
-      <guid>https://liguoqinjim.com/2018/08/%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0docker-%E8%B7%B5%E8%A1%8Cdevops%E7%90%86%E5%BF%B5-%E7%AC%94%E8%AE%B0%E5%85%AD%E5%AE%B9%E5%99%A8%E7%BC%96%E6%8E%92docker-swarm/</guid>
+      <guid>https://liguoqinjim.com/post/docker/%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0docker-%E8%B7%B5%E8%A1%8Cdevops%E7%90%86%E5%BF%B5-%E7%AC%94%E8%AE%B0%E5%85%AD/</guid>
       <description>&lt;p&gt;容器编排Docker Swarm，是课程第七章的内容&lt;/p&gt;
 
 &lt;p&gt;&lt;/p&gt;</description>
@@ -46,10 +47,10 @@
     
     <item>
       <title>系统学习Docker 践行DevOps理念 笔记(五)|Docker Compose多容器部署</title>
-      <link>https://liguoqinjim.com/2018/08/%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0docker-%E8%B7%B5%E8%A1%8Cdevops%E7%90%86%E5%BF%B5-%E7%AC%94%E8%AE%B0%E4%BA%94docker-compose%E5%A4%9A%E5%AE%B9%E5%99%A8%E9%83%A8%E7%BD%B2/</link>
+      <link>https://liguoqinjim.com/post/docker/%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0docker-%E8%B7%B5%E8%A1%8Cdevops%E7%90%86%E5%BF%B5-%E7%AC%94%E8%AE%B0%E4%BA%94/</link>
       <pubDate>Wed, 29 Aug 2018 15:24:16 +0800</pubDate>
       
-      <guid>https://liguoqinjim.com/2018/08/%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0docker-%E8%B7%B5%E8%A1%8Cdevops%E7%90%86%E5%BF%B5-%E7%AC%94%E8%AE%B0%E4%BA%94docker-compose%E5%A4%9A%E5%AE%B9%E5%99%A8%E9%83%A8%E7%BD%B2/</guid>
+      <guid>https://liguoqinjim.com/post/docker/%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0docker-%E8%B7%B5%E8%A1%8Cdevops%E7%90%86%E5%BF%B5-%E7%AC%94%E8%AE%B0%E4%BA%94/</guid>
       <description>&lt;p&gt;Docker Compose多容器部署，是课程第六章的内容&lt;/p&gt;
 
 &lt;p&gt;&lt;/p&gt;</description>
@@ -57,10 +58,10 @@
     
     <item>
       <title>系统学习Docker 践行DevOps理念 笔记(四)|Docker的持久化存储和数据共享</title>
-      <link>https://liguoqinjim.com/2018/08/%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0docker-%E8%B7%B5%E8%A1%8Cdevops%E7%90%86%E5%BF%B5-%E7%AC%94%E8%AE%B0%E5%9B%9Bdocker%E7%9A%84%E6%8C%81%E4%B9%85%E5%8C%96%E5%AD%98%E5%82%A8%E5%92%8C%E6%95%B0%E6%8D%AE%E5%85%B1%E4%BA%AB/</link>
+      <link>https://liguoqinjim.com/post/docker/%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0docker-%E8%B7%B5%E8%A1%8Cdevops%E7%90%86%E5%BF%B5-%E7%AC%94%E8%AE%B0%E5%9B%9B/</link>
       <pubDate>Wed, 29 Aug 2018 14:30:38 +0800</pubDate>
       
-      <guid>https://liguoqinjim.com/2018/08/%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0docker-%E8%B7%B5%E8%A1%8Cdevops%E7%90%86%E5%BF%B5-%E7%AC%94%E8%AE%B0%E5%9B%9Bdocker%E7%9A%84%E6%8C%81%E4%B9%85%E5%8C%96%E5%AD%98%E5%82%A8%E5%92%8C%E6%95%B0%E6%8D%AE%E5%85%B1%E4%BA%AB/</guid>
+      <guid>https://liguoqinjim.com/post/docker/%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0docker-%E8%B7%B5%E8%A1%8Cdevops%E7%90%86%E5%BF%B5-%E7%AC%94%E8%AE%B0%E5%9B%9B/</guid>
       <description>&lt;p&gt;Docker的持久化存储和数据共享，是课程第五章的内容&lt;/p&gt;
 
 &lt;p&gt;&lt;/p&gt;</description>
@@ -68,10 +69,10 @@
     
     <item>
       <title>系统学习Docker 践行DevOps理念 笔记(三)|Docker的网络</title>
-      <link>https://liguoqinjim.com/2018/08/%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0docker-%E8%B7%B5%E8%A1%8Cdevops%E7%90%86%E5%BF%B5-%E7%AC%94%E8%AE%B0%E4%B8%89docker%E7%9A%84%E7%BD%91%E7%BB%9C/</link>
+      <link>https://liguoqinjim.com/post/docker/%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0docker-%E8%B7%B5%E8%A1%8Cdevops%E7%90%86%E5%BF%B5-%E7%AC%94%E8%AE%B0%E4%B8%89/</link>
       <pubDate>Tue, 28 Aug 2018 17:25:59 +0800</pubDate>
       
-      <guid>https://liguoqinjim.com/2018/08/%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0docker-%E8%B7%B5%E8%A1%8Cdevops%E7%90%86%E5%BF%B5-%E7%AC%94%E8%AE%B0%E4%B8%89docker%E7%9A%84%E7%BD%91%E7%BB%9C/</guid>
+      <guid>https://liguoqinjim.com/post/docker/%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0docker-%E8%B7%B5%E8%A1%8Cdevops%E7%90%86%E5%BF%B5-%E7%AC%94%E8%AE%B0%E4%B8%89/</guid>
       <description>&lt;p&gt;Docker的网络，是课程第四章的内容&lt;/p&gt;
 
 &lt;p&gt;&lt;/p&gt;</description>
@@ -79,10 +80,10 @@
     
     <item>
       <title>系统学习Docker 践行DevOps理念 笔记(二)|Docker的镜像和容器</title>
-      <link>https://liguoqinjim.com/2018/08/%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0docker-%E8%B7%B5%E8%A1%8Cdevops%E7%90%86%E5%BF%B5-%E7%AC%94%E8%AE%B0%E4%BA%8Cdocker%E7%9A%84%E9%95%9C%E5%83%8F%E5%92%8C%E5%AE%B9%E5%99%A8/</link>
+      <link>https://liguoqinjim.com/post/docker/%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0docker-%E8%B7%B5%E8%A1%8Cdevops%E7%90%86%E5%BF%B5-%E7%AC%94%E8%AE%B0%E4%BA%8C/</link>
       <pubDate>Tue, 28 Aug 2018 13:36:04 +0800</pubDate>
       
-      <guid>https://liguoqinjim.com/2018/08/%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0docker-%E8%B7%B5%E8%A1%8Cdevops%E7%90%86%E5%BF%B5-%E7%AC%94%E8%AE%B0%E4%BA%8Cdocker%E7%9A%84%E9%95%9C%E5%83%8F%E5%92%8C%E5%AE%B9%E5%99%A8/</guid>
+      <guid>https://liguoqinjim.com/post/docker/%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0docker-%E8%B7%B5%E8%A1%8Cdevops%E7%90%86%E5%BF%B5-%E7%AC%94%E8%AE%B0%E4%BA%8C/</guid>
       <description>&lt;p&gt;Docker的镜像和容器，是课程第三章的内容&lt;/p&gt;
 
 &lt;p&gt;&lt;/p&gt;</description>
@@ -90,10 +91,10 @@
     
     <item>
       <title>系统学习Docker 践行DevOps理念 笔记(一)|Docker的安装</title>
-      <link>https://liguoqinjim.com/2018/08/%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0docker-%E8%B7%B5%E8%A1%8Cdevops%E7%90%86%E5%BF%B5-%E7%AC%94%E8%AE%B0%E4%B8%80docker%E7%9A%84%E5%AE%89%E8%A3%85/</link>
+      <link>https://liguoqinjim.com/post/docker/%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0docker-%E8%B7%B5%E8%A1%8Cdevops%E7%90%86%E5%BF%B5-%E7%AC%94%E8%AE%B0%E4%B8%80/</link>
       <pubDate>Tue, 28 Aug 2018 11:50:22 +0800</pubDate>
       
-      <guid>https://liguoqinjim.com/2018/08/%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0docker-%E8%B7%B5%E8%A1%8Cdevops%E7%90%86%E5%BF%B5-%E7%AC%94%E8%AE%B0%E4%B8%80docker%E7%9A%84%E5%AE%89%E8%A3%85/</guid>
+      <guid>https://liguoqinjim.com/post/docker/%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0docker-%E8%B7%B5%E8%A1%8Cdevops%E7%90%86%E5%BF%B5-%E7%AC%94%E8%AE%B0%E4%B8%80/</guid>
       <description>&lt;p&gt;Docker的安装&lt;/p&gt;
 
 &lt;p&gt;&lt;/p&gt;</description>

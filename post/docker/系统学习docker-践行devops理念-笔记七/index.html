@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+
+  <meta charset="utf-8" />
+
+  
+  <title>系统学习Docker 践行DevOps理念 笔记(七)|容器编排Kubernetes</title>
+
+  
+  
+
+
+
+
+
+  
+  <meta name="author" content="liguoqinjim" />
+  <meta name="description" content="容器编排Kubernetes，是课程第九章的内容
+
+" />
+
+  
+  
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@gohugoio" />
+    <meta name="twitter:title" content="系统学习Docker 践行DevOps理念 笔记(七)|容器编排Kubernetes" />
+    <meta name="twitter:description" content="容器编排Kubernetes，是课程第九章的内容
+
+" />
+    <meta name="twitter:image" content="https://liguoqinjim.com/img/avatar.jpg" />
+  
+
+  
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="系统学习Docker 践行DevOps理念 笔记(七)|容器编排Kubernetes" />
+  <meta property="og:description" content="容器编排Kubernetes，是课程第九章的内容
+
+" />
+  <meta property="og:url" content="https://liguoqinjim.com/post/docker/%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0docker-%E8%B7%B5%E8%A1%8Cdevops%E7%90%86%E5%BF%B5-%E7%AC%94%E8%AE%B0%E4%B8%83/" />
+  <meta property="og:image" content="https://liguoqinjim.com/img/avatar.jpg" />
+
+
+
+
+<meta name="generator" content="Hugo 0.43-DEV" />
+
+
+<link rel="canonical" href="https://liguoqinjim.com/post/docker/%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0docker-%E8%B7%B5%E8%A1%8Cdevops%E7%90%86%E5%BF%B5-%E7%AC%94%E8%AE%B0%E4%B8%83/" />
+
+<meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="format-detection" content="telephone=no,email=no,adress=no" />
+<meta http-equiv="Cache-Control" content="no-transform" />
+
+
+<meta name="robots" content="index,follow" />
+<meta name="referrer" content="origin-when-cross-origin" />
+
+<meta name="msvalidate.01" content="22596E34341DD1D17D6022C44647E587" />
+
+
+
+
+
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="apple-mobile-web-app-title" content="Liguoqinjim&#39;s Blog" />
+<meta name="msapplication-tooltip" content="Liguoqinjim&#39;s Blog" />
+<meta name='msapplication-navbutton-color' content="#5fbf5e" />
+<meta name="msapplication-TileColor" content="#5fbf5e" />
+<meta name="msapplication-TileImage" content="/img/tile-image-windows.png" />
+<link rel="icon" href="https://liguoqinjim.com/img/favicon.ico" />
+<link rel="icon" type="image/png" sizes="16x16" href="https://liguoqinjim.com/img/favicon-16x16.png" />
+<link rel="icon" type="image/png" sizes="32x32" href="https://liguoqinjim.com/img/favicon-32x32.png" />
+<link rel="icon" sizes="192x192" href="https://liguoqinjim.com/img/touch-icon-android.png" />
+<link rel="apple-touch-icon" href="https://liguoqinjim.com/img/touch-icon-apple.png" />
+<link rel="mask-icon" href="https://liguoqinjim.com/img/safari-pinned-tab.svg" color="#5fbf5e" />
+
+
+
+<link rel="stylesheet" href="//cdn.bootcss.com/video.js/6.2.8/alt/video-js-cdn.min.css" />
+
+<link rel="stylesheet" href="https://liguoqinjim.com/css/bundle.37f548f4ce.css" />
+
+
+  
+  <!--[if lt IE 9]>
+    <script src="//cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <script src="//cdn.bootcss.com/video.js/6.2.8/ie8/videojs-ie8.min.js"></script>
+  <![endif]-->
+
+<!--[if lte IE 11]>
+    <script src="//cdn.bootcss.com/classlist/1.1.20170427/classList.min.js"></script>
+  <![endif]-->
+
+
+<script src="//cdn.bootcss.com/object-fit-images/3.2.3/ofi.min.js"></script>
+
+
+<script src="//cdn.bootcss.com/smooth-scroll/12.1.4/js/smooth-scroll.polyfills.min.js"></script>
+
+
+</head>
+  <body>
+    
+    <div class="suspension">
+      <a title="Go to top" class="to-top is-hide"><span class="icon icon-up"></span></a>
+      
+        
+        <a title="Go to comments" class="to-comment" href="#disqus_thread"><span class="icon icon-comment"></span></a>
+        
+      
+    </div>
+    
+    
+  <header class="site-header">
+  <img class="avatar" src="https://liguoqinjim.com/img/avatar.jpg" alt="Avatar">
+  
+  <h2 class="title">Liguoqinjim&#39;s Blog</h2>
+  
+  <p class="subtitle">~ Keep It Simple &amp; Stupid ~</p>
+  <button class="menu-toggle" type="button">
+    <span class="icon icon-menu"></span>
+  </button>
+  <nav class="site-menu collapsed">
+    <h2 class="offscreen">Main Menu</h2>
+    <ul class="menu-list">
+      
+      
+      
+      
+        <li class="menu-item
+            
+            
+            
+              is-active
+            ">
+            <a href="https://liguoqinjim.com/">Home</a>
+          </li>
+      
+        <li class="menu-item
+            
+            
+            ">
+            <a href="https://github.com/liguoqinjim">Works</a>
+          </li>
+      
+        <li class="menu-item
+            
+            
+            ">
+            <a href="https://liguoqinjim.com/tags/">Tags</a>
+          </li>
+      
+    </ul>
+  </nav>
+  <nav class="social-menu collapsed">
+    <h2 class="offscreen">Social Networks</h2>
+    <ul class="social-list">
+
+      
+      <li class="social-item">
+        <a href="mailto:liguoqinjim23@gmail.com" title="Email"><span class="icon icon-email"></span></a>
+      </li>
+
+      
+      <li class="social-item">
+        <a href="//github.com/liguoqinjim" title="GitHub"><span class="icon icon-github"></span></a>
+      </li>
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <li class="social-item">
+        <a rel="alternate" type="application/rss+xml" href="https://liguoqinjim.com/index.xml"><span class="icon icon-rss" title="RSS"></span></a>
+      </li>
+
+    </ul>
+  </nav>
+</header>
+
+  <section class="main post-detail">
+    <header class="post-header">
+      <h1 class="post-title">系统学习Docker 践行DevOps理念 笔记(七)|容器编排Kubernetes</h1>
+      <p class="post-meta">@liguoqinjim · Aug 30, 2018 · 3 min read</p>
+    </header>
+    <article class="post-content"><p>容器编排Kubernetes，是课程第九章的内容</p>
+
+<p></p>
+
+<!--toc-->
+
+<h1 id="1-kubenetes简介">1.Kubenetes简介</h1>
+
+<p><img src="https://liguoqinjim.com/img/docker/note7/k8s.png" alt="k8s" /></p>
+
+<h2 id="1-1为什么简写是k8s">1.1为什么简写是k8s</h2>
+
+<p>因为kubernetes，k和s之间一共有8个字母</p>
+
+<h1 id="2-minikube快速搭建k8s单节点环境">2.Minikube快速搭建K8S单节点环境</h1>
+
+<h2 id="2-1配置k8s环境">2.1配置K8S环境</h2>
+
+<ol>
+<li><a href="https://github.com/kelseyhightower/kubernetes-the-hard-way">https://github.com/kelseyhightower/kubernetes-the-hard-way</a>
+这个是k8s的从头开始安装的方法</li>
+<li><a href="https://github.com/kubernetes/minikube">https://github.com/kubernetes/minikube</a>
+这个是在本地跑一个最简单的k8s，只有一个节点。类似vagrant，是要借助virtual box这种的</li>
+</ol>
+
+<h2 id="2-2安装kubetcl">2.2安装kubetcl</h2>
+
+<p><a href="https://kubernetes.io/docs/tasks/tools/install-kubectl/">https://kubernetes.io/docs/tasks/tools/install-kubectl/</a></p>
+
+<h2 id="2-3minikube">2.3minikube</h2>
+
+<p>minikube相关命令：</p>
+
+<ol>
+<li>minikube start，启动minikube节点</li>
+<li>minikube ssh，连接到minikube内部</li>
+<li>minikube stop</li>
+</ol>
+
+<h2 id="2-4kubectl">2.4kubectl</h2>
+
+<p>kubectl context:<br />
+里面存着一个kubernetes集群的信息，比如集群的host。kubectl下可能有多个context，我们可以通过context去管理多个k8s集群</p>
+
+<p>相关命令：</p>
+
+<ol>
+<li>kubectl config view</li>
+<li>kubectl config get-contexts，得到现在是用的哪个context</li>
+<li>kubectl cluster-info，得到集群信息</li>
+<li>kubectl version</li>
+</ol>
+
+<h1 id="3-k8s最小调度单位pod">3.K8S最小调度单位Pod</h1>
+
+<p>k8s不对容器进行操作，因为最小单位是pod。同一个pod里面的容器，是在一个namespace下的，这里的namespace包括所有的namespace(如network namespace)</p>
+
+<p>相关命令：</p>
+
+<ul>
+<li>kubectl create -f pod_nginx.yml，创建pod</li>
+<li>kubectl delete -f pod_nginx.yml，删除pod</li>
+<li>kubectl get pods，查看pods的情况</li>
+<li>kubectl get pods -o wide，加了wide参数之后，会显示更多信息</li>
+<li>上面的命令，可以看到pod里面的容器具体是在哪个机器上的，要进入这个容器，我们先ssh到这个机器上，然后docker exec -it container_name sh，</li>
+<li>kubectl describe pods nginx，查看pods的具体信息</li>
+<li>kubectl port-forward nginx 8080:80，映射本地的8080端口和pod的80端口，nginx是pod name，但是要注意的是，这个命令一旦ctrl+c退出，映射就结束了。8080端口是运行了kubectl的机器的端口，不是pod所在的容器的端口。</li>
+</ul>
+
+<p>pod_nginx.yml：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx
+  labels:
+    app: nginx
+spec:
+  containers:
+  - name: nginx
+    image: nginx <span style="color:#75715e">#使用的镜像</span>
+    ports:
+    - containerPort: <span style="color:#ae81ff">80</span></code></pre></div>
+<h2 id="notice">NOTICE</h2>
+
+<p>kubectl create之后，可能pod会一直不启动，这个时候可以通过minikube logs查看错误日志。我遇到的问题的是不能拉取镜像，是要翻墙的网址。
+解决这个问题可以在启动minikube的时候，指定代理：</p>
+
+<pre><code>minikube start --docker-env=HTTP_PROXY=http://$YOURPROXY:PORT \
+                 --docker-env=HTTPS_PROXY=https://$YOURPROXY:PORT
+</code></pre>
+
+<p>参考资料：<a href="https://github.com/kubernetes/minikube/blob/master/docs/http_proxy.md">https://github.com/kubernetes/minikube/blob/master/docs/http_proxy.md</a></p>
+
+<h1 id="4-replicaset和replicationcontroller">4.ReplicaSet和ReplicationController</h1>
+
+<p>ReplicaSet是新一代的ReplicationController。这里的replica就是我们之前docker里面遇到的是一样的。也是多个，这里就是多个pod。下面简称rc或者rs</p>
+
+<p>相关命令：</p>
+
+<ul>
+<li>kubectl create -f rc_nginx.yml，创建replicationController，rc_nginx.yml见docker_labs</li>
+<li>kubectl get rc，可以查看rc的情况</li>
+<li>kubectl get pods，查看pod的情况</li>
+<li>kubectl delete pods nginx-6cznp，删除这个一个pod</li>
+<li>kubectl scale rc nginx &ndash;replicas=2，修改rc的pod数量</li>
+<li>kubectl delete rc nginx，删除replicationController
+-kubectl create -f rs_nginx.yml，创建replicaSet，ns_nginx.yml见docker-labs</li>
+<li>kubectl get rs，查看rs的情况</li>
+<li>kubectl scale rs nginx &ndash;replicas=2，对rs进行scale</li>
+</ul>
+
+<p>rc_nginx.yml：</p>
+
+<pre><code>apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: nginx
+spec:
+  replicas: 3
+  selector:
+    app: nginx
+  template:
+    metadata:
+      name: nginx
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: nginx
+        image: nginx #使用nginx镜像
+        ports:
+        - containerPort: 80
+</code></pre>
+
+<p>rs_nginx.yml:</p>
+
+<pre><code>apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: nginx
+  labels:
+    tier: frontend
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      tier: frontend
+  template:
+    metadata:
+      name: nginx
+      labels:
+        tier: frontend
+    spec:
+      containers:
+      - name: nginx
+        image: nginx #使用nginx镜像
+        ports:
+        - containerPort: 80
+</code></pre>
+
+<h2 id="notice-1">NOTICE</h2>
+
+<p>要是我们在rc或者rs下创建pod，然后我们去强制删除这个pod，删除之后，rc和rs会自动再去创建一个pod。rc和rs会保持pod的数量，所以就算只创建一个pod，也推荐使用rc或者rs。因为这会保持pod的数量。</p>
+
+<h1 id="5-deployment">5.Deployment</h1>
+
+<p>Deployment描述了一种希望的状态，是对pods和replicaset的希望达到的一个状态。比如我希望这个replicaset是有3个replica的，pods的image是nginx。之后我们要修改的话，只要把希望的状态改变，deployment就会自动帮我们完成。
+需要注意的是，我们通过deployment创建的replicaset和pod，创建了之后，我们就不能独立的对replicaset和pod进行删除了，我们一定要对deployment进行操作</p>
+
+<p>相关命令：</p>
+
+<ol>
+<li>kubectl create -f deployment_nginx.yml，创建deployment，详见docker-lab</li>
+<li>kubectl get deployment，得到deployment的情况</li>
+<li>kubectl get deployment -o wide，得到详细情况</li>
+<li>kubectl set image deployment nginx-deployment nginx=nginx:1.13，更新镜像，nginx-deployment是deployment的name，nginx:1.13是新的镜像</li>
+<li>kubectl rollout history deployment nginx-deployment，查看deployment的历史版本</li>
+<li>kubectl rollout undo deployment nginx-deployment，撤销之前的操作，比如我们先更新了一个镜像，然后我们使用undo，就会变回原来的镜像了</li>
+<li>kubectl get node -o wide，查看k8s node的情况</li>
+<li>kubectl expose deployment nginx-deployment &ndash;type=NodePort，会暴露到node的一个随机端口上，是暴露到最终运行pod的机器上，不是运行kubectl的机器上，具体可以看9-8</li>
+<li>kubectl get services，查看services的情况，因为我们用了8的命令，所以service会随机一个端口绑定到容器的80端口。是绑定到最终运行pod的node上的，不是运行kubectl的机器</li>
+<li>kubectl delete service nginx-deployment，删除service</li>
+</ol>
+
+<p>deployment_nginx.yml：</p>
+
+<pre><code>apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+  labels:
+    app: nginx
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:1.12.2 #先指定这个版本的nginx,之后可以更新
+        ports:
+        - containerPort: 80
+</code></pre>
+
+<h2 id="notice-2">NOTICE</h2>
+
+<p>deployment下的replicaset和pods的name，replicaset的前缀是deployment的name，pods的name的前缀是replicaset的name</p>
+
+<h1 id="6-使用tectonic在本地搭建多节点k8s集群">6.使用Tectonic在本地搭建多节点K8S集群</h1>
+
+<p>tectonic的脚本详见docker-lab，要注意的是，vagrant up的时候用的脚本，访问的基本都是被墙的网址，在脚本里面设置代理很麻烦，我最后是直接在路由器上安装了代理，才安装好。</p>
+
+<p>相关命令：</p>
+
+<ol>
+<li>kubectl config get-contexts，查看kubectl的context</li>
+<li>kubectl config use-context tectonic，切换到tectonic这个context</li>
+</ol>
+
+<h2 id="notice-3">NOTICE</h2>
+
+<p>我一开始用kubectl_1.11的版本使用命令kubectl get nodes的时候，会返回错误，然后我就用了kubectl的1.8这个版本，就正确了。</p>
+
+<p>参考资料：<a href="https://github.com/kubernetes/kubernetes/issues/65575">https://github.com/kubernetes/kubernetes/issues/65575</a></p>
+
+<h1 id="7-k8s基础网络cluster-network">7.k8s基础网络Cluster Network</h1>
+
+<p><img src="https://liguoqinjim.com/img/docker/note7/k8s_network.png" alt="k8s_network" /></p>
+
+<p>这个flannel其实是一个k8s的网络插件，也可以不用flannel，可以用的别的网络插件。
+k8s的网络插件，要符合最基本的3个规则，详见：<br />
+<a href="https://kubernetes.io/docs/concepts/cluster-administration/networking/">https://kubernetes.io/docs/concepts/cluster-administration/networking/</a></p>
+
+<h1 id="8-service简介和演示">8.Service简介和演示</h1>
+
+<h2 id="8-1不要直接使用和管理pods">8.1不要直接使用和管理Pods</h2>
+
+<p><img src="https://liguoqinjim.com/img/docker/note7/pods.png" alt="pods" /></p>
+
+<p>这里创建新的pods倒是没问题，但是最关键的是，新创建的pod可能ip会变。我们现在打个比方，我有两个pod，一个是nginx，还有一个是db，现在我db的pod被terminated然后创建了一个新的。这个时候要是db的ip变了，nginx是没办法修改的。所以我们需要用到service来解决这个问题，service就会给一个不变的ip和pod的ip相当于映射住，service的ip是不变的。那我们访问service的ip就可以了。然后我们要是用deployment这种，replica设成多个，我们可以在deployment上创建service，那么这个service会自动帮我们在多个replica之间做负载均衡。</p>
+
+<h2 id="8-2service">8.2Service</h2>
+
+<p><img src="https://liguoqinjim.com/img/docker/note7/services.png" alt="services" /></p>
+
+<p>本节课说的是ClusterIP的，这种service是在cluster内部，任何一台机器都可以访问的，但是也仅限于cluster内部</p>
+
+<p>相关命令：</p>
+
+<ol>
+<li>kubectl expose pods nginx-pod，创建service，默认是ClusterIP</li>
+<li>kubectl get svc/services，svc是简写</li>
+<li>kubectl expose deployment service-test，在deployment上创建一个service，会为deployment里面的pods自动做负载均衡</li>
+<li>kubectl edit deployment service-test，这样可以更新service-test这个deployment的配置，然后k8s会帮我们自己更新</li>
+</ol>
+
+<h1 id="9-nodeport类型service以及label的简单实用">9.NodePort类型Service以及Label的简单实用</h1>
+
+<h2 id="9-1nodeport类型service">9.1NodePort类型Service</h2>
+
+<p>创建NodePort的service，有两种方式，一种用命令创建，一种是用yml文件来创建。
+NodePort是可以给外网访问的，而且是集群内，所有node的ip加上这个service的port都可以访问。NodePort的端口是有范围的，是从30000-32767</p>
+
+<p>用命令创建：</p>
+
+<ol>
+<li>kubectl create -f pod_nginx.yml，创建pod_nginx，yml见docker-lab</li>
+<li>kubectl expose pods nginx-pod &ndash;type=NodePort，创建NodePort的service</li>
+<li>kubectl get svc，查看创建的sevice，注意，在service我们会看到NodePort类型的service，会随机一个端口映射到pod的端口。这个时候所有node的ip+这个端口，就可以访问pod</li>
+</ol>
+
+<p>用文件创建：</p>
+
+<p>pod_nginx.yml:</p>
+
+<pre><code>apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx-pod
+  labels:
+    app: nginx
+spec:
+  containers:
+  - name: nginx-container
+    image: nginx
+    ports:
+    - name: nginx-port #这个name，service_nginx.yml里面会使用到
+      containerPort: 80
+</code></pre>
+
+<p>service_nginx.yml</p>
+
+<pre><code>apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-service
+spec:
+  ports:
+  - port: 32333
+    nodePort: 32333
+    targetPort: nginx-port #pod_nginx.yml里面的ports下的name
+    protocol: TCP
+  selector:
+    app: nginx # label
+  type: NodePort
+</code></pre>
+
+<ol>
+<li>targetPort后面要跟pod的yml文件里面的ports下的name</li>
+<li>selector后面的值是label的key和value，通过这个值去选择有这个label的pod去创建这个service</li>
+</ol>
+
+<h2 id="9-2label">9.2Label</h2>
+
+<p>k8s里面，几乎所有的resource，如pod，deployment等等，我们都可以设置标签。比如我们可以指定nodeSelector，那么我们在创建pod的时候，就可以指定我们这个pod是要创建在哪个node上。</p>
+
+<p>相关命令：</p>
+
+<ol>
+<li>kubectl label node w1.tectonicsandbox.com hardware=good，这个就是给w1这个node添加了一个label</li>
+<li>kubectl get node &ndash;show-labels，可以查看label</li>
+</ol>
+
+<h2 id="notice-4">NOTICE</h2>
+
+<ol>
+<li>在生产环境里面，ClusterIP因为只能在cluster内部访问，外部是不能访问的，所以不会用。NodePort的端口又是有限的，所以一般也不会使用，但是是可以使用的。</li>
+<li>NodePort的端口是有范围的，是从30000-32767</li>
+</ol>
+
+<h1 id="10-准备工作-使用kops在亚马逊aws上搭建k8s集群">10.准备工作——使用kops在亚马逊AWS上搭建k8s集群</h1>
+
+<p>kops: <a href="https://github.com/kubernetes/kops">https://github.com/kubernetes/kops</a></p>
+
+<h1 id="11-使用kops在亚马逊aws上搭建k8s集群">11.使用kops在亚马逊AWS上搭建k8s集群</h1>
+
+<p>使用kops，在AWS创建k8s集群</p>
+
+<h1 id="12-loadblancer类型service以及aws的dns服务配置">12.LoadBlancer类型Service以及AWS的DNS服务配置</h1>
+
+<p>service里面还有一个类型是，loadblancer，这个类型是需要云服务商的支持的，本地是没法测试的。这个service会给出一个url，然后加上给出的端口就可以访问了。因为这个url会很长，所以我们还可以使用dns来添加ANAME来映射到一个短的sub domain</p>
+
+<h1 id="13-在亚马逊k8s集群上部署wordpress">13.在亚马逊k8s集群上部署wordpress</h1>
+
+<p>略</p></article>
+    <footer class="post-footer">
+      
+      <ul class="post-tags">
+        
+          <li><a href="https://liguoqinjim.com/tags/docker"><span class="tag">Docker</span></a></li>
+        
+      </ul>
+      
+      <p class="post-copyright">
+        © This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you wish to quote or reproduce.
+      </p>
+    </footer>
+    
+      <div id="disqus_thread"></div>
+<script>
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "liguoqinjim" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+      
+    
+  </section>
+  <footer class="site-footer">
+  <p>© 2017-2018 Liguoqinjim&#39;s Blog</p>
+  <p>Powered by <a href="https://gohugo.io/" target="_blank">Hugo</a> with theme <a href="https://github.com/laozhu/hugo-nuo" target="_blank">Nuo</a>.</p>
+  
+</footer>
+
+
+
+<script async src="//cdn.bootcss.com/video.js/6.2.8/alt/video.novtt.min.js"></script>
+<script async src="//cdn.bootcss.com/mathjax/2.7.2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      displayMath: [['$$','$$'], ['\\[','\\]']],
+      processEscapes: true,
+      processEnvironments: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+      TeX: { equationNumbers: { autoNumber: "AMS" },
+      extensions: ["AMSmath.js", "AMSsymbols.js"] }
+    }
+  });
+</script>
+<script type="text/x-mathjax-config">
+  // Fix <code> tags after MathJax finishes running. This is a
+  // hack to overcome a shortcoming of Markdown. Discussion at
+  // https://github.com/mojombo/jekyll/issues/199
+  MathJax.Hub.Queue(() => {
+    MathJax.Hub.getAllJax().map(v => v.SourceElement().parentNode.className += ' has-jax');
+  });
+</script>
+
+<script src="https://liguoqinjim.com/js/bundle.87092cda0d.js"></script>
+
+
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-113128130-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+
+
+  </body>
+</html>

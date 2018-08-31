@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+
+  <meta charset="utf-8" />
+
+  
+  <title>系统学习Docker 践行DevOps理念 笔记(二)|Docker的镜像和容器</title>
+
+  
+  
+
+
+
+
+
+  
+  <meta name="author" content="liguoqinjim" />
+  <meta name="description" content="Docker的镜像和容器，是课程第三章的内容
+
+" />
+
+  
+  
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@gohugoio" />
+    <meta name="twitter:title" content="系统学习Docker 践行DevOps理念 笔记(二)|Docker的镜像和容器" />
+    <meta name="twitter:description" content="Docker的镜像和容器，是课程第三章的内容
+
+" />
+    <meta name="twitter:image" content="https://liguoqinjim.com/img/avatar.jpg" />
+  
+
+  
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="系统学习Docker 践行DevOps理念 笔记(二)|Docker的镜像和容器" />
+  <meta property="og:description" content="Docker的镜像和容器，是课程第三章的内容
+
+" />
+  <meta property="og:url" content="https://liguoqinjim.com/post/docker/%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0docker-%E8%B7%B5%E8%A1%8Cdevops%E7%90%86%E5%BF%B5-%E7%AC%94%E8%AE%B0%E4%BA%8C/" />
+  <meta property="og:image" content="https://liguoqinjim.com/img/avatar.jpg" />
+
+
+
+
+<meta name="generator" content="Hugo 0.43-DEV" />
+
+
+<link rel="canonical" href="https://liguoqinjim.com/post/docker/%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0docker-%E8%B7%B5%E8%A1%8Cdevops%E7%90%86%E5%BF%B5-%E7%AC%94%E8%AE%B0%E4%BA%8C/" />
+
+<meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="format-detection" content="telephone=no,email=no,adress=no" />
+<meta http-equiv="Cache-Control" content="no-transform" />
+
+
+<meta name="robots" content="index,follow" />
+<meta name="referrer" content="origin-when-cross-origin" />
+
+<meta name="msvalidate.01" content="22596E34341DD1D17D6022C44647E587" />
+
+
+
+
+
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="apple-mobile-web-app-title" content="Liguoqinjim&#39;s Blog" />
+<meta name="msapplication-tooltip" content="Liguoqinjim&#39;s Blog" />
+<meta name='msapplication-navbutton-color' content="#5fbf5e" />
+<meta name="msapplication-TileColor" content="#5fbf5e" />
+<meta name="msapplication-TileImage" content="/img/tile-image-windows.png" />
+<link rel="icon" href="https://liguoqinjim.com/img/favicon.ico" />
+<link rel="icon" type="image/png" sizes="16x16" href="https://liguoqinjim.com/img/favicon-16x16.png" />
+<link rel="icon" type="image/png" sizes="32x32" href="https://liguoqinjim.com/img/favicon-32x32.png" />
+<link rel="icon" sizes="192x192" href="https://liguoqinjim.com/img/touch-icon-android.png" />
+<link rel="apple-touch-icon" href="https://liguoqinjim.com/img/touch-icon-apple.png" />
+<link rel="mask-icon" href="https://liguoqinjim.com/img/safari-pinned-tab.svg" color="#5fbf5e" />
+
+
+
+<link rel="stylesheet" href="//cdn.bootcss.com/video.js/6.2.8/alt/video-js-cdn.min.css" />
+
+<link rel="stylesheet" href="https://liguoqinjim.com/css/bundle.37f548f4ce.css" />
+
+
+  
+  <!--[if lt IE 9]>
+    <script src="//cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <script src="//cdn.bootcss.com/video.js/6.2.8/ie8/videojs-ie8.min.js"></script>
+  <![endif]-->
+
+<!--[if lte IE 11]>
+    <script src="//cdn.bootcss.com/classlist/1.1.20170427/classList.min.js"></script>
+  <![endif]-->
+
+
+<script src="//cdn.bootcss.com/object-fit-images/3.2.3/ofi.min.js"></script>
+
+
+<script src="//cdn.bootcss.com/smooth-scroll/12.1.4/js/smooth-scroll.polyfills.min.js"></script>
+
+
+</head>
+  <body>
+    
+    <div class="suspension">
+      <a title="Go to top" class="to-top is-hide"><span class="icon icon-up"></span></a>
+      
+        
+        <a title="Go to comments" class="to-comment" href="#disqus_thread"><span class="icon icon-comment"></span></a>
+        
+      
+    </div>
+    
+    
+  <header class="site-header">
+  <img class="avatar" src="https://liguoqinjim.com/img/avatar.jpg" alt="Avatar">
+  
+  <h2 class="title">Liguoqinjim&#39;s Blog</h2>
+  
+  <p class="subtitle">~ Keep It Simple &amp; Stupid ~</p>
+  <button class="menu-toggle" type="button">
+    <span class="icon icon-menu"></span>
+  </button>
+  <nav class="site-menu collapsed">
+    <h2 class="offscreen">Main Menu</h2>
+    <ul class="menu-list">
+      
+      
+      
+      
+        <li class="menu-item
+            
+            
+            
+              is-active
+            ">
+            <a href="https://liguoqinjim.com/">Home</a>
+          </li>
+      
+        <li class="menu-item
+            
+            
+            ">
+            <a href="https://github.com/liguoqinjim">Works</a>
+          </li>
+      
+        <li class="menu-item
+            
+            
+            ">
+            <a href="https://liguoqinjim.com/tags/">Tags</a>
+          </li>
+      
+    </ul>
+  </nav>
+  <nav class="social-menu collapsed">
+    <h2 class="offscreen">Social Networks</h2>
+    <ul class="social-list">
+
+      
+      <li class="social-item">
+        <a href="mailto:liguoqinjim23@gmail.com" title="Email"><span class="icon icon-email"></span></a>
+      </li>
+
+      
+      <li class="social-item">
+        <a href="//github.com/liguoqinjim" title="GitHub"><span class="icon icon-github"></span></a>
+      </li>
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <li class="social-item">
+        <a rel="alternate" type="application/rss+xml" href="https://liguoqinjim.com/index.xml"><span class="icon icon-rss" title="RSS"></span></a>
+      </li>
+
+    </ul>
+  </nav>
+</header>
+
+  <section class="main post-detail">
+    <header class="post-header">
+      <h1 class="post-title">系统学习Docker 践行DevOps理念 笔记(二)|Docker的镜像和容器</h1>
+      <p class="post-meta">@liguoqinjim · Aug 28, 2018 · 3 min read</p>
+    </header>
+    <article class="post-content"><p>Docker的镜像和容器，是课程第三章的内容</p>
+
+<p></p>
+
+<!-- toc -->
+
+<h1 id="1-docker架构和底层技术简介">1.Docker架构和底层技术简介</h1>
+
+<h1 id="2-docker-image概述">2.Docker Image概述</h1>
+
+<pre><code># 查看现有的Image
+sudo docker image ls
+# 拉取镜像，如centos镜像
+sudo docker pull centos
+</code></pre>
+
+<p>Image的获取方法:</p>
+
+<ol>
+<li>Build from dockerfile<br /></li>
+<li>pull from registry (<a href="https://hub.docker.com/explore/，或者是其他私有仓库">https://hub.docker.com/explore/，或者是其他私有仓库</a>)</li>
+</ol>
+
+<h1 id="3-diy一个base-image">3.DIY一个Base Image</h1>
+
+<h2 id="3-1优化输入docker命令的时候不用加sudo">3.1优化输入docker命令的时候不用加sudo</h2>
+
+<ol>
+<li><code>sudo groupadd docker</code>，创建docker用户组，不过这个组一般安装好docker之后就会有了</li>
+<li><code>sudo gpasswd -a vagrant docker</code>，把vagrant这个用户加入到docker用户组</li>
+<li>有的时候会需要重新打开terminal才可以</li>
+</ol>
+
+<h1 id="3-2通过dockerfile简单构建镜像">3.2通过Dockerfile简单构建镜像</h1>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Dockerfile" data-lang="Dockerfile"><span style="color:#66d9ef">FROM</span><span style="color:#e6db74"> scratch</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#75715e"># 把hello这个可执行文件拷贝到/路径下</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">ADD</span><span style="color:#e6db74"> hello /</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#75715e"># 运行hello</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">CMD</span><span style="color:#e6db74"> [&#34;/hello&#34;]</span></code></pre></div>
+<p><code>docker build -t liguoqinjim/hello-world .</code>，构建镜像的命令，&rdquo;.&ldquo;表示在当前目录里面找Dockerfile，-t指定了镜像的名称</p>
+
+<h1 id="4-初识container">4.初识Container</h1>
+
+<p><img src="https://liguoqinjim.com/img/docker/note2/什么是Container.png" alt="什么是Container" /></p>
+
+<h2 id="4-1容器相关命令">4.1容器相关命令：</h2>
+
+<ul>
+<li><code>docker container ls</code>，列出现在正在运行的容器</li>
+<li><code>docker container ls -a</code>，列出所有的容器，包括没有在运行的</li>
+<li><code>docker ps -a</code>，列出所有的容器，包括没有在运行的</li>
+<li><code>docker run -it centos</code>，交互式运行容器的方法，这样的话运行之后contianer不会退出，但是这个对话关闭这个，contianer还是就会退出了</li>
+<li><code>docker container rm container_id</code>，可以删除一个容器（注意，这里的id可以是完整的容器id，也可以是缩写，只要是可以和别的id区分开的就可以了）</li>
+<li><code>docker rm container_id</code>，默认就是去删除container的，所以是和docker container rm id是一样的</li>
+<li><code>docker images</code>，和docker image ls是一样的，显示本机的所有镜像</li>
+<li><code>docker image rm image_id</code>，删除image，可以是image_id或者image_name</li>
+<li><code>docker rmi id</code>，是和docker image rm id一样的，是简写</li>
+<li><code>docker container ls -aq</code>，只会显示出容器的id，在批量删除容器的时候有用</li>
+<li><code>docker rm $(docker container ls -aq)</code>，删除所有的容器</li>
+<li><code>docker rm $(docker ps -aq)</code>，也是删除所有的容器</li>
+<li><code>docker rm $(docker container ls -f &quot;status=exited&quot; -q)</code>，删除所有不在运行的容器</li>
+</ul>
+
+<h2 id="4-2docker镜像拉取加速">4.2docker镜像拉取加速：</h2>
+
+<ul>
+<li><a href="https://www.daocloud.io/mirror#accelerator-doc">https://www.daocloud.io/mirror#accelerator-doc</a></li>
+<li><a href="https://dev.aliyun.com/search.html">https://dev.aliyun.com/search.html</a></li>
+</ul>
+
+<h1 id="5-构建自己的docker镜像">5.构建自己的Docker镜像</h1>
+
+<p>有两种方法可以构建镜像，一种是通过容器创建，我们创建一个容器，比如在里面安装软件，安装完成之后，我们把这个容器commit成镜像。
+还有一种是通过Dockerfile来打包镜像。比较推荐Dockerfile的方式，因为使用Dockerfile别人可以清楚看到这个镜像是怎么打包的。
+但是要是我们使用commit的方式，别人无法了解我们是怎么生成镜像的，有没有发一些恶意代码等等。</p>
+
+<h2 id="5-1docker-commit的方式创建镜像">5.1docker commit的方式创建镜像</h2>
+
+<p><code>docker commit docker_name liguoqinjim/centos_vim</code><br />
+这个命令就是把docker_name这个容器，生成一个镜像，镜像的名称是liguoqinjim/centos_vim</p>
+
+<h2 id="5-2使用dockerfile创建镜像">5.2使用Dockerfile创建镜像</h2>
+
+<p><code>docker build -t liguoqinjim/centos_vim_new .</code><br />
+&rdquo;.&ldquo;表示使用当前目录的Dockerfile来创建镜像，liguoqinjim/centos_vim_new就是镜像的名字</p>
+
+<h2 id="notice">NOTICE</h2>
+
+<p>在docker中镜像是只读的，也就是不能写的。那么docker是怎么实现在镜像里面安装好vim的呢？<br />
+这是因为docker会自动启动一个container，然后在container里面安装vim，然后再通过这个container来制作成镜像。</p>
+
+<h1 id="6-dockerfile语法梳理及最佳实践">6.Dockerfile语法梳理及最佳实践</h1>
+
+<p>Dockerfile命令：</p>
+
+<h2 id="6-1from">6.1FROM</h2>
+
+<p>尽量使用官方镜像作为base image</p>
+
+<pre><code>FROM scratch #制作base image，不依靠别的镜像
+FROM centos #使用base image
+FROM ubuntu:14.04 #使用base image
+</code></pre>
+
+<h2 id="6-2label">6.2LABEL</h2>
+
+<p>设置Metadata</p>
+
+<pre><code>LABEL maintainer=&quot;xiaoquwl@gmail.com&quot;
+LABEL version=&quot;1.0&quot;
+LABEL description=&quot;This is description&quot;
+</code></pre>
+
+<h2 id="6-3run">6.3RUN</h2>
+
+<p>run命令为了美观，最好使用反斜杠换行。<br />
+每运行一次run，image都会生成新的一层，所以尽量合并多条命令成为一行</p>
+
+<pre><code># 使用反斜杠换行
+RUN yum update &amp;&amp; yum install -y vim \
+    python-dev   
+# 主要清理cache
+RUN apt-get update &amp;&amp; apt-get install -y perl \
+    pwgen --no-install-recommends &amp;&amp; rm -rf \
+    /var/lib/apt/lists/*
+</code></pre>
+
+<h2 id="6-4workdir">6.4WORKDIR</h2>
+
+<p>能用WORKDIR的就用WORKDIR，不要用RUN去运行cd命令。<br />
+WORKDIR后面跟的路径也可以尽量使用绝对路径</p>
+
+<pre><code># 切换到/root路径
+WORKDIR /root
+# 如果没有会自动创建test文件夹
+WORKDIR /test 
+WORKDIR demo
+# 输出结果是/test/demo
+RUN pwd
+</code></pre>
+
+<h2 id="6-5add-and-copy">6.5ADD and COPY</h2>
+
+<p>大部分情况下COPY是要优于ADD的，但是ADD有一个解压缩的功能。<br />
+要是想添加远程文件的话，可以用RUN命令来运行curl或者wget</p>
+
+<pre><code># 把hello这个可执行文件添加到/路径下
+ADD hello /
+# 添加到根目录下并且解压test.tar.gz
+ADD test.tar.gz /
+# 文件应该是在/root/test/hello
+WORKDIR /root
+ADD hello test/
+# copy版本
+WORKDIR /root
+COPY hello test/
+</code></pre>
+
+<h2 id="6-6env">6.6ENV</h2>
+
+<p>使用ENV可以增加可维护性</p>
+
+<pre><code># 设置ENV
+ENV MYSQL_VERSION 5.6
+# 使用ENV
+RUN apt-get install -y mysql-server= &quot;${MYSQL_VERSION}&quot; \
+    &amp;&amp; rm -rf /var/lib/apt/lists/*
+</code></pre>
+
+<h2 id="notice-1">NOTICE</h2>
+
+<p>可以参考官方给出的一些例子，和一些官方镜像的Dockerfile<br />
+链接：</p>
+
+<ul>
+<li><a href="https://github.com/docker-library">https://github.com/docker-library</a></li>
+<li><a href="https://docs.docker.com/engine/reference/builder/#usage">https://docs.docker.com/engine/reference/builder/#usage</a></li>
+</ul>
+
+<h1 id="7-run-vs-cmd-vs-entrypoint">7.RUN vs CMD vs ENTRYPOINT</h1>
+
+<p><code>RUN</code>:执行命令并创建新的Image Layer<br />
+<code>CMD</code>:设置容器启动后默认执行的命令和参数<br />
+<code>ENTRYPOINT</code>:设置容器启动时运行的命令<br />
+这三个命令里面，CMD和ENTRYPOINT是一组的，RUN和他们两个是不一样的</p>
+
+<h2 id="7-1shell和exec格式的区别">7.1Shell和Exec格式的区别</h2>
+
+<h3 id="shell格式">Shell格式</h3>
+
+<pre><code>RUN apt-get install -y vim
+CMD echo &quot;hello docker&quot;
+ENTRYPOINT echo &quot;hello docker&quot;
+</code></pre>
+
+<pre><code>FROM centos
+ENV name Docker
+ENTRYPOINT echo &quot;hello $name&quot;
+</code></pre>
+
+<p>###Exec格式</p>
+
+<pre><code>RUN [&quot;apt-get&quot;,&quot;install&quot;,&quot;-y&quot;,&quot;vim&quot;]
+CMD [&quot;/bin/echo&quot;,&quot;hello docker&quot;]
+ENTRYPOINT [&quot;bin/echo&quot;,&quot;hello docker&quot;]
+</code></pre>
+
+<pre><code>FROM centos
+ENV name Docker
+ENTRYPOINT [&quot;bin/echo&quot;,&quot;hello $name&quot;]
+</code></pre>
+
+<h3 id="notice-2">NOTICE</h3>
+
+<p>SHELL格式的时候，<code>echo &quot;hello $name&quot;</code>是会把$name替换掉的，<br />
+但是在Exec的格式中，直接使用<code>ENTRYPOINT [&quot;/bin/echo&quot;,&quot;hello $name&quot;]</code>是不会把$name替换掉的，因为这样不是在shell中运行，只是调用了echo命令
+想要替换掉$name，需要用<code>ENTRYPOTIN [&quot;/bin/bash&quot;,&quot;-c&quot;,&quot;echo hello $name&quot;]</code></p>
+
+<h2 id="7-2cmd和entrypoint的区别">7.2CMD和ENTRYPOINT的区别</h2>
+
+<h3 id="cmd">CMD</h3>
+
+<p><img src="https://liguoqinjim.com/img/docker/note2/CMD.png" alt="CMD" /></p>
+
+<h3 id="entrypoint">ENTRYPOINT</h3>
+
+<p><img src="https://liguoqinjim.com/img/docker/note2/ENTRYPOINT.png" alt="ENTRYPOINT" /></p>
+
+<h3 id="notice-3">NOTICE</h3>
+
+<ul>
+<li>CMD是可能会被忽略的，但是ENTRYPOINT不会</li>
+<li>如果定义多个CMD，只有最后一个会被执行</li>
+</ul>
+
+<h1 id="8-镜像的发布">8.镜像的发布</h1>
+
+<p>镜像的发布一共有三种方式：</p>
+
+<ol>
+<li>docker push到hub docker</li>
+<li>docker hub和github相连接，我们在github里面写好dockerfile，docker hub会自动打成镜像</li>
+<li>自建docker registry</li>
+</ol>
+
+<h2 id="8-1docker-push">8.1docker push</h2>
+
+<pre><code>#登录docker hub的账号
+docker login
+#push镜像，注意镜像名称的开头需要和docker hub的账号是一样的
+docker push liguoqinjim/hello-world
+</code></pre>
+
+<h2 id="8-2docker-hub和github相连接">8.2docker hub和github相连接</h2>
+
+<p><img src="https://liguoqinjim.com/img/docker/note2/DockerHub.png" alt="Dockerhub" /></p>
+
+<h2 id="8-3自建docker-registry">8.3自建docker registry</h2>
+
+<ol>
+<li>启动docker registry，<code>docker run -d -p 5000:5000 --restart always --name registry registry:2</code></li>
+<li>修改/etc/docker/daemon.json<br />
+在deamon.json里面添加，&rdquo;insecure-registries:[&ldquo;10.75.44.222:5000&rdquo;]&ldquo;，10.75.44.222就是本机的ip</li>
+<li>重启docker</li>
+<li><code>docker push localhost:5000/hello-world</code>，推送镜像到docker registry，注意image的开头一定要是docker registry的地址</li>
+<li>可以通过api查看是否push成功，<code>curl localhost:5000/v2/_catalog</code>，这个是docker registry提供的api</li>
+</ol>
+
+<h1 id="9-dockerfile实战">9.Dockerfile实战</h1>
+
+<p>怎么把一个写好的服务放进docker里面：</p>
+
+<ol>
+<li>先FROM编程语言的官方库</li>
+<li>RUN命令安装需要的依赖，如(pip install等)</li>
+<li>把程序放进通过ADD或者COPY放到镜像里面</li>
+<li>EXPOSE 端口，把服务的端口暴露</li>
+<li>CMD里面运行程序即可</li>
+<li><code>docker run -d image_name</code>，这样我们就运行了这个镜像，且是在后台运行</li>
+</ol>
+
+<h2 id="notice-4">NOTICE</h2>
+
+<p>在创建镜像的时候要是出错的话，因为docker在创建镜像的时候，每一步都会创建一个中间镜像。要调试的时候，我们可以run这些中间镜像去调试，比如docker run -it 中间镜像id /bin/bash，就可以进入启动一个这个镜像的容器，然后进入内部查看有什么错误</p>
+
+<h1 id="10-容器的操作">10.容器的操作</h1>
+
+<p>关于容器的几个命令：</p>
+
+<ul>
+<li><code>docker run -d --name=demo liguoqinjim/flask-hello-world</code>，运行一个容器，&ndash;name可以指定容器的名称，不然docker会指定一个随机的名称</li>
+<li><code>docker exec -it container_id /bin/bash</code>，exec可以让容器执行一个命令，在这个命令里面我们用交互式的方式执行/bin/bash，执行完之后我们就会进入容器内部。当然也是可以执行其他的命令的</li>
+<li><code>docker exec -it container_id ip a</code>，运行ip a命令</li>
+<li><code>docker stop container_id</code>，停止一个容器</li>
+<li><code>docker start container_id</code>，启动一个容器</li>
+<li><code>docker inspect container_id</code>，查看一个容器的详细参数</li>
+<li><code>docker logs container_id</code>，会打印出容器里面的输出</li>
+</ul>
+
+<h1 id="11-dockerfile实战-2">11.Dockerfile实战(2)</h1>
+
+<p>docker的容器大致可以分类两类，一种是app或者服务，就是一直运行在后台的程序。还有一种就是工具类的，运行一次出个结果。</p>
+
+<p>这里引入一个linux下的工具软件，stress，是一个linux系统下测试系统性能的工具。<br />
+安装：<code>apt-get update &amp;&amp; apt-get install -y stress</code><br />
+使用：<code>stress --vm 1 --verbose</code></p>
+
+<p>使用ENTRYPOINT和CMD配合来获得运行容器时候输入的参数，ENTRYPOINT是要运行的命令，CMD获取运行容器时候输入的命令<br />
+如：<code>docker run -it liguoqinjim/ubuntu-stress --vm 1</code>，这样<code>--vm 1</code>就传给了<code>/usr/bin/stress</code>并运行</p>
+
+<pre><code>FROM ubuntu
+RUN apt-get update &amp;&amp; apt-get install -y stress
+ENTRYPOINT [&quot;/usr/bin/stress&quot;]
+CMD []
+</code></pre>
+
+<h1 id="12-容器的资源限制">12.容器的资源限制</h1>
+
+<p>可以在容器运行的时候加上参数对容器的资源进行限制。</p>
+
+<h2 id="12-1限制内存">12.1限制内存</h2>
+
+<pre><code>docker run --memory=300M liguoqinjim/ubuntu-stress --vm 1 --verbose
+</code></pre>
+
+<p>&ndash;memory设置了300M内存，但是要是没有设置&ndash;memory-swap的话，他的默认值就和&ndash;memory一样。那么在&ndash;memory设为200的时候，机器的内存就可以认为是200的memory加上200的memory-swap，也就是400M的内存，在上面这个命令中就是600M内存</p>
+
+<h2 id="12-2限制cpu">12.2限制cpu</h2>
+
+<pre><code>docker run --cpu-shares=10 --name=test1 liguoqinjim/ubuntu-stress --cpu 1
+docker run --cpu-shares=5 --name=test2 liguoqinjim/ubuntu-stress --cpu 1
+</code></pre>
+
+<p>&ndash;cpu-shares是docker的参数，&ndash;cpu是给stress的参数。&ndash;cpu-shares就是当有多个设置了&ndash;cpu-shares的时候，他们分配的到的cpu就是他们的权重。比如上面的情况就是test1可以使用大约66%的cpu，而test2可以使用33%</p></article>
+    <footer class="post-footer">
+      
+      <ul class="post-tags">
+        
+          <li><a href="https://liguoqinjim.com/tags/docker"><span class="tag">Docker</span></a></li>
+        
+      </ul>
+      
+      <p class="post-copyright">
+        © This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you wish to quote or reproduce.
+      </p>
+    </footer>
+    
+      <div id="disqus_thread"></div>
+<script>
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "liguoqinjim" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+      
+    
+  </section>
+  <footer class="site-footer">
+  <p>© 2017-2018 Liguoqinjim&#39;s Blog</p>
+  <p>Powered by <a href="https://gohugo.io/" target="_blank">Hugo</a> with theme <a href="https://github.com/laozhu/hugo-nuo" target="_blank">Nuo</a>.</p>
+  
+</footer>
+
+
+
+<script async src="//cdn.bootcss.com/video.js/6.2.8/alt/video.novtt.min.js"></script>
+<script async src="//cdn.bootcss.com/mathjax/2.7.2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      displayMath: [['$$','$$'], ['\\[','\\]']],
+      processEscapes: true,
+      processEnvironments: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+      TeX: { equationNumbers: { autoNumber: "AMS" },
+      extensions: ["AMSmath.js", "AMSsymbols.js"] }
+    }
+  });
+</script>
+<script type="text/x-mathjax-config">
+  // Fix <code> tags after MathJax finishes running. This is a
+  // hack to overcome a shortcoming of Markdown. Discussion at
+  // https://github.com/mojombo/jekyll/issues/199
+  MathJax.Hub.Queue(() => {
+    MathJax.Hub.getAllJax().map(v => v.SourceElement().parentNode.className += ' has-jax');
+  });
+</script>
+
+<script src="https://liguoqinjim.com/js/bundle.87092cda0d.js"></script>
+
+
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-113128130-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+
+
+  </body>
+</html>

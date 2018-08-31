@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+
+  <meta charset="utf-8" />
+
+  
+  <title>系统学习Docker 践行DevOps理念 笔记(四)|Docker的持久化存储和数据共享</title>
+
+  
+  
+
+
+
+
+
+  
+  <meta name="author" content="liguoqinjim" />
+  <meta name="description" content="Docker的持久化存储和数据共享，是课程第五章的内容
+
+" />
+
+  
+  
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@gohugoio" />
+    <meta name="twitter:title" content="系统学习Docker 践行DevOps理念 笔记(四)|Docker的持久化存储和数据共享" />
+    <meta name="twitter:description" content="Docker的持久化存储和数据共享，是课程第五章的内容
+
+" />
+    <meta name="twitter:image" content="https://liguoqinjim.com/img/avatar.jpg" />
+  
+
+  
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="系统学习Docker 践行DevOps理念 笔记(四)|Docker的持久化存储和数据共享" />
+  <meta property="og:description" content="Docker的持久化存储和数据共享，是课程第五章的内容
+
+" />
+  <meta property="og:url" content="https://liguoqinjim.com/post/docker/%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0docker-%E8%B7%B5%E8%A1%8Cdevops%E7%90%86%E5%BF%B5-%E7%AC%94%E8%AE%B0%E5%9B%9B/" />
+  <meta property="og:image" content="https://liguoqinjim.com/img/avatar.jpg" />
+
+
+
+
+<meta name="generator" content="Hugo 0.43-DEV" />
+
+
+<link rel="canonical" href="https://liguoqinjim.com/post/docker/%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0docker-%E8%B7%B5%E8%A1%8Cdevops%E7%90%86%E5%BF%B5-%E7%AC%94%E8%AE%B0%E5%9B%9B/" />
+
+<meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="format-detection" content="telephone=no,email=no,adress=no" />
+<meta http-equiv="Cache-Control" content="no-transform" />
+
+
+<meta name="robots" content="index,follow" />
+<meta name="referrer" content="origin-when-cross-origin" />
+
+<meta name="msvalidate.01" content="22596E34341DD1D17D6022C44647E587" />
+
+
+
+
+
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="apple-mobile-web-app-title" content="Liguoqinjim&#39;s Blog" />
+<meta name="msapplication-tooltip" content="Liguoqinjim&#39;s Blog" />
+<meta name='msapplication-navbutton-color' content="#5fbf5e" />
+<meta name="msapplication-TileColor" content="#5fbf5e" />
+<meta name="msapplication-TileImage" content="/img/tile-image-windows.png" />
+<link rel="icon" href="https://liguoqinjim.com/img/favicon.ico" />
+<link rel="icon" type="image/png" sizes="16x16" href="https://liguoqinjim.com/img/favicon-16x16.png" />
+<link rel="icon" type="image/png" sizes="32x32" href="https://liguoqinjim.com/img/favicon-32x32.png" />
+<link rel="icon" sizes="192x192" href="https://liguoqinjim.com/img/touch-icon-android.png" />
+<link rel="apple-touch-icon" href="https://liguoqinjim.com/img/touch-icon-apple.png" />
+<link rel="mask-icon" href="https://liguoqinjim.com/img/safari-pinned-tab.svg" color="#5fbf5e" />
+
+
+
+<link rel="stylesheet" href="//cdn.bootcss.com/video.js/6.2.8/alt/video-js-cdn.min.css" />
+
+<link rel="stylesheet" href="https://liguoqinjim.com/css/bundle.37f548f4ce.css" />
+
+
+  
+  <!--[if lt IE 9]>
+    <script src="//cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <script src="//cdn.bootcss.com/video.js/6.2.8/ie8/videojs-ie8.min.js"></script>
+  <![endif]-->
+
+<!--[if lte IE 11]>
+    <script src="//cdn.bootcss.com/classlist/1.1.20170427/classList.min.js"></script>
+  <![endif]-->
+
+
+<script src="//cdn.bootcss.com/object-fit-images/3.2.3/ofi.min.js"></script>
+
+
+<script src="//cdn.bootcss.com/smooth-scroll/12.1.4/js/smooth-scroll.polyfills.min.js"></script>
+
+
+</head>
+  <body>
+    
+    <div class="suspension">
+      <a title="Go to top" class="to-top is-hide"><span class="icon icon-up"></span></a>
+      
+        
+        <a title="Go to comments" class="to-comment" href="#disqus_thread"><span class="icon icon-comment"></span></a>
+        
+      
+    </div>
+    
+    
+  <header class="site-header">
+  <img class="avatar" src="https://liguoqinjim.com/img/avatar.jpg" alt="Avatar">
+  
+  <h2 class="title">Liguoqinjim&#39;s Blog</h2>
+  
+  <p class="subtitle">~ Keep It Simple &amp; Stupid ~</p>
+  <button class="menu-toggle" type="button">
+    <span class="icon icon-menu"></span>
+  </button>
+  <nav class="site-menu collapsed">
+    <h2 class="offscreen">Main Menu</h2>
+    <ul class="menu-list">
+      
+      
+      
+      
+        <li class="menu-item
+            
+            
+            
+              is-active
+            ">
+            <a href="https://liguoqinjim.com/">Home</a>
+          </li>
+      
+        <li class="menu-item
+            
+            
+            ">
+            <a href="https://github.com/liguoqinjim">Works</a>
+          </li>
+      
+        <li class="menu-item
+            
+            
+            ">
+            <a href="https://liguoqinjim.com/tags/">Tags</a>
+          </li>
+      
+    </ul>
+  </nav>
+  <nav class="social-menu collapsed">
+    <h2 class="offscreen">Social Networks</h2>
+    <ul class="social-list">
+
+      
+      <li class="social-item">
+        <a href="mailto:liguoqinjim23@gmail.com" title="Email"><span class="icon icon-email"></span></a>
+      </li>
+
+      
+      <li class="social-item">
+        <a href="//github.com/liguoqinjim" title="GitHub"><span class="icon icon-github"></span></a>
+      </li>
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <li class="social-item">
+        <a rel="alternate" type="application/rss+xml" href="https://liguoqinjim.com/index.xml"><span class="icon icon-rss" title="RSS"></span></a>
+      </li>
+
+    </ul>
+  </nav>
+</header>
+
+  <section class="main post-detail">
+    <header class="post-header">
+      <h1 class="post-title">系统学习Docker 践行DevOps理念 笔记(四)|Docker的持久化存储和数据共享</h1>
+      <p class="post-meta">@liguoqinjim · Aug 29, 2018 · 1 min read</p>
+    </header>
+    <article class="post-content"><p>Docker的持久化存储和数据共享，是课程第五章的内容</p>
+
+<p></p>
+
+<!-- toc -->
+
+<h1 id="1-本章介绍">1.本章介绍</h1>
+
+<p>我们知道镜像是只读的，也就是我们是无法在镜像里面写入数据的。但是容器层是可以写的，但是容器层写的数据，只在容器里面，我们要是删除这个容器，之前写入的数据也会被一起删除。所以我们需要Data Volume来保存数据。</p>
+
+<h2 id="1-1docker持久化数据的方案">1.1Docker持久化数据的方案</h2>
+
+<ol>
+<li>基于本地文件系统的Volume<br />
+可以在执行docker create或docker run时，通过-v参数将主机的目录作为容器的数据卷。这部分功能便是基于本地文件系统的volume管理</li>
+<li>基于plugin的Volume<br />
+支持第三方的存储方案，比如NAS,aws</li>
+</ol>
+
+<h2 id="1-2volume的类型">1.2Volume的类型</h2>
+
+<ol>
+<li>受管理的data Volume，由docker后台自动创建</li>
+<li>绑定挂载的Volume，具体挂载位置可以由用户指定</li>
+</ol>
+
+<h1 id="2-本章实验环境介绍">2.本章实验环境介绍</h1>
+
+<p>略</p>
+
+<h1 id="3-数据持久化之data-volume">3.数据持久化之Data Volume</h1>
+
+<p><img src="https://liguoqinjim.com/img/docker/note4/volume.png" alt="volume" /></p>
+
+<p>Dockerfile里面定义了：<br />
+<code>VOLUME /var/lib/mysql</code><br />
+这样容器启动的时候就会创建一个docker volume了，容器的相应数据就会存储在这个volume里面，可以有多个volume</p>
+
+<p>相关命令：</p>
+
+<ul>
+<li><code>docker volume ls</code>，查看所有的volume</li>
+<li><code>docker volume inspect volume_id</code>，查看一个volume的详细信息，需要注意，这个命令输入短的id没有用，一定要输入完整的id</li>
+<li><code>docker volume rm volume_id</code>，删除一个volume</li>
+<li><code>docker rm -f container_id</code>，强制停止一个容器并删除</li>
+<li><code>docker run -d --name mysql1 -e MYSQL_ALLOW_EMPTY_PASSWORD=true mysql</code>，容器创建的时候会自动创建一个volume，volume的name是随机的
+5.docker run -d -v mysql:/var/lib/mysql &ndash;name mysql1 -e MYSQL_ALLOW_EMPTY_PASSWORD=true mysql，这个命令里面使用-v mysql:/var/lib/mysql，mysql会是volume的名字，不再是docker自动生成的那个name了，/var/lib/mysql是镜像的Dockerfile里面VOLUME后面跟随的路径，也就是docker容器里面的路径。也就是这个路径的VOLUME生成名字会是mysql。</li>
+</ul>
+
+<h2 id="notice">NOTICE</h2>
+
+<ol>
+<li>删除容器之后，volume是不会删除的</li>
+<li>-v参数，比如-v mysql:/var/lib/mysql，如果还没有volume的name为mysql，那么就是新建一个volume，但是要是已经存在了，那么用这个命令的时候，也就是新开的容器的/var/lib/mysql会挂载到这个volume上</li>
+</ol>
+
+<h1 id="4-数据持久化之bind-mouting">4.数据持久化之Bind Mouting</h1>
+
+<p><img src="https://liguoqinjim.com/img/docker/note4/mouting.png" alt="mouting" />
+/home/aaa是本机的路径，/root/aaa是容器里面的路径。两个就映射了，两边的数据都是一样的</p>
+
+<p>相关命令：</p>
+
+<ul>
+<li><code>docker run -d -v $(pwd):/usr/share/nginx/html --name web nginx</code>，这个是把本机的当前目录，$(pwd)，和容器里面的/usr/share/nginx/html相互映射</li>
+</ul>
+
+<h1 id="5-开发者利器-docker-bind-mout">5.开发者利器-Docker+Bind Mout</h1>
+
+<p>我们在开发的时候，使用bind mouting这种方式是比较方便的，因为我们在本机的一旦修改了，docker里面的文件也会一样。</p></article>
+    <footer class="post-footer">
+      
+      <ul class="post-tags">
+        
+          <li><a href="https://liguoqinjim.com/tags/docker"><span class="tag">Docker</span></a></li>
+        
+      </ul>
+      
+      <p class="post-copyright">
+        © This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you wish to quote or reproduce.
+      </p>
+    </footer>
+    
+      <div id="disqus_thread"></div>
+<script>
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "liguoqinjim" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+      
+    
+  </section>
+  <footer class="site-footer">
+  <p>© 2017-2018 Liguoqinjim&#39;s Blog</p>
+  <p>Powered by <a href="https://gohugo.io/" target="_blank">Hugo</a> with theme <a href="https://github.com/laozhu/hugo-nuo" target="_blank">Nuo</a>.</p>
+  
+</footer>
+
+
+
+<script async src="//cdn.bootcss.com/video.js/6.2.8/alt/video.novtt.min.js"></script>
+<script async src="//cdn.bootcss.com/mathjax/2.7.2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      displayMath: [['$$','$$'], ['\\[','\\]']],
+      processEscapes: true,
+      processEnvironments: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+      TeX: { equationNumbers: { autoNumber: "AMS" },
+      extensions: ["AMSmath.js", "AMSsymbols.js"] }
+    }
+  });
+</script>
+<script type="text/x-mathjax-config">
+  // Fix <code> tags after MathJax finishes running. This is a
+  // hack to overcome a shortcoming of Markdown. Discussion at
+  // https://github.com/mojombo/jekyll/issues/199
+  MathJax.Hub.Queue(() => {
+    MathJax.Hub.getAllJax().map(v => v.SourceElement().parentNode.className += ' has-jax');
+  });
+</script>
+
+<script src="https://liguoqinjim.com/js/bundle.87092cda0d.js"></script>
+
+
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-113128130-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+
+
+  </body>
+</html>
