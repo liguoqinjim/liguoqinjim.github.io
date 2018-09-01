@@ -40,7 +40,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.43-DEV" />
+<meta name="generator" content="Hugo 0.48" />
 
 
 <link rel="canonical" href="https://liguoqinjim.com/post/leetcode/lab0020/" />
@@ -78,7 +78,7 @@
 
 <link rel="stylesheet" href="//cdn.bootcss.com/video.js/6.2.8/alt/video-js-cdn.min.css" />
 
-<link rel="stylesheet" href="https://liguoqinjim.com/css/bundle.37f548f4ce.css" />
+<link rel="stylesheet" href="https://liguoqinjim.com/css/bundle.89ae8afad0.css" />
 
 
   
@@ -241,30 +241,30 @@
 
 <h2 id="解法1">解法1</h2>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">isValid</span>(<span style="color:#a6e22e">s</span> <span style="color:#66d9ef">string</span>) <span style="color:#66d9ef">bool</span> { <span style="color:#75715e">//这个解法用到了acsii值
-</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">if</span> len(<span style="color:#a6e22e">s</span>) <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> {
-        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">true</span>
-    }
+</span><span style="color:#75715e"></span>	<span style="color:#66d9ef">if</span> len(<span style="color:#a6e22e">s</span>) <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> {
+		<span style="color:#66d9ef">return</span> <span style="color:#66d9ef">true</span>
+	}
 
-    <span style="color:#a6e22e">left</span> <span style="color:#f92672">:=</span> make([]<span style="color:#66d9ef">int</span>, <span style="color:#ae81ff">1</span>)
-    <span style="color:#a6e22e">left</span>[<span style="color:#ae81ff">0</span>] = int(<span style="color:#a6e22e">s</span>[<span style="color:#ae81ff">0</span>])
-    <span style="color:#66d9ef">for</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">1</span>; <span style="color:#a6e22e">i</span> &lt; len(<span style="color:#a6e22e">s</span>); <span style="color:#a6e22e">i</span><span style="color:#f92672">++</span> {
-        <span style="color:#a6e22e">a</span> <span style="color:#f92672">:=</span> int(<span style="color:#a6e22e">s</span>[<span style="color:#a6e22e">i</span>])
-        <span style="color:#66d9ef">if</span> len(<span style="color:#a6e22e">left</span>) <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> {
-            <span style="color:#a6e22e">left</span> = append(<span style="color:#a6e22e">left</span>, <span style="color:#a6e22e">a</span>)
-            <span style="color:#66d9ef">continue</span>
-        }
-        <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">a</span><span style="color:#f92672">-</span><span style="color:#a6e22e">left</span>[len(<span style="color:#a6e22e">left</span>)<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">!=</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#a6e22e">a</span><span style="color:#f92672">-</span><span style="color:#a6e22e">left</span>[len(<span style="color:#a6e22e">left</span>)<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">!=</span> <span style="color:#ae81ff">2</span> {
-            <span style="color:#a6e22e">left</span> = append(<span style="color:#a6e22e">left</span>, <span style="color:#a6e22e">a</span>)
-        } <span style="color:#66d9ef">else</span> {
-            <span style="color:#a6e22e">left</span> = <span style="color:#a6e22e">left</span>[:len(<span style="color:#a6e22e">left</span>)<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]
-        }
-    }
+	<span style="color:#a6e22e">left</span> <span style="color:#f92672">:=</span> make([]<span style="color:#66d9ef">int</span>, <span style="color:#ae81ff">1</span>)
+	<span style="color:#a6e22e">left</span>[<span style="color:#ae81ff">0</span>] = int(<span style="color:#a6e22e">s</span>[<span style="color:#ae81ff">0</span>])
+	<span style="color:#66d9ef">for</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">1</span>; <span style="color:#a6e22e">i</span> &lt; len(<span style="color:#a6e22e">s</span>); <span style="color:#a6e22e">i</span><span style="color:#f92672">++</span> {
+		<span style="color:#a6e22e">a</span> <span style="color:#f92672">:=</span> int(<span style="color:#a6e22e">s</span>[<span style="color:#a6e22e">i</span>])
+		<span style="color:#66d9ef">if</span> len(<span style="color:#a6e22e">left</span>) <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> {
+			<span style="color:#a6e22e">left</span> = append(<span style="color:#a6e22e">left</span>, <span style="color:#a6e22e">a</span>)
+			<span style="color:#66d9ef">continue</span>
+		}
+		<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">a</span><span style="color:#f92672">-</span><span style="color:#a6e22e">left</span>[len(<span style="color:#a6e22e">left</span>)<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">!=</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#a6e22e">a</span><span style="color:#f92672">-</span><span style="color:#a6e22e">left</span>[len(<span style="color:#a6e22e">left</span>)<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">!=</span> <span style="color:#ae81ff">2</span> {
+			<span style="color:#a6e22e">left</span> = append(<span style="color:#a6e22e">left</span>, <span style="color:#a6e22e">a</span>)
+		} <span style="color:#66d9ef">else</span> {
+			<span style="color:#a6e22e">left</span> = <span style="color:#a6e22e">left</span>[:len(<span style="color:#a6e22e">left</span>)<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]
+		}
+	}
 
-    <span style="color:#66d9ef">if</span> len(<span style="color:#a6e22e">left</span>) <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> {
-        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">true</span>
-    } <span style="color:#66d9ef">else</span> {
-        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">false</span>
-    }
+	<span style="color:#66d9ef">if</span> len(<span style="color:#a6e22e">left</span>) <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> {
+		<span style="color:#66d9ef">return</span> <span style="color:#66d9ef">true</span>
+	} <span style="color:#66d9ef">else</span> {
+		<span style="color:#66d9ef">return</span> <span style="color:#66d9ef">false</span>
+	}
 }</code></pre></div>
 <h1 id="总结">总结</h1>
 
@@ -286,7 +286,7 @@
     </footer>
     
       <div id="disqus_thread"></div>
-<script>
+<script type="application/javascript">
     var disqus_config = function () {
     
     
@@ -340,10 +340,10 @@
   });
 </script>
 
-<script src="https://liguoqinjim.com/js/bundle.87092cda0d.js"></script>
+<script src="https://liguoqinjim.com/js/bundle.9a617db479.js"></script>
 
 
-<script>
+<script type="application/javascript">
 var doNotTrack = false;
 if (!doNotTrack) {
 	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;

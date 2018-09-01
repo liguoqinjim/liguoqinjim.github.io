@@ -40,7 +40,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.43-DEV" />
+<meta name="generator" content="Hugo 0.48" />
 
 
 <link rel="canonical" href="https://liguoqinjim.com/post/leetcode/lab0007/" />
@@ -78,7 +78,7 @@
 
 <link rel="stylesheet" href="//cdn.bootcss.com/video.js/6.2.8/alt/video-js-cdn.min.css" />
 
-<link rel="stylesheet" href="https://liguoqinjim.com/css/bundle.37f548f4ce.css" />
+<link rel="stylesheet" href="https://liguoqinjim.com/css/bundle.89ae8afad0.css" />
 
 
   
@@ -232,44 +232,44 @@
 
 <h2 id="解法1">解法1</h2>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">reverse</span>(<span style="color:#a6e22e">x</span> <span style="color:#66d9ef">int</span>) <span style="color:#66d9ef">int</span> {
-    <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">x</span> <span style="color:#f92672">&gt;=</span> <span style="color:#a6e22e">math</span>.<span style="color:#a6e22e">MaxInt32</span> <span style="color:#f92672">||</span> <span style="color:#a6e22e">x</span> <span style="color:#f92672">&lt;=</span> <span style="color:#a6e22e">math</span>.<span style="color:#a6e22e">MinInt32</span> {
-        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>
-    }
+	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">x</span> <span style="color:#f92672">&gt;=</span> <span style="color:#a6e22e">math</span>.<span style="color:#a6e22e">MaxInt32</span> <span style="color:#f92672">||</span> <span style="color:#a6e22e">x</span> <span style="color:#f92672">&lt;=</span> <span style="color:#a6e22e">math</span>.<span style="color:#a6e22e">MinInt32</span> {
+		<span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>
+	}
 
-    <span style="color:#a6e22e">i</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">10</span>
-    <span style="color:#a6e22e">num</span> <span style="color:#f92672">:=</span> make([]<span style="color:#66d9ef">int</span>, <span style="color:#ae81ff">0</span>)
-    <span style="color:#66d9ef">for</span> {
-        <span style="color:#a6e22e">rem</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">x</span> <span style="color:#f92672">%</span> <span style="color:#a6e22e">i</span>
-        <span style="color:#a6e22e">num</span> = append(<span style="color:#a6e22e">num</span>, <span style="color:#a6e22e">rem</span><span style="color:#f92672">/</span>(<span style="color:#a6e22e">i</span><span style="color:#f92672">/</span><span style="color:#ae81ff">10</span>))
-        <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">rem</span> <span style="color:#f92672">==</span> <span style="color:#a6e22e">x</span> {
-            <span style="color:#66d9ef">break</span>
-        }
-        <span style="color:#a6e22e">i</span> <span style="color:#f92672">*=</span> <span style="color:#ae81ff">10</span>
-    }
-    <span style="color:#a6e22e">result</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">0</span>
-    <span style="color:#66d9ef">for</span> <span style="color:#a6e22e">n</span>, <span style="color:#a6e22e">v</span> <span style="color:#f92672">:=</span> <span style="color:#66d9ef">range</span> <span style="color:#a6e22e">num</span> {
-        <span style="color:#a6e22e">result</span> <span style="color:#f92672">+=</span> <span style="color:#a6e22e">v</span> <span style="color:#f92672">*</span> int(<span style="color:#a6e22e">math</span>.<span style="color:#a6e22e">Pow</span>(<span style="color:#ae81ff">10</span>, float64(len(<span style="color:#a6e22e">num</span>)<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span><span style="color:#f92672">-</span><span style="color:#a6e22e">n</span>)))
-    }
+	<span style="color:#a6e22e">i</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">10</span>
+	<span style="color:#a6e22e">num</span> <span style="color:#f92672">:=</span> make([]<span style="color:#66d9ef">int</span>, <span style="color:#ae81ff">0</span>)
+	<span style="color:#66d9ef">for</span> {
+		<span style="color:#a6e22e">rem</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">x</span> <span style="color:#f92672">%</span> <span style="color:#a6e22e">i</span>
+		<span style="color:#a6e22e">num</span> = append(<span style="color:#a6e22e">num</span>, <span style="color:#a6e22e">rem</span><span style="color:#f92672">/</span>(<span style="color:#a6e22e">i</span><span style="color:#f92672">/</span><span style="color:#ae81ff">10</span>))
+		<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">rem</span> <span style="color:#f92672">==</span> <span style="color:#a6e22e">x</span> {
+			<span style="color:#66d9ef">break</span>
+		}
+		<span style="color:#a6e22e">i</span> <span style="color:#f92672">*=</span> <span style="color:#ae81ff">10</span>
+	}
+	<span style="color:#a6e22e">result</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">0</span>
+	<span style="color:#66d9ef">for</span> <span style="color:#a6e22e">n</span>, <span style="color:#a6e22e">v</span> <span style="color:#f92672">:=</span> <span style="color:#66d9ef">range</span> <span style="color:#a6e22e">num</span> {
+		<span style="color:#a6e22e">result</span> <span style="color:#f92672">+=</span> <span style="color:#a6e22e">v</span> <span style="color:#f92672">*</span> int(<span style="color:#a6e22e">math</span>.<span style="color:#a6e22e">Pow</span>(<span style="color:#ae81ff">10</span>, float64(len(<span style="color:#a6e22e">num</span>)<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span><span style="color:#f92672">-</span><span style="color:#a6e22e">n</span>)))
+	}
 
-    <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">result</span> <span style="color:#f92672">&gt;=</span> <span style="color:#a6e22e">math</span>.<span style="color:#a6e22e">MaxInt32</span> <span style="color:#f92672">||</span> <span style="color:#a6e22e">result</span> <span style="color:#f92672">&lt;=</span> <span style="color:#a6e22e">math</span>.<span style="color:#a6e22e">MinInt32</span> {
-        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>
-    }
+	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">result</span> <span style="color:#f92672">&gt;=</span> <span style="color:#a6e22e">math</span>.<span style="color:#a6e22e">MaxInt32</span> <span style="color:#f92672">||</span> <span style="color:#a6e22e">result</span> <span style="color:#f92672">&lt;=</span> <span style="color:#a6e22e">math</span>.<span style="color:#a6e22e">MinInt32</span> {
+		<span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>
+	}
 
-    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">result</span>
+	<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">result</span>
 }</code></pre></div>
 <h2 id="解法2">解法2</h2>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">reverse2</span>(<span style="color:#a6e22e">x</span> <span style="color:#66d9ef">int</span>) <span style="color:#66d9ef">int</span> {
-    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">result</span> <span style="color:#66d9ef">int32</span> = <span style="color:#ae81ff">0</span>
-    <span style="color:#66d9ef">for</span> <span style="color:#a6e22e">x</span> <span style="color:#f92672">!=</span> <span style="color:#ae81ff">0</span> {
-        <span style="color:#a6e22e">tail</span> <span style="color:#f92672">:=</span> int32(<span style="color:#a6e22e">x</span>) <span style="color:#f92672">%</span> <span style="color:#ae81ff">10</span>
-        <span style="color:#a6e22e">newResult</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">result</span><span style="color:#f92672">*</span><span style="color:#ae81ff">10</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">tail</span>
-        <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">newResult</span><span style="color:#f92672">-</span><span style="color:#a6e22e">tail</span>)<span style="color:#f92672">/</span><span style="color:#ae81ff">10</span> <span style="color:#f92672">!=</span> <span style="color:#a6e22e">result</span> { <span style="color:#75715e">//overflow，因为从数学来考虑，这个等式是肯定相等的。如果不相等，就出现了数字超过范围的情况了
-</span><span style="color:#75715e"></span>            <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>
-        }
-        <span style="color:#a6e22e">result</span> = <span style="color:#a6e22e">newResult</span>
-        <span style="color:#a6e22e">x</span> <span style="color:#f92672">/=</span> <span style="color:#ae81ff">10</span>
-    }
-    <span style="color:#66d9ef">return</span> int(<span style="color:#a6e22e">result</span>)
+	<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">result</span> <span style="color:#66d9ef">int32</span> = <span style="color:#ae81ff">0</span>
+	<span style="color:#66d9ef">for</span> <span style="color:#a6e22e">x</span> <span style="color:#f92672">!=</span> <span style="color:#ae81ff">0</span> {
+		<span style="color:#a6e22e">tail</span> <span style="color:#f92672">:=</span> int32(<span style="color:#a6e22e">x</span>) <span style="color:#f92672">%</span> <span style="color:#ae81ff">10</span>
+		<span style="color:#a6e22e">newResult</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">result</span><span style="color:#f92672">*</span><span style="color:#ae81ff">10</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">tail</span>
+		<span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">newResult</span><span style="color:#f92672">-</span><span style="color:#a6e22e">tail</span>)<span style="color:#f92672">/</span><span style="color:#ae81ff">10</span> <span style="color:#f92672">!=</span> <span style="color:#a6e22e">result</span> { <span style="color:#75715e">//overflow，因为从数学来考虑，这个等式是肯定相等的。如果不相等，就出现了数字超过范围的情况了
+</span><span style="color:#75715e"></span>			<span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>
+		}
+		<span style="color:#a6e22e">result</span> = <span style="color:#a6e22e">newResult</span>
+		<span style="color:#a6e22e">x</span> <span style="color:#f92672">/=</span> <span style="color:#ae81ff">10</span>
+	}
+	<span style="color:#66d9ef">return</span> int(<span style="color:#a6e22e">result</span>)
 }</code></pre></div>
 <h1 id="总结">总结</h1>
 
@@ -291,7 +291,7 @@
     </footer>
     
       <div id="disqus_thread"></div>
-<script>
+<script type="application/javascript">
     var disqus_config = function () {
     
     
@@ -345,10 +345,10 @@
   });
 </script>
 
-<script src="https://liguoqinjim.com/js/bundle.87092cda0d.js"></script>
+<script src="https://liguoqinjim.com/js/bundle.9a617db479.js"></script>
 
 
-<script>
+<script type="application/javascript">
 var doNotTrack = false;
 if (!doNotTrack) {
 	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
