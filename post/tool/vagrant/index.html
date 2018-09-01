@@ -225,14 +225,44 @@
 
 <p></p>
 
-<p>怎么使用vagrant安装一个虚拟机</p></article>
+<p>怎么使用vagrant安装一个虚拟机</p>
+
+<p>mac上使用vagrant，和virtualBox，
+前提是要先安装virtual box</p>
+
+<p>安装virtual box：
+链接： <a href="https://www.virtualbox.org/wiki/Downloads">https://www.virtualbox.org/wiki/Downloads</a></p>
+
+<p>安装vagrant：
+链接： <a href="https://www.vagrantup.com/downloads.html">https://www.vagrantup.com/downloads.html</a>
+下载之后安装就可以了</p>
+
+<p>步骤：
+1.vagrant init centos/7
+2.vagrant up  启动虚拟机(要是没下载，vagrant会自动下载)
+3.vagrant ssh 可以连上这台虚拟机
+4.vagrant halt 关闭虚拟机
+5.vagrant destory 删除虚拟机</p>
+
+<p>在windows上还是用virtualbox好了，因为vmware workstatsion这种，vagrant的脚本是要钱的。
+在windows上使用vagrant可能会有点问题，vagrant的页面里面有这个解决方法</p>
+
+<p>vagrant可以指定使用的虚拟机，通过命令：
+vagrant up -provider=vmware_fusion，这样就可以使用vmware_fusion的虚拟机了</p>
+
+<p>注意:
+vagrant up的时候可能会遇到vagrant was unable to mount VirtualBox shared folders的错误，解决办法：
+vagrant plugin install vagrant-vbguest，然后再vagrant up就可以了</p>
+
+<p>vagrant scp，vagrant scp可以给vagrant里面传送文件
+1.vagrant plugin list
+2.vagrant plugin install vagrant-scp
+3.vagrant scp ../lab005/ docker-node1:/home/vagrant/lab005，给docker-node1这个vagrant里面传送文件</p></article>
     <footer class="post-footer">
       
       <ul class="post-tags">
         
-          <li><a href="https://liguoqinjim.com/tags/taga"><span class="tag">TagA</span></a></li>
-        
-          <li><a href="https://liguoqinjim.com/tags/tagb"><span class="tag">TagB</span></a></li>
+          <li><a href="https://liguoqinjim.com/tags/tool"><span class="tag">Tool</span></a></li>
         
       </ul>
       

@@ -108,13 +108,13 @@
   </url>
   
   <url>
-    <loc>https://liguoqinjim.com/categories/docker/</loc>
+    <loc>https://liguoqinjim.com/tags/docker/</loc>
     <lastmod>2018-08-30T22:18:05+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://liguoqinjim.com/tags/docker/</loc>
+    <loc>https://liguoqinjim.com/categories/docker/</loc>
     <lastmod>2018-08-30T22:18:05+08:00</lastmod>
     <priority>0</priority>
   </url>
@@ -132,13 +132,13 @@
   </url>
   
   <url>
-    <loc>https://liguoqinjim.com/categories/leetcode/</loc>
+    <loc>https://liguoqinjim.com/tags/leetcode/</loc>
     <lastmod>2018-07-24T11:46:25+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://liguoqinjim.com/tags/leetcode/</loc>
+    <loc>https://liguoqinjim.com/categories/leetcode/</loc>
     <lastmod>2018-07-24T11:46:25+08:00</lastmod>
     <priority>0</priority>
   </url>
@@ -150,13 +150,13 @@
   </url>
   
   <url>
-    <loc>https://liguoqinjim.com/categories/markdown/</loc>
+    <loc>https://liguoqinjim.com/tags/markdown/</loc>
     <lastmod>2018-07-04T16:42:54+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://liguoqinjim.com/tags/markdown/</loc>
+    <loc>https://liguoqinjim.com/categories/markdown/</loc>
     <lastmod>2018-07-04T16:42:54+08:00</lastmod>
     <priority>0</priority>
   </url>
@@ -168,32 +168,20 @@
   </url>
   
   <url>
-    <loc>https://liguoqinjim.com/tags/taga/</loc>
-    <lastmod>2018-09-01T14:07:36+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://liguoqinjim.com/tags/tagb/</loc>
-    <lastmod>2018-09-01T14:07:36+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>https://liguoqinjim.com/tags/</loc>
     <lastmod>2018-08-30T22:18:05+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://liguoqinjim.com/categories/tool/</loc>
-    <lastmod>2018-01-27T12:37:47+08:00</lastmod>
+    <loc>https://liguoqinjim.com/tags/tool/</loc>
+    <lastmod>2018-09-01T14:07:36+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://liguoqinjim.com/tags/tool/</loc>
-    <lastmod>2018-07-03T14:12:17+08:00</lastmod>
+    <loc>https://liguoqinjim.com/categories/tool/</loc>
+    <lastmod>2018-01-27T12:37:47+08:00</lastmod>
     <priority>0</priority>
   </url>
   
