@@ -5,7 +5,7 @@
   <meta charset="utf-8" />
 
   
-  <title>Hugo的使用</title>
+  <title>Vagrant入门</title>
 
   
   
@@ -16,23 +16,32 @@
 
   
   <meta name="author" content="liguoqinjim" />
-  <meta name="description" content="Hugo是由Go语言实现的静态网站生成器。简单、易用、高效、易扩展、快速部署。 " />
+  <meta name="description" content="Vagrant is a tool for building and managing virtual machine environments in a single workflow. With an easy-to-use workflow and focus on automation, Vagrant lowers development environment setup time, increases production parity, and makes the &amp;ldquo;works on my machine&amp;rdquo; excuse a relic of the past.
+Vagrant是一个在单一工作流中创建和管理虚拟机环境的工具。通过简单易用的工作流和
+
+" />
 
   
   
-    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@gohugoio" />
-    <meta name="twitter:title" content="Hugo的使用" />
-    <meta name="twitter:description" content="Hugo是由Go语言实现的静态网站生成器。简单、易用、高效、易扩展、快速部署。 " />
-    <meta name="twitter:image" content="https://liguoqinjim.com/img/avatar.jpg" />
+    <meta name="twitter:title" content="Vagrant入门" />
+    <meta name="twitter:description" content="Vagrant is a tool for building and managing virtual machine environments in a single workflow. With an easy-to-use workflow and focus on automation, Vagrant lowers development environment setup time, increases production parity, and makes the &amp;ldquo;works on my machine&amp;rdquo; excuse a relic of the past.
+Vagrant是一个在单一工作流中创建和管理虚拟机环境的工具。通过简单易用的工作流和
+
+" />
+    <meta name="twitter:image" content="https://liguoqinjim.com/img/cover/vagrant.svg" />
   
 
   
   <meta property="og:type" content="article" />
-  <meta property="og:title" content="Hugo的使用" />
-  <meta property="og:description" content="Hugo是由Go语言实现的静态网站生成器。简单、易用、高效、易扩展、快速部署。 " />
-  <meta property="og:url" content="https://liguoqinjim.com/post/tool/hugo%E7%9A%84%E4%BD%BF%E7%94%A8/" />
-  <meta property="og:image" content="https://liguoqinjim.com/img/avatar.jpg" />
+  <meta property="og:title" content="Vagrant入门" />
+  <meta property="og:description" content="Vagrant is a tool for building and managing virtual machine environments in a single workflow. With an easy-to-use workflow and focus on automation, Vagrant lowers development environment setup time, increases production parity, and makes the &amp;ldquo;works on my machine&amp;rdquo; excuse a relic of the past.
+Vagrant是一个在单一工作流中创建和管理虚拟机环境的工具。通过简单易用的工作流和
+
+" />
+  <meta property="og:url" content="https://liguoqinjim.com/post/tool/vagrant%E5%85%A5%E9%97%A8/" />
+  <meta property="og:image" content="https://liguoqinjim.com/img/cover/vagrant.svg" />
 
 
 
@@ -40,7 +49,7 @@
 <meta name="generator" content="Hugo 0.48" />
 
 
-<link rel="canonical" href="https://liguoqinjim.com/post/tool/hugo%E7%9A%84%E4%BD%BF%E7%94%A8/" />
+<link rel="canonical" href="https://liguoqinjim.com/post/tool/vagrant%E5%85%A5%E9%97%A8/" />
 
 <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
@@ -212,68 +221,59 @@
 
   <section class="main post-detail">
     <header class="post-header">
-      <h1 class="post-title">Hugo的使用</h1>
-      <p class="post-meta">@liguoqinjim · Jan 27, 2018 · 1 min read</p>
+      <h1 class="post-title">Vagrant入门</h1>
+      <p class="post-meta">@liguoqinjim · Sep 1, 2018 · 1 min read</p>
     </header>
-    <article class="post-content"><p>Hugo是由Go语言实现的静态网站生成器。简单、易用、高效、易扩展、快速部署。
-</p>
+    <article class="post-content"><p>Vagrant is a tool for building and managing virtual machine environments in a single workflow. With an easy-to-use workflow and focus on automation, Vagrant lowers development environment setup time, increases production parity, and makes the &ldquo;works on my machine&rdquo; excuse a relic of the past.<br />
+Vagrant是一个在单一工作流中创建和管理虚拟机环境的工具。通过简单易用的工作流和</p>
 
-<!-- toc -->
+<p></p>
 
-<h1 id="1-hugo安装">1.Hugo安装</h1>
+<p>怎么使用vagrant安装一个虚拟机</p>
 
-<h2 id="1-1-go安装">1.1 Go安装</h2>
+<p>mac上使用vagrant，和virtualBox，
+前提是要先安装virtual box</p>
 
-<p>直接使用go get的方式安装:
-<code>go get -u -v github.com/gohugoio/hugo</code></p>
+<p>安装virtual box：
+链接： <a href="https://www.virtualbox.org/wiki/Downloads">https://www.virtualbox.org/wiki/Downloads</a></p>
 
-<h2 id="1-2-brew安装">1.2 Brew安装</h2>
+<p>安装vagrant：
+链接： <a href="https://www.vagrantup.com/downloads.html">https://www.vagrantup.com/downloads.html</a>
+下载之后安装就可以了</p>
 
-<p>在mac下可以使用brew安装:
-<code>brew install hugo</code></p>
+<p>步骤：
+1.vagrant init centos/7
+2.vagrant up  启动虚拟机(要是没下载，vagrant会自动下载)
+3.vagrant ssh 可以连上这台虚拟机
+4.vagrant halt 关闭虚拟机
+5.vagrant destory 删除虚拟机</p>
 
-<h1 id="2-hugo新建一个站点">2.Hugo新建一个站点</h1>
+<p>在windows上还是用virtualbox好了，因为vmware workstatsion这种，vagrant的脚本是要钱的。
+在windows上使用vagrant可能会有点问题，vagrant的页面里面有这个解决方法</p>
 
-<p><code>hugo new site path/to/site</code>，运行之后会在运行路径下生成<code>path/to/site</code>的文件夹。</p>
+<p>vagrant可以指定使用的虚拟机，通过命令：
+vagrant up -provider=vmware_fusion，这样就可以使用vmware_fusion的虚拟机了</p>
 
-<h1 id="3-hugo新建一篇文章">3.Hugo新建一篇文章</h1>
+<p>注意:
+vagrant up的时候可能会遇到vagrant was unable to mount VirtualBox shared folders的错误，解决办法：
+vagrant plugin install vagrant-vbguest，然后再vagrant up就可以了</p>
 
-<p><code>hugo new post/directory/new.md</code>，这样就会生成一篇新的文章。
-会生成在<code>content/post/directory</code>文件夹下。</p>
-
-<h1 id="4-安装主题">4.安装主题</h1>
-
-<p>拷贝主题到themes文件夹下，然后在<code>config.toml</code>加上<code>theme = &quot;hugo-theme-dream&quot;</code>，
-值就填要用的主题的文件夹的名字就可以了。</p>
-
-<h1 id="5-修改config-toml">5.修改config.toml</h1>
-
-<p>要是要发布到github.io的话，要在config.toml里面把<code>baseURL</code>改成<code>https://liguoqinjim.github.io</code></p>
-
-<h1 id="6-本机预览">6.本机预览</h1>
-
-<p><code>hugo server -D</code>就可以实现本机预览了</p>
-
-<h1 id="7-发布">7.发布</h1>
-
-<p><code>hugo -D</code>，这里<code>-D</code>的意思是把<code>draft: ture</code>的文章也发布出来，也就是在草稿状态中的文章。运行完命令之后，生成的博客就在public文件夹里面了，
-我们只要把public文件夹发布到github.io的库就可以了</p>
-
-<h1 id="参考资料">参考资料</h1>
-
-<ul>
-<li><a href="http://www.gohugo.org/">http://www.gohugo.org/</a></li>
-</ul></article>
+<p>vagrant scp，vagrant scp可以给vagrant里面传送文件
+1.vagrant plugin list
+2.vagrant plugin install vagrant-scp
+3.vagrant scp ../lab005/ docker-node1:/home/vagrant/lab005，给docker-node1这个vagrant里面传送文件</p></article>
     <footer class="post-footer">
       
       <ul class="post-tags">
         
           <li><a href="https://liguoqinjim.com/tags/tool"><span class="tag">Tool</span></a></li>
         
+          <li><a href="https://liguoqinjim.com/tags/vagrant"><span class="tag">Vagrant</span></a></li>
+        
       </ul>
       
       <p class="post-copyright">
-        © This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you wish to quote or reproduce.This post was published <strong>218</strong> days ago, content in the post may be inaccurate, even wrong now, please take risk yourself.
+        © This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you wish to quote or reproduce.
       </p>
     </footer>
     

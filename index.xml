@@ -24,12 +24,13 @@
     </item>
     
     <item>
-      <title>Vagrant</title>
-      <link>https://liguoqinjim.com/post/tool/vagrant/</link>
+      <title>Vagrant入门</title>
+      <link>https://liguoqinjim.com/post/tool/vagrant%E5%85%A5%E9%97%A8/</link>
       <pubDate>Sat, 01 Sep 2018 14:07:36 +0800</pubDate>
       
-      <guid>https://liguoqinjim.com/post/tool/vagrant/</guid>
-      <description>&lt;p&gt;关于vagrant的使用&lt;/p&gt;
+      <guid>https://liguoqinjim.com/post/tool/vagrant%E5%85%A5%E9%97%A8/</guid>
+      <description>&lt;p&gt;Vagrant is a tool for building and managing virtual machine environments in a single workflow. With an easy-to-use workflow and focus on automation, Vagrant lowers development environment setup time, increases production parity, and makes the &amp;ldquo;works on my machine&amp;rdquo; excuse a relic of the past.&lt;br /&gt;
+Vagrant是一个在单一工作流中创建和管理虚拟机环境的工具。通过简单易用的工作流和&lt;/p&gt;
 
 &lt;p&gt;&lt;/p&gt;</description>
     </item>
