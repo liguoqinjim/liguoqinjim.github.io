@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Git on Liguoqinjim&#39;s Blog</title>
+    <link>https://liguoqinjim.com/tags/git/</link>
+    <description>Recent content in Git on Liguoqinjim&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <copyright>© This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you wish to quote or reproduce.</copyright>
+    <lastBuildDate>Sun, 02 Sep 2018 12:24:17 +0800</lastBuildDate>
+    
+	<atom:link href="https://liguoqinjim.com/tags/git/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Git免密码</title>
+      <link>https://liguoqinjim.com/post/tool/git%E5%85%8D%E5%AF%86%E7%A0%81/</link>
+      <pubDate>Sun, 02 Sep 2018 12:24:17 +0800</pubDate>
+      
+      <guid>https://liguoqinjim.com/post/tool/git%E5%85%8D%E5%AF%86%E7%A0%81/</guid>
+      <description>&lt;p&gt;git提交的时候不用输入密码&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

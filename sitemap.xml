@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://liguoqinjim.com/post/tool/git%E5%85%8D%E5%AF%86%E7%A0%81/</loc>
+    <lastmod>2018-09-02T12:24:17+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://liguoqinjim.com/post/tool/vagrant/</loc>
     <lastmod>2018-09-01T14:07:36+08:00</lastmod>
   </url>
@@ -120,6 +125,12 @@
   </url>
   
   <url>
+    <loc>https://liguoqinjim.com/tags/git/</loc>
+    <lastmod>2018-09-02T12:24:17+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://liguoqinjim.com/tags/golang/</loc>
     <lastmod>2018-07-02T18:20:02+08:00</lastmod>
     <priority>0</priority>
@@ -145,7 +156,7 @@
   
   <url>
     <loc>https://liguoqinjim.com/</loc>
-    <lastmod>2018-09-01T14:07:36+08:00</lastmod>
+    <lastmod>2018-09-02T12:24:17+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -163,7 +174,7 @@
   
   <url>
     <loc>https://liguoqinjim.com/post/</loc>
-    <lastmod>2018-09-01T14:07:36+08:00</lastmod>
+    <lastmod>2018-09-02T12:24:17+08:00</lastmod>
     <priority>0</priority>
   </url>
   
