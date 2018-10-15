@@ -219,13 +219,40 @@
   <section class="main post-detail">
     <header class="post-header">
       <h1 class="post-title">Git免密码</h1>
-      <p class="post-meta">@liguoqinjim · Sep 2, 2018 · 1 min read</p>
+      <p class="post-meta">@liguoqinjim · Oct 15, 2018 · 1 min read</p>
     </header>
     <article class="post-content"><p>git提交的时候不用输入密码</p>
 
+<!-- toc -->
+
 <p></p>
 
-<p>怎么在git操作的时候不输入密码</p></article>
+<p>有的时候，我们会需要频繁的提交代码，每次都要输入账号和密码，比较浪费时间。我们可以通过如下设置，在git提交的时候不用输入密码。</p>
+
+<h1 id="设置步骤">设置步骤</h1>
+
+<ol>
+<li><p>在根目录下创建<code>.git-credentials</code><br />
+<code>touch ~/.git-credentials</code></p></li>
+
+<li><p>在<code>.git-credentials</code>里面加上用户名和密码<br />
+<code>echo &quot;https://username:password@github.com&quot; &gt; ~/.git-credentials</code></p></li>
+
+<li><p>git config<br />
+<code>git config --global credential.helper store</code></p></li>
+</ol>
+
+<h1 id="notice">NOTICE</h1>
+
+<ul>
+<li>当用户名有@的时候，需要用%40来代替</li>
+</ul>
+
+<h1 id="参考资料">参考资料</h1>
+
+<ul>
+<li><a href="https://git-scm.com/book/zh/v2/Git-%E5%B7%A5%E5%85%B7-%E5%87%AD%E8%AF%81%E5%AD%98%E5%82%A8">https://git-scm.com/book/zh/v2/Git-%E5%B7%A5%E5%85%B7-%E5%87%AD%E8%AF%81%E5%AD%98%E5%82%A8</a></li>
+</ul></article>
     <footer class="post-footer">
       
       <ul class="post-tags">
