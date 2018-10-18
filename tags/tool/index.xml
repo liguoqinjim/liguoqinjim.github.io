@@ -13,11 +13,11 @@
     
     
     <item>
-      <title>判断两个文件相同</title>
-      <link>https://liguoqinjim.com/post/tool/%E5%88%A4%E6%96%AD%E4%B8%A4%E4%B8%AA%E6%96%87%E4%BB%B6%E7%9B%B8%E5%90%8C/</link>
+      <title>判断两个文件是否相同</title>
+      <link>https://liguoqinjim.com/post/tool/%E5%88%A4%E6%96%AD%E4%B8%A4%E4%B8%AA%E6%96%87%E4%BB%B6%E6%98%AF%E5%90%A6%E7%9B%B8%E5%90%8C/</link>
       <pubDate>Wed, 17 Oct 2018 10:17:38 +0800</pubDate>
       
-      <guid>https://liguoqinjim.com/post/tool/%E5%88%A4%E6%96%AD%E4%B8%A4%E4%B8%AA%E6%96%87%E4%BB%B6%E7%9B%B8%E5%90%8C/</guid>
+      <guid>https://liguoqinjim.com/post/tool/%E5%88%A4%E6%96%AD%E4%B8%A4%E4%B8%AA%E6%96%87%E4%BB%B6%E6%98%AF%E5%90%A6%E7%9B%B8%E5%90%8C/</guid>
       <description>&lt;p&gt;有时我们需要判断两个文件是否相同，比如定时分析的软件，我们可以先判断数据有没有变，数据没变的话，本次定时就不运行了。这个时候就需要用到判断两个文件是否相同。&lt;br /&gt;
 有两种方法来实现。&lt;/p&gt;
 
