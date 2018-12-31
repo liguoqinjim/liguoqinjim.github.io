@@ -9,121 +9,140 @@
 
   
   
-
-
-
-
+  <link href="//cdn.jsdelivr.net" rel="dns-prefetch">
+  <link href="//cdnjs.cloudflare.com" rel="dns-prefetch">
+  <link href="//at.alicdn.com" rel="dns-prefetch">
+  <link href="//fonts.googleapis.com" rel="dns-prefetch">
+  <link href="//fonts.gstatic.com" rel="dns-prefetch">
+  <link href="///disqus.com" rel="dns-prefetch">
+  <link href="//c.disquscdn.com" rel="dns-prefetch">
+  
+  <link href="//www.google-analytics.com" rel="dns-prefetch">
+  
 
   
-  <meta name="author" content="liguoqinjim" />
+
+  
+  
   <meta name="description" content="Docker的安装
-
-" />
+">
 
   
   
-    <meta name="twitter:card" content="summary" />
-    <meta name="twitter:site" content="@gohugoio" />
-    <meta name="twitter:title" content="系统学习Docker 践行DevOps理念 笔记(一)|Docker的安装" />
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@gohugoio">
+    <meta name="twitter:title" content="系统学习Docker 践行DevOps理念 笔记(一)|Docker的安装">
     <meta name="twitter:description" content="Docker的安装
-
-" />
-    <meta name="twitter:image" content="https://liguoqinjim.com/img/avatar.jpg" />
+">
+    <meta name="twitter:image" content="/images/avatar.jpg">
   
 
   
-  <meta property="og:type" content="article" />
-  <meta property="og:title" content="系统学习Docker 践行DevOps理念 笔记(一)|Docker的安装" />
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="系统学习Docker 践行DevOps理念 笔记(一)|Docker的安装">
   <meta property="og:description" content="Docker的安装
-
-" />
-  <meta property="og:url" content="https://liguoqinjim.com/post/docker/%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0docker-%E8%B7%B5%E8%A1%8Cdevops%E7%90%86%E5%BF%B5-%E7%AC%94%E8%AE%B0%E4%B8%80/" />
-  <meta property="og:image" content="https://liguoqinjim.com/img/avatar.jpg" />
-
+">
+  <meta property="og:url" content="https://liguoqinjim.com/post/docker/%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0docker-%E8%B7%B5%E8%A1%8Cdevops%E7%90%86%E5%BF%B5-%E7%AC%94%E8%AE%B0%E4%B8%80/">
+  <meta property="og:image" content="/images/avatar.jpg">
 
 
 
-<meta name="generator" content="Hugo 0.48" />
+
+<meta name="generator" content="Hugo 0.53">
 
 
-<link rel="canonical" href="https://liguoqinjim.com/post/docker/%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0docker-%E8%B7%B5%E8%A1%8Cdevops%E7%90%86%E5%BF%B5-%E7%AC%94%E8%AE%B0%E4%B8%80/" />
+<link rel="canonical" href="https://liguoqinjim.com/post/docker/%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0docker-%E8%B7%B5%E8%A1%8Cdevops%E7%90%86%E5%BF%B5-%E7%AC%94%E8%AE%B0%E4%B8%80/">
 
-<meta name="renderer" content="webkit" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<meta name="format-detection" content="telephone=no,email=no,adress=no" />
-<meta http-equiv="Cache-Control" content="no-transform" />
+<meta name="renderer" content="webkit">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="format-detection" content="telephone=no,email=no,adress=no">
+<meta http-equiv="Cache-Control" content="no-transform">
 
 
-<meta name="robots" content="index,follow" />
-<meta name="referrer" content="origin-when-cross-origin" />
-
+<meta name="robots" content="index,follow">
+<meta name="referrer" content="origin-when-cross-origin">
 
 
 
 
 
 
-<meta name="apple-mobile-web-app-capable" content="yes" />
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-<meta name="apple-mobile-web-app-title" content="Liguoqinjim&#39;s Blog" />
-<meta name="msapplication-tooltip" content="Liguoqinjim&#39;s Blog" />
-<meta name='msapplication-navbutton-color' content="#5fbf5e" />
-<meta name="msapplication-TileColor" content="#5fbf5e" />
-<meta name="msapplication-TileImage" content="/img/tile-image-windows.png" />
-<link rel="icon" href="https://liguoqinjim.com/img/favicon.ico" />
-<link rel="icon" type="image/png" sizes="16x16" href="https://liguoqinjim.com/img/favicon-16x16.png" />
-<link rel="icon" type="image/png" sizes="32x32" href="https://liguoqinjim.com/img/favicon-32x32.png" />
-<link rel="icon" sizes="192x192" href="https://liguoqinjim.com/img/touch-icon-android.png" />
-<link rel="apple-touch-icon" href="https://liguoqinjim.com/img/touch-icon-apple.png" />
-<link rel="mask-icon" href="https://liguoqinjim.com/img/safari-pinned-tab.svg" color="#5fbf5e" />
+
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Liguoqinjim&#39;s Blog">
+<meta name="msapplication-tooltip" content="Liguoqinjim&#39;s Blog">
+<meta name='msapplication-navbutton-color' content="#5fbf5e">
+<meta name="msapplication-TileColor" content="#5fbf5e">
+<meta name="msapplication-TileImage" content="/images/tile-image-windows.png">
+<link rel="icon" href="https://liguoqinjim.com/images/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://liguoqinjim.com/images/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://liguoqinjim.com/images/favicon-32x32.png">
+<link rel="icon" sizes="192x192" href="https://liguoqinjim.com/images/touch-icon-android.png">
+<link rel="apple-touch-icon" href="https://liguoqinjim.com/images/touch-icon-apple.png">
+
+
+<link rel="preload" href="https://liguoqinjim.com/styles/main.min.css" as="style">
+<link rel="preload" href="https://fonts.googleapis.com/css?family=Lobster" as="style">
+<link rel="preload" href="https://liguoqinjim.com/images/avatar.jpg" as="image">
+<link rel="preload" href="https://liguoqinjim.com/images/grey-prism.svg" as="image">
+
+
+<style>
+  body {
+    background: rgb(244, 243, 241) url('/images/grey-prism.svg') repeat fixed;
+  }
+</style>
+<link rel="stylesheet" href="https://liguoqinjim.com/styles/main.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lobster">
 
 
 
-<link rel="stylesheet" href="//cdn.bootcss.com/video.js/6.2.8/alt/video-js-cdn.min.css" />
+<script src="https://cdn.jsdelivr.net/npm/medium-zoom@1.0.2/dist/medium-zoom.min.js"></script>
 
-<link rel="stylesheet" href="https://liguoqinjim.com/css/bundle.89ae8afad0.css" />
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/video.js@7.3.0/dist/video-js.min.css">
+
 
 
   
-  <!--[if lt IE 9]>
-    <script src="//cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-    <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
-    <script src="//cdn.bootcss.com/video.js/6.2.8/ie8/videojs-ie8.min.js"></script>
-  <![endif]-->
+  
+<!--[if lte IE 8]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/videojs-ie8@1.1.2/dist/videojs-ie8.min.js"></script>
+<![endif]-->
 
-<!--[if lte IE 11]>
-    <script src="//cdn.bootcss.com/classlist/1.1.20170427/classList.min.js"></script>
-  <![endif]-->
-
-
-<script src="//cdn.bootcss.com/object-fit-images/3.2.3/ofi.min.js"></script>
-
-
-<script src="//cdn.bootcss.com/smooth-scroll/12.1.4/js/smooth-scroll.polyfills.min.js"></script>
+<!--[if lte IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/eligrey-classlist-js-polyfill@1.2.20180112/classList.min.js"></script>
+<![endif]-->
 
 
 </head>
   <body>
     
     <div class="suspension">
-      <a title="Go to top" class="to-top is-hide"><span class="icon icon-up"></span></a>
+      <a role="button" aria-label="Go to top" title="Go to top" class="to-top is-hide"><span class="icon icon-up" aria-hidden="true"></span></a>
       
         
-        <a title="Go to comments" class="to-comment" href="#disqus_thread"><span class="icon icon-comment"></span></a>
+        <a role="button" aria-label="Go to comments" title="Go to comments" class="to-comment" href="#disqus_thread"><span class="icon icon-comment" aria-hidden="true"></span></a>
         
       
     </div>
     
     
   <header class="site-header">
-  <img class="avatar" src="https://liguoqinjim.com/img/avatar.jpg" alt="Avatar">
+  <img class="avatar" src="https://liguoqinjim.com/images/avatar.jpg" alt="Avatar">
   
   <h2 class="title">Liguoqinjim&#39;s Blog</h2>
   
   <p class="subtitle">~ Keep It Simple &amp; Stupid ~</p>
-  <button class="menu-toggle" type="button">
-    <span class="icon icon-menu"></span>
+  <button class="menu-toggle" type="button" aria-label="Main Menu" aria-expanded="false" tab-index="0">
+    <span class="icon icon-menu" aria-hidden="true"></span>
   </button>
+
   <nav class="site-menu collapsed">
     <h2 class="offscreen">Main Menu</h2>
     <ul class="menu-list">
@@ -132,87 +151,39 @@
       
       
         <li class="menu-item
-            
-            
-            
-              is-active
-            ">
-            <a href="https://liguoqinjim.com/">Home</a>
-          </li>
+          
+          
+           is-active">
+          <a href="https://liguoqinjim.com/">Home</a>
+        </li>
       
         <li class="menu-item
-            
-            
-            ">
-            <a href="https://github.com/liguoqinjim">Works</a>
-          </li>
+          
+          
+          ">
+          <a href="https://github.com/liguoqinjim">Works</a>
+        </li>
       
         <li class="menu-item
-            
-            
-            ">
-            <a href="https://liguoqinjim.com/tags/">Tags</a>
-          </li>
+          
+          
+          ">
+          <a href="https://liguoqinjim.com/tags/">Tags</a>
+        </li>
       
     </ul>
   </nav>
   <nav class="social-menu collapsed">
     <h2 class="offscreen">Social Networks</h2>
-    <ul class="social-list">
-
-      
-      <li class="social-item">
-        <a href="mailto:liguoqinjim23@gmail.com" title="Email"><span class="icon icon-email"></span></a>
-      </li>
-
-      
-      <li class="social-item">
-        <a href="//github.com/liguoqinjim" title="GitHub"><span class="icon icon-github"></span></a>
-      </li>
-
-      
-
-      
-
-      
-
-      
-
-      
-
-      
-
-      
-
-      
-
-      
-
-      
-
-      
-
-      
-
-      
-
-      
-
-      
-
-      
-
-      
-
-      
-
-      
-
-      <li class="social-item">
-        <a rel="alternate" type="application/rss+xml" href="https://liguoqinjim.com/index.xml"><span class="icon icon-rss" title="RSS"></span></a>
-      </li>
-
-    </ul>
+    <ul class="social-list"><li class="social-item">
+          <a href="mailto:liguoqinjim23@gmail.com" title="Email" aria-label="Email">
+            <span class="icon icon-email" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="//github.com/liguoqinjim" title="GitHub" aria-label="GitHub">
+            <span class="icon icon-github" aria-hidden="true"></span>
+          </a>
+        </li></ul>
   </nav>
 </header>
 
@@ -222,8 +193,6 @@
       <p class="post-meta">@liguoqinjim · Aug 28, 2018 · 1 min read</p>
     </header>
     <article class="post-content"><p>Docker的安装</p>
-
-<p></p>
 
 <!-- toc -->
 
@@ -249,10 +218,10 @@
 sudo yum makecache fast
 sudo yum install docker-ce</code></pre></div>
 <h1 id="验证安装是否成功">验证安装是否成功</h1>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#75715e"># 查看docker版本
-</span><span style="color:#75715e"></span>sudo docker version
-<span style="color:#75715e"># 运行一个hello-world的镜像
-</span><span style="color:#75715e"></span>sudo docker run hello-world</code></pre></div></article>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#75715e"># 查看docker版本</span>
+sudo docker version
+<span style="color:#75715e"># 运行一个hello-world的镜像</span>
+sudo docker run hello-world</code></pre></div></article>
     <footer class="post-footer">
       
       <ul class="post-tags">
@@ -262,7 +231,7 @@ sudo yum install docker-ce</code></pre></div>
       </ul>
       
       <p class="post-copyright">
-        © This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you wish to quote or reproduce.
+        © This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you wish to quote or reproduce.This post was published <strong>125</strong> days ago, content in the post may be inaccurate, even wrong now, please take risk yourself.
       </p>
     </footer>
     
@@ -289,16 +258,26 @@ sudo yum install docker-ce</code></pre></div>
       
     
   </section>
-  <footer class="site-footer">
+  
+
+
+<footer class="site-footer">
   <p>© 2017-2018 Liguoqinjim&#39;s Blog</p>
-  <p>Powered by <a href="https://gohugo.io/" target="_blank">Hugo</a> with theme <a href="https://github.com/laozhu/hugo-nuo" target="_blank">Nuo</a>.</p>
+  <p>Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> with theme <a href="https://github.com/laozhu/hugo-nuo" target="_blank" rel="noopener">Nuo</a>.</p>
   
 </footer>
 
 
+<script src="https://cdn.jsdelivr.net/npm/smooth-scroll@15.0.0/dist/smooth-scroll.min.js"></script>
 
-<script async src="//cdn.bootcss.com/video.js/6.2.8/alt/video.novtt.min.js"></script>
-<script async src="//cdn.bootcss.com/mathjax/2.7.2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+<script async src="https://cdn.jsdelivr.net/npm/video.js@7.3.0/dist/video.min.js"></script>
+
+
+
+
+<script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config({
     tex2jax: {
@@ -309,7 +288,7 @@ sudo yum install docker-ce</code></pre></div>
       skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
       TeX: { equationNumbers: { autoNumber: "AMS" },
       extensions: ["AMSmath.js", "AMSsymbols.js"] }
-    }
+    },
   });
 </script>
 <script type="text/x-mathjax-config">
@@ -321,7 +300,11 @@ sudo yum install docker-ce</code></pre></div>
   });
 </script>
 
-<script src="https://liguoqinjim.com/js/bundle.9a617db479.js"></script>
+
+
+<script src="https://liguoqinjim.com/scripts/index.min.js"></script>
+
+
 
 
 <script type="application/javascript">
@@ -334,6 +317,8 @@ if (!doNotTrack) {
 }
 </script>
 <script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
 
 
 

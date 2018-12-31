@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <copyright>© This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you wish to quote or reproduce.</copyright>
-    <lastBuildDate>Mon, 15 Oct 2018 22:43:17 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 31 Dec 2018 21:44:33 +0800</lastBuildDate>
     
 	<atom:link href="https://liguoqinjim.com/tags/git/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>使用docker部署gogs</title>
+      <link>https://liguoqinjim.com/post/tool/%E4%BD%BF%E7%94%A8docker%E9%83%A8%E7%BD%B2gogs/</link>
+      <pubDate>Mon, 31 Dec 2018 21:44:33 +0800</pubDate>
+      
+      <guid>https://liguoqinjim.com/post/tool/%E4%BD%BF%E7%94%A8docker%E9%83%A8%E7%BD%B2gogs/</guid>
+      <description>&lt;p&gt;使用docker部署gogs&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>Git免密码</title>
@@ -20,9 +29,7 @@
       <guid>https://liguoqinjim.com/post/tool/git%E5%85%8D%E5%AF%86%E7%A0%81/</guid>
       <description>&lt;p&gt;git提交的时候不用输入密码&lt;/p&gt;
 
-&lt;!-- toc --&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;!-- toc --&gt;</description>
     </item>
     
   </channel>

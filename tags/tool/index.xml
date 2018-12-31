@@ -21,9 +21,7 @@
       <description>&lt;p&gt;有时我们需要判断两个文件是否相同，比如定时分析的软件，我们可以先判断数据有没有变，数据没变的话，本次定时就不运行了。这个时候就需要用到判断两个文件是否相同。&lt;br /&gt;
 有两种方法来实现。&lt;/p&gt;
 
-&lt;!-- toc --&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;!-- toc --&gt;</description>
     </item>
     
     <item>
@@ -33,9 +31,7 @@
       
       <guid>https://liguoqinjim.com/post/tool/vagrant%E5%85%A5%E9%97%A8/</guid>
       <description>&lt;p&gt;Vagrant is a tool for building and managing virtual machine environments in a single workflow. With an easy-to-use workflow and focus on automation, Vagrant lowers development environment setup time, increases production parity, and makes the &amp;ldquo;works on my machine&amp;rdquo; excuse a relic of the past.&lt;br /&gt;
-Vagrant是一个在单一工作流中创建和管理虚拟机环境的工具。通过简单易用的工作流和对自动化的关注，Vagrant可以减少开发环境的配置时间，增加生产平价，并且使得&amp;rdquo;works on my machine&amp;rdquo;这个借口成为过去。&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
+Vagrant是一个在单一工作流中创建和管理虚拟机环境的工具。通过简单易用的工作流和对自动化的关注，Vagrant可以减少开发环境的配置时间，增加生产平价，并且使得&amp;rdquo;works on my machine&amp;rdquo;这个借口成为过去。&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -45,9 +41,7 @@ Vagrant是一个在单一工作流中创建和管理虚拟机环境的工具。�
       
       <guid>https://liguoqinjim.com/post/markdown/%E8%AE%BE%E7%BD%AEmarkdown%E9%87%8C%E9%9D%A2%E7%9A%84%E5%9B%BE%E7%89%87%E5%A4%A7%E5%B0%8F/</guid>
       <description>&lt;p&gt;在markdown里面添加图片的时候，图片显示出来可能会比我们需要的大很多。
-这时候我们会需要设置图片的大小。&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
+这时候我们会需要设置图片的大小。&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -56,9 +50,7 @@ Vagrant是一个在单一工作流中创建和管理虚拟机环境的工具。�
       <pubDate>Mon, 02 Jul 2018 18:20:02 +0800</pubDate>
       
       <guid>https://liguoqinjim.com/post/tool/%E7%94%A8golang%E8%A7%A6%E5%8F%91ifttt%E5%8F%91%E9%80%81%E8%87%AA%E5%AE%9A%E4%B9%89%E7%9A%84notifications/</guid>
-      <description>&lt;p&gt;IFTTT众多的service里面，有一个非常强大的service，就是webhooks。当我们在IFTTT里面connect了这个service之后，我们会得到一个唯一的链接，我们访问这个链接就会被视作触发了这个service。&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
+      <description>&lt;p&gt;IFTTT众多的service里面，有一个非常强大的service，就是webhooks。当我们在IFTTT里面connect了这个service之后，我们会得到一个唯一的链接，我们访问这个链接就会被视作触发了这个service。&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -67,8 +59,7 @@ Vagrant是一个在单一工作流中创建和管理虚拟机环境的工具。�
       <pubDate>Sat, 27 Jan 2018 12:37:47 +0800</pubDate>
       
       <guid>https://liguoqinjim.com/post/tool/hugo%E7%9A%84%E4%BD%BF%E7%94%A8/</guid>
-      <description>&lt;p&gt;Hugo是由Go语言实现的静态网站生成器。简单、易用、高效、易扩展、快速部署。
-&lt;/p&gt;</description>
+      <description>&lt;p&gt;Hugo是由Go语言实现的静态网站生成器。简单、易用、高效、易扩展、快速部署。&lt;/p&gt;</description>
     </item>
     
   </channel>

@@ -18,9 +18,7 @@
       <pubDate>Wed, 04 Jul 2018 16:42:54 +0800</pubDate>
       
       <guid>https://liguoqinjim.com/post/markdown/hugo%E7%9A%84toc/</guid>
-      <description>&lt;p&gt;在hugo里面使用TOC显示目录。但是这个需要使用的主题是支持的。我现在使用的是&lt;code&gt;hugo-tranquilpeak-theme&lt;/code&gt;这个标题。在markdown里面加上&lt;code&gt;&amp;lt;!--toc--&amp;gt;&lt;/code&gt;就会在文章里面自动生成TOC了。&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
+      <description>&lt;p&gt;在hugo里面使用TOC显示目录。但是这个需要使用的主题是支持的。我现在使用的是&lt;code&gt;hugo-tranquilpeak-theme&lt;/code&gt;这个标题。在markdown里面加上&lt;code&gt;&amp;lt;!--toc--&amp;gt;&lt;/code&gt;就会在文章里面自动生成TOC了。&lt;/p&gt;</description>
     </item>
     
   </channel>
