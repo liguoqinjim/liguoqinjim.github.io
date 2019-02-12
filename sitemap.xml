@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://liguoqinjim.com/post/bigdata/hdfs%E7%9A%84%E5%9F%BA%E6%9C%AC%E9%85%8D%E7%BD%AE/</loc>
+    <lastmod>2019-02-12T15:30:38+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://liguoqinjim.com/post/tool/%E4%BD%BF%E7%94%A8docker%E9%83%A8%E7%BD%B2gogs/</loc>
     <lastmod>2018-12-31T21:44:33+08:00</lastmod>
   </url>
@@ -166,7 +171,7 @@
   
   <url>
     <loc>https://liguoqinjim.com/</loc>
-    <lastmod>2018-12-31T21:44:33+08:00</lastmod>
+    <lastmod>2019-02-12T15:30:38+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -184,7 +189,7 @@
   
   <url>
     <loc>https://liguoqinjim.com/post/</loc>
-    <lastmod>2018-12-31T21:44:33+08:00</lastmod>
+    <lastmod>2019-02-12T15:30:38+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -209,6 +214,12 @@
   <url>
     <loc>https://liguoqinjim.com/tags/vagrant/</loc>
     <lastmod>2018-09-02T14:07:36+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://liguoqinjim.com/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE/</loc>
+    <lastmod>2019-02-12T15:30:38+08:00</lastmod>
     <priority>0</priority>
   </url>
   

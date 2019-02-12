@@ -68,21 +68,24 @@
 
 
 
+<meta name="theme-color" content="#02b875">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
 <meta name="apple-mobile-web-app-title" content="Liguoqinjim&#39;s Blog">
 <meta name="msapplication-tooltip" content="Liguoqinjim&#39;s Blog">
-<meta name='msapplication-navbutton-color' content="#5fbf5e">
-<meta name="msapplication-TileColor" content="#5fbf5e">
-<meta name="msapplication-TileImage" content="/images/tile-image-windows.png">
-<link rel="icon" href="https://liguoqinjim.com/images/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="https://liguoqinjim.com/images/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="https://liguoqinjim.com/images/favicon-32x32.png">
-<link rel="icon" sizes="192x192" href="https://liguoqinjim.com/images/touch-icon-android.png">
-<link rel="apple-touch-icon" href="https://liguoqinjim.com/images/touch-icon-apple.png">
+<meta name='msapplication-navbutton-color' content="#02b875">
+<meta name="msapplication-TileColor" content="#02b875">
+<meta name="msapplication-TileImage" content="/icons/icon-144x144.png">
+<link rel="icon" href="https://liguoqinjim.com/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://liguoqinjim.com/icons/icon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://liguoqinjim.com/icons/icon-32x32.png">
+<link rel="icon" sizes="192x192" href="https://liguoqinjim.com/icons/icon-192x192.png">
+<link rel="apple-touch-icon" href="https://liguoqinjim.com/icons/icon-152x152.png">
+<link rel="manifest" href="https://liguoqinjim.com/manifest.json">
 
 
 <link rel="preload" href="https://liguoqinjim.com/styles/main.min.css" as="style">
+
 <link rel="preload" href="https://fonts.googleapis.com/css?family=Lobster" as="style">
 <link rel="preload" href="https://liguoqinjim.com/images/avatar.jpg" as="image">
 <link rel="preload" href="https://liguoqinjim.com/images/grey-prism.svg" as="image">
@@ -94,6 +97,7 @@
   }
 </style>
 <link rel="stylesheet" href="https://liguoqinjim.com/styles/main.min.css">
+
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lobster">
 
 
@@ -497,7 +501,7 @@ docker run --cpu-shares<span style="color:#f92672">=</span><span style="color:#a
       </ul>
       
       <p class="post-copyright">
-        © This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you wish to quote or reproduce.This post was published <strong>126</strong> days ago, content in the post may be inaccurate, even wrong now, please take risk yourself.
+        © This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you wish to quote or reproduce.This post was published <strong>168</strong> days ago, content in the post may be inaccurate, even wrong now, please take risk yourself.
       </p>
     </footer>
     
@@ -525,8 +529,6 @@ docker run --cpu-shares<span style="color:#f92672">=</span><span style="color:#a
     
   </section>
   
-
-
 <footer class="site-footer">
   <p>© 2017-2019 Liguoqinjim&#39;s Blog</p>
   <p>Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> with theme <a href="https://github.com/laozhu/hugo-nuo" target="_blank" rel="noopener">Nuo</a>.</p>
@@ -569,6 +571,14 @@ docker run --cpu-shares<span style="color:#f92672">=</span><span style="color:#a
 
 
 <script src="https://liguoqinjim.com/scripts/index.min.js"></script>
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('\/service-worker.js').then(function() {
+      console.log('[ServiceWorker] Registered');
+    });
+  }
+</script>
 
 
 
