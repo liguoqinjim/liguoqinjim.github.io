@@ -191,6 +191,20 @@
       
         <article class="post-entry">
   <header class="post-header">
+    <h3 class="post-title"><a href="https://liguoqinjim.com/post/docker/%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0docker-%E8%B7%B5%E8%A1%8Cdevops%E7%90%86%E5%BF%B5-%E7%AC%94%E8%AE%B0%E5%9B%9B/" class="post-link">系统学习Docker 践行DevOps理念 笔记(四)|Docker的持久化存储和数据共享</a></h3>
+    <p class="post-meta">@liguoqinjim · Aug 29, 2018 · 1 min read</p>
+  </header>
+  
+  <p class="post-summary">Docker的持久化存储和数据共享，是课程第五章的内容
+</p>
+  <footer class="post-footer">
+    <a class="read-more" href="https://liguoqinjim.com/post/docker/%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0docker-%E8%B7%B5%E8%A1%8Cdevops%E7%90%86%E5%BF%B5-%E7%AC%94%E8%AE%B0%E5%9B%9B/">Read More →</a>
+  </footer>
+</article>
+
+      
+        <article class="post-entry">
+  <header class="post-header">
     <h3 class="post-title"><a href="https://liguoqinjim.com/post/docker/%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0docker-%E8%B7%B5%E8%A1%8Cdevops%E7%90%86%E5%BF%B5-%E7%AC%94%E8%AE%B0%E4%B8%89/" class="post-link">系统学习Docker 践行DevOps理念 笔记(三)|Docker的网络</a></h3>
     <p class="post-meta">@liguoqinjim · Aug 28, 2018 · 3 min read</p>
   </header>
@@ -319,20 +333,6 @@ Example:
 Given nums = [2, 7, 11, 15], target = 9, Because nums[0] &#43; nums[1] = 2 &#43; 7 = 9, return [0, 1].  解法 解法1 func twoSum(nums []int, target int) []int { as := make([]int, 2) for i := 0; i &lt; len(nums); i&#43;&#43; { for j := i &#43; 1; j &lt; len(nums); j&#43;&#43; { if nums[i]&#43;nums[j] == target { as[0] = i as[1] = j } } } return as } 解法2 func twoSum2(nums []int, target int) []int { r := make([]int, 2) result := make(map[int]int) //key是nums的值,value是值对应的下标 	for n, v := range nums { if value, ok := result[target-v]; ok { r[0] = value r[1] = n break } result[v] = n } return r } 总结 解法1就是最简单的循环相加，时间复杂度是O(n^2)。解法2的话因为题目里面是假设了肯定是有解的，那么就直接用一个循环来完成，时间复杂度使用O(n)</p>
   <footer class="post-footer">
     <a class="read-more" href="https://liguoqinjim.com/post/leetcode/lab0001/">Read More →</a>
-  </footer>
-</article>
-
-      
-        <article class="post-entry">
-  <header class="post-header">
-    <h3 class="post-title"><a href="https://liguoqinjim.com/post/markdown/hugo%E7%9A%84toc/" class="post-link">Hugo的TOC</a></h3>
-    <p class="post-meta">@Liguoqinjim · Jul 4, 2018 · 1 min read</p>
-  </header>
-  
-  <p class="post-summary">在hugo里面使用TOC显示目录。但是这个需要使用的主题是支持的。我现在使用的是hugo-tranquilpeak-theme这个标题。在markdown里面加上&lt;!--toc--&gt;就会在文章里面自动生成TOC了。
-</p>
-  <footer class="post-footer">
-    <a class="read-more" href="https://liguoqinjim.com/post/markdown/hugo%E7%9A%84toc/">Read More →</a>
   </footer>
 </article>
 

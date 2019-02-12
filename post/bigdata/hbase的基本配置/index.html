@@ -5,7 +5,7 @@
   <meta charset="utf-8" />
 
   
-  <title>HDFS的基本配置</title>
+  <title>HBase的基本配置</title>
 
   
   
@@ -24,25 +24,25 @@
 
   
   <meta name="author" content="liguoqinjim">
-  <meta name="description" content="HDFS的基本配置
+  <meta name="description" content="HBase的基本配置
 ">
 
   
   
     <meta name="twitter:card" content="summary">
     <meta name="twitter:site" content="@gohugoio">
-    <meta name="twitter:title" content="HDFS的基本配置">
-    <meta name="twitter:description" content="HDFS的基本配置
+    <meta name="twitter:title" content="HBase的基本配置">
+    <meta name="twitter:description" content="HBase的基本配置
 ">
     <meta name="twitter:image" content="/images/avatar.jpg">
   
 
   
   <meta property="og:type" content="article">
-  <meta property="og:title" content="HDFS的基本配置">
-  <meta property="og:description" content="HDFS的基本配置
+  <meta property="og:title" content="HBase的基本配置">
+  <meta property="og:description" content="HBase的基本配置
 ">
-  <meta property="og:url" content="https://liguoqinjim.com/post/bigdata/hdfs%E7%9A%84%E5%9F%BA%E6%9C%AC%E9%85%8D%E7%BD%AE/">
+  <meta property="og:url" content="https://liguoqinjim.com/post/bigdata/hbase%E7%9A%84%E5%9F%BA%E6%9C%AC%E9%85%8D%E7%BD%AE/">
   <meta property="og:image" content="/images/avatar.jpg">
 
 
@@ -51,7 +51,7 @@
 <meta name="generator" content="Hugo 0.53">
 
 
-<link rel="canonical" href="https://liguoqinjim.com/post/bigdata/hdfs%E7%9A%84%E5%9F%BA%E6%9C%AC%E9%85%8D%E7%BD%AE/">
+<link rel="canonical" href="https://liguoqinjim.com/post/bigdata/hbase%E7%9A%84%E5%9F%BA%E6%9C%AC%E9%85%8D%E7%BD%AE/">
 
 <meta name="renderer" content="webkit">
 <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -193,53 +193,58 @@
 
   <section class="main post-detail">
     <header class="post-header">
-      <h1 class="post-title">HDFS的基本配置</h1>
+      <h1 class="post-title">HBase的基本配置</h1>
       <p class="post-meta">@liguoqinjim · Feb 12, 2019 · 1 min read</p>
     </header>
-    <article class="post-content"><p>HDFS的基本配置</p>
+    <article class="post-content"><p>HBase的基本配置</p>
 
-<h1 id="0-修改-hadoop-env-sh">0.修改<code>hadoop-env.sh</code></h1>
+<h1 id="0-修改-hbase-env-sh">0.修改<code>hbase-env.sh</code></h1>
 
-<p>在hadoop-env.sh里面加上JAVA_HOME</p>
+<ol>
+<li>修改JAVA_HOME</li>
+<li>要是jdk1.8的话，要注释掉<code>HBASE_MASTER_OPTS</code>和<code>HBASE_REGIONSERVER_OPTS</code></li>
+</ol>
 
-<h1 id="1-修改-core-site-xml">1.修改<code>core-site.xml</code></h1>
+<h1 id="1-修改-hbase-site-xml">1.修改<code>hbase-site.xml</code></h1>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#f92672">&lt;configuration&gt;</span>
+    <span style="color:#75715e">&lt;!-- 指定hbase在hdfs上的存储路径 --&gt;</span>
     <span style="color:#f92672">&lt;property&gt;</span>
-        <span style="color:#f92672">&lt;name&gt;</span>fs.defaultFS<span style="color:#f92672">&lt;/name&gt;</span>
-        <span style="color:#f92672">&lt;value&gt;</span>hdfs://hp-111:9000<span style="color:#f92672">&lt;/value&gt;</span>
+        <span style="color:#f92672">&lt;name&gt;</span>hbase.rootdir<span style="color:#f92672">&lt;/name&gt;</span>
+        <span style="color:#f92672">&lt;value&gt;</span>hdfs://hp-111:9000/hbase<span style="color:#f92672">&lt;/value&gt;</span>
+    <span style="color:#f92672">&lt;/property&gt;</span>
+    
+    <span style="color:#75715e">&lt;!--指定hbase为分布式的 --&gt;</span>
+    <span style="color:#f92672">&lt;property&gt;</span>
+        <span style="color:#f92672">&lt;name&gt;</span>hbase.cluster.distributed<span style="color:#f92672">&lt;/name&gt;</span>
+        <span style="color:#f92672">&lt;value&gt;</span>true<span style="color:#f92672">&lt;/value&gt;</span>
     <span style="color:#f92672">&lt;/property&gt;</span>
 
+    <span style="color:#75715e">&lt;!-- 指定zookeeper的地址 --&gt;</span>
     <span style="color:#f92672">&lt;property&gt;</span>
-        <span style="color:#f92672">&lt;name&gt;</span>hadoop.tmp.dir<span style="color:#f92672">&lt;/name&gt;</span>
-        <span style="color:#f92672">&lt;value&gt;</span>/opt/module1/module_data/hadoop/<span style="color:#f92672">&lt;/value&gt;</span>
+        <span style="color:#f92672">&lt;name&gt;</span>hbase.zookeeper.quorum<span style="color:#f92672">&lt;/name&gt;</span>
+        <span style="color:#f92672">&lt;value&gt;</span>hp-111:2181,hp-112:2181,hp-113:2181<span style="color:#f92672">&lt;/value&gt;</span>
     <span style="color:#f92672">&lt;/property&gt;</span>
 <span style="color:#f92672">&lt;/configuration&gt;</span></code></pre></div>
-<h1 id="2-修改-hdfs-site-xml">2.修改<code>hdfs-site.xml</code></h1>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#f92672">&lt;configuration&gt;</span>
-    <span style="color:#f92672">&lt;property&gt;</span>
-        <span style="color:#f92672">&lt;name&gt;</span>dfs.replication<span style="color:#f92672">&lt;/name&gt;</span>
-        <span style="color:#f92672">&lt;value&gt;</span>1<span style="color:#f92672">&lt;/value&gt;</span>
-    <span style="color:#f92672">&lt;/property&gt;</span>
-<span style="color:#f92672">&lt;/configuration&gt;</span></code></pre></div>
-<h1 id="3-修改-slaves">3.修改<code>slaves</code></h1>
+<h1 id="2-修改-regionservers">2.修改<code>regionservers</code></h1>
 
-<p>在这个里面加上所有要运行datanode的机器</p>
+<p>加上所有要运行regionserver的机器</p>
 
-<h1 id="4-初始化">4.初始化</h1>
+<h1 id="3-启动">3.启动</h1>
 
-<p><code>hadoop namenode -format</code><br />
-这个操作会在我们设置的<code>hadoop.tmp.dir</code>目录下创建文件夹</p>
+<p><code>$HBASE_HOME/bin/start-hbase.sh</code></p>
 
-<h1 id="5-启动">5.启动</h1>
+<h1 id="notice">NOTICE</h1>
 
-<p><code>$HADOOP_HOME/sbin/start-dfs.sh</code></p></article>
+<ul>
+<li>要是不设置<code>hbase.cluster.distributed</code>为true的话，hbase是作为standlone模式运行，这时候的zk是hbase来管理的，不能配置自己的zk。<code>hbase-env.sh</code>里面是有一个变量<code>HBASE_MANAGES_ZK</code>，但是我设置为了false也没有起效。</li>
+</ul></article>
     <footer class="post-footer">
       
       <ul class="post-tags">
         
           <li><a href="https://liguoqinjim.com/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE"><span class="tag">大数据</span></a></li>
         
-          <li><a href="https://liguoqinjim.com/tags/hadoop"><span class="tag">Hadoop</span></a></li>
+          <li><a href="https://liguoqinjim.com/tags/hbase"><span class="tag">HBase</span></a></li>
         
       </ul>
       

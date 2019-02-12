@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://liguoqinjim.com/post/bigdata/hbase%E7%9A%84%E5%9F%BA%E6%9C%AC%E9%85%8D%E7%BD%AE/</loc>
+    <lastmod>2019-02-12T15:57:17+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://liguoqinjim.com/post/bigdata/hdfs%E7%9A%84%E5%9F%BA%E6%9C%AC%E9%85%8D%E7%BD%AE/</loc>
     <lastmod>2019-02-12T15:30:38+08:00</lastmod>
   </url>
@@ -152,6 +157,18 @@
   </url>
   
   <url>
+    <loc>https://liguoqinjim.com/tags/hadoop/</loc>
+    <lastmod>2019-02-12T15:30:38+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://liguoqinjim.com/tags/hbase/</loc>
+    <lastmod>2019-02-12T15:57:17+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://liguoqinjim.com/tags/hugo/</loc>
     <lastmod>2018-07-04T16:42:54+08:00</lastmod>
     <priority>0</priority>
@@ -171,7 +188,7 @@
   
   <url>
     <loc>https://liguoqinjim.com/</loc>
-    <lastmod>2019-02-12T15:30:38+08:00</lastmod>
+    <lastmod>2019-02-12T15:57:17+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -189,7 +206,7 @@
   
   <url>
     <loc>https://liguoqinjim.com/post/</loc>
-    <lastmod>2019-02-12T15:30:38+08:00</lastmod>
+    <lastmod>2019-02-12T15:57:17+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -219,7 +236,7 @@
   
   <url>
     <loc>https://liguoqinjim.com/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE/</loc>
-    <lastmod>2019-02-12T15:30:38+08:00</lastmod>
+    <lastmod>2019-02-12T15:57:17+08:00</lastmod>
     <priority>0</priority>
   </url>
   
