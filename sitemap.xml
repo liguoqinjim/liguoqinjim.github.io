@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://liguoqinjim.com/post/git/jetbrains%E9%A1%B9%E7%9B%AE%E7%9A%84gitignore/</loc>
+    <lastmod>2019-02-20T12:30:26+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://liguoqinjim.com/post/bigdata/hbase%E7%9A%84%E5%9F%BA%E6%9C%AC%E9%85%8D%E7%BD%AE/</loc>
     <lastmod>2019-02-12T15:57:17+08:00</lastmod>
   </url>
@@ -146,7 +151,7 @@
   
   <url>
     <loc>https://liguoqinjim.com/tags/git/</loc>
-    <lastmod>2018-12-31T21:44:33+08:00</lastmod>
+    <lastmod>2019-02-20T12:30:26+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -188,7 +193,7 @@
   
   <url>
     <loc>https://liguoqinjim.com/</loc>
-    <lastmod>2019-02-12T15:57:17+08:00</lastmod>
+    <lastmod>2019-02-20T12:30:26+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -206,7 +211,7 @@
   
   <url>
     <loc>https://liguoqinjim.com/post/</loc>
-    <lastmod>2019-02-12T15:57:17+08:00</lastmod>
+    <lastmod>2019-02-20T12:30:26+08:00</lastmod>
     <priority>0</priority>
   </url>
   

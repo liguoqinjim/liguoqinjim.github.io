@@ -5,7 +5,7 @@
   <meta charset="utf-8" />
 
   
-  <title>Hugo的使用</title>
+  <title>JetBrains项目的gitignore</title>
 
   
   
@@ -23,26 +23,26 @@
   
 
   
-  
-  <meta name="description" content="Hugo是由Go语言实现的静态网站生成器。简单、易用、高效、易扩展、快速部署。
+  <meta name="author" content="liguoqinjim">
+  <meta name="description" content="JetBrains项目使用的gitignore
 ">
 
   
   
     <meta name="twitter:card" content="summary">
     <meta name="twitter:site" content="@gohugoio">
-    <meta name="twitter:title" content="Hugo的使用">
-    <meta name="twitter:description" content="Hugo是由Go语言实现的静态网站生成器。简单、易用、高效、易扩展、快速部署。
+    <meta name="twitter:title" content="JetBrains项目的gitignore">
+    <meta name="twitter:description" content="JetBrains项目使用的gitignore
 ">
     <meta name="twitter:image" content="/images/avatar.jpg">
   
 
   
   <meta property="og:type" content="article">
-  <meta property="og:title" content="Hugo的使用">
-  <meta property="og:description" content="Hugo是由Go语言实现的静态网站生成器。简单、易用、高效、易扩展、快速部署。
+  <meta property="og:title" content="JetBrains项目的gitignore">
+  <meta property="og:description" content="JetBrains项目使用的gitignore
 ">
-  <meta property="og:url" content="https://liguoqinjim.com/post/tool/hugo%E7%9A%84%E4%BD%BF%E7%94%A8/">
+  <meta property="og:url" content="https://liguoqinjim.com/post/git/jetbrains%E9%A1%B9%E7%9B%AE%E7%9A%84gitignore/">
   <meta property="og:image" content="/images/avatar.jpg">
 
 
@@ -51,7 +51,7 @@
 <meta name="generator" content="Hugo 0.53">
 
 
-<link rel="canonical" href="https://liguoqinjim.com/post/tool/hugo%E7%9A%84%E4%BD%BF%E7%94%A8/">
+<link rel="canonical" href="https://liguoqinjim.com/post/git/jetbrains%E9%A1%B9%E7%9B%AE%E7%9A%84gitignore/">
 
 <meta name="renderer" content="webkit">
 <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -193,67 +193,87 @@
 
   <section class="main post-detail">
     <header class="post-header">
-      <h1 class="post-title">Hugo的使用</h1>
-      <p class="post-meta">@liguoqinjim · Jan 27, 2018 · 1 min read</p>
+      <h1 class="post-title">JetBrains项目的gitignore</h1>
+      <p class="post-meta">@liguoqinjim · Feb 20, 2019 · 1 min read</p>
     </header>
-    <article class="post-content"><p>Hugo是由Go语言实现的静态网站生成器。简单、易用、高效、易扩展、快速部署。</p>
+    <article class="post-content"><p>JetBrains项目使用的gitignore</p>
 
-<!-- toc -->
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-gitignore" data-lang="gitignore"># Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm, CLion, Android Studio and WebStorm
+# Reference: https://intellij-support.jetbrains.com/hc/en-us/articles/206544839
 
-<h1 id="1-hugo安装">1.Hugo安装</h1>
+# User-specific stuff
+.idea/**/workspace.xml
+.idea/**/tasks.xml
+.idea/**/usage.statistics.xml
+.idea/**/dictionaries
+.idea/**/shelf
 
-<h2 id="1-1-go安装">1.1 Go安装</h2>
+# Generated files
+.idea/**/contentModel.xml
 
-<p>直接使用go get的方式安装:
-<code>go get -u -v github.com/gohugoio/hugo</code></p>
+# Sensitive or high-churn files
+.idea/**/dataSources/
+.idea/**/dataSources.ids
+.idea/**/dataSources.local.xml
+.idea/**/sqlDataSources.xml
+.idea/**/dynamic.xml
+.idea/**/uiDesigner.xml
+.idea/**/dbnavigator.xml
 
-<h2 id="1-2-brew安装">1.2 Brew安装</h2>
+# Gradle
+.idea/**/gradle.xml
+.idea/**/libraries
 
-<p>在mac下可以使用brew安装:
-<code>brew install hugo</code></p>
+# Gradle and Maven with auto-import
+# When using Gradle or Maven with auto-import, you should exclude module files,
+# since they will be recreated, and may cause churn.  Uncomment if using
+# auto-import.
+# .idea/modules.xml
+# .idea/*.iml
+# .idea/modules
 
-<h1 id="2-hugo新建一个站点">2.Hugo新建一个站点</h1>
+# CMake
+cmake-build-*/
 
-<p><code>hugo new site path/to/site</code>，运行之后会在运行路径下生成<code>path/to/site</code>的文件夹。</p>
+# Mongo Explorer plugin
+.idea/**/mongoSettings.xml
 
-<h1 id="3-hugo新建一篇文章">3.Hugo新建一篇文章</h1>
+# File-based project format
+*.iws
 
-<p><code>hugo new post/directory/new.md</code>，这样就会生成一篇新的文章。
-会生成在<code>content/post/directory</code>文件夹下。</p>
+# IntelliJ
+out/
 
-<h1 id="4-安装主题">4.安装主题</h1>
+# mpeltonen/sbt-idea plugin
+.idea_modules/
 
-<p>拷贝主题到themes文件夹下，然后在<code>config.toml</code>加上<code>theme = &quot;hugo-theme-dream&quot;</code>，
-值就填要用的主题的文件夹的名字就可以了。</p>
+# JIRA plugin
+atlassian-ide-plugin.xml
 
-<h1 id="5-修改config-toml">5.修改config.toml</h1>
+# Cursive Clojure plugin
+.idea/replstate.xml
 
-<p>要是要发布到github.io的话，要在config.toml里面把<code>baseURL</code>改成<code>https://liguoqinjim.github.io</code></p>
+# Crashlytics plugin (for Android Studio and IntelliJ)
+com_crashlytics_export_strings.xml
+crashlytics.properties
+crashlytics-build.properties
+fabric.properties
 
-<h1 id="6-本机预览">6.本机预览</h1>
+# Editor-based Rest Client
+.idea/httpRequests
 
-<p><code>hugo server -D</code>就可以实现本机预览了</p>
-
-<h1 id="7-发布">7.发布</h1>
-
-<p><code>hugo -D</code>，这里<code>-D</code>的意思是把<code>draft: ture</code>的文章也发布出来，也就是在草稿状态中的文章。运行完命令之后，生成的博客就在public文件夹里面了，
-我们只要把public文件夹发布到github.io的库就可以了</p>
-
-<h1 id="参考资料">参考资料</h1>
-
-<ul>
-<li><a href="http://www.gohugo.org/">http://www.gohugo.org/</a></li>
-</ul></article>
+# Android studio 3.1+ serialized cache file
+.idea/caches/build_file_checksums.ser</code></pre></div></article>
     <footer class="post-footer">
       
       <ul class="post-tags">
         
-          <li><a href="https://liguoqinjim.com/tags/tool"><span class="tag">Tool</span></a></li>
+          <li><a href="https://liguoqinjim.com/tags/git"><span class="tag">Git</span></a></li>
         
       </ul>
       
       <p class="post-copyright">
-        © This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you wish to quote or reproduce.This post was published <strong>388</strong> days ago, content in the post may be inaccurate, even wrong now, please take risk yourself.
+        © This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you wish to quote or reproduce.
       </p>
     </footer>
     
