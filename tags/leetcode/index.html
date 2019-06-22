@@ -15,7 +15,9 @@
   
   <link href="//cdn.jsdelivr.net" rel="dns-prefetch">
   <link href="//cdnjs.cloudflare.com" rel="dns-prefetch">
+  
   <link href="//at.alicdn.com" rel="dns-prefetch">
+  
   <link href="//fonts.googleapis.com" rel="dns-prefetch">
   <link href="//fonts.gstatic.com" rel="dns-prefetch">
   <link href="///disqus.com" rel="dns-prefetch">
@@ -47,7 +49,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.53">
+<meta name="generator" content="Hugo 0.55.6">
 
 
 <link rel="canonical" href="https://liguoqinjim.com/tags/leetcode/">
@@ -84,7 +86,8 @@
 <link rel="manifest" href="https://liguoqinjim.com/manifest.json">
 
 
-<link rel="preload" href="https://liguoqinjim.com/styles/main.min.css" as="style">
+<link rel="preload" href="https://liguoqinjim.com/styles/main-rendered.min.css" as="style">
+
 
 <link rel="preload" href="https://fonts.googleapis.com/css?family=Lobster" as="style">
 <link rel="preload" href="https://liguoqinjim.com/images/avatar.jpg" as="image">
@@ -96,7 +99,8 @@
     background: rgb(244, 243, 241) url('/images/grey-prism.svg') repeat fixed;
   }
 </style>
-<link rel="stylesheet" href="https://liguoqinjim.com/styles/main.min.css">
+<link rel="stylesheet" href="https://liguoqinjim.com/styles/main-rendered.min.css">
+
 
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lobster">
 
@@ -122,7 +126,6 @@
 
 </head>
   <body>
-    
     <div class="suspension">
       <a role="button" aria-label="Go to top" title="Go to top" class="to-top is-hide"><span class="icon icon-up" aria-hidden="true"></span></a>
       
@@ -130,9 +133,9 @@
     
     
   <header class="site-header">
-  <img class="avatar" src="https://liguoqinjim.com/images/avatar.jpg" alt="Avatar">
+  <a href="https://liguoqinjim.com"><img class="avatar" src="https://liguoqinjim.com/images/avatar.jpg" alt="Avatar"></a>
   
-  <h2 class="title">Liguoqinjim&#39;s Blog</h2>
+  <h2 class="title"><a href="https://liguoqinjim.com">Liguoqinjim&#39;s Blog</a></h2>
   
   <p class="subtitle">~ Keep It Simple &amp; Stupid ~</p>
   <button class="menu-toggle" type="button" aria-label="Main Menu" aria-expanded="false" tab-index="0">
@@ -176,8 +179,8 @@
             <span class="icon icon-email" aria-hidden="true"></span>
           </a>
         </li><li class="social-item">
-          <a href="//github.com/liguoqinjim" title="GitHub" aria-label="GitHub">
-            <span class="icon icon-github" aria-hidden="true"></span>
+          <a href="//github.com/liguoqinjim" rel="me" title="GitHub" aria-label="GitHub">
+	    <span class="icon icon-github" aria-hidden="true"></span>
           </a>
         </li></ul>
   </nav>
@@ -196,9 +199,7 @@
     <p class="post-meta">@liguoqinjim · Jul 24, 2018 · 2 min read</p>
   </header>
   
-  <p class="post-summary">题目 Implement atoi which converts a string to an integer.
-就是字符串转换为数字，但是还是有一些特殊的规则，具体看题目描述页
-解法 解法1 func myAtoi(str string) int { if len(str) == 0 { return 0 } result := 0 u := -1 //有无符号 	e := -1 //错误位第几位 	for n, v := range str { if v &lt; 48 || v &gt; 57 { if v == 43 || v == 45 { //&#43;-号 	if result != 0 { e = n break } if u &gt;= 0 { return 0 } u = n continue } if v == 32 { //空格 	if result !</p>
+  <p class="post-summary"></p>
   <footer class="post-footer">
     <a class="read-more" href="https://liguoqinjim.com/post/leetcode/lab0008/">Read More →</a>
   </footer>
@@ -211,11 +212,7 @@
     <p class="post-meta">@liguoqinjim · Jul 23, 2018 · 1 min read</p>
   </header>
   
-  <p class="post-summary">题目 Given a string containing just the characters ‘(’, ‘)’, ‘{’, ‘}’, ‘[’ and ‘]’, determine if the input string is valid.
-An input string is valid if:
- Open brackets must be closed by the same type of brackets. Open brackets must be closed in the correct order.  Note that an empty string is also considered valid.
-就是要判断括号的顺序是否是正确的。
-解法 解法1 func isValid(s string) bool { //这个解法用到了acsii值 	if len(s) == 0 { return true } left := make([]int, 1) left[0] = int(s[0]) for i := 1; i &lt; len(s); i&#43;&#43; { a := int(s[i]) if len(left) == 0 { left = append(left, a) continue } if a-left[len(left)-1] !</p>
+  <p class="post-summary"></p>
   <footer class="post-footer">
     <a class="read-more" href="https://liguoqinjim.com/post/leetcode/lab0020/">Read More →</a>
   </footer>
@@ -228,9 +225,7 @@ An input string is valid if:
     <p class="post-meta">@liguoqinjim · Jul 22, 2018 · 1 min read</p>
   </header>
   
-  <p class="post-summary">题目 Write a function to find the longest common prefix string amongst an array of strings. If there is no common prefix, return an empty string “”.
-在一组给出的字符串里面，找出最长的相同前缀。如果没有相同的前缀，返回””
-解法 解法1 func longestCommonPrefix(strs []string) string { if len(strs) == 0 { return &#34;&#34; } if len(strs) == 1 { return strs[0] } n := 0 end := false for !end { for i := 0; i &lt; len(strs)-1; i&#43;&#43; { if n == len(strs[i]) || n == len(strs[i&#43;1]) { end = true break } if strs[i][n] !</p>
+  <p class="post-summary"></p>
   <footer class="post-footer">
     <a class="read-more" href="https://liguoqinjim.com/post/leetcode/lab0014/">Read More →</a>
   </footer>
@@ -243,9 +238,7 @@ An input string is valid if:
     <p class="post-meta">@liguoqinjim · Jul 21, 2018 · 1 min read</p>
   </header>
   
-  <p class="post-summary">题目 Given a sorted array and a target value, return the index if the target is found. If not, return the index where it would be if it were inserted in order.
-就是有一组有序的数组和一个目标数字，如果目标数字存在在数组里面，就返回数组下标。如果不存在，则返回把目标数字按大小排列在数组里面的下标。
-解法 解法1 func searchInsert(nums []int, target int) int { for n, v := range nums { if target &lt;= v { return n } } return len(nums) } 解法2 func searchInsert2(nums []int, target int) int { low, high := 0, len(nums)-1 for low &lt;= high { mid := (low &#43; high) / 2 if nums[mid] == target { return mid } else if nums[mid] &gt; target { high = mid - 1 } else { low = mid &#43; 1 } } return low } 总结  解法2用到了二分法，时间复杂度是logn。在计算时间复杂度的时候，可以把high认为是一个常数，那么只有low在变化。  源代码 https://github.</p>
+  <p class="post-summary"></p>
   <footer class="post-footer">
     <a class="read-more" href="https://liguoqinjim.com/post/leetcode/lab0035/">Read More →</a>
   </footer>
@@ -258,9 +251,7 @@ An input string is valid if:
     <p class="post-meta">@liguoqinjim · Jul 20, 2018 · 1 min read</p>
   </header>
   
-  <p class="post-summary">题目 Given a 32-bit signed integer, reverse digits of an integer.
-也就是要反转一个数字，比如123变成321、-123变成-321。但是有一个要注意的地方，数字一定要在32位的有符号数字范围内，要是不在范围内的话，返回0
-解法 解法1 func reverse(x int) int { if x &gt;= math.MaxInt32 || x &lt;= math.MinInt32 { return 0 } i := 10 num := make([]int, 0) for { rem := x % i num = append(num, rem/(i/10)) if rem == x { break } i *= 10 } result := 0 for n, v := range num { result &#43;= v * int(math.</p>
+  <p class="post-summary"></p>
   <footer class="post-footer">
     <a class="read-more" href="https://liguoqinjim.com/post/leetcode/lab0007/">Read More →</a>
   </footer>
@@ -273,9 +264,7 @@ An input string is valid if:
     <p class="post-meta">@liguoqinjim · Jul 19, 2018 · 1 min read</p>
   </header>
   
-  <p class="post-summary">题目 Given an array of integers, return indices of the two numbers such that they add up to a specific target. You may assume that each input would have exactly one solution, and you may not use the same element twice.
-Example:
-Given nums = [2, 7, 11, 15], target = 9, Because nums[0] &#43; nums[1] = 2 &#43; 7 = 9, return [0, 1].  解法 解法1 func twoSum(nums []int, target int) []int { as := make([]int, 2) for i := 0; i &lt; len(nums); i&#43;&#43; { for j := i &#43; 1; j &lt; len(nums); j&#43;&#43; { if nums[i]&#43;nums[j] == target { as[0] = i as[1] = j } } } return as } 解法2 func twoSum2(nums []int, target int) []int { r := make([]int, 2) result := make(map[int]int) //key是nums的值,value是值对应的下标 	for n, v := range nums { if value, ok := result[target-v]; ok { r[0] = value r[1] = n break } result[v] = n } return r } 总结 解法1就是最简单的循环相加，时间复杂度是O(n^2)。解法2的话因为题目里面是假设了肯定是有解的，那么就直接用一个循环来完成，时间复杂度使用O(n)</p>
+  <p class="post-summary"></p>
   <footer class="post-footer">
     <a class="read-more" href="https://liguoqinjim.com/post/leetcode/lab0001/">Read More →</a>
   </footer>

@@ -11,7 +11,9 @@
   
   <link href="//cdn.jsdelivr.net" rel="dns-prefetch">
   <link href="//cdnjs.cloudflare.com" rel="dns-prefetch">
+  
   <link href="//at.alicdn.com" rel="dns-prefetch">
+  
   <link href="//fonts.googleapis.com" rel="dns-prefetch">
   <link href="//fonts.gstatic.com" rel="dns-prefetch">
   <link href="///disqus.com" rel="dns-prefetch">
@@ -24,34 +26,28 @@
 
   
   
-  <meta name="description" content="题目 Given a 32-bit signed integer, reverse digits of an integer.
-也就是要反转一个数字，比如123变成321、-123变成-321。但是有一个要注意的地方，数字一定要在32位的有符号数字范围内，要是不在范围内的话，返回0
-解法 解法1 func reverse(x int) int { if x &amp;gt;= math.MaxInt32 || x &amp;lt;= math.MinInt32 { return 0 } i := 10 num := make([]int, 0) for { rem := x % i num = append(num, rem/(i/10)) if rem == x { break } i *= 10 } result := 0 for n, v := range num { result &#43;= v * int(math.">
+  <meta name="description" content="">
 
   
   
     <meta name="twitter:card" content="summary">
     <meta name="twitter:site" content="@gohugoio">
     <meta name="twitter:title" content="LeetCode-0007-Reverse Integer">
-    <meta name="twitter:description" content="题目 Given a 32-bit signed integer, reverse digits of an integer.
-也就是要反转一个数字，比如123变成321、-123变成-321。但是有一个要注意的地方，数字一定要在32位的有符号数字范围内，要是不在范围内的话，返回0
-解法 解法1 func reverse(x int) int { if x &amp;gt;= math.MaxInt32 || x &amp;lt;= math.MinInt32 { return 0 } i := 10 num := make([]int, 0) for { rem := x % i num = append(num, rem/(i/10)) if rem == x { break } i *= 10 } result := 0 for n, v := range num { result &#43;= v * int(math.">
+    <meta name="twitter:description" content="">
     <meta name="twitter:image" content="/images/avatar.jpg">
   
 
   
   <meta property="og:type" content="article">
   <meta property="og:title" content="LeetCode-0007-Reverse Integer">
-  <meta property="og:description" content="题目 Given a 32-bit signed integer, reverse digits of an integer.
-也就是要反转一个数字，比如123变成321、-123变成-321。但是有一个要注意的地方，数字一定要在32位的有符号数字范围内，要是不在范围内的话，返回0
-解法 解法1 func reverse(x int) int { if x &amp;gt;= math.MaxInt32 || x &amp;lt;= math.MinInt32 { return 0 } i := 10 num := make([]int, 0) for { rem := x % i num = append(num, rem/(i/10)) if rem == x { break } i *= 10 } result := 0 for n, v := range num { result &#43;= v * int(math.">
+  <meta property="og:description" content="">
   <meta property="og:url" content="https://liguoqinjim.com/post/leetcode/lab0007/">
   <meta property="og:image" content="/images/avatar.jpg">
 
 
 
 
-<meta name="generator" content="Hugo 0.53">
+<meta name="generator" content="Hugo 0.55.6">
 
 
 <link rel="canonical" href="https://liguoqinjim.com/post/leetcode/lab0007/">
@@ -87,7 +83,8 @@
 <link rel="manifest" href="https://liguoqinjim.com/manifest.json">
 
 
-<link rel="preload" href="https://liguoqinjim.com/styles/main.min.css" as="style">
+<link rel="preload" href="https://liguoqinjim.com/styles/main-rendered.min.css" as="style">
+
 
 <link rel="preload" href="https://fonts.googleapis.com/css?family=Lobster" as="style">
 <link rel="preload" href="https://liguoqinjim.com/images/avatar.jpg" as="image">
@@ -99,7 +96,8 @@
     background: rgb(244, 243, 241) url('/images/grey-prism.svg') repeat fixed;
   }
 </style>
-<link rel="stylesheet" href="https://liguoqinjim.com/styles/main.min.css">
+<link rel="stylesheet" href="https://liguoqinjim.com/styles/main-rendered.min.css">
+
 
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lobster">
 
@@ -129,21 +127,20 @@
 
 </head>
   <body>
-    
     <div class="suspension">
       <a role="button" aria-label="Go to top" title="Go to top" class="to-top is-hide"><span class="icon icon-up" aria-hidden="true"></span></a>
       
         
-        <a role="button" aria-label="Go to comments" title="Go to comments" class="to-comment" href="#disqus_thread"><span class="icon icon-comment" aria-hidden="true"></span></a>
+	<a role="button" aria-label="Go to comments" title="Go to comments" class="to-comment" href="#disqus_thread"><span class="icon icon-comment" aria-hidden="true"></span></a>
         
       
     </div>
     
     
   <header class="site-header">
-  <img class="avatar" src="https://liguoqinjim.com/images/avatar.jpg" alt="Avatar">
+  <a href="https://liguoqinjim.com"><img class="avatar" src="https://liguoqinjim.com/images/avatar.jpg" alt="Avatar"></a>
   
-  <h2 class="title">Liguoqinjim&#39;s Blog</h2>
+  <h2 class="title"><a href="https://liguoqinjim.com">Liguoqinjim&#39;s Blog</a></h2>
   
   <p class="subtitle">~ Keep It Simple &amp; Stupid ~</p>
   <button class="menu-toggle" type="button" aria-label="Main Menu" aria-expanded="false" tab-index="0">
@@ -187,8 +184,8 @@
             <span class="icon icon-email" aria-hidden="true"></span>
           </a>
         </li><li class="social-item">
-          <a href="//github.com/liguoqinjim" title="GitHub" aria-label="GitHub">
-            <span class="icon icon-github" aria-hidden="true"></span>
+          <a href="//github.com/liguoqinjim" rel="me" title="GitHub" aria-label="GitHub">
+	    <span class="icon icon-github" aria-hidden="true"></span>
           </a>
         </li></ul>
   </nav>
@@ -265,7 +262,7 @@
       </ul>
       
       <p class="post-copyright">
-        © This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you wish to quote or reproduce.This post was published <strong>214</strong> days ago, content in the post may be inaccurate, even wrong now, please take risk yourself.
+        © This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you wish to quote or reproduce.This post was published <strong>336</strong> days ago, content in the post may be inaccurate, even wrong now, please take risk yourself.
       </p>
     </footer>
     

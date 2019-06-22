@@ -14,13 +14,14 @@ var filesToCache = [
   'images/avatar.png',
   'images/grey-prism.svg',
   'images/qrcode.jpg',
-  'styles/main.min.css',
-  'styles/custom.min.css',
+  'styles/main-rendered.min.css',
+
   'scripts/index.min.js',
 
   // Google fonts
   'https://fonts.googleapis.com/css?family=Lobster',
   'https://fonts.gstatic.com/s/lobster/v20/neILzCirqoswsqX9zoKmM4MwWJU.woff2',
+
 
   // Iconfont
   'https://at.alicdn.com/t/font_174169_qmgvd10zwbf.woff',

@@ -11,7 +11,9 @@
   
   <link href="//cdn.jsdelivr.net" rel="dns-prefetch">
   <link href="//cdnjs.cloudflare.com" rel="dns-prefetch">
+  
   <link href="//at.alicdn.com" rel="dns-prefetch">
+  
   <link href="//fonts.googleapis.com" rel="dns-prefetch">
   <link href="//fonts.gstatic.com" rel="dns-prefetch">
   <link href="///disqus.com" rel="dns-prefetch">
@@ -24,40 +26,28 @@
 
   
   
-  <meta name="description" content="题目 Given a string containing just the characters &amp;lsquo;(&amp;rsquo;, &amp;lsquo;)&amp;rsquo;, &amp;lsquo;{&amp;rsquo;, &amp;lsquo;}&amp;rsquo;, &amp;lsquo;[&amp;rsquo; and &amp;lsquo;]&amp;rsquo;, determine if the input string is valid.
-An input string is valid if:
- Open brackets must be closed by the same type of brackets. Open brackets must be closed in the correct order.  Note that an empty string is also considered valid.
-就是要判断括号的顺序是否是正确的。
-解法 解法1 func isValid(s string) bool { //这个解法用到了acsii值 	if len(s) == 0 { return true } left := make([]int, 1) left[0] = int(s[0]) for i := 1; i &amp;lt; len(s); i&#43;&#43; { a := int(s[i]) if len(left) == 0 { left = append(left, a) continue } if a-left[len(left)-1] !">
+  <meta name="description" content="">
 
   
   
     <meta name="twitter:card" content="summary">
     <meta name="twitter:site" content="@gohugoio">
     <meta name="twitter:title" content="LeetCode-0020-Valid Parentheses">
-    <meta name="twitter:description" content="题目 Given a string containing just the characters &amp;lsquo;(&amp;rsquo;, &amp;lsquo;)&amp;rsquo;, &amp;lsquo;{&amp;rsquo;, &amp;lsquo;}&amp;rsquo;, &amp;lsquo;[&amp;rsquo; and &amp;lsquo;]&amp;rsquo;, determine if the input string is valid.
-An input string is valid if:
- Open brackets must be closed by the same type of brackets. Open brackets must be closed in the correct order.  Note that an empty string is also considered valid.
-就是要判断括号的顺序是否是正确的。
-解法 解法1 func isValid(s string) bool { //这个解法用到了acsii值 	if len(s) == 0 { return true } left := make([]int, 1) left[0] = int(s[0]) for i := 1; i &amp;lt; len(s); i&#43;&#43; { a := int(s[i]) if len(left) == 0 { left = append(left, a) continue } if a-left[len(left)-1] !">
+    <meta name="twitter:description" content="">
     <meta name="twitter:image" content="/images/avatar.jpg">
   
 
   
   <meta property="og:type" content="article">
   <meta property="og:title" content="LeetCode-0020-Valid Parentheses">
-  <meta property="og:description" content="题目 Given a string containing just the characters &amp;lsquo;(&amp;rsquo;, &amp;lsquo;)&amp;rsquo;, &amp;lsquo;{&amp;rsquo;, &amp;lsquo;}&amp;rsquo;, &amp;lsquo;[&amp;rsquo; and &amp;lsquo;]&amp;rsquo;, determine if the input string is valid.
-An input string is valid if:
- Open brackets must be closed by the same type of brackets. Open brackets must be closed in the correct order.  Note that an empty string is also considered valid.
-就是要判断括号的顺序是否是正确的。
-解法 解法1 func isValid(s string) bool { //这个解法用到了acsii值 	if len(s) == 0 { return true } left := make([]int, 1) left[0] = int(s[0]) for i := 1; i &amp;lt; len(s); i&#43;&#43; { a := int(s[i]) if len(left) == 0 { left = append(left, a) continue } if a-left[len(left)-1] !">
+  <meta property="og:description" content="">
   <meta property="og:url" content="https://liguoqinjim.com/post/leetcode/lab0020/">
   <meta property="og:image" content="/images/avatar.jpg">
 
 
 
 
-<meta name="generator" content="Hugo 0.53">
+<meta name="generator" content="Hugo 0.55.6">
 
 
 <link rel="canonical" href="https://liguoqinjim.com/post/leetcode/lab0020/">
@@ -93,7 +83,8 @@ An input string is valid if:
 <link rel="manifest" href="https://liguoqinjim.com/manifest.json">
 
 
-<link rel="preload" href="https://liguoqinjim.com/styles/main.min.css" as="style">
+<link rel="preload" href="https://liguoqinjim.com/styles/main-rendered.min.css" as="style">
+
 
 <link rel="preload" href="https://fonts.googleapis.com/css?family=Lobster" as="style">
 <link rel="preload" href="https://liguoqinjim.com/images/avatar.jpg" as="image">
@@ -105,7 +96,8 @@ An input string is valid if:
     background: rgb(244, 243, 241) url('/images/grey-prism.svg') repeat fixed;
   }
 </style>
-<link rel="stylesheet" href="https://liguoqinjim.com/styles/main.min.css">
+<link rel="stylesheet" href="https://liguoqinjim.com/styles/main-rendered.min.css">
+
 
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lobster">
 
@@ -135,21 +127,20 @@ An input string is valid if:
 
 </head>
   <body>
-    
     <div class="suspension">
       <a role="button" aria-label="Go to top" title="Go to top" class="to-top is-hide"><span class="icon icon-up" aria-hidden="true"></span></a>
       
         
-        <a role="button" aria-label="Go to comments" title="Go to comments" class="to-comment" href="#disqus_thread"><span class="icon icon-comment" aria-hidden="true"></span></a>
+	<a role="button" aria-label="Go to comments" title="Go to comments" class="to-comment" href="#disqus_thread"><span class="icon icon-comment" aria-hidden="true"></span></a>
         
       
     </div>
     
     
   <header class="site-header">
-  <img class="avatar" src="https://liguoqinjim.com/images/avatar.jpg" alt="Avatar">
+  <a href="https://liguoqinjim.com"><img class="avatar" src="https://liguoqinjim.com/images/avatar.jpg" alt="Avatar"></a>
   
-  <h2 class="title">Liguoqinjim&#39;s Blog</h2>
+  <h2 class="title"><a href="https://liguoqinjim.com">Liguoqinjim&#39;s Blog</a></h2>
   
   <p class="subtitle">~ Keep It Simple &amp; Stupid ~</p>
   <button class="menu-toggle" type="button" aria-label="Main Menu" aria-expanded="false" tab-index="0">
@@ -193,8 +184,8 @@ An input string is valid if:
             <span class="icon icon-email" aria-hidden="true"></span>
           </a>
         </li><li class="social-item">
-          <a href="//github.com/liguoqinjim" title="GitHub" aria-label="GitHub">
-            <span class="icon icon-github" aria-hidden="true"></span>
+          <a href="//github.com/liguoqinjim" rel="me" title="GitHub" aria-label="GitHub">
+	    <span class="icon icon-github" aria-hidden="true"></span>
           </a>
         </li></ul>
   </nav>
@@ -266,7 +257,7 @@ An input string is valid if:
       </ul>
       
       <p class="post-copyright">
-        © This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you wish to quote or reproduce.This post was published <strong>211</strong> days ago, content in the post may be inaccurate, even wrong now, please take risk yourself.
+        © This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you wish to quote or reproduce.This post was published <strong>333</strong> days ago, content in the post may be inaccurate, even wrong now, please take risk yourself.
       </p>
     </footer>
     
