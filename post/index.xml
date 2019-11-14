@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <copyright>© This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you wish to quote or reproduce.</copyright>
-    <lastBuildDate>Thu, 20 Jun 2019 22:19:10 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 13 Nov 2019 13:48:52 +0800</lastBuildDate>
     
 	<atom:link href="https://liguoqinjim.com/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Tensorflow安装及配置GPU</title>
+      <link>https://liguoqinjim.com/post/tensorflow/tensorflow%E9%85%8D%E7%BD%AEgpu/</link>
+      <pubDate>Wed, 13 Nov 2019 13:48:52 +0800</pubDate>
+      
+      <guid>https://liguoqinjim.com/post/tensorflow/tensorflow%E9%85%8D%E7%BD%AEgpu/</guid>
+      <description>&lt;p&gt;配置Tensorflow使用GPU训练&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>MAC软件整理</title>
