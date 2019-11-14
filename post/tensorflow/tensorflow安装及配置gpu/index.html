@@ -26,26 +26,26 @@
 
   
   <meta name="author" content="liguoqinjim">
-  <meta name="description" content="配置Tensorflow使用GPU训练
+  <meta name="description" content="Tensorflow安装及配置GPU
 ">
 
   
   
-    <meta name="twitter:card" content="summary">
+    <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@gohugoio">
     <meta name="twitter:title" content="Tensorflow安装及配置GPU">
-    <meta name="twitter:description" content="配置Tensorflow使用GPU训练
+    <meta name="twitter:description" content="Tensorflow安装及配置GPU
 ">
-    <meta name="twitter:image" content="/images/avatar.jpg">
+    <meta name="twitter:image" content="https://liguoqinjim.com/images/cover/tensorflow.jpeg">
   
 
   
   <meta property="og:type" content="article">
   <meta property="og:title" content="Tensorflow安装及配置GPU">
-  <meta property="og:description" content="配置Tensorflow使用GPU训练
+  <meta property="og:description" content="Tensorflow安装及配置GPU
 ">
-  <meta property="og:url" content="https://liguoqinjim.com/post/tensorflow/tensorflow%E9%85%8D%E7%BD%AEgpu/">
-  <meta property="og:image" content="/images/avatar.jpg">
+  <meta property="og:url" content="https://liguoqinjim.com/post/tensorflow/tensorflow%E5%AE%89%E8%A3%85%E5%8F%8A%E9%85%8D%E7%BD%AEgpu/">
+  <meta property="og:image" content="https://liguoqinjim.com/images/cover/tensorflow.jpeg">
 
 
 
@@ -53,7 +53,7 @@
 <meta name="generator" content="Hugo 0.55.6">
 
 
-<link rel="canonical" href="https://liguoqinjim.com/post/tensorflow/tensorflow%E9%85%8D%E7%BD%AEgpu/">
+<link rel="canonical" href="https://liguoqinjim.com/post/tensorflow/tensorflow%E5%AE%89%E8%A3%85%E5%8F%8A%E9%85%8D%E7%BD%AEgpu/">
 
 <meta name="renderer" content="webkit">
 <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -199,11 +199,59 @@
       <h1 class="post-title">Tensorflow安装及配置GPU</h1>
       <p class="post-meta">@liguoqinjim · Nov 13, 2019 · 1 min read</p>
     </header>
-    <article class="post-content"><p>配置Tensorflow使用GPU训练</p>
+    <article class="post-content"><p>Tensorflow安装及配置GPU</p>
 
-<p>配置Tensorflow使用GPU训练</p>
+<h1 id="安装tensorflow">安装Tensorflow</h1>
 
-<p>TODO</p></article>
+<h2 id="cpu版本">CPU版本</h2>
+
+<p>安装：<code>pip install tensorflow</code></p>
+
+<h2 id="gpu版本">GPU版本</h2>
+
+<p>安装GPU版本必须有GPU硬件的支持，Tensorflow对NVIDIA显卡的支持较为完备。AMD的显卡也开始对Tensorflow提供支持。<br />
+安装：<code>pip install tensorflow-gpu</code><br />
+注：tensorflow2.0不支持MAC系统，所以mac下只能安装cpu版本。</p>
+
+<h1 id="配置gpu环境">配置GPU环境</h1>
+
+<p>安装NVIDIA相关软件：</p>
+
+<ol>
+<li>NVIDIA驱动程序(需要410.x或更高版本)</li>
+<li>CUDA(需要10.0，推荐10.0.130，不可以是10.1)</li>
+<li>cudnn(需要大于7.4.1，推荐7.6.0)</li>
+</ol>
+
+<p>推荐使用conda来安装CUDA和CUDNN，因为这样的安装方式不需要再设置环境变量</p>
+
+<h2 id="查看gpu信息">查看GPU信息</h2>
+
+<p>命令行中运行：<code>nvidia-smi</code><br />
+要是没有该程序没有在环境变量中的话，可以在驱动安装路径下找到</p>
+
+<h2 id="安装cuda">安装CUDA</h2>
+
+<p><code>conda install cudatoolkit=10.0.130</code></p>
+
+<h2 id="安装cudnn">安装cudnn</h2>
+
+<p><code>conda install cudnn=7.6.0</code></p>
+
+<h2 id="安装顺序">安装顺序</h2>
+
+<p>可能要先装cudnn再装CUDA，因为conda会自己判断版本，有的时候可能会把CUDA降级。</p>
+
+<h2 id="确认gpu是否安装成功">确认GPU是否安装成功</h2>
+
+<p><code>tf.test.is_gpu_available()</code><br />
+成功的话会返回Ture</p>
+
+<h1 id="参考资料">参考资料</h1>
+
+<ul>
+<li><a href="https://www.tensorflow.org/install/gpu">https://www.tensorflow.org/install/gpu</a></li>
+</ul></article>
     <footer class="post-footer">
       
       <ul class="post-tags">
