@@ -5,7 +5,7 @@
   <meta charset="utf-8" />
 
   
-  <title>系统学习Docker 践行DevOps理念 笔记(五)|Docker Compose多容器部署</title>
+  <title>深度学习概念</title>
 
   
   
@@ -25,26 +25,26 @@
   
 
   
-  
-  <meta name="description" content="Docker Compose多容器部署，是课程第六章的内容
+  <meta name="author" content="liguoqinjim">
+  <meta name="description" content="深度学习中的一些概念
 ">
 
   
   
     <meta name="twitter:card" content="summary">
     <meta name="twitter:site" content="@gohugoio">
-    <meta name="twitter:title" content="系统学习Docker 践行DevOps理念 笔记(五)|Docker Compose多容器部署">
-    <meta name="twitter:description" content="Docker Compose多容器部署，是课程第六章的内容
+    <meta name="twitter:title" content="深度学习概念">
+    <meta name="twitter:description" content="深度学习中的一些概念
 ">
     <meta name="twitter:image" content="/images/avatar.jpg">
   
 
   
   <meta property="og:type" content="article">
-  <meta property="og:title" content="系统学习Docker 践行DevOps理念 笔记(五)|Docker Compose多容器部署">
-  <meta property="og:description" content="Docker Compose多容器部署，是课程第六章的内容
+  <meta property="og:title" content="深度学习概念">
+  <meta property="og:description" content="深度学习中的一些概念
 ">
-  <meta property="og:url" content="https://liguoqinjim.com/post/docker/%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0docker-%E8%B7%B5%E8%A1%8Cdevops%E7%90%86%E5%BF%B5-%E7%AC%94%E8%AE%B0%E4%BA%94/">
+  <meta property="og:url" content="https://liguoqinjim.com/post/tensorflow/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%A6%82%E5%BF%B5/">
   <meta property="og:image" content="/images/avatar.jpg">
 
 
@@ -53,7 +53,7 @@
 <meta name="generator" content="Hugo 0.55.6">
 
 
-<link rel="canonical" href="https://liguoqinjim.com/post/docker/%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0docker-%E8%B7%B5%E8%A1%8Cdevops%E7%90%86%E5%BF%B5-%E7%AC%94%E8%AE%B0%E4%BA%94/">
+<link rel="canonical" href="https://liguoqinjim.com/post/tensorflow/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%A6%82%E5%BF%B5/">
 
 <meta name="renderer" content="webkit">
 <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -196,113 +196,65 @@
 
   <section class="main post-detail">
     <header class="post-header">
-      <h1 class="post-title">系统学习Docker 践行DevOps理念 笔记(五)|Docker Compose多容器部署</h1>
-      <p class="post-meta">@liguoqinjim · Aug 29, 2018 · 1 min read</p>
+      <h1 class="post-title">深度学习概念</h1>
+      <p class="post-meta">@liguoqinjim · Nov 17, 2019 · 1 min read</p>
     </header>
-    <article class="post-content"><p>Docker Compose多容器部署，是课程第六章的内容</p>
+    <article class="post-content"><p>深度学习中的一些概念</p>
 
-<!-- toc -->
+<h1 id="1-线性回归和逻辑回归">1. 线性回归和逻辑回归</h1>
 
-<h1 id="1-根据前面所学部署一个wordpress">1.根据前面所学部署一个wordpress</h1>
+<p><code>线性回归</code>： 是预测出一个连续值<br />
+<code>逻辑回归</code>： 是预测出“是”和“否”。同时逻辑回归也叫作<code>对数几率回归</code></p>
 
-<p>启动两个容器，一个mysql一个wordpress，wordpress依赖mysql服务。</p>
+<h1 id="2-顺序编码和独热编码-one-hot">2. 顺序编码和独热编码(one-hot)</h1>
+
+<p>这里用三个城市来做例子，上海，北京，深圳。<br />
+<code>顺序编码</code>： 上海:0，北京:1，深圳:2<br />
+<code>独热编码</code>： 上海[1,0,0]，北京[0,1,0]，深圳[0,0,1]。</p>
+
+<h1 id="3-categorical-crossentropy-和-sparse-catrgorical-crossentropy">3. <code>categorical_crossentropy</code>和<code>sparse_catrgorical_crossentropy</code></h1>
+
+<p>顺序编码的时候，使用的是<code>sparse_categorical_crossentropy</code></p>
+
+<h1 id="4-cnn">4. CNN</h1>
+
+<p>可能我们会问？我们之前就已经用多层感知器实现了很多功能，为什么还要学CNN。<br />
+这是因为之前的模型，比如手写数字识别，我们的数据是28*28的，但是现实中，我们要识别的图片肯定不会是28*28的，图片可能是1980*1080的这么大的。<br />
+那么我们还和之前做一样的肯定是不行了。因为要是和之前做的一样，模型的参数会很大很大的</p>
+
+<h1 id="5-图像增强">5. 图像增强</h1>
+
+<p>对图像进行如下操作：</p>
 
 <ol>
-<li><code>docker run -d --name mysql -v mysql-data:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=xphone123 -e MYSQL_DATABASE=wordpress mysql</code>
-这个是启动mysql容器的，-v指定了一个volume,-e指定了两个环境变量</li>
-<li><code>docker run -d --name workpress --link mysql -p 8080:80 -e WORDPRESS_DB_HOST=mysql:3306 wordpress</code>
-这个是启动wordpress容器的，先link到mysql容器，那么mysql:3306，就会自动解析到mysql容器的ip:3306，link之后，wordpress容器还会去读取mysql容器的环境变量作为己用</li>
+<li>图像翻转：左右翻转，上下翻转</li>
+<li>随机截取画面：裁切画面</li>
+<li>亮度增加，饱和度增加等</li>
 </ol>
 
-<h1 id="2-docker-compose到底是什么">2.Docker Compose到底是什么</h1>
+<p>那么改变之后的图像对神经网络来说，就是一张新的图片。这样，我们的样本数就增加了。样本增加是解决过拟合最好的方法。<br />
+这些动作就叫作<code>图像增强</code>。</p>
 
-<h2 id="2-1docker-compose是什么">2.1Docker compose是什么</h2>
+<h1 id="6-对test数据集是没有必要做图像增强的">6. 对test数据集是没有必要做图像增强的</h1>
 
-<ul>
-<li>Docker Compose是一个工具</li>
-<li>这个工具可以通过一个yml文件定义多容器的docker应用</li>
-<li>通过一条命令就可以根据yml文件的定义去创建或管理这多个容器</li>
-</ul>
+<p>训练集的图像只要和训练集的图像像素大小，也就是输入进模型的input_shape是一样的就可以了。</p>
 
-<h2 id="2-2docker-compose-file">2.2Docker compose file</h2>
+<h1 id="7-vgg">7. VGG</h1>
 
-<p>docker compose file，也就是这个配置文件，是有version的，推荐使用version=3的，因为version=2的，只能在单机环境下使用。虽然version=3默认也是在单机环境下使用的，但是version=3是可以在多个机器的环境下使用的</p>
+<p>VGG是CNN的一种。属于CNN</p>
 
-<p><img src="https://liguoqinjim.com/images/docker/note5/docker_compose.png" alt="docker_compose" /></p>
+<h1 id="8-预训练网络">8. 预训练网络</h1>
 
-<h2 id="2-3services">2.3Services</h2>
+<p>预训练网络，也就是迁移学习。VGG也算是一种预训练网络。
+比如我们可以使用VGG在大规模分类任务做好的训练权重来加入我们的新模型，新模型只需要训练最后的几个全连接层，这就是预训练网络。</p>
 
-<ul>
-<li>一个service代表一个container，这个container可以从dockerhub的image来创建，或者从本地的Dockerfile build出来的image来创建</li>
-<li>service的启动类似docker run，我们可以给其指定network和volume，所以可以给service指定network和volume的引用</li>
-</ul>
+<h1 id="9-多输出模型">9. 多输出模型</h1>
 
-<p><img src="https://liguoqinjim.com/images/docker/note5/service1.png" alt="service1" /></p>
-
-<p><img src="https://liguoqinjim.com/images/docker/note5/service2.png" alt="service2" /></p>
-
-<h2 id="2-4networks">2.4Networks</h2>
-
-<p><img src="https://liguoqinjim.com/images/docker/note5/network.png" alt="network" /></p>
-
-<h2 id="2-5volumes">2.5Volumes</h2>
-
-<p><img src="https://liguoqinjim.com/images/docker/note5/volume2.png" alt="volume2" /></p>
-
-<h1 id="3-docker-compose的安装和基本使用">3.Docker Compose的安装和基本使用</h1>
-
-<h2 id="3-1安装">3.1安装</h2>
-
-<ol>
-<li><a href="https://docs.docker.com/compose/install/#prerequisites">https://docs.docker.com/compose/install/#prerequisites</a> ，下载</li>
-<li>chmod +x docker-composes</li>
-<li>可能需要重新打开terminal</li>
-</ol>
-
-<h2 id="3-2相关命令">3.2相关命令</h2>
-
-<ol>
-<li><code>docker-compose up -d</code>，-d表示在后台，需要在docker-compose.yml所在的文件夹运行</li>
-<li><code>docker-compose ps</code>，</li>
-<li><code>docker-compose stop</code>，停止所有的services</li>
-<li><code>docker-compose down</code>，停止所有的services，并且删除所有包括volumes和networks，但是要删除volumes需要加上-v参数</li>
-<li><code>docker-compose start</code>，启动</li>
-<li><code>docker-compose images</code>，打印出compose里面的container，以及container使用的image</li>
-<li><code>docker-compose exec service_name bash</code>，就可以进入我们定义的service里面，bash是运行的命令</li>
-<li><code>docker-compose logs</code>，可以查看日志</li>
-</ol>
-
-<h1 id="4-水平扩展和负载均衡">4.水平扩展和负载均衡</h1>
-
-<h2 id="水平扩展">水平扩展</h2>
-
-<p><code>docker-compose up -d --scale web=3</code>，这样就会启动3个web这个service，需要注意的是，这个是可以动态运行的。比如我已经运行过docker-compose up -d了，那么就有一个web的service了，然后我运行&ndash;scale web=3这个命令，运行之后，web的service总数就变成3，而不是加3。也可以变小，比如现在有10个，然后&ndash;scale web=3，那么运行完之后就变成3个了</p>
-
-<h2 id="负载均衡">负载均衡</h2>
-
-<p>可以使用haproxy这个image来做负载均衡，大致原理如下：
-<img src="https://liguoqinjim.com/images/docker/note5/haproxy.png" alt="haproxy" /></p>
-
-<h1 id="5-部署一个复杂的投票应用">5.部署一个复杂的投票应用</h1>
-
-<p>具体可以查看<a href="https://github.com/liguoqinjim/docker-labs">https://github.com/liguoqinjim/docker-labs</a></p>
-
-<h2 id="notice">NOTICE</h2>
-
-<ol>
-<li><code>docker-compose build</code>，要是compose下的Dockerfile有修改的话，使用up命令是会直接启动的，不会再去build了，所以这时候要使用build命令先打包镜像</li>
-<li>docker-compose是用于本地开发的一个工具，不是部署生产环境app的工具</li>
-</ol></article>
+<p>就是模型要预测多个值，比如我们要求模型同时预测，图片里面是一件衣服还是一条裤子，然后还要分辨是蓝色的还是红色的。</p></article>
     <footer class="post-footer">
       
-      <ul class="post-tags">
-        
-          <li><a href="https://liguoqinjim.com/tags/docker"><span class="tag">Docker</span></a></li>
-        
-      </ul>
-      
       <p class="post-copyright">
-        © This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you wish to quote or reproduce.This post was published <strong>445</strong> days ago, content in the post may be inaccurate, even wrong now, please take risk yourself.
+        © This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you wish to quote or reproduce.
       </p>
     </footer>
     
