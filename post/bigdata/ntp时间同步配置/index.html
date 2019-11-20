@@ -272,15 +272,28 @@ restrict <span style="color:#ae81ff">15</span>.17.26.24</code></pre></div>
 
 <p><code>systemctl start ntpd</code></p>
 
-<h1 id="客户端查看状态">客户端查看状态</h1>
+<h1 id="查看状态">查看状态</h1>
 
-<p>客户端运行：<code>ntpq -p</code>，可以查看当前客户端和服务器的连接情况</p>
+<ol>
+<li><p><code>ntpq -p</code>
+可以查看当前客户端和服务器的连接情况</p></li>
+
+<li><p><code>netstat -ulnp</code>
+查看ntpd是否运行在123端口</p></li>
+</ol>
 
 <h1 id="问题">问题</h1>
 
-<h2 id="1-ntpd-p提示no-association-id-s-returned">1. ntpd -p提示No association ID&rsquo;s returned</h2>
+<h2 id="1-ntpd-p-提示no-association-id-s-returned">1. <code>ntpd -p</code>提示No association ID&rsquo;s returned</h2>
 
-<p>执行<code>systemctl status ntpd</code>查看重启是否执行成功，要是有显示failed的话。需要把之前的ntpd进程直接kill掉再<code>systemctl start ntpd</code></p></article>
+<p>执行<code>systemctl status ntpd</code>查看重启是否执行成功，要是有显示failed的话。需要把之前的ntpd进程直接kill掉再<code>systemctl start ntpd</code></p>
+
+<h1 id="参考资料">参考资料</h1>
+
+<ul>
+<li><a href="https://superuser.com/questions/307158/how-to-use-ntpdate-behind-a-proxy/818117">https://superuser.com/questions/307158/how-to-use-ntpdate-behind-a-proxy/818117</a></li>
+<li><a href="http://xstarcd.github.io/wiki/sysadmin/ntpd.html">http://xstarcd.github.io/wiki/sysadmin/ntpd.html</a></li>
+</ul></article>
     <footer class="post-footer">
       
       <ul class="post-tags">
