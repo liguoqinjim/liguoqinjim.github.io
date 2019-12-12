@@ -7,7 +7,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <copyright>© This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you wish to quote or reproduce.</copyright>
-    <lastBuildDate>Wed, 20 Nov 2019 15:26:44 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 12 Dec 2019 11:02:37 +0800</lastBuildDate>
     
 	<atom:link href="https://liguoqinjim.com/tags/index.xml" rel="self" type="application/rss+xml" />
     
@@ -15,9 +15,18 @@
     <item>
       <title>linux</title>
       <link>https://liguoqinjim.com/tags/linux/</link>
-      <pubDate>Wed, 20 Nov 2019 15:26:44 +0800</pubDate>
+      <pubDate>Thu, 12 Dec 2019 11:02:37 +0800</pubDate>
       
       <guid>https://liguoqinjim.com/tags/linux/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ssh</title>
+      <link>https://liguoqinjim.com/tags/ssh/</link>
+      <pubDate>Thu, 12 Dec 2019 11:02:37 +0800</pubDate>
+      
+      <guid>https://liguoqinjim.com/tags/ssh/</guid>
       <description></description>
     </item>
     
