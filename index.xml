@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Liguoqinjim&#39;s Blog</title>
@@ -99,10 +99,9 @@
       <pubDate>Wed, 17 Oct 2018 10:17:38 +0800</pubDate>
       
       <guid>https://liguoqinjim.com/post/tool/%E5%88%A4%E6%96%AD%E4%B8%A4%E4%B8%AA%E6%96%87%E4%BB%B6%E6%98%AF%E5%90%A6%E7%9B%B8%E5%90%8C/</guid>
-      <description>&lt;p&gt;有时我们需要判断两个文件是否相同，比如定时分析的软件，我们可以先判断数据有没有变，数据没变的话，本次定时就不运行了。这个时候就需要用到判断两个文件是否相同。&lt;br /&gt;
+      <description>&lt;p&gt;有时我们需要判断两个文件是否相同，比如定时分析的软件，我们可以先判断数据有没有变，数据没变的话，本次定时就不运行了。这个时候就需要用到判断两个文件是否相同。&lt;br&gt;
 有两种方法来实现。&lt;/p&gt;
-
-&lt;!-- toc --&gt;</description>
+&lt;!-- raw HTML omitted --&gt;</description>
     </item>
     
     <item>
@@ -112,8 +111,7 @@
       
       <guid>https://liguoqinjim.com/post/tool/git%E5%85%8D%E5%AF%86%E7%A0%81/</guid>
       <description>&lt;p&gt;git提交的时候不用输入密码&lt;/p&gt;
-
-&lt;!-- toc --&gt;</description>
+&lt;!-- raw HTML omitted --&gt;</description>
     </item>
     
     <item>
@@ -122,8 +120,8 @@
       <pubDate>Sun, 02 Sep 2018 14:07:36 +0800</pubDate>
       
       <guid>https://liguoqinjim.com/post/tool/vagrant%E5%85%A5%E9%97%A8/</guid>
-      <description>&lt;p&gt;Vagrant is a tool for building and managing virtual machine environments in a single workflow. With an easy-to-use workflow and focus on automation, Vagrant lowers development environment setup time, increases production parity, and makes the &amp;ldquo;works on my machine&amp;rdquo; excuse a relic of the past.&lt;br /&gt;
-Vagrant是一个在单一工作流中创建和管理虚拟机环境的工具。通过简单易用的工作流和对自动化的关注，Vagrant可以减少开发环境的配置时间，增加生产平价，并且使得&amp;rdquo;works on my machine&amp;rdquo;这个借口成为过去。&lt;/p&gt;</description>
+      <description>&lt;p&gt;Vagrant is a tool for building and managing virtual machine environments in a single workflow. With an easy-to-use workflow and focus on automation, Vagrant lowers development environment setup time, increases production parity, and makes the &amp;ldquo;works on my machine&amp;rdquo; excuse a relic of the past.&lt;br&gt;
+Vagrant是一个在单一工作流中创建和管理虚拟机环境的工具。通过简单易用的工作流和对自动化的关注，Vagrant可以减少开发环境的配置时间，增加生产平价，并且使得&amp;quot;works on my machine&amp;quot;这个借口成为过去。&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -296,6 +294,15 @@ Vagrant是一个在单一工作流中创建和管理虚拟机环境的工具。�
       
       <guid>https://liguoqinjim.com/about/</guid>
       <description>这是我的博客，记录了一些东西</description>
+    </item>
+    
+    <item>
+      <title>搜索</title>
+      <link>https://liguoqinjim.com/search/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://liguoqinjim.com/search/</guid>
+      <description></description>
     </item>
     
   </channel>

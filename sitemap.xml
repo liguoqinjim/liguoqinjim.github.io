@@ -1,17 +1,25 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
     <loc>https://liguoqinjim.com/</loc>
     <lastmod>2019-12-12T11:02:37+08:00</lastmod>
-    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://liguoqinjim.com/tags/linux/</loc>
+    <lastmod>2019-12-12T11:02:37+08:00</lastmod>
   </url>
   
   <url>
     <loc>https://liguoqinjim.com/post/</loc>
     <lastmod>2019-12-12T11:02:37+08:00</lastmod>
-    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://liguoqinjim.com/tags/ssh/</loc>
+    <lastmod>2019-12-12T11:02:37+08:00</lastmod>
   </url>
   
   <url>
@@ -22,19 +30,6 @@
   <url>
     <loc>https://liguoqinjim.com/tags/</loc>
     <lastmod>2019-12-12T11:02:37+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://liguoqinjim.com/tags/linux/</loc>
-    <lastmod>2019-12-12T11:02:37+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://liguoqinjim.com/tags/ssh/</loc>
-    <lastmod>2019-12-12T11:02:37+08:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -45,7 +40,6 @@
   <url>
     <loc>https://liguoqinjim.com/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE/</loc>
     <lastmod>2019-11-20T15:26:44+08:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -54,14 +48,23 @@
   </url>
   
   <url>
+    <loc>https://liguoqinjim.com/tags/tensorflow/</loc>
+    <lastmod>2019-11-13T13:48:52+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://liguoqinjim.com/post/tensorflow/tensorflow%E5%AE%89%E8%A3%85%E5%8F%8A%E9%85%8D%E7%BD%AEgpu/</loc>
     <lastmod>2019-11-13T13:48:52+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://liguoqinjim.com/tags/tensorflow/</loc>
-    <lastmod>2019-11-13T13:48:52+08:00</lastmod>
-    <priority>0</priority>
+    <loc>https://liguoqinjim.com/tags/application/</loc>
+    <lastmod>2019-06-20T22:19:10+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://liguoqinjim.com/tags/mac/</loc>
+    <lastmod>2019-06-20T22:19:10+08:00</lastmod>
   </url>
   
   <url>
@@ -70,15 +73,8 @@
   </url>
   
   <url>
-    <loc>https://liguoqinjim.com/tags/application/</loc>
-    <lastmod>2019-06-20T22:19:10+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://liguoqinjim.com/tags/mac/</loc>
-    <lastmod>2019-06-20T22:19:10+08:00</lastmod>
-    <priority>0</priority>
+    <loc>https://liguoqinjim.com/tags/git/</loc>
+    <lastmod>2019-02-20T12:30:26+08:00</lastmod>
   </url>
   
   <url>
@@ -87,15 +83,8 @@
   </url>
   
   <url>
-    <loc>https://liguoqinjim.com/tags/git/</loc>
-    <lastmod>2019-02-20T12:30:26+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>https://liguoqinjim.com/tags/hbase/</loc>
     <lastmod>2019-02-12T15:57:17+08:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -104,20 +93,18 @@
   </url>
   
   <url>
+    <loc>https://liguoqinjim.com/tags/hadoop/</loc>
+    <lastmod>2019-02-12T15:30:38+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://liguoqinjim.com/post/bigdata/hdfs%E7%9A%84%E5%9F%BA%E6%9C%AC%E9%85%8D%E7%BD%AE/</loc>
     <lastmod>2019-02-12T15:30:38+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://liguoqinjim.com/tags/hadoop/</loc>
-    <lastmod>2019-02-12T15:30:38+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>https://liguoqinjim.com/tags/docker/</loc>
     <lastmod>2018-12-31T21:44:33+08:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -128,19 +115,16 @@
   <url>
     <loc>https://liguoqinjim.com/categories/</loc>
     <lastmod>2018-10-17T10:17:38+08:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://liguoqinjim.com/categories/tool/</loc>
     <lastmod>2018-10-17T10:17:38+08:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://liguoqinjim.com/tags/tool/</loc>
     <lastmod>2018-10-17T10:17:38+08:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -154,20 +138,18 @@
   </url>
   
   <url>
+    <loc>https://liguoqinjim.com/tags/vagrant/</loc>
+    <lastmod>2018-09-02T14:07:36+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://liguoqinjim.com/post/tool/vagrant%E5%85%A5%E9%97%A8/</loc>
     <lastmod>2018-09-02T14:07:36+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://liguoqinjim.com/tags/vagrant/</loc>
-    <lastmod>2018-09-02T14:07:36+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>https://liguoqinjim.com/categories/docker/</loc>
     <lastmod>2018-08-30T22:18:05+08:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -211,20 +193,18 @@
   </url>
   
   <url>
-    <loc>https://liguoqinjim.com/post/leetcode/lab0008/</loc>
-    <lastmod>2018-07-24T11:46:25+08:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://liguoqinjim.com/categories/leetcode/</loc>
     <lastmod>2018-07-24T11:46:25+08:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://liguoqinjim.com/tags/leetcode/</loc>
     <lastmod>2018-07-24T11:46:25+08:00</lastmod>
-    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://liguoqinjim.com/post/leetcode/lab0008/</loc>
+    <lastmod>2018-07-24T11:46:25+08:00</lastmod>
   </url>
   
   <url>
@@ -253,26 +233,23 @@
   </url>
   
   <url>
+    <loc>https://liguoqinjim.com/tags/hugo/</loc>
+    <lastmod>2018-07-04T16:42:54+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://liguoqinjim.com/post/markdown/hugo%E7%9A%84toc/</loc>
     <lastmod>2018-07-04T16:42:54+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://liguoqinjim.com/tags/hugo/</loc>
+    <loc>https://liguoqinjim.com/tags/markdown/</loc>
     <lastmod>2018-07-04T16:42:54+08:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://liguoqinjim.com/categories/markdown/</loc>
     <lastmod>2018-07-04T16:42:54+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://liguoqinjim.com/tags/markdown/</loc>
-    <lastmod>2018-07-04T16:42:54+08:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -283,7 +260,6 @@
   <url>
     <loc>https://liguoqinjim.com/tags/golang/</loc>
     <lastmod>2018-07-02T18:20:02+08:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -299,6 +275,10 @@
   <url>
     <loc>https://liguoqinjim.com/about/</loc>
     <lastmod>2018-01-26T17:57:27+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://liguoqinjim.com/search/</loc>
   </url>
   
 </urlset>

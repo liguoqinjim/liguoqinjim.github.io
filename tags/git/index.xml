@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>git on Liguoqinjim&#39;s Blog</title>
@@ -37,8 +37,7 @@
       
       <guid>https://liguoqinjim.com/post/tool/git%E5%85%8D%E5%AF%86%E7%A0%81/</guid>
       <description>&lt;p&gt;git提交的时候不用输入密码&lt;/p&gt;
-
-&lt;!-- toc --&gt;</description>
+&lt;!-- raw HTML omitted --&gt;</description>
     </item>
     
   </channel>
