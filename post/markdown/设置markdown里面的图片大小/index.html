@@ -95,14 +95,19 @@
         <div class="post-content">
             <p>在markdown里面添加图片的时候，图片显示出来可能会比我们需要的大很多。
 这时候我们会需要设置图片的大小。</p>
-<!-- raw HTML omitted -->
-<h1 id="1markdown语法添加图片">1.markdown语法添加图片</h1>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-markdown" data-lang="markdown">![<span style="color:#f92672">webhooks</span>](<span style="color:#a6e22e">/images/IFTTT/snipaste20180702_184145.png</span>)
-</code></pre></div><p>但是这样的添加方式，我们不能设置图片的大小。要设置大小需要使用HTML标签</p>
-<h1 id="2通过html标签添加图片并设置图片大小">2.通过HTML标签添加图片并设置图片大小</h1>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#f92672">img</span> <span style="color:#a6e22e">src</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;/images/IFTTT/snipaste20180702_184145.png&#34;</span> <span style="color:#a6e22e">width</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;200&#34;</span> <span style="color:#a6e22e">alt</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;webhooks&#34;</span>&gt;
-</code></pre></div><p><code>width</code>可以用来设置图片的大小</p>
-<h1 id="3有的需要根据使用的主题的规则来设置">3.有的需要根据使用的主题的规则来设置</h1>
+
+<!-- toc -->
+
+<h1 id="1-markdown语法添加图片">1.markdown语法添加图片</h1>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-markdown" data-lang="markdown">![<span style="color:#f92672">webhooks</span>](<span style="color:#a6e22e">/images/IFTTT/snipaste20180702_184145.png</span>)</code></pre></div>
+<p>但是这样的添加方式，我们不能设置图片的大小。要设置大小需要使用HTML标签</p>
+
+<h1 id="2-通过html标签添加图片并设置图片大小">2.通过HTML标签添加图片并设置图片大小</h1>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#f92672">img</span> <span style="color:#a6e22e">src</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;/images/IFTTT/snipaste20180702_184145.png&#34;</span> <span style="color:#a6e22e">width</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;200&#34;</span> <span style="color:#a6e22e">alt</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;webhooks&#34;</span>&gt;</code></pre></div>
+<p><code>width</code>可以用来设置图片的大小</p>
+
+<h1 id="3-有的需要根据使用的主题的规则来设置">3.有的需要根据使用的主题的规则来设置</h1>
+
 <p>有的主题里面使用<code>&lt;img&gt;</code>标签没用，这个可能是主题有自己的图片规则，例如<a href="https://github.com/kakawait/hugo-tranquilpeak-theme/"><code>hugo-tranquilpeak-theme</code></a>，这个时候具体查看主题的文档就可以了。</p>
         </div>
 

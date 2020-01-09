@@ -94,44 +94,67 @@
         
         <div class="post-content">
             <p>Docker Compose多容器部署，是课程第六章的内容</p>
-<!-- raw HTML omitted -->
-<h1 id="1根据前面所学部署一个wordpress">1.根据前面所学部署一个wordpress</h1>
+
+<!-- toc -->
+
+<h1 id="1-根据前面所学部署一个wordpress">1.根据前面所学部署一个wordpress</h1>
+
 <p>启动两个容器，一个mysql一个wordpress，wordpress依赖mysql服务。</p>
+
 <ol>
 <li><code>docker run -d --name mysql -v mysql-data:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=xphone123 -e MYSQL_DATABASE=wordpress mysql</code>
 这个是启动mysql容器的，-v指定了一个volume,-e指定了两个环境变量</li>
 <li><code>docker run -d --name workpress --link mysql -p 8080:80 -e WORDPRESS_DB_HOST=mysql:3306 wordpress</code>
 这个是启动wordpress容器的，先link到mysql容器，那么mysql:3306，就会自动解析到mysql容器的ip:3306，link之后，wordpress容器还会去读取mysql容器的环境变量作为己用</li>
 </ol>
-<h1 id="2docker-compose到底是什么">2.Docker Compose到底是什么</h1>
-<h2 id="21docker-compose是什么">2.1Docker compose是什么</h2>
+
+<h1 id="2-docker-compose到底是什么">2.Docker Compose到底是什么</h1>
+
+<h2 id="2-1docker-compose是什么">2.1Docker compose是什么</h2>
+
 <ul>
 <li>Docker Compose是一个工具</li>
 <li>这个工具可以通过一个yml文件定义多容器的docker应用</li>
 <li>通过一条命令就可以根据yml文件的定义去创建或管理这多个容器</li>
 </ul>
-<h2 id="22docker-compose-file">2.2Docker compose file</h2>
+
+<h2 id="2-2docker-compose-file">2.2Docker compose file</h2>
+
 <p>docker compose file，也就是这个配置文件，是有version的，推荐使用version=3的，因为version=2的，只能在单机环境下使用。虽然version=3默认也是在单机环境下使用的，但是version=3是可以在多个机器的环境下使用的</p>
-<p><img src="https://liguoqinjim.com/images/docker/note5/docker_compose.png" alt="docker_compose"></p>
-<h2 id="23services">2.3Services</h2>
+
+<p><img src="https://liguoqinjim.com/images/docker/note5/docker_compose.png" alt="docker_compose" /></p>
+
+<h2 id="2-3services">2.3Services</h2>
+
 <ul>
 <li>一个service代表一个container，这个container可以从dockerhub的image来创建，或者从本地的Dockerfile build出来的image来创建</li>
 <li>service的启动类似docker run，我们可以给其指定network和volume，所以可以给service指定network和volume的引用</li>
 </ul>
-<p><img src="https://liguoqinjim.com/images/docker/note5/service1.png" alt="service1"></p>
-<p><img src="https://liguoqinjim.com/images/docker/note5/service2.png" alt="service2"></p>
-<h2 id="24networks">2.4Networks</h2>
-<p><img src="https://liguoqinjim.com/images/docker/note5/network.png" alt="network"></p>
-<h2 id="25volumes">2.5Volumes</h2>
-<p><img src="https://liguoqinjim.com/images/docker/note5/volume2.png" alt="volume2"></p>
-<h1 id="3docker-compose的安装和基本使用">3.Docker Compose的安装和基本使用</h1>
-<h2 id="31安装">3.1安装</h2>
+
+<p><img src="https://liguoqinjim.com/images/docker/note5/service1.png" alt="service1" /></p>
+
+<p><img src="https://liguoqinjim.com/images/docker/note5/service2.png" alt="service2" /></p>
+
+<h2 id="2-4networks">2.4Networks</h2>
+
+<p><img src="https://liguoqinjim.com/images/docker/note5/network.png" alt="network" /></p>
+
+<h2 id="2-5volumes">2.5Volumes</h2>
+
+<p><img src="https://liguoqinjim.com/images/docker/note5/volume2.png" alt="volume2" /></p>
+
+<h1 id="3-docker-compose的安装和基本使用">3.Docker Compose的安装和基本使用</h1>
+
+<h2 id="3-1安装">3.1安装</h2>
+
 <ol>
 <li><a href="https://docs.docker.com/compose/install/#prerequisites">https://docs.docker.com/compose/install/#prerequisites</a> ，下载</li>
 <li>chmod +x docker-composes</li>
 <li>可能需要重新打开terminal</li>
 </ol>
-<h2 id="32相关命令">3.2相关命令</h2>
+
+<h2 id="3-2相关命令">3.2相关命令</h2>
+
 <ol>
 <li><code>docker-compose up -d</code>，-d表示在后台，需要在docker-compose.yml所在的文件夹运行</li>
 <li><code>docker-compose ps</code>，</li>
@@ -142,15 +165,24 @@
 <li><code>docker-compose exec service_name bash</code>，就可以进入我们定义的service里面，bash是运行的命令</li>
 <li><code>docker-compose logs</code>，可以查看日志</li>
 </ol>
-<h1 id="4水平扩展和负载均衡">4.水平扩展和负载均衡</h1>
+
+<h1 id="4-水平扩展和负载均衡">4.水平扩展和负载均衡</h1>
+
 <h2 id="水平扩展">水平扩展</h2>
+
 <p><code>docker-compose up -d --scale web=3</code>，这样就会启动3个web这个service，需要注意的是，这个是可以动态运行的。比如我已经运行过docker-compose up -d了，那么就有一个web的service了，然后我运行&ndash;scale web=3这个命令，运行之后，web的service总数就变成3，而不是加3。也可以变小，比如现在有10个，然后&ndash;scale web=3，那么运行完之后就变成3个了</p>
+
 <h2 id="负载均衡">负载均衡</h2>
+
 <p>可以使用haproxy这个image来做负载均衡，大致原理如下：
-<img src="https://liguoqinjim.com/images/docker/note5/haproxy.png" alt="haproxy"></p>
-<h1 id="5部署一个复杂的投票应用">5.部署一个复杂的投票应用</h1>
-<p>具体可以查看https://github.com/liguoqinjim/docker-labs</p>
+<img src="https://liguoqinjim.com/images/docker/note5/haproxy.png" alt="haproxy" /></p>
+
+<h1 id="5-部署一个复杂的投票应用">5.部署一个复杂的投票应用</h1>
+
+<p>具体可以查看<a href="https://github.com/liguoqinjim/docker-labs">https://github.com/liguoqinjim/docker-labs</a></p>
+
 <h2 id="notice">NOTICE</h2>
+
 <ol>
 <li><code>docker-compose build</code>，要是compose下的Dockerfile有修改的话，使用up命令是会直接启动的，不会再去build了，所以这时候要使用build命令先打包镜像</li>
 <li>docker-compose是用于本地开发的一个工具，不是部署生产环境app的工具</li>

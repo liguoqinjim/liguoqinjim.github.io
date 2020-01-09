@@ -94,24 +94,34 @@
         
         <div class="post-content">
             <p>容器的的运维和监控，是课程第十章的内容</p>
-<!-- raw HTML omitted -->
-<h1 id="1容器的基本监控">1.容器的基本监控</h1>
+
+<!--toc-->
+
+<h1 id="1-容器的基本监控">1.容器的基本监控</h1>
+
 <p>相关命令：</p>
+
 <ol>
 <li>docker top d1ea6fa01bbd，top后面跟上容器名称可以查看docker的情况</li>
 <li>docker stats，查看容器的使用情况</li>
 </ol>
-<h2 id="11weavework工具">1.1weavework工具</h2>
+
+<h2 id="1-1weavework工具">1.1weavework工具</h2>
+
 <ol>
-<li>安装，https://github.com/weaveworks/scope</li>
+<li>安装，<a href="https://github.com/weaveworks/scope">https://github.com/weaveworks/scope</a></li>
 <li>scope launch 192.168.210.10，192.168.210.10是那个机器的外部可以访问的地址，然后就可以在网页里面查看docker的运行情况了</li>
 <li>scope stop，可以关闭scope</li>
 <li>scope lannch后面可以跟多个ip，只要能连通就可以了</li>
 </ol>
-<h1 id="2k8s集群运行资源监控heapstergrafanainfluxdb">2.k8s集群运行资源监控——Heapster+Grafana+InfluxDB</h1>
-<p>heapster: <a href="https://github.com/kubernetes/heapster">https://github.com/kubernetes/heapster</a><br>
+
+<h1 id="2-k8s集群运行资源监控-heapster-grafana-influxdb">2.k8s集群运行资源监控——Heapster+Grafana+InfluxDB</h1>
+
+<p>heapster: <a href="https://github.com/kubernetes/heapster">https://github.com/kubernetes/heapster</a><br />
 详见lab010/lab002的三个yml文件，然后启动三个文件就可以了。</p>
+
 <p>相关命令：</p>
+
 <ol>
 <li>kubectl get namespace，查看现在的namespace，默认我们创建的是创建在default的namespace下的</li>
 <li>kubectl get svc &ndash;namespace kube-system，这个是得到kube-system这个namespace下的service</li>
@@ -119,9 +129,13 @@
 <li>grafana的默认密码是admin,admin</li>
 <li>把grafana这个yml文件里面的service的type换成NodePort，我们就可以在外部访问了</li>
 </ol>
-<h1 id="3根据资源占用自动横向伸缩">3.根据资源占用自动横向伸缩</h1>
+
+<h1 id="3-根据资源占用自动横向伸缩">3.根据资源占用自动横向伸缩</h1>
+
 <p>我们可以通过监控系统资源，比如cpu的使用率，来自动横向伸缩。比如cpu超过50%的使用率的时候，我们就自动新加一个机器。要是使用率低的，我们可以再减少一点机器。</p>
+
 <p>相关命令：</p>
+
 <ol>
 <li>删除10-2里面的3个yml文件创建的资源</li>
 <li>minikube addons list，查看minikube的addons，会看到enable还是disable</li>
@@ -132,24 +146,33 @@
 <li>kubectl autoscale deployment php-apache &ndash;cpu-percent=50 &ndash;min=1 &ndash;max=10，创建一个autoscale，&ndash;cpu-percent表示cpu百分比多少的时候要添加pod，最少要一个pod，最多是10个pod</li>
 <li>kubectl get horizontalpodautoscaler，得到现在集群里面的autoscaler，还有target的负载情况</li>
 </ol>
+
 <h2 id="notice">NOTICE</h2>
+
 <ol>
 <li>autoscale得到负载情况是需要时间的，通常会有一点延迟，不会是很实时的。</li>
 <li>得到负载情况到完成自动伸缩，也是需要一点时间的</li>
 </ol>
-<h1 id="4k8s集群log的采集和展示elkfluentd">4.k8s集群Log的采集和展示——ELK+Fluentd</h1>
-<p><img src="https://liguoqinjim.com/images/docker/note8/elk.png" alt="elk"></p>
+
+<h1 id="4-k8s集群log的采集和展示-elk-fluentd">4.k8s集群Log的采集和展示——ELK+Fluentd</h1>
+
+<p><img src="https://liguoqinjim.com/images/docker/note8/elk.png" alt="elk" /></p>
+
 <p>这里没有logstash，而是用fluentd。LogTrail算是kibana里面的一个插件，看日志比较方便</p>
+
 <h2 id="notice-1">NOTICE</h2>
+
 <ol>
 <li>所以要打日志的节点都要写加一个label，使用命令
 kubectl label node &ndash;all beta.kubernetes.io/fluentd-ds-ready=true</li>
 <li>kubecte create -f，后面可以跟文件夹，那么文件夹里面所有配置文件都会被创建3</li>
 <li>具体的配置文件可以看视频里面，然后去docker-lab里面找</li>
 </ol>
-<h1 id="5k8s集群监控方案prometheus">5.k8s集群监控方案Prometheus</h1>
-<p><a href="https://prometheus.io/">https://prometheus.io/</a><br>
-prometheus和别的监控方案有一个不一样的地方，就是他是采取拉的方式。elk或者其他的这种都是推的方式，也就是应用把日志主动的推向elk。但是prometheus是主动去拉数据，这是一个不一样的地方。<br>
+
+<h1 id="5-k8s集群监控方案prometheus">5.k8s集群监控方案Prometheus</h1>
+
+<p><a href="https://prometheus.io/">https://prometheus.io/</a><br />
+prometheus和别的监控方案有一个不一样的地方，就是他是采取拉的方式。elk或者其他的这种都是推的方式，也就是应用把日志主动的推向elk。但是prometheus是主动去拉数据，这是一个不一样的地方。<br />
 具体配置文件见docker-labs</p>
         </div>
 

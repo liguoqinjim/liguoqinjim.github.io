@@ -94,14 +94,23 @@
         
         <div class="post-content">
             <p>Docker的网络，是课程第四章的内容</p>
-<!-- raw HTML omitted -->
-<h1 id="1本章概述和实验环境介绍">1.本章概述和实验环境介绍</h1>
+
+<!-- toc -->
+
+<h1 id="1-本章概述和实验环境介绍">1.本章概述和实验环境介绍</h1>
+
 <p>实验环境使用vagrant创建虚拟机，Vargantfile可以去docker-labs里面查看</p>
-<h1 id="2网络基础回顾">2.网络基础回顾</h1>
+
+<h1 id="2-网络基础回顾">2.网络基础回顾</h1>
+
 <p>一些基本的网络知识，略</p>
-<h1 id="3linux网络命名空间">3.Linux网络命名空间</h1>
-<h2 id="31linux网络命名空间">3.1Linux网络命名空间</h2>
+
+<h1 id="3-linux网络命名空间">3.Linux网络命名空间</h1>
+
+<h2 id="3-1linux网络命名空间">3.1Linux网络命名空间</h2>
+
 <p>相关命令：</p>
+
 <ul>
 <li><code>ip netns list</code>，列出现在有多少network namespace(netns)</li>
 <li><code>ip netns add test1</code>，添加一个netns，name是test1</li>
@@ -111,10 +120,14 @@
 <li><code>ip link</code>，类似ip a，但是信息略少</li>
 <li><code>ip netns exec test1 ip link set dev lo up</code>，设置设备lo的状态为up，但是会变成unknown，因为要变成up需要满足两端是连起来的这个条件</li>
 </ul>
-<h2 id="32network-namespace连通">3.2Network namespace连通</h2>
-<p><img src="https://liguoqinjim.com/images/docker/note3/netns.png" alt="netns">
+
+<h2 id="3-2network-namespace连通">3.2Network namespace连通</h2>
+
+<p><img src="https://liguoqinjim.com/images/docker/note3/netns.png" alt="netns" />
 要在两个之间加上veth，veth就是一对pair，要把一个放到eth0里面，另一个放到eth1里面。这样eth0和eth1就会连通了。</p>
-<h2 id="33创建veth">3.3创建veth</h2>
+
+<h2 id="3-3创建veth">3.3创建veth</h2>
+
 <ol>
 <li><code>netns add test1</code>，创建名为test1的network namespace(netns)</li>
 <li><code>netns add test2</code>，创建test2</li>
@@ -123,45 +136,60 @@
 <li><code>ip link set veth-test1 netns test1</code>，把veth-test1添加到test1这个netns里面，运行完成之后test1里面会多一个veth，但是本机里面的veth就会没有了。相当于移动到test1里面</li>
 <li><code>ip netns exec test1 ip addr add 192.168.1.1/24 dev veth-test1</code>，给veth-test1这个设备添加ip地址</li>
 <li><code>ip netns exec test1 ip link set dev veth-test1 up</code>，设置veth-test1这个设备的状态为up</li>
-<li><code>ip link set veth-test2 netns test2</code><br>
-<code>ip netns exec test2 ip addr add 192.168.1.2/24 dev veth-test2</code><br>
+<li><code>ip link set veth-test2 netns test2</code><br />
+<code>ip netns exec test2 ip addr add 192.168.1.2/24 dev veth-test2</code><br />
 <code>ip netns exec test2 ip link set dev veth-test2 up</code>，对test2进行相同操作</li>
 <li><code>ip netns exec test1 ping 192.168.1.2</code>，在test1下ping test2的ip，要是设置正确的话，因为已经有了veth，所以两边是会通的</li>
 </ol>
-<h1 id="4docker-bridge0详解">4.Docker bridge0详解</h1>
-<h2 id="41docker-network的相关命令">4.1Docker Network的相关命令</h2>
+
+<h1 id="4-docker-bridge0详解">4.Docker bridge0详解</h1>
+
+<h2 id="4-1docker-network的相关命令">4.1Docker Network的相关命令</h2>
+
 <ol>
 <li><code>docker network ls</code>，查看docker的网络情况</li>
 <li><code>docker network inspect network_id</code>，可以查看有哪个容器是在这个network里面的</li>
 </ol>
-<h2 id="42查看bridge的情况">4.2查看bridge的情况</h2>
-<p>可以使用brctl这个工具来查看bridge的情况<br>
-安装：<code>yum install -y bridge-utils</code><br>
+
+<h2 id="4-2查看bridge的情况">4.2查看bridge的情况</h2>
+
+<p>可以使用brctl这个工具来查看bridge的情况<br />
+安装：<code>yum install -y bridge-utils</code><br />
 使用：<code>brctl show</code></p>
-<h2 id="43bridge-network的情况">4.3Bridge Network的情况</h2>
-<p><img src="https://liguoqinjim.com/images/docker/note3/bridge.png" alt="BridgeNetwork"></p>
+
+<h2 id="4-3bridge-network的情况">4.3Bridge Network的情况</h2>
+
+<p><img src="https://liguoqinjim.com/images/docker/note3/bridge.png" alt="BridgeNetwork" /></p>
+
 <ul>
 <li>我们创建了一个docker容器之后，使用<code>ip a</code>，会看到多了一个网络设备，这个设备就是veth的一端，另一端是在创建的容器里面的。这样容器就可以和我们本机连通了</li>
 <li>在本机这一边的所有veth又是都连接到docker0的，是通过bridge的方式。我们可以通过<code>brctl show</code>这个命令来查看。那么所有的docker容器之间就可以互相访问了</li>
 <li>docker0又使用NAT的方式和eth0连接，这样docker容器就可以访问互联网了</li>
 </ul>
+
 <h2 id="notice">NOTICE</h2>
+
 <p>有的时候我们需要测试网络情况等等，会需要启动一个docker容器，但是不需要什么功能，只要是个容器就行了，那我们肯定希望这个容器越简单越好，我们可以使用busybox来创建
 <code>sudo docker run -d --name test busybox /bin/sh -c &quot;while true; do sleep 3600; done&quot;</code></p>
-<h1 id="5容器之间的link">5.容器之间的link</h1>
-<h2 id="51docker-link">5.1docker link</h2>
+
+<h1 id="5-容器之间的link">5.容器之间的link</h1>
+
+<h2 id="5-1docker-link">5.1docker link</h2>
+
 <p>docker容器启动的时候带上link参数：</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#75715e"># 创建test1容器</span>
 docker run -d --name test1 busybox /bin/sh -c <span style="color:#e6db74">&#34;while true; do sleep 3600; done&#34;</span>
 <span style="color:#75715e"># 创建test2容器，link到test1</span>
 docker run -d --name test2 --link test1 busybox /bin/sh -c <span style="color:#e6db74">&#34;while true; do sleep 3600; done&#34;</span>
 <span style="color:#75715e"># test1，test2互相ping对方的ip，是可以ping通的</span>
-docker exec test1 ping 172.17.0.3
-docker exec test2 ping 172.17.0.2
+docker exec test1 ping <span style="color:#ae81ff">172</span>.17.0.3
+docker exec test2 ping <span style="color:#ae81ff">172</span>.17.0.2
 <span style="color:#75715e"># 在test2里ping test1</span>
-docker run exec test2 ping test1
-</code></pre></div><p>启动test2容器，link了test1。因为test1和test2都是连接到docker0上的，所以test1和test2之间是互通的，我们只要ping双方的ip就可以了。但是现在test2已经link到test1了，那么我们在test2里面ping test1(注意是ping test1，不用ping test1的ip)，也是可以的。但是要注意，test1里面用ping test2是不可以的，因为link有一个方向的概念。</p>
-<h2 id="52docker-network相关命令">5.2docker network相关命令</h2>
+docker run exec test2 ping test1</code></pre></div>
+<p>启动test2容器，link了test1。因为test1和test2都是连接到docker0上的，所以test1和test2之间是互通的，我们只要ping双方的ip就可以了。但是现在test2已经link到test1了，那么我们在test2里面ping test1(注意是ping test1，不用ping test1的ip)，也是可以的。但是要注意，test1里面用ping test2是不可以的，因为link有一个方向的概念。</p>
+
+<h2 id="5-2docker-network相关命令">5.2docker network相关命令</h2>
+
 <ul>
 <li><code>docker network ls</code>，可以查看现在的network</li>
 <li><code>docker network create -d bridge my-bridge</code>，创建一个名为my-bridge的network，-d指定类型为bridge</li>
@@ -169,47 +197,71 @@ docker run exec test2 ping test1
 <li><code>docker network inspect my-bridge</code>，也是可以查看连接到network的容器</li>
 <li><code>docker network connect my-bridge test2</code>，指定已经存在的容器连接到my-bridge这个network，但是容器还是会连接原本连接的那个network</li>
 </ul>
+
 <h2 id="notice-1">NOTICE</h2>
+
 <p>我们用<code>docker network connect my-bridge test2</code>这个命令之后，那么原本就在my-bridge这个network里面的容器，可以直接ping test2(注意这里是直接ping test2就可以了，不用ping test2的ip也是可以的)，也是会成功的。这是因为所有连接在<strong>自己创建的bridge上面的容器</strong>，相互之间都是可以默认用name来ping的。test2一旦加入my-bridge，也是可以直接ping这个网络内的其他容器的，比如ping test3</p>
-<h1 id="6容器的端口映射">6.容器的端口映射</h1>
+
+<h1 id="6-容器的端口映射">6.容器的端口映射</h1>
+
 <ol>
 <li><code>docker run --name web -d -p 80:80 nginx</code>，这样在docker容器启动起来之后，我们在本机curl 127.0.0.1，访问的就是docker容器里面的nginx</li>
-<li><code>docker run --name web -d -p 81:80 nginx</code>，注意，这里是本机的81端口和docker容器的80端口，也就是说这时候在本机要访问 curl http://127.0.0.1:81 ，这样才会访问到docker容器里面</li>
+<li><code>docker run --name web -d -p 81:80 nginx</code>，注意，这里是本机的81端口和docker容器的80端口，也就是说这时候在本机要访问 curl <a href="http://127.0.0.1:81">http://127.0.0.1:81</a> ，这样才会访问到docker容器里面</li>
 </ol>
-<h1 id="7容器网络之host和none">7.容器网络之host和none</h1>
-<h2 id="71none网络">7.1none网络</h2>
+
+<h1 id="7-容器网络之host和none">7.容器网络之host和none</h1>
+
+<h2 id="7-1none网络">7.1none网络</h2>
+
 <ol>
-<li><code>docker run -d --name test1 --network none busybox /bin/sh -c &quot;while true; do sleep 3600; done&quot;</code>，使用&ndash;network指定连接到none这个network</li>
-<li><code>docker network inspect none</code>，可以查看none的网络情况</li>
+<li><code>docker run -d --name test1 --network none busybox /bin/sh -c &quot;while true; do sleep 3600; done&quot;</code>，使用&ndash;network指定连接到none这个network<br /></li>
+<li><code>docker network inspect none</code>，可以查看none的网络情况<br /></li>
 </ol>
+
 <p>none网络里面的容器，只有一个回环地址，没有其他的网络设备，也就是除了docker exec -it这种方式进入内部，外部是根本没有办法访问到这个容器的。我们可能会问用了none网络的容器有什么用？可能这个容器是一种工具，比如生成密码的，需要安全性，所以就用none网络，限制外部访问。</p>
-<h2 id="72host网络">7.2host网络</h2>
+
+<h2 id="7-2host网络">7.2host网络</h2>
+
 <ol>
-<li><code>docker run -d --name test1 --network host busybox /bin/sh -c &quot;while true; do sleep 3600; done&quot;</code>，指定连接到host网络</li>
-<li><code>docker network inspect host</code>，可以查看host的网络情况</li>
+<li><code>docker run -d --name test1 --network host busybox /bin/sh -c &quot;while true; do sleep 3600; done&quot;</code>，指定连接到host网络<br /></li>
+<li><code>docker network inspect host</code>，可以查看host的网络情况<br /></li>
 </ol>
+
 <p>host网络里面的容器，我们使用docker exec -it进入内部之后，可以看到ip a的结果和我们本机的ip a的结果是一样的。也就是容器和本机是用相同的网络的。这样的方式可能出现的问题是端口的占用，比如本机已经有其他软件使用了80端口，那么容器就没有办法使用80端口了</p>
-<h1 id="8多容器复杂应用的部署演示">8.多容器复杂应用的部署演示</h1>
-<h2 id="81部署演示">8.1部署演示</h2>
+
+<h1 id="8-多容器复杂应用的部署演示">8.多容器复杂应用的部署演示</h1>
+
+<h2 id="8-1部署演示">8.1部署演示</h2>
+
 <ol>
-<li>先启动redis容器<br>
+<li>先启动redis容器<br />
 docker run -d &ndash;name redis redis，不用使用-p参数把端口绑定到本机，因为这个redis只是给之后的flask-redis容器使用的，不是给本机使用的。</li>
-<li>启动我们的flask程序<br>
+<li>启动我们的flask程序<br />
 docker run -d &ndash;link redis &ndash;name flask-redis -p 5000:5000 -e REDIS_HOST=redis liguoqinjim/flask-redis，首先是使用&ndash;link连接到redis容器，那么flask-redis这个容器里面ping redis得到的就是redis容器的ip，-p把5000端口映射到本机，-e给这个容器设置环境变量REDIS_HOST。那么我们程序里面会去取这个环境变量，得到的就是redis，那因为已经link过了，所以redis就相当于redis容器的ip了。</li>
 </ol>
-<h2 id="82docker-env">8.2docker env</h2>
+
+<h2 id="8-2docker-env">8.2docker env</h2>
+
 <ol>
 <li><code>docker run -d --name test1 -e ENV_TEST=123 busybox /bin/sh -c &quot;while true; do sleep 3600; done&quot;</code>，-e设置容器的环境变量。</li>
 <li><code>docker exec test1 env</code>，查看test1容器的环境变量，可以看到ENV_TEST这个变量</li>
 </ol>
-<h1 id="9overlay和underlay的通俗解释">9.Overlay和Underlay的通俗解释</h1>
+
+<h1 id="9-overlay和underlay的通俗解释">9.Overlay和Underlay的通俗解释</h1>
+
 <p>不同机器上的docker容器之间的通信，是靠VXLAN来实现的。VXLAN又需要overlay和underlay来完成整个过程。</p>
-<p><img src="https://liguoqinjim.com/images/docker/note3/overlay.png" alt="overlay"></p>
+
+<p><img src="https://liguoqinjim.com/images/docker/note3/overlay.png" alt="overlay" /></p>
+
 <p>VXLAN的大致实现的思路是：本来我们两个机器之前ping，最简单包里面的数据就是有一个src有一个dst，分别是自己的地址和目的地址。那么现在不同机器里面的容器，要去向别的机器的容器。我们把这个数据包整个加载到之前的机器的ping数据包里面。在机器间数据包到达目标机器的时候，解包之后再去向目标容器</p>
-<h1 id="10docker-overlay网络和etcd实现多机容器通信">10.Docker Overlay网络和etcd实现多机容器通信</h1>
-<p>在多个机器上的容器要相互通信，要有一个大前提，也就是每个容器的ip不能一样，不同机器的不同容器的ip都是不能一样的。因为要是一样，那数据包肯定是无法到达目标机器的。<br>
+
+<h1 id="10-docker-overlay网络和etcd实现多机容器通信">10.Docker Overlay网络和etcd实现多机容器通信</h1>
+
+<p>在多个机器上的容器要相互通信，要有一个大前提，也就是每个容器的ip不能一样，不同机器的不同容器的ip都是不能一样的。因为要是一样，那数据包肯定是无法到达目标机器的。<br />
 所以我们为了保证每个容器的ip是不一样的，我们要使用一个第三方的分布式工具来保证ip不一样。这个实验里面我们使用etcd这个分布式工具</p>
-<h2 id="101多机容器通信">10.1多机容器通信</h2>
+
+<h2 id="10-1多机容器通信">10.1多机容器通信</h2>
+
 <ol>
 <li>首先要在不同机器之间创建一个etcd的集群</li>
 <li>要重启docker，参数里面要带上集群的参数</li>
@@ -217,8 +269,10 @@ docker run -d &ndash;link redis &ndash;name flask-redis -p 5000:5000 -e REDIS_HO
 <li>运行容器，注意要使用&ndash;network命令，把容器连接到overlay的network里面。当两个容器都在overlay网络里面的时候，我们就可以相互ping了</li>
 <li>这个时候我们使用docker network ls，我们会发现多了一个network，类型为bridge，name应该是docker_gwbridge。这个network是干什么的呢？这个network给容器访问外网的。具体可以查看下面的图片。</li>
 </ol>
-<p><img src="https://liguoqinjim.com/images/docker/note3/docker_gwbridge.png" alt="docker_gwbridge"></p>
-<h2 id="102启动参数">10.2启动参数</h2>
+
+<p><img src="https://liguoqinjim.com/images/docker/note3/docker_gwbridge.png" alt="docker_gwbridge" /></p>
+
+<h2 id="10-2启动参数">10.2启动参数</h2>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#75715e">## 启动命令</span>
 <span style="color:#75715e">### 下载etcd</span>
 wget https://github.com/coreos/etcd/releases/download/v3.3.9/etcd-v3.3.9-linux-amd64.tar.gz
@@ -246,11 +300,11 @@ nohup ./etcd --name docker-node2 --initial-advertise-peer-urls http://192.168.20
 
 <span style="color:#75715e">### 重新启动docker-node1</span>
 sudo service docker stop
-sudo /usr/bin/dockerd -H tcp://0.0.0.0:2375 -H unix:///var/run/docker.sock --cluster-store<span style="color:#f92672">=</span>etcd://192.168.205.10:2379 --cluster-advertise<span style="color:#f92672">=</span>192.168.205.10:2375&amp;
+sudo /usr/bin/dockerd -H tcp://0.0.0.0:2375 -H unix:///var/run/docker.sock --cluster-store<span style="color:#f92672">=</span>etcd://192.168.205.10:2379 --cluster-advertise<span style="color:#f92672">=</span><span style="color:#ae81ff">192</span>.168.205.10:2375&amp;
 
 <span style="color:#75715e">### 重新启动docker-node2</span>
 sudo service docker stop
-sudo /usr/bin/dockerd -H tcp://0.0.0.0:2375 -H unix:///var/run/docker.sock --cluster-store<span style="color:#f92672">=</span>etcd://192.168.205.11:2379 --cluster-advertise<span style="color:#f92672">=</span>192.168.205.11:2375&amp;
+sudo /usr/bin/dockerd -H tcp://0.0.0.0:2375 -H unix:///var/run/docker.sock --cluster-store<span style="color:#f92672">=</span>etcd://192.168.205.11:2379 --cluster-advertise<span style="color:#f92672">=</span><span style="color:#ae81ff">192</span>.168.205.11:2375&amp;
 
 <span style="color:#75715e">### 在docker-node1机器上创建overlay网络</span>
 docker network create -d overlay demo
@@ -261,8 +315,7 @@ docker network ls
 
 <span style="color:#75715e">### test1容器ping test2</span>
 docker network inspect demo，用来查看overlay网络里面容器的ip
-docker exec test1 ping ...
-</code></pre></div>
+docker exec test1 ping ...</code></pre></div>
         </div>
 
         

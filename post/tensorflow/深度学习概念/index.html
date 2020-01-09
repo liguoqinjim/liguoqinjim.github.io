@@ -133,7 +133,19 @@
 <div class="post-toc" style="position: absolute; top: 188px;">
     <h2 class="post-toc-title">文章目录</h2>
     <div class="post-toc-content">
-        <nav id="TableOfContents"></nav>
+        <nav id="TableOfContents">
+<ul>
+<li><a href="#1-线性回归和逻辑回归">1. 线性回归和逻辑回归</a></li>
+<li><a href="#2-顺序编码和独热编码-one-hot">2. 顺序编码和独热编码(one-hot)</a></li>
+<li><a href="#3-categorical-crossentropy-和-sparse-catrgorical-crossentropy">3. <code>categorical_crossentropy</code>和<code>sparse_catrgorical_crossentropy</code></a></li>
+<li><a href="#4-cnn">4. CNN</a></li>
+<li><a href="#5-图像增强">5. 图像增强</a></li>
+<li><a href="#6-对test数据集是没有必要做图像增强的">6. 对test数据集是没有必要做图像增强的</a></li>
+<li><a href="#7-vgg">7. VGG</a></li>
+<li><a href="#8-预训练网络">8. 预训练网络</a></li>
+<li><a href="#9-多输出模型">9. 多输出模型</a></li>
+</ul>
+</nav>
     </div>
 </div>
 <script type="text/javascript">
@@ -186,36 +198,56 @@
         
         <div class="post-content">
             <p>深度学习中的一些概念</p>
+
 <h1 id="1-线性回归和逻辑回归">1. 线性回归和逻辑回归</h1>
-<p><code>线性回归</code>： 是预测出一个连续值<br>
+
+<p><code>线性回归</code>： 是预测出一个连续值<br />
 <code>逻辑回归</code>： 是预测出“是”和“否”。同时逻辑回归也叫作<code>对数几率回归</code></p>
-<h1 id="2-顺序编码和独热编码one-hot">2. 顺序编码和独热编码(one-hot)</h1>
-<p>这里用三个城市来做例子，上海，北京，深圳。<br>
-<code>顺序编码</code>： 上海:0，北京:1，深圳:2<br>
+
+<h1 id="2-顺序编码和独热编码-one-hot">2. 顺序编码和独热编码(one-hot)</h1>
+
+<p>这里用三个城市来做例子，上海，北京，深圳。<br />
+<code>顺序编码</code>： 上海:0，北京:1，深圳:2<br />
 <code>独热编码</code>： 上海[1,0,0]，北京[0,1,0]，深圳[0,0,1]。</p>
-<h1 id="3-categorical_crossentropy和sparse_catrgorical_crossentropy">3. <code>categorical_crossentropy</code>和<code>sparse_catrgorical_crossentropy</code></h1>
+
+<h1 id="3-categorical-crossentropy-和-sparse-catrgorical-crossentropy">3. <code>categorical_crossentropy</code>和<code>sparse_catrgorical_crossentropy</code></h1>
+
 <p>顺序编码的时候，使用的是<code>sparse_categorical_crossentropy</code></p>
+
 <h1 id="4-cnn">4. CNN</h1>
-<p>可能我们会问？我们之前就已经用多层感知器实现了很多功能，为什么还要学CNN。<br>
-这是因为之前的模型，比如手写数字识别，我们的数据是28<em>28的，但是现实中，我们要识别的图片肯定不会是28</em>28的，图片可能是1980*1080的这么大的。<br>
+
+<p>可能我们会问？我们之前就已经用多层感知器实现了很多功能，为什么还要学CNN。<br />
+这是因为之前的模型，比如手写数字识别，我们的数据是28*28的，但是现实中，我们要识别的图片肯定不会是28*28的，图片可能是1980*1080的这么大的。<br />
 那么我们还和之前做一样的肯定是不行了。因为要是和之前做的一样，模型的参数会很大很大的</p>
+
 <h1 id="5-图像增强">5. 图像增强</h1>
+
 <p>对图像进行如下操作：</p>
+
 <ol>
 <li>图像翻转：左右翻转，上下翻转</li>
 <li>随机截取画面：裁切画面</li>
 <li>亮度增加，饱和度增加等</li>
 </ol>
-<p>那么改变之后的图像对神经网络来说，就是一张新的图片。这样，我们的样本数就增加了。样本增加是解决过拟合最好的方法。<br>
+
+<p>那么改变之后的图像对神经网络来说，就是一张新的图片。这样，我们的样本数就增加了。样本增加是解决过拟合最好的方法。<br />
 这些动作就叫作<code>图像增强</code>。</p>
+
 <h1 id="6-对test数据集是没有必要做图像增强的">6. 对test数据集是没有必要做图像增强的</h1>
+
 <p>训练集的图像只要和训练集的图像像素大小，也就是输入进模型的input_shape是一样的就可以了。</p>
+
 <h1 id="7-vgg">7. VGG</h1>
+
 <p>VGG是CNN的一种。属于CNN</p>
+
 <h1 id="8-预训练网络">8. 预训练网络</h1>
+
 <p>预训练网络，也就是迁移学习。VGG也算是一种预训练网络。
 比如我们可以使用VGG在大规模分类任务做好的训练权重来加入我们的新模型，新模型只需要训练最后的几个全连接层，这就是预训练网络。</p>
+
 <h1 id="9-多输出模型">9. 多输出模型</h1>
+
 <p>就是模型要预测多个值，比如我们要求模型同时预测，图片里面是一件衣服还是一条裤子，然后还要分辨是蓝色的还是红色的。</p>
         </div>
 

@@ -94,30 +94,50 @@
         
         <div class="post-content">
             <p>Hugo是由Go语言实现的静态网站生成器。简单、易用、高效、易扩展、快速部署。</p>
-<!-- raw HTML omitted -->
-<h1 id="1hugo安装">1.Hugo安装</h1>
-<h2 id="11-go安装">1.1 Go安装</h2>
+
+<!-- toc -->
+
+<h1 id="1-hugo安装">1.Hugo安装</h1>
+
+<h2 id="1-1-go安装">1.1 Go安装</h2>
+
 <p>直接使用go get的方式安装:
 <code>go get -u -v github.com/gohugoio/hugo</code></p>
-<h2 id="12-brew安装">1.2 Brew安装</h2>
+
+<h2 id="1-2-brew安装">1.2 Brew安装</h2>
+
 <p>在mac下可以使用brew安装:
 <code>brew install hugo</code></p>
-<h1 id="2hugo新建一个站点">2.Hugo新建一个站点</h1>
+
+<h1 id="2-hugo新建一个站点">2.Hugo新建一个站点</h1>
+
 <p><code>hugo new site path/to/site</code>，运行之后会在运行路径下生成<code>path/to/site</code>的文件夹。</p>
-<h1 id="3hugo新建一篇文章">3.Hugo新建一篇文章</h1>
+
+<h1 id="3-hugo新建一篇文章">3.Hugo新建一篇文章</h1>
+
 <p><code>hugo new post/directory/new.md</code>，这样就会生成一篇新的文章。
 会生成在<code>content/post/directory</code>文件夹下。</p>
-<h1 id="4安装主题">4.安装主题</h1>
+
+<h1 id="4-安装主题">4.安装主题</h1>
+
 <p>拷贝主题到themes文件夹下，然后在<code>config.toml</code>加上<code>theme = &quot;hugo-theme-dream&quot;</code>，
 值就填要用的主题的文件夹的名字就可以了。</p>
-<h1 id="5修改configtoml">5.修改config.toml</h1>
+
+<h1 id="5-修改config-toml">5.修改config.toml</h1>
+
 <p>要是要发布到github.io的话，要在config.toml里面把<code>baseURL</code>改成<code>https://liguoqinjim.github.io</code></p>
-<h1 id="6本机预览">6.本机预览</h1>
+
+<h1 id="6-本机预览">6.本机预览</h1>
+
 <p><code>hugo server -D</code>就可以实现本机预览了</p>
-<h1 id="7发布">7.发布</h1>
+
+<h1 id="7-发布">7.发布</h1>
+
 <p><code>hugo -D</code>，这里<code>-D</code>的意思是把<code>draft: ture</code>的文章也发布出来，也就是在草稿状态中的文章。运行完命令之后，生成的博客就在public文件夹里面了，
 我们只要把public文件夹发布到github.io的库就可以了</p>
+
 <h1 id="参考资料">参考资料</h1>
+
 <ul>
 <li><a href="http://www.gohugo.org/">http://www.gohugo.org/</a></li>
 </ul>

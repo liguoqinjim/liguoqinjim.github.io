@@ -94,24 +94,34 @@
         
         <div class="post-content">
             <p>容器编排Docker Swarm，是课程第七章的内容</p>
-<!-- raw HTML omitted -->
-<h1 id="1容器编排swarm介绍">1.容器编排Swarm介绍</h1>
+
+<!-- toc -->
+
+<h1 id="1-容器编排swarm介绍">1.容器编排Swarm介绍</h1>
+
 <p>Swarm是Docker自带的，不需要额外安装
-<img src="https://liguoqinjim.com/images/docker/note6/swarm.png" alt="swarm"></p>
-<p><img src="https://liguoqinjim.com/images/docker/note6/swarm2.png" alt="swarm_2">
+<img src="https://liguoqinjim.com/images/docker/note6/swarm.png" alt="swarm" /></p>
+
+<p><img src="https://liguoqinjim.com/images/docker/note6/swarm2.png" alt="swarm_2" />
 Swarm里面有两种节点，一种是Manager节点，还有一种是Worker节点。
 一般Container是运行在Worker上的，但是Manager节点上也是可以运行的，只是一般不这么做</p>
-<p><img src="https://liguoqinjim.com/images/docker/note6/swarm3.png" alt="swarm_3"></p>
-<h1 id="2创建一个三节点的swarm集群">2.创建一个三节点的swarm集群</h1>
+
+<p><img src="https://liguoqinjim.com/images/docker/note6/swarm3.png" alt="swarm_3" /></p>
+
+<h1 id="2-创建一个三节点的swarm集群">2.创建一个三节点的swarm集群</h1>
+
 <ol>
-<li><code>docker swarm init --advertise-addr=192.168.205.10</code><br>
+<li><code>docker swarm init --advertise-addr=192.168.205.10</code><br />
 这个命令要在准备作为manager节点的机器上来运行，运行这个命令的就是manager节点了,ip就是本机的ip，运行完成之后，会返回命令2</li>
-<li><code>docker swarm join --token SWMTKN-1-1rbdry31gxzz2u0nsbrqa5xkkd31lw83dpj5jife62xhqclbpr-151fu5csqw3ombtkm19jp9vej 192.168.205.10:2377</code><br>
+<li><code>docker swarm join --token SWMTKN-1-1rbdry31gxzz2u0nsbrqa5xkkd31lw83dpj5jife62xhqclbpr-151fu5csqw3ombtkm19jp9vej 192.168.205.10:2377</code><br />
 这个命令都是命令1里面返回的，我们直接到worker节点的机器上运行就可以了</li>
 <li><code>docker node ls</code>，查看现在的集群情况，这个命令要在manager节点上运行</li>
 </ol>
-<h1 id="3service的创建维护和水平扩展">3.Service的创建维护和水平扩展</h1>
+
+<h1 id="3-service的创建维护和水平扩展">3.Service的创建维护和水平扩展</h1>
+
 <p>相关命令：</p>
+
 <ul>
 <li><code>docker service create --name demo busybox sh -c &quot;while true; do sleep 3600; done&quot;，</code>这个就是启动一个service，相当于与docker run</li>
 <li><code>docker service ls</code>，查看所有service的情况</li>
@@ -119,48 +129,68 @@ Swarm里面有两种节点，一种是Manager节点，还有一种是Worker节�
 <li><code>docker service rm demo</code>，删除service，但是容器被删除会有一点延迟</li>
 <li><code>docker service scale demo=3</code>，横向扩展，也就是demo这个service的replicas会变成3，</li>
 </ul>
+
 <h2 id="notice">NOTICE</h2>
+
 <ol>
-<li>docker service ls命令返回结果里面的REPLICAS，都是&quot;3/3&quot;这样，分母表示总共有总数，分子表示现在有多少已经ready了</li>
+<li>docker service ls命令返回结果里面的REPLICAS，都是&rdquo;<sup>3</sup>&frasl;<sub>3</sub>&rdquo;这样，分母表示总共有总数，分子表示现在有多少已经ready了</li>
 <li>假设replicas我们设置为了5，那么swarm会自动帮我们去创建5个container，这时候，我们使用docker rm -f强制删除一个容器。我们会看到replicas会变成4/5，但是过一会又会变成5/5，因为swarm会确保我们的replicas个数。4/5的时候，swarm会自动帮我们再创建一个。</li>
 </ol>
-<h1 id="4在swarm集群里通过service部署wordpress">4.在swarm集群里通过service部署wordpress</h1>
+
+<h1 id="4-在swarm集群里通过service部署wordpress">4.在swarm集群里通过service部署wordpress</h1>
+
 <p>部署过程：</p>
+
 <ol>
 <li>docker network create demo -d overlay，在集群里面创建overlay的网络，name为demo</li>
 <li>docker service create &ndash;name mysql &ndash;network demo &ndash;env MYSQL_ROOT_PASSWORD=xphone123 &ndash;env MYSQL_DATABASE=wordpress &ndash;mount type=volume,source=mysql-data,destination=/var/lib/mysql mysql
 这个是创建mysql这个service的命令，&ndash;mount就是我们的docker run里面使用的-v命令，source=mysql-data指定的就是volume name，要注意docker run和docker service create里面的有些参数是不一样的</li>
 <li>docker service create &ndash;name wordpress -p 80:80 &ndash;env WORDPRESS_DB_PASSWORD=xphone123 &ndash;env WORDPRESS_DB_HOST=mysql &ndash;network demo wordpress，这个是创建wordpress的命令，WORDPRESS_DB_HOST的值等于mysql，这个mysql就是service的name，也就是之前ping mysql会得到那个地址的逻辑。</li>
 </ol>
+
 <h2 id="notice-1">NOTICE</h2>
+
 <p>我们在运行了上面命令之后，我们可以通过docker service ps wordpress看到这个service是运行在哪个节点上面的，我们可以访问这个节点的ip，然后就看到了wordpress页面，这个是肯定的。但是这里要注意，我们这时候去访问其他两个节点的ip，也是可以看到wordpress页面的。原理在7-5，7-6里面</p>
-<h1 id="5集群服务间通信之routing-mesh">5.集群服务间通信之Routing Mesh</h1>
+
+<h1 id="5-集群服务间通信之routing-mesh">5.集群服务间通信之Routing Mesh</h1>
+
 <p>命令:</p>
+
 <ol>
 <li>docker network create demo -d overlay</li>
 <li>docker service create &ndash;name whoami -p 8000:8000 &ndash;network demo -d jwilder/whoami</li>
 <li>docker service create &ndash;name client -d &ndash;network demo busybox sh -c &ldquo;while true; do sleep 3600; done&rdquo;</li>
 </ol>
-<p>上面的命令都运行好之后，我们现在应该是两个容器。我们进入client这个service的容器里面，我们ping whoami，是会通的，会得到一个地址，这里我们假设是10.0.0.9。<br>
-然后我们运行一个命令，docker service scale whoami=2，那么现在whoami这个service下面就有两个容器了。<br>
-我们还是在client里面ping whoami，这个时候我们发现，ping的通，但是ip还会是10.0.0.9。<br>
-那这里就有个问题了，whoami这个service有两个容器，我们到底ping的是哪个？<br>
+
+<p>上面的命令都运行好之后，我们现在应该是两个容器。我们进入client这个service的容器里面，我们ping whoami，是会通的，会得到一个地址，这里我们假设是10.0.0.9。<br />
+然后我们运行一个命令，docker service scale whoami=2，那么现在whoami这个service下面就有两个容器了。<br />
+我们还是在client里面ping whoami，这个时候我们发现，ping的通，但是ip还会是10.0.0.9。<br />
+那这里就有个问题了，whoami这个service有两个容器，我们到底ping的是哪个？<br />
 其实这个10.0.0.9，这个其实不是哪个容器的ip，这个是vip，也就是一个虚拟ip，容器有另外的ip。我们可以使用nslookup查看tasks.whoami，我们就看到了真实的ip。或者我们在client容器里面运行traceroute tasks.whoami，我们可以看到每次的结果可能是不一样的。因为docker会自动为我们在service里面负载均衡。发送给10.0.0.9的这个vip的流量会被分配到每个容器的真实ip上。</p>
-<p><img src="https://liguoqinjim.com/images/docker/note6/routingMesh.png" alt="routingMesh"></p>
-<p><img src="https://liguoqinjim.com/images/docker/note6/loadBalancing.png" alt="loadBalancing"></p>
-<p><img src="https://liguoqinjim.com/images/docker/note6/ipvs.png" alt="IPVS"></p>
+
+<p><img src="https://liguoqinjim.com/images/docker/note6/routingMesh.png" alt="routingMesh" /></p>
+
+<p><img src="https://liguoqinjim.com/images/docker/note6/loadBalancing.png" alt="loadBalancing" /></p>
+
+<p><img src="https://liguoqinjim.com/images/docker/note6/ipvs.png" alt="IPVS" /></p>
+
 <h2 id="notice-2">NOTICE</h2>
+
 <ol>
 <li>nslookup whoami，这个可以看到vip是多少</li>
 <li>nslookup tasks.whoami，可以看到vip之后的所有真实ip是多少</li>
 <li>容器里面的nslookup可能会有问题，也就是找不到这个dns记录，这个时候我们可以使用<code>traceroute tasks.servicename</code>来解决</li>
 <li>LVS可以就认为是IPVS，因为现在IPVS是LVS的一部分</li>
 </ol>
-<h1 id="6routing-mesh之ingress负载均衡">6.Routing Mesh之Ingress负载均衡</h1>
+
+<h1 id="6-routing-mesh之ingress负载均衡">6.Routing Mesh之Ingress负载均衡</h1>
+
 <p>Routing Mesh两种体现里面的另一个，Ingress Network。这个是可以把服务端口暴露到每个swarm节点上，和7-5里面的不一样。
-<img src="https://liguoqinjim.com/images/docker/note6/ingress.png" alt="ingress"></p>
-<p>试验步骤：<br>
+<img src="https://liguoqinjim.com/images/docker/note6/ingress.png" alt="ingress" /></p>
+
+<p>试验步骤：<br />
 试验用swarm集群情况，还是上面的集群，两个whoami，一个client，whoami开放了一个8000端口，并且映射到了本地</p>
+
 <ol>
 <li>curl 127.0.0.1:8000，本机运行这个命令，发现背后有负载均衡。因为每次的返回会不一样，是从不一样的容器返回的，因为现在有两个whoami容器</li>
 <li>sudo iptables -nL -t nat，查看端口的情况，查看本地的转发规则
@@ -175,13 +205,18 @@ tcp dpt:8000 MARK set 0x102，MARK set 0x102就是表示IPVS会进行负载均�
 <li>查看IPVS的具体情况，我们先退出这个namespace，在本机环境里面安装ipvsadm，sudo yum install -y ipvsadm，然后再进入namespace</li>
 <li>再次进入ingress_box这个netns，运行ipvsadm -l，就可以看到负载均衡的真实地址了。这里面的地址就是两个whoami的容器真实ip</li>
 </ol>
+
 <p>数据包走向：
-<img src="https://liguoqinjim.com/images/docker/note6/ingress2.png" alt="ingress_2"></p>
-<h1 id="7docker-stack部署wordpress">7.Docker Stack部署Wordpress</h1>
-<p>简单的说，stack就是通过文件来启动一系列service，而不是我们用命令一个个的去生成。<br>
+<img src="https://liguoqinjim.com/images/docker/note6/ingress2.png" alt="ingress_2" /></p>
+
+<h1 id="7-docker-stack部署wordpress">7.Docker Stack部署Wordpress</h1>
+
+<p>简单的说，stack就是通过文件来启动一系列service，而不是我们用命令一个个的去生成。<br />
 具体是用docker-compose file里面的deploy可以实现，具体的yml规则可以看下面的连接。
 <a href="https://docs.docker.com/engine/reference/commandline/stack_deploy/">https://docs.docker.com/engine/reference/commandline/stack_deploy/</a></p>
+
 <p>命令：</p>
+
 <ol>
 <li>docker stack deploy wordpress &ndash;compose-file=docker-compose.yml，创建一个stack，stack的name是wordpress，&ndash;compose-file用来指定yml配置文件,也可以是-c</li>
 <li>docker stack ls，查看现在的stack</li>
@@ -189,6 +224,7 @@ tcp dpt:8000 MARK set 0x102，MARK set 0x102就是表示IPVS会进行负载均�
 <li>docker stack services wordpress，查看stack里面的service，可以看到绑定的端口</li>
 <li>docker stack rm wordpress，删除stack</li>
 </ol>
+
 <p>docker-compose.yml:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yml" data-lang="yml">version : <span style="color:#e6db74">&#39;3&#39;</span>
 
@@ -237,10 +273,13 @@ volumes:
 <span style="color:#75715e"># 指定network</span>
 networks:
   my-network:
-    driver: overlay <span style="color:#75715e">#type是overlay</span>
-</code></pre></div><h1 id="8作业解答之部署投票应用">8.作业解答之部署投票应用</h1>
+    driver: overlay <span style="color:#75715e">#type是overlay</span></code></pre></div>
+<h1 id="8-作业解答之部署投票应用">8.作业解答之部署投票应用</h1>
+
 <p>具体docker-compose.yml可以查看docker-labs</p>
-<h2 id="81stack可视化">8.1stack可视化</h2>
+
+<h2 id="8-1stack可视化">8.1stack可视化</h2>
+
 <p>dockersamples/visualizer:stable，使用这个镜像，可以可视化整个stack</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yml" data-lang="yml"><span style="color:#75715e">#这个service的配置</span>
 visualizer:
@@ -252,20 +291,28 @@ visualizer:
       - <span style="color:#e6db74">&#34;/var/run/docker.sock:/var/run/docker.sock&#34;</span>
     deploy:
       placement:
-        constraints: [node.role == manager]
-</code></pre></div><h1 id="9docker-secret管理和使用">9.Docker Secret管理和使用</h1>
-<h2 id="91什么是secret">9.1什么是Secret</h2>
-<p><img src="https://liguoqinjim.com/images/docker/note6/secret.png" alt="secret">
+        constraints: [node.role == manager]</code></pre></div>
+<h1 id="9-docker-secret管理和使用">9.Docker Secret管理和使用</h1>
+
+<h2 id="9-1什么是secret">9.1什么是Secret</h2>
+
+<p><img src="https://liguoqinjim.com/images/docker/note6/secret.png" alt="secret" />
 这些我们都可以存到docker secret里面</p>
-<h2 id="92secret存在哪里">9.2Secret存在哪里</h2>
-<p><img src="https://liguoqinjim.com/images/docker/note6/secret2.png" alt="secret_2"></p>
-<p><img src="https://liguoqinjim.com/images/docker/note6/secret3.png" alt="secret_3"></p>
-<h2 id="93使用方法">9.3使用方法</h2>
+
+<h2 id="9-2secret存在哪里">9.2Secret存在哪里</h2>
+
+<p><img src="https://liguoqinjim.com/images/docker/note6/secret2.png" alt="secret_2" /></p>
+
+<p><img src="https://liguoqinjim.com/images/docker/note6/secret3.png" alt="secret_3" /></p>
+
+<h2 id="9-3使用方法">9.3使用方法</h2>
+
 <p>相关命令：</p>
+
 <ul>
-<li>从文件创建<br>
+<li>从文件创建<br />
 docker secret create my-pw password,这个password是一个文件，注意，我们创建好了docker secret之后，要把这个文件删掉</li>
-<li>从输入流创建<br>
+<li>从输入流创建<br />
 echo &ldquo;adminadmin&rdquo; | docker secret create my-pw2 -，注意最后的<code>-</code></li>
 <li>docker secret ls，查看所有的secert</li>
 <li>docker secret rm secret_name，删除secret</li>
@@ -273,7 +320,9 @@ echo &ldquo;adminadmin&rdquo; | docker secret create my-pw2 -，注意最后的<
 <li>cat /run/secrets/my-pw，我们在容器内部的这个路径，就可以读取到对应的secret了</li>
 <li>比如我们启动的mysql容器的时候，需要指定数据库密码，我们使用-e MYSQL_ROOT_PASSWORD_FILE=/run/secrets/my-pw，这样就可以读取到我们写在docker secret里面的密码了</li>
 </ul>
-<h1 id="10docker-secret在stack中的使用">10.Docker Secret在Stack中的使用</h1>
+
+<h1 id="10-docker-secret在stack中的使用">10.Docker Secret在Stack中的使用</h1>
+
 <p>docker-compose.yml配置文件里面虽然可以写上secret的配置，可以去读取一个文件然后自动生成一个docker secret。但是毕竟这样的方式会存在文件，会不安全。所以开始推荐要用的时候先在命令行里面手动创建docker secret</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yml" data-lang="yml"><span style="color:#75715e"># 使用文件创建secret，不推荐这种方式</span>
 secrets:
@@ -283,15 +332,20 @@ secrets:
 <span style="color:#75715e"># 在启动之前先手动创建secret，推荐这种方式</span>
 secrets:
   mysql-pw:
-    external: <span style="color:#66d9ef">true</span>
-</code></pre></div><h1 id="11service更新">11.Service更新</h1>
+    external: <span style="color:#66d9ef">true</span></code></pre></div>
+<h1 id="11-service更新">11.Service更新</h1>
+
 <p>对service可以更新很多内容，比如更新镜像(镜像里面的代码逻辑需要更新比如)，容器端口的更新</p>
-<h2 id="111更新镜像">11.1更新镜像：</h2>
+
+<h2 id="11-1更新镜像">11.1更新镜像：</h2>
+
 <ol>
 <li>更新之前，为了使得我们现在的服务不会因为更新而不能访问(因为swarm集群里面的节点，一般都是生产环境，所以最好是不要有服务中断的情况)，所以我们应该先对service进行scale，比如web的service，可以scale=2，那样就会有两个容器在服务</li>
 <li>开始更新镜像，镜像的更新会一个一个来进行，因为我们已经做了scale了，所以服务不会中断，docker service update &ndash;image new_image_new web，这里的web是service的name。因为会一个一个更新，所以会出现一个容器是老的镜像，还有一个容器是新的镜像的时刻。</li>
 </ol>
-<h2 id="112更新端口">11.2更新端口：</h2>
+
+<h2 id="11-2更新端口">11.2更新端口：</h2>
+
 <p>更新端口可以通过先删去老的端口，然后加上新的端口来实现。
 docker service update &ndash;publish-rm 8080:5000 &ndash;publish-add 8088:5000
 这样就把原来的8080端口换到了8088端口，更新端口的时候，服务是会中断的，不会像更新镜像的时候一样，因为service都用一个VIP，然后VIP会负载均衡。那么更新端口的时候，VIP的端口会改变，所以服务会中断</p>

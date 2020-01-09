@@ -87,33 +87,41 @@
         
         <div class="post-content">
             <p>HDFS的基本配置</p>
-<h1 id="0修改hadoop-envsh">0.修改<code>hadoop-env.sh</code></h1>
+
+<h1 id="0-修改-hadoop-env-sh">0.修改<code>hadoop-env.sh</code></h1>
+
 <p>在hadoop-env.sh里面加上JAVA_HOME</p>
-<h1 id="1修改core-sitexml">1.修改<code>core-site.xml</code></h1>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#f92672">&lt;configuration</span><span style="color:#f92672">&gt;</span>
-    <span style="color:#f92672">&lt;property</span><span style="color:#f92672">&gt;</span>
-        <span style="color:#f92672">&lt;name</span><span style="color:#f92672">&gt;</span>fs.defaultFS<span style="color:#f92672">&lt;/name&gt;</span>
-        <span style="color:#f92672">&lt;value</span><span style="color:#f92672">&gt;</span>hdfs://hp-111:9000<span style="color:#f92672">&lt;/value&gt;</span>
+
+<h1 id="1-修改-core-site-xml">1.修改<code>core-site.xml</code></h1>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#f92672">&lt;configuration&gt;</span>
+    <span style="color:#f92672">&lt;property&gt;</span>
+        <span style="color:#f92672">&lt;name&gt;</span>fs.defaultFS<span style="color:#f92672">&lt;/name&gt;</span>
+        <span style="color:#f92672">&lt;value&gt;</span>hdfs://hp-111:9000<span style="color:#f92672">&lt;/value&gt;</span>
     <span style="color:#f92672">&lt;/property&gt;</span>
 
-    <span style="color:#f92672">&lt;property</span><span style="color:#f92672">&gt;</span>
-        <span style="color:#f92672">&lt;name</span><span style="color:#f92672">&gt;</span>hadoop.tmp.dir<span style="color:#f92672">&lt;/name&gt;</span>
-        <span style="color:#f92672">&lt;value</span><span style="color:#f92672">&gt;</span>/opt/module1/module_data/hadoop/<span style="color:#f92672">&lt;/value&gt;</span>
+    <span style="color:#f92672">&lt;property&gt;</span>
+        <span style="color:#f92672">&lt;name&gt;</span>hadoop.tmp.dir<span style="color:#f92672">&lt;/name&gt;</span>
+        <span style="color:#f92672">&lt;value&gt;</span>/opt/module1/module_data/hadoop/<span style="color:#f92672">&lt;/value&gt;</span>
     <span style="color:#f92672">&lt;/property&gt;</span>
-<span style="color:#f92672">&lt;/configuration&gt;</span>
-</code></pre></div><h1 id="2修改hdfs-sitexml">2.修改<code>hdfs-site.xml</code></h1>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#f92672">&lt;configuration</span><span style="color:#f92672">&gt;</span>
-    <span style="color:#f92672">&lt;property</span><span style="color:#f92672">&gt;</span>
-        <span style="color:#f92672">&lt;name</span><span style="color:#f92672">&gt;</span>dfs.replication<span style="color:#f92672">&lt;/name&gt;</span>
-        <span style="color:#f92672">&lt;value</span><span style="color:#f92672">&gt;</span>1<span style="color:#f92672">&lt;/value&gt;</span>
+<span style="color:#f92672">&lt;/configuration&gt;</span></code></pre></div>
+<h1 id="2-修改-hdfs-site-xml">2.修改<code>hdfs-site.xml</code></h1>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#f92672">&lt;configuration&gt;</span>
+    <span style="color:#f92672">&lt;property&gt;</span>
+        <span style="color:#f92672">&lt;name&gt;</span>dfs.replication<span style="color:#f92672">&lt;/name&gt;</span>
+        <span style="color:#f92672">&lt;value&gt;</span>1<span style="color:#f92672">&lt;/value&gt;</span>
     <span style="color:#f92672">&lt;/property&gt;</span>
-<span style="color:#f92672">&lt;/configuration&gt;</span>
-</code></pre></div><h1 id="3修改slaves">3.修改<code>slaves</code></h1>
+<span style="color:#f92672">&lt;/configuration&gt;</span></code></pre></div>
+<h1 id="3-修改-slaves">3.修改<code>slaves</code></h1>
+
 <p>在这个里面加上所有要运行datanode的机器</p>
-<h1 id="4初始化">4.初始化</h1>
-<p><code>hadoop namenode -format</code><br>
+
+<h1 id="4-初始化">4.初始化</h1>
+
+<p><code>hadoop namenode -format</code><br />
 这个操作会在我们设置的<code>hadoop.tmp.dir</code>目录下创建文件夹</p>
-<h1 id="5启动">5.启动</h1>
+
+<h1 id="5-启动">5.启动</h1>
+
 <p><code>$HADOOP_HOME/sbin/start-dfs.sh</code></p>
         </div>
 

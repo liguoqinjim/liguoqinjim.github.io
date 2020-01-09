@@ -86,37 +86,47 @@
         
         
         <div class="post-content">
-            <p>Vagrant is a tool for building and managing virtual machine environments in a single workflow. With an easy-to-use workflow and focus on automation, Vagrant lowers development environment setup time, increases production parity, and makes the &ldquo;works on my machine&rdquo; excuse a relic of the past.<br>
-Vagrant是一个在单一工作流中创建和管理虚拟机环境的工具。通过简单易用的工作流和对自动化的关注，Vagrant可以减少开发环境的配置时间，增加生产平价，并且使得&quot;works on my machine&quot;这个借口成为过去。</p>
+            <p>Vagrant is a tool for building and managing virtual machine environments in a single workflow. With an easy-to-use workflow and focus on automation, Vagrant lowers development environment setup time, increases production parity, and makes the &ldquo;works on my machine&rdquo; excuse a relic of the past.<br />
+Vagrant是一个在单一工作流中创建和管理虚拟机环境的工具。通过简单易用的工作流和对自动化的关注，Vagrant可以减少开发环境的配置时间，增加生产平价，并且使得&rdquo;works on my machine&rdquo;这个借口成为过去。</p>
+
 <h1 id="为什么使用vagrant">为什么使用Vagrant</h1>
-<p>Vagrant提供了一种易于配置、可复用、编写的工作环境。它是建立在行业标准技术和单一一致工作流控制的基础上，可以使得你和你团队的生产力和灵活性最大化。<br>
+
+<p>Vagrant提供了一种易于配置、可复用、编写的工作环境。它是建立在行业标准技术和单一一致工作流控制的基础上，可以使得你和你团队的生产力和灵活性最大化。<br />
 Vagrang是站在了巨人的肩膀上实现了这些需求。配置的虚拟机是基于VirtualBox, VMware, AWS和其他的一些提供商。然后，行业标准配置工具(如shell脚本，Cher或者Puppte)，可以自动在虚拟机上安装和配置软件。</p>
-<p>如果你是一名开发者，只要你创建了一个Vagrantfile，然后只要运行vagrant up，你配置的软件都会自动安装好。你还可以把Vagrantfile传给你团队里面的其他人，这样你们团队人都可以在一个相同的环境里面进行开发了。可以对&quot;works on my machine&quot;说再见了。<br>
+
+<p>如果你是一名开发者，只要你创建了一个Vagrantfile，然后只要运行vagrant up，你配置的软件都会自动安装好。你还可以把Vagrantfile传给你团队里面的其他人，这样你们团队人都可以在一个相同的环境里面进行开发了。可以对&rdquo;works on my machine&rdquo;说再见了。<br />
 如果你是一名运维或者DevOps开发，Vagrant可以给你一个一次性环境和一致的工作流程，用于开发和测试脚本。你可以在本地虚拟化技术如VirtualBox或者VMware上快速测试shell脚本，Chef或者Puppet。然后使用相同的配置去远程机器上测试。</p>
+
 <h1 id="quickstart">QuickStart</h1>
+
 <h2 id="安装">安装</h2>
-<p>去https://www.vagrantup.com/downloads.html ，下载系统对应版本的Vagrant安装即可</p>
+
+<p>去<a href="https://www.vagrantup.com/downloads.html">https://www.vagrantup.com/downloads.html</a> ，下载系统对应版本的Vagrant安装即可</p>
+
 <h2 id="相关命令">相关命令</h2>
+
 <ul>
-<li><code>vagrant init centos/7</code><br>
-初始化Vagrantfile，init后面的名字可以在https://app.vagrantup.com/boxes/search 里面找到，可以选择很多系统。一个Vagrantfile可以配置多台虚拟机</li>
-<li><code>vagrant up [name]</code><br>
-启动虚拟机，可以加上name，name是Vagrantfile里面虚拟机的名称(下面的命令里面的name也是一样)，那么就只启动name这台机器。不然默认是Vagrantfile里面的机器都启动。<br>
+<li><code>vagrant init centos/7</code><br />
+初始化Vagrantfile，init后面的名字可以在<a href="https://app.vagrantup.com/boxes/search">https://app.vagrantup.com/boxes/search</a> 里面找到，可以选择很多系统。一个Vagrantfile可以配置多台虚拟机</li>
+<li><code>vagrant up [name]</code><br />
+启动虚拟机，可以加上name，name是Vagrantfile里面虚拟机的名称(下面的命令里面的name也是一样)，那么就只启动name这台机器。不然默认是Vagrantfile里面的机器都启动。<br />
 <code>-provider=vmware_fusion</code>，加上-provider参数可以指定只有什么虚拟器。但是要注意vagrant要使用vmware的虚拟机的脚本是收费的，所以还是推荐virtual box。</li>
-<li><code>vagrant ssh [name]</code><br>
+<li><code>vagrant ssh [name]</code><br />
 ssh到虚拟机</li>
-<li><code>vagrant suspend [name]</code><br>
+<li><code>vagrant suspend [name]</code><br />
 暂停虚拟机</li>
-<li><code>vagrant halt [name]</code><br>
+<li><code>vagrant halt [name]</code><br />
 关闭虚拟机</li>
-<li><code>vagrant destroy [name]</code><br>
+<li><code>vagrant destroy [name]</code><br />
 删除虚拟机</li>
-<li><code>vagrant plugin list</code><br>
+<li><code>vagrant plugin list</code><br />
 列出所有的vagrant插件</li>
-<li><code>vagrant plugin install vagrant-scp</code><br>
+<li><code>vagrant plugin install vagrant-scp</code><br />
 安装插件，因为网络原因，可能会需要一点时间。</li>
 </ul>
+
 <h2 id="vagrantfile配置">Vagrantfile配置</h2>
+
 <p>一个简单Vagrantfile例子</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#75715e"># -*- mode: ruby -*-</span>
 <span style="color:#75715e"># vi: set ft=ruby :</span>
@@ -139,7 +149,7 @@ boxes <span style="color:#f92672">=</span> <span style="color:#f92672">[</span>
     <span style="color:#f92672">}</span>
 <span style="color:#f92672">]</span>
 
-Vagrant.configure<span style="color:#f92672">(</span>2<span style="color:#f92672">)</span> <span style="color:#66d9ef">do</span> |config|
+Vagrant.configure<span style="color:#f92672">(</span><span style="color:#ae81ff">2</span><span style="color:#f92672">)</span> <span style="color:#66d9ef">do</span> |config|
   <span style="color:#75715e"># 系统版本</span>
   config.vm.box <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;centos/7&#34;</span>
 
@@ -152,8 +162,8 @@ Vagrant.configure<span style="color:#f92672">(</span>2<span style="color:#f92672
         end
 
         config.vm.provider <span style="color:#e6db74">&#34;virtualbox&#34;</span> <span style="color:#66d9ef">do</span> |v|
-          v.customize <span style="color:#f92672">[</span><span style="color:#e6db74">&#34;modifyvm&#34;</span>, :id, <span style="color:#e6db74">&#34;--memory&#34;</span>, opts<span style="color:#f92672">[</span>:mem<span style="color:#f92672">]</span><span style="color:#f92672">]</span>
-          v.customize <span style="color:#f92672">[</span><span style="color:#e6db74">&#34;modifyvm&#34;</span>, :id, <span style="color:#e6db74">&#34;--cpus&#34;</span>, opts<span style="color:#f92672">[</span>:cpu<span style="color:#f92672">]</span><span style="color:#f92672">]</span>
+          v.customize <span style="color:#f92672">[</span><span style="color:#e6db74">&#34;modifyvm&#34;</span>, :id, <span style="color:#e6db74">&#34;--memory&#34;</span>, opts<span style="color:#f92672">[</span>:mem<span style="color:#f92672">]]</span>
+          v.customize <span style="color:#f92672">[</span><span style="color:#e6db74">&#34;modifyvm&#34;</span>, :id, <span style="color:#e6db74">&#34;--cpus&#34;</span>, opts<span style="color:#f92672">[</span>:cpu<span style="color:#f92672">]]</span>
         end
 
         config.vm.network :private_network, ip: opts<span style="color:#f92672">[</span>:eth1<span style="color:#f92672">]</span>
@@ -165,20 +175,25 @@ Vagrant.configure<span style="color:#f92672">(</span>2<span style="color:#f92672
 
   <span style="color:#75715e"># 运行外部脚本(比如安装软件等)</span>
   config.vm.provision <span style="color:#e6db74">&#34;shell&#34;</span>, privileged: true, path: <span style="color:#e6db74">&#34;./setup.sh&#34;</span>
-end
+end</code></pre></div>
+<h1 id="插件">插件</h1>
 
-</code></pre></div><h1 id="插件">插件</h1>
 <h2 id="vagrant-vbguest">vagrant-vbguest</h2>
+
 <p>vagrant up的时候可能会遇到vagrant was unable to mount VirtualBox shared folders的错误，安装了这个插件再vagrant up应该就好了</p>
+
 <h2 id="vagrant-scp">vagrant-scp</h2>
-<p>可以给vagrant虚拟机传文件<br>
+
+<p>可以给vagrant虚拟机传文件<br />
 <code>vagrant scp ../lab005/ docker-node1:/home/vagrant/lab005</code>，可以把本地的lab005传送到docker-node1这台虚拟机里面</p>
+
 <h1 id="参考资料">参考资料</h1>
+
 <ol>
-<li>vagrant文档：https://www.vagrantup.com/docs/index.html</li>
-<li>vagrant的所有镜像：https://app.vagrantup.com/boxes/search</li>
-<li>unable to mount VirtualBox shared folders错误：https://github.com/scotch-io/scotch-box/issues/296</li>
-<li>vagrant-scp主页：https://github.com/invernizzi/vagrant-scp</li>
+<li>vagrant文档：<a href="https://www.vagrantup.com/docs/index.html">https://www.vagrantup.com/docs/index.html</a></li>
+<li>vagrant的所有镜像：<a href="https://app.vagrantup.com/boxes/search">https://app.vagrantup.com/boxes/search</a></li>
+<li>unable to mount VirtualBox shared folders错误：<a href="https://github.com/scotch-io/scotch-box/issues/296">https://github.com/scotch-io/scotch-box/issues/296</a></li>
+<li>vagrant-scp主页：<a href="https://github.com/invernizzi/vagrant-scp">https://github.com/invernizzi/vagrant-scp</a></li>
 </ol>
         </div>
 

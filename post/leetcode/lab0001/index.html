@@ -93,16 +93,23 @@
         
         
         <div class="post-content">
-            <!-- raw HTML omitted -->
+            <!-- toc -->
+
 <h1 id="题目">题目</h1>
+
 <p>Given an array of integers, return indices of the two numbers such that they add up to a specific target.
 You may assume that each input would have exactly one solution, and you may not use the same element twice.</p>
+
 <p>Example:</p>
+
 <pre><code>Given nums = [2, 7, 11, 15], target = 9,
 
 Because nums[0] + nums[1] = 2 + 7 = 9,
 return [0, 1].
-</code></pre><h1 id="解法">解法</h1>
+</code></pre>
+
+<h1 id="解法">解法</h1>
+
 <h2 id="解法1">解法1</h2>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">twoSum</span>(<span style="color:#a6e22e">nums</span> []<span style="color:#66d9ef">int</span>, <span style="color:#a6e22e">target</span> <span style="color:#66d9ef">int</span>) []<span style="color:#66d9ef">int</span> {
 	<span style="color:#a6e22e">as</span> <span style="color:#f92672">:=</span> make([]<span style="color:#66d9ef">int</span>, <span style="color:#ae81ff">2</span>)
@@ -116,8 +123,8 @@ return [0, 1].
 	}
 
 	<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">as</span>
-}
-</code></pre></div><h2 id="解法2">解法2</h2>
+}</code></pre></div>
+<h2 id="解法2">解法2</h2>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">twoSum2</span>(<span style="color:#a6e22e">nums</span> []<span style="color:#66d9ef">int</span>, <span style="color:#a6e22e">target</span> <span style="color:#66d9ef">int</span>) []<span style="color:#66d9ef">int</span> {
 	<span style="color:#a6e22e">r</span> <span style="color:#f92672">:=</span> make([]<span style="color:#66d9ef">int</span>, <span style="color:#ae81ff">2</span>)
 	<span style="color:#a6e22e">result</span> <span style="color:#f92672">:=</span> make(<span style="color:#66d9ef">map</span>[<span style="color:#66d9ef">int</span>]<span style="color:#66d9ef">int</span>) <span style="color:#75715e">//key是nums的值,value是值对应的下标
@@ -131,11 +138,13 @@ return [0, 1].
 	}
 
 	<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">r</span>
-}
+}</code></pre></div>
+<h1 id="总结">总结</h1>
 
-</code></pre></div><h1 id="总结">总结</h1>
 <p>解法1就是最简单的循环相加，时间复杂度是O(n^2)。解法2的话因为题目里面是假设了肯定是有解的，那么就直接用一个循环来完成，时间复杂度使用O(n)</p>
+
 <h1 id="源代码">源代码</h1>
+
 <p><a href="https://github.com/liguoqinjim/leetcodeGo/tree/master/problems/lab0001">https://github.com/liguoqinjim/leetcodeGo/tree/master/problems/lab0001</a></p>
         </div>
 

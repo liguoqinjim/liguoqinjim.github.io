@@ -87,64 +87,31 @@
         
         <div class="post-content">
             <p>使用docker部署gogs</p>
+
 <h1 id="gogs是什么">gogs是什么？</h1>
-<p>gogs是一款极易搭建的自助 Git 服务，是golang写的。官网地址是：https://gogs.io/</p>
+
+<p>gogs是一款极易搭建的自助 Git 服务，是golang写的。官网地址是：<a href="https://gogs.io/">https://gogs.io/</a></p>
+
 <h1 id="部署步骤">部署步骤</h1>
+
 <ul>
-<li>
-<ol>
-<li>下载gogs镜像：<code>docker pull gogs/gogs</code></li>
-</ol>
-</li>
-<li>
-<ol start="2">
-<li>创建文件夹作为volume，我一般在opt下创建：<code>mkdir -p /opt/gogs</code></li>
-</ol>
-</li>
-<li>
-<ol start="3">
-<li>运行docker容器：<code>docker run --name=gogs -d -p 10022:22 -p 10080:3000 -v /opt/gogs:/data gogs/gogs</code></li>
-</ol>
-</li>
-<li>
-<ol start="4">
-<li>首次配置：<code>http://x.x.x.x:10080</code>，然后会跳到首次配置界面，需要配置数据库地址，默认url等</li>
-</ol>
-</li>
-<li>
-<ol start="5">
-<li>再次启动：<code>docker start gogs</code>，要是容器关闭了可以这样直接启动</li>
-</ol>
-</li>
+<li>1. 下载gogs镜像：<code>docker pull gogs/gogs</code></li>
+<li>2. 创建文件夹作为volume，我一般在opt下创建：<code>mkdir -p /opt/gogs</code></li>
+<li>3. 运行docker容器：<code>docker run --name=gogs -d -p 10022:22 -p 10080:3000 -v /opt/gogs:/data gogs/gogs</code></li>
+<li>4. 首次配置：<code>http://x.x.x.x:10080</code>，然后会跳到首次配置界面，需要配置数据库地址，默认url等</li>
+<li>5. 再次启动：<code>docker start gogs</code>，要是容器关闭了可以这样直接启动</li>
 </ul>
+
 <h1 id="迁移步骤">迁移步骤</h1>
+
 <p>有的时候我们会需要迁移gogs到别的服务器，比如云服务器到期了要换一个平台。我们只需要简单几步就可以迁移了。</p>
+
 <ul>
-<li>
-<ol>
-<li>备份数据库，可以在app.ini里面查看到现在用的数据库信息</li>
-</ol>
-</li>
-<li>
-<ol start="2">
-<li>备份/opt/gogs文件夹(看具体路径)</li>
-</ol>
-</li>
-<li>
-<ol start="3">
-<li>复制/opt/gogs到新的服务器</li>
-</ol>
-</li>
-<li>
-<ol start="4">
-<li>修改/opt/gogs/conf/app.ini，比如新服务器的默认url，新的数据库等</li>
-</ol>
-</li>
-<li>
-<ol start="5">
-<li>都修改完之后启动容器即可，<code>docker start gogs</code></li>
-</ol>
-</li>
+<li>1. 备份数据库，可以在app.ini里面查看到现在用的数据库信息</li>
+<li>2. 备份/opt/gogs文件夹(看具体路径)</li>
+<li>3. 复制/opt/gogs到新的服务器</li>
+<li>4. 修改/opt/gogs/conf/app.ini，比如新服务器的默认url，新的数据库等</li>
+<li>5. 都修改完之后启动容器即可，<code>docker start gogs</code></li>
 </ul>
         </div>
 

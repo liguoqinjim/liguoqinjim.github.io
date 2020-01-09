@@ -94,29 +94,43 @@
         
         <div class="post-content">
             <p>Docker的持久化存储和数据共享，是课程第五章的内容</p>
-<!-- raw HTML omitted -->
-<h1 id="1本章介绍">1.本章介绍</h1>
+
+<!-- toc -->
+
+<h1 id="1-本章介绍">1.本章介绍</h1>
+
 <p>我们知道镜像是只读的，也就是我们是无法在镜像里面写入数据的。但是容器层是可以写的，但是容器层写的数据，只在容器里面，我们要是删除这个容器，之前写入的数据也会被一起删除。所以我们需要Data Volume来保存数据。</p>
-<h2 id="11docker持久化数据的方案">1.1Docker持久化数据的方案</h2>
+
+<h2 id="1-1docker持久化数据的方案">1.1Docker持久化数据的方案</h2>
+
 <ol>
-<li>基于本地文件系统的Volume<br>
+<li>基于本地文件系统的Volume<br />
 可以在执行docker create或docker run时，通过-v参数将主机的目录作为容器的数据卷。这部分功能便是基于本地文件系统的volume管理</li>
-<li>基于plugin的Volume<br>
+<li>基于plugin的Volume<br />
 支持第三方的存储方案，比如NAS,aws</li>
 </ol>
-<h2 id="12volume的类型">1.2Volume的类型</h2>
+
+<h2 id="1-2volume的类型">1.2Volume的类型</h2>
+
 <ol>
 <li>受管理的data Volume，由docker后台自动创建</li>
 <li>绑定挂载的Volume，具体挂载位置可以由用户指定</li>
 </ol>
-<h1 id="2本章实验环境介绍">2.本章实验环境介绍</h1>
+
+<h1 id="2-本章实验环境介绍">2.本章实验环境介绍</h1>
+
 <p>略</p>
-<h1 id="3数据持久化之data-volume">3.数据持久化之Data Volume</h1>
-<p><img src="https://liguoqinjim.com/images/docker/note4/volume.png" alt="volume"></p>
-<p>Dockerfile里面定义了：<br>
-<code>VOLUME /var/lib/mysql</code><br>
+
+<h1 id="3-数据持久化之data-volume">3.数据持久化之Data Volume</h1>
+
+<p><img src="https://liguoqinjim.com/images/docker/note4/volume.png" alt="volume" /></p>
+
+<p>Dockerfile里面定义了：<br />
+<code>VOLUME /var/lib/mysql</code><br />
 这样容器启动的时候就会创建一个docker volume了，容器的相应数据就会存储在这个volume里面，可以有多个volume</p>
+
 <p>相关命令：</p>
+
 <ul>
 <li><code>docker volume ls</code>，查看所有的volume</li>
 <li><code>docker volume inspect volume_id</code>，查看一个volume的详细信息，需要注意，这个命令输入短的id没有用，一定要输入完整的id</li>
@@ -125,19 +139,27 @@
 <li><code>docker run -d --name mysql1 -e MYSQL_ALLOW_EMPTY_PASSWORD=true mysql</code>，容器创建的时候会自动创建一个volume，volume的name是随机的
 5.docker run -d -v mysql:/var/lib/mysql &ndash;name mysql1 -e MYSQL_ALLOW_EMPTY_PASSWORD=true mysql，这个命令里面使用-v mysql:/var/lib/mysql，mysql会是volume的名字，不再是docker自动生成的那个name了，/var/lib/mysql是镜像的Dockerfile里面VOLUME后面跟随的路径，也就是docker容器里面的路径。也就是这个路径的VOLUME生成名字会是mysql。</li>
 </ul>
+
 <h2 id="notice">NOTICE</h2>
+
 <ol>
 <li>删除容器之后，volume是不会删除的</li>
 <li>-v参数，比如-v mysql:/var/lib/mysql，如果还没有volume的name为mysql，那么就是新建一个volume，但是要是已经存在了，那么用这个命令的时候，也就是新开的容器的/var/lib/mysql会挂载到这个volume上</li>
 </ol>
-<h1 id="4数据持久化之bind-mouting">4.数据持久化之Bind Mouting</h1>
-<p><img src="https://liguoqinjim.com/images/docker/note4/mouting.png" alt="mouting">
+
+<h1 id="4-数据持久化之bind-mouting">4.数据持久化之Bind Mouting</h1>
+
+<p><img src="https://liguoqinjim.com/images/docker/note4/mouting.png" alt="mouting" />
 /home/aaa是本机的路径，/root/aaa是容器里面的路径。两个就映射了，两边的数据都是一样的</p>
+
 <p>相关命令：</p>
+
 <ul>
 <li><code>docker run -d -v $(pwd):/usr/share/nginx/html --name web nginx</code>，这个是把本机的当前目录，$(pwd)，和容器里面的/usr/share/nginx/html相互映射</li>
 </ul>
-<h1 id="5开发者利器-dockerbind-mout">5.开发者利器-Docker+Bind Mout</h1>
+
+<h1 id="5-开发者利器-docker-bind-mout">5.开发者利器-Docker+Bind Mout</h1>
+
 <p>我们在开发的时候，使用bind mouting这种方式是比较方便的，因为我们在本机的一旦修改了，docker里面的文件也会一样。</p>
         </div>
 

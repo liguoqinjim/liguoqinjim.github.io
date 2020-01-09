@@ -87,36 +87,44 @@
         
         <div class="post-content">
             <p>HBase的基本配置</p>
-<h1 id="0修改hbase-envsh">0.修改<code>hbase-env.sh</code></h1>
+
+<h1 id="0-修改-hbase-env-sh">0.修改<code>hbase-env.sh</code></h1>
+
 <ol>
 <li>修改JAVA_HOME</li>
 <li>要是jdk1.8的话，要注释掉<code>HBASE_MASTER_OPTS</code>和<code>HBASE_REGIONSERVER_OPTS</code></li>
 </ol>
-<h1 id="1修改hbase-sitexml">1.修改<code>hbase-site.xml</code></h1>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#f92672">&lt;configuration</span><span style="color:#f92672">&gt;</span>
-    <span style="color:#75715e">&lt;!--</span><span style="color:#75715e"> 指定hbase在hdfs上的存储路径 </span><span style="color:#75715e">--&gt;</span>
-    <span style="color:#f92672">&lt;property</span><span style="color:#f92672">&gt;</span>
-        <span style="color:#f92672">&lt;name</span><span style="color:#f92672">&gt;</span>hbase.rootdir<span style="color:#f92672">&lt;/name&gt;</span>
-        <span style="color:#f92672">&lt;value</span><span style="color:#f92672">&gt;</span>hdfs://hp-111:9000/hbase<span style="color:#f92672">&lt;/value&gt;</span>
+
+<h1 id="1-修改-hbase-site-xml">1.修改<code>hbase-site.xml</code></h1>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#f92672">&lt;configuration&gt;</span>
+    <span style="color:#75715e">&lt;!-- 指定hbase在hdfs上的存储路径 --&gt;</span>
+    <span style="color:#f92672">&lt;property&gt;</span>
+        <span style="color:#f92672">&lt;name&gt;</span>hbase.rootdir<span style="color:#f92672">&lt;/name&gt;</span>
+        <span style="color:#f92672">&lt;value&gt;</span>hdfs://hp-111:9000/hbase<span style="color:#f92672">&lt;/value&gt;</span>
     <span style="color:#f92672">&lt;/property&gt;</span>
     
-    <span style="color:#75715e">&lt;!--</span><span style="color:#75715e">指定hbase为分布式的 </span><span style="color:#75715e">--&gt;</span>
-    <span style="color:#f92672">&lt;property</span><span style="color:#f92672">&gt;</span>
-        <span style="color:#f92672">&lt;name</span><span style="color:#f92672">&gt;</span>hbase.cluster.distributed<span style="color:#f92672">&lt;/name&gt;</span>
-        <span style="color:#f92672">&lt;value</span><span style="color:#f92672">&gt;</span>true<span style="color:#f92672">&lt;/value&gt;</span>
+    <span style="color:#75715e">&lt;!--指定hbase为分布式的 --&gt;</span>
+    <span style="color:#f92672">&lt;property&gt;</span>
+        <span style="color:#f92672">&lt;name&gt;</span>hbase.cluster.distributed<span style="color:#f92672">&lt;/name&gt;</span>
+        <span style="color:#f92672">&lt;value&gt;</span>true<span style="color:#f92672">&lt;/value&gt;</span>
     <span style="color:#f92672">&lt;/property&gt;</span>
 
-    <span style="color:#75715e">&lt;!--</span><span style="color:#75715e"> 指定zookeeper的地址 </span><span style="color:#75715e">--&gt;</span>
-    <span style="color:#f92672">&lt;property</span><span style="color:#f92672">&gt;</span>
-        <span style="color:#f92672">&lt;name</span><span style="color:#f92672">&gt;</span>hbase.zookeeper.quorum<span style="color:#f92672">&lt;/name&gt;</span>
-        <span style="color:#f92672">&lt;value</span><span style="color:#f92672">&gt;</span>hp-111:2181,hp-112:2181,hp-113:2181<span style="color:#f92672">&lt;/value&gt;</span>
+    <span style="color:#75715e">&lt;!-- 指定zookeeper的地址 --&gt;</span>
+    <span style="color:#f92672">&lt;property&gt;</span>
+        <span style="color:#f92672">&lt;name&gt;</span>hbase.zookeeper.quorum<span style="color:#f92672">&lt;/name&gt;</span>
+        <span style="color:#f92672">&lt;value&gt;</span>hp-111:2181,hp-112:2181,hp-113:2181<span style="color:#f92672">&lt;/value&gt;</span>
     <span style="color:#f92672">&lt;/property&gt;</span>
-<span style="color:#f92672">&lt;/configuration&gt;</span>
-</code></pre></div><h1 id="2修改regionservers">2.修改<code>regionservers</code></h1>
+<span style="color:#f92672">&lt;/configuration&gt;</span></code></pre></div>
+<h1 id="2-修改-regionservers">2.修改<code>regionservers</code></h1>
+
 <p>加上所有要运行regionserver的机器</p>
-<h1 id="3启动">3.启动</h1>
+
+<h1 id="3-启动">3.启动</h1>
+
 <p><code>$HBASE_HOME/bin/start-hbase.sh</code></p>
+
 <h1 id="notice">NOTICE</h1>
+
 <ul>
 <li>要是不设置<code>hbase.cluster.distributed</code>为true的话，hbase是作为standlone模式运行，这时候的zk是hbase来管理的，不能配置自己的zk。<code>hbase-env.sh</code>里面是有一个变量<code>HBASE_MANAGES_ZK</code>，但是我设置为了false也没有起效。</li>
 </ul>

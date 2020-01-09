@@ -94,27 +94,35 @@
         
         <div class="post-content">
             <p>Docker的安装</p>
-<!-- raw HTML omitted -->
+
+<!-- toc -->
+
 <h1 id="在mac上安装">在mac上安装</h1>
-<p>直接下载dmg安装即可<br>
-链接：https://docs.docker.com/docker-for-mac/install/</p>
+
+<p>直接下载dmg安装即可<br />
+链接：<a href="https://docs.docker.com/docker-for-mac/install/">https://docs.docker.com/docker-for-mac/install/</a></p>
+
 <h1 id="在windows上安装">在windows上安装</h1>
-<p>需要win10，64位的pro版本才可以安装，还要打开Hyper-V<br>
-链接：https://docs.docker.com/docker-for-windows/install/</p>
+
+<p>需要win10，64位的pro版本才可以安装，还要打开Hyper-V<br />
+链接：<a href="https://docs.docker.com/docker-for-windows/install/">https://docs.docker.com/docker-for-windows/install/</a></p>
+
 <h1 id="在centos上安装">在centos上安装</h1>
-<p>安装docker官方给出的步骤即可安装<br>
-链接：https://docs.docker.com/install/linux/docker-ce/centos/</p>
+
+<p>安装docker官方给出的步骤即可安装<br />
+链接：<a href="https://docs.docker.com/install/linux/docker-ce/centos/">https://docs.docker.com/install/linux/docker-ce/centos/</a></p>
+
 <h2 id="centos安装加速">centos安装加速</h2>
+
 <p>因为网络问题，官方给出的这个源安装会很慢，我们可以换成国内的源然后安装</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">sudo yum-config-manager --add-repo https://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo
 sudo yum makecache fast
-sudo yum install docker-ce
-</code></pre></div><h1 id="验证安装是否成功">验证安装是否成功</h1>
+sudo yum install docker-ce</code></pre></div>
+<h1 id="验证安装是否成功">验证安装是否成功</h1>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#75715e"># 查看docker版本</span>
 sudo docker version
 <span style="color:#75715e"># 运行一个hello-world的镜像</span>
-sudo docker run hello-world
-</code></pre></div>
+sudo docker run hello-world</code></pre></div>
         </div>
 
         

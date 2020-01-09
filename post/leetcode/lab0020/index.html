@@ -93,17 +93,25 @@
         
         
         <div class="post-content">
-            <!-- raw HTML omitted -->
-<h1 id="题目httpsleetcodecomproblemsvalid-parenthesesdescription"><a href="https://leetcode.com/problems/valid-parentheses/description/">题目</a></h1>
-<p>Given a string containing just the characters &lsquo;(', &lsquo;)', &lsquo;{', &lsquo;}', &lsquo;[&rsquo; and &lsquo;]', determine if the input string is valid.</p>
+            <!-- toc -->
+
+<h1 id="题目-https-leetcode-com-problems-valid-parentheses-description"><a href="https://leetcode.com/problems/valid-parentheses/description/">题目</a></h1>
+
+<p>Given a string containing just the characters &lsquo;(&rsquo;, &lsquo;)&rsquo;, &lsquo;{&rsquo;, &lsquo;}&rsquo;, &lsquo;[&rsquo; and &lsquo;]&rsquo;, determine if the input string is valid.</p>
+
 <p>An input string is valid if:</p>
+
 <ol>
 <li>Open brackets must be closed by the same type of brackets.</li>
 <li>Open brackets must be closed in the correct order.</li>
 </ol>
+
 <p>Note that an empty string is also considered valid.</p>
+
 <p>就是要判断括号的顺序是否是正确的。</p>
+
 <h1 id="解法">解法</h1>
+
 <h2 id="解法1">解法1</h2>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">isValid</span>(<span style="color:#a6e22e">s</span> <span style="color:#66d9ef">string</span>) <span style="color:#66d9ef">bool</span> { <span style="color:#75715e">//这个解法用到了acsii值
 </span><span style="color:#75715e"></span>	<span style="color:#66d9ef">if</span> len(<span style="color:#a6e22e">s</span>) <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> {
@@ -130,8 +138,9 @@
 	} <span style="color:#66d9ef">else</span> {
 		<span style="color:#66d9ef">return</span> <span style="color:#66d9ef">false</span>
 	}
-}
-</code></pre></div><h1 id="总结">总结</h1>
+}</code></pre></div>
+<h1 id="总结">总结</h1>
+
 <ul>
 <li>解法1里面，我们使用的ascii码来判断，括号的顺序是否是对的。但是要注意的是，用ascii码来判断是有前提的，
 就是题目里面说了字符串只会出现这6个字符，不会出现其他的字符。不然这样的判断是不对的。</li>

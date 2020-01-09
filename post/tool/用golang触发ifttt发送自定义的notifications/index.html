@@ -87,61 +87,94 @@
         
         <div class="post-content">
             <p>IFTTT众多的service里面，有一个非常强大的service，就是webhooks。当我们在IFTTT里面connect了这个service之后，我们会得到一个唯一的链接，我们访问这个链接就会被视作触发了这个service。</p>
-<!-- raw HTML omitted -->
-<h1 id="1创建applet">1.创建Applet</h1>
-<h2 id="11新建applet">1.1新建Applet</h2>
+
+<!-- toc -->
+
+<h1 id="1-创建applet">1.创建Applet</h1>
+
+<h2 id="1-1新建applet">1.1新建Applet</h2>
+
 <p>在<code>My Applets</code>界面选择<code>New Applet</code>，然后选择<code>+this</code></p>
-<h2 id="12选择webhooks作为service">1.2选择webhooks作为service</h2>
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<h2 id="13选择receive-a-web-request作为trigger">1.3选择Receive a web request作为trigger</h2>
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<h2 id="14设置一个event-name">1.4设置一个<code>Event Name</code></h2>
-<p>为webhooks设置一个<code>Event Name</code>，作为这个Applet的触发条件。因为可能另外的Applet也用了webhooks这个service，那么就要使用这个<code>Event Name</code>来区分到底是哪个Applet</p>
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<h2 id="15选择action-service">1.5选择action service</h2>
-<p>IFTTT里面，最终的动作被称作action。我们现在已经选好了webhooks作为trigger，现在就要来选择action了。我们选择<code>Notifications</code>作为action service</p>
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<h2 id="16选择一个action">1.6选择一个action</h2>
-<p><code>Notifications</code>这个service有两个action，一个是普通的通知，另一个是富文本的通知，也就是可以在通知里面显示图片。我们这里选择富文本的通知，普通通知的用法也是类似的</p>
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<h2 id="17配置action">1.7配置action</h2>
-<p>配置action，可以设置<code>Notifications</code>的标题还有内容，还可以设置要显示的图片。这里还可以使用<code>Add ingredient</code>来添加webhooks里面传过来的数据。配置完成之后我们create，然后finish，Applet就创建完成了</p>
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<h1 id="2触发webhooks">2.触发webhooks</h1>
-<h2 id="21使用webhooks的documentation里面的测试来触发">2.1使用webhooks的Documentation里面的测试来触发</h2>
-<p>一开始的时候，我们可以使用这个测试模式来测试自己的配置是否正确。访问<a href="https://ifttt.com/maker_webhooks">webhooks</a>页面，选择<code>Documentation</code>。输入之前设置好的<code>Event Name</code>，然后在下面的内容里面也可以填，<code>value1</code>、<code>value2</code>这些值都是可以在action的配置里面得到的。之前我们配置了<code>value1</code>的值是填要在通知里面显示的图片地址。填好之后按<code>Test it</code></p>
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<p>收到的通知</p>
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<h2 id="22使用curl来触发">2.2使用curl来触发</h2>
+
+<h2 id="1-2选择webhooks作为service">1.2选择webhooks作为service</h2>
+
+<!-- E:\Workspace\hugo_site\static\img\IFTTT\snipaste20180703_154911.png -->
+
+<!-- ![选择webhooks作为service](/images/IFTTT/snipaste20180703_154911.png) -->
+
+<p><img src="https://liguoqinjim.com/images/IFTTT/snipaste20180703_154911.png" width="500" alt="选择webhooks作为service"></p>
+
+<h2 id="1-3选择receive-a-web-request作为trigger">1.3选择Receive a web request作为trigger</h2>
+
+<!-- E:\Workspace\hugo_site\static\img\IFTTT\snipaste20180703_155431.png -->
+
+<!-- ![选择Receive a web request作为trigger](/images/IFTTT/snipaste20180703_155431.png) -->
+
+<p><img src="https://liguoqinjim.com/images/IFTTT/snipaste20180703_155431.png" width="750" alt="选择Receive a web request作为trigger"></p>
+
+<h2 id="1-4设置一个-event-name">1.4设置一个<code>Event Name</code></h2>
+
+<p>为webhooks设置一个<code>Event Name</code>，作为这个Applet的触发条件。因为可能另外的Applet也用了webhooks这个service，那么就要使用这个<code>Event Name</code>来区分到底是哪个Applet
+<!-- E:\Workspace\hugo_site\static\img\IFTTT\snipaste20180703_173058.png -->
+<!-- E:\Workspace\hugo_site\static\img\IFTTT\snipaste20180703_161526.png -->
+<!-- ![设置一个Event Name](/images/IFTTT/snipaste20180703_161526.png) -->
+<img src="https://liguoqinjim.com/images/IFTTT/snipaste20180703_173058.png" width="500" alt="设置一个Event Name"></p>
+
+<h2 id="1-5选择action-service">1.5选择action service</h2>
+
+<p>IFTTT里面，最终的动作被称作action。我们现在已经选好了webhooks作为trigger，现在就要来选择action了。我们选择<code>Notifications</code>作为action service
+<!-- E:\Workspace\hugo_site\static\img\IFTTT\snipaste20180703_162444.png -->
+<!-- ![选择action service](/images/IFTTT/snipaste20180703_162444.png) -->
+<img src="https://liguoqinjim.com/images/IFTTT/snipaste20180703_162444.png" width="500" alt="选择action service"></p>
+
+<h2 id="1-6选择一个action">1.6选择一个action</h2>
+
+<p><code>Notifications</code>这个service有两个action，一个是普通的通知，另一个是富文本的通知，也就是可以在通知里面显示图片。我们这里选择富文本的通知，普通通知的用法也是类似的
+<!-- E:\Workspace\hugo_site\static\img\IFTTT\snipaste20180703_163859.png -->
+<!-- ![选择一个action](/images/IFTTT/snipaste20180703_163859.png) -->
+<img src="https://liguoqinjim.com/images/IFTTT/snipaste20180703_163859.png" width="750" alt="选择一个action"></p>
+
+<h2 id="1-7配置action">1.7配置action</h2>
+
+<p>配置action，可以设置<code>Notifications</code>的标题还有内容，还可以设置要显示的图片。这里还可以使用<code>Add ingredient</code>来添加webhooks里面传过来的数据。配置完成之后我们create，然后finish，Applet就创建完成了
+<!-- E:\Workspace\hugo_site\static\img\IFTTT\snipaste20180703_164610.png -->
+<!-- ![配置action](/images/IFTTT/snipaste20180703_164610.png) -->
+<img src="https://liguoqinjim.com/images/IFTTT/snipaste20180703_164610.png" width="500" alt="配置action"></p>
+
+<h1 id="2-触发webhooks">2.触发webhooks</h1>
+
+<h2 id="2-1使用webhooks的documentation里面的测试来触发">2.1使用webhooks的Documentation里面的测试来触发</h2>
+
+<p>一开始的时候，我们可以使用这个测试模式来测试自己的配置是否正确。访问<a href="https://ifttt.com/maker_webhooks">webhooks</a>页面，选择<code>Documentation</code>。输入之前设置好的<code>Event Name</code>，然后在下面的内容里面也可以填，<code>value1</code>、<code>value2</code>这些值都是可以在action的配置里面得到的。之前我们配置了<code>value1</code>的值是填要在通知里面显示的图片地址。填好之后按<code>Test it</code>
+<!-- E:\Workspace\hugo_site\static\img\IFTTT\snipaste20180703_171859.png -->
+<!-- ![webhooks测试](/images/IFTTT/snipaste20180703_171859.png) -->
+<img src="https://liguoqinjim.com/images/IFTTT/snipaste20180703_171859.png" width="900" alt="webhooks测试"></p>
+
+<p>收到的通知
+<!-- E:\Workspace\hugo_site\static\img\IFTTT\notifications1.jpg -->
+<!-- ![notifications1](/images/IFTTT/notifications1.jpg) -->
+<img src="https://liguoqinjim.com/images/IFTTT/notifications1.jpg" width="300" alt="notifications1"></p>
+
+<h2 id="2-2使用curl来触发">2.2使用curl来触发</h2>
+
 <p>我们在2.1里面的测试界面也可以得到自动生成好的curl命令。我们直接拿来使用即可。</p>
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<p>收到的通知</p>
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<h2 id="23使用golang来触发">2.3使用golang来触发</h2>
+
+<!-- E:\Workspace\hugo_site\static\img\IFTTT\snipaste20180703_173541.png -->
+
+<!-- ![curl测试](/images/IFTTT/snipaste20180703_173541.png) -->
+
+<p><img src="https://liguoqinjim.com/images/IFTTT/snipaste20180703_173541.png" width="900" alt="curl测试"></p>
+
+<p>收到的通知
+<!-- E:\Workspace\hugo_site\static\img\IFTTT\notifications2.jpg -->
+<!-- ![notifications1](/images/IFTTT/notifications2.jpg) -->
+<img src="https://liguoqinjim.com/images/IFTTT/notifications2.jpg" width="300" alt="notifications1"></p>
+
+<h2 id="2-3使用golang来触发">2.3使用golang来触发</h2>
+
 <p>所有的代码都放在github上了，地址<code>https://github.com/liguoqinjim/go-labs/tree/master/lab143</code></p>
-<h3 id="231httppost实现">2.3.1http.Post实现</h3>
+
+<h3 id="2-3-1http-post实现">2.3.1http.Post实现</h3>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang"><span style="color:#f92672">package</span> <span style="color:#a6e22e">main</span>
 
 <span style="color:#f92672">import</span> (
@@ -154,12 +187,12 @@
 )
 
 <span style="color:#66d9ef">type</span> <span style="color:#a6e22e">ConfStruct</span> <span style="color:#66d9ef">struct</span> {
-	<span style="color:#a6e22e">Key</span>       <span style="color:#66d9ef">string</span> <span style="color:#e6db74">`</span><span style="color:#e6db74">json:&#34;key&#34;</span><span style="color:#e6db74">`</span>
-	<span style="color:#a6e22e">EventName</span> <span style="color:#66d9ef">string</span> <span style="color:#e6db74">`</span><span style="color:#e6db74">json:&#34;event_name&#34;</span><span style="color:#e6db74">`</span>
-	<span style="color:#a6e22e">UrlFormat</span> <span style="color:#66d9ef">string</span> <span style="color:#e6db74">`</span><span style="color:#e6db74">json:&#34;url_format&#34;</span><span style="color:#e6db74">`</span>
-	<span style="color:#a6e22e">Value1</span>    <span style="color:#66d9ef">string</span> <span style="color:#e6db74">`</span><span style="color:#e6db74">json:&#34;value1&#34;</span><span style="color:#e6db74">`</span>
-	<span style="color:#a6e22e">Value2</span>    <span style="color:#66d9ef">string</span> <span style="color:#e6db74">`</span><span style="color:#e6db74">json:&#34;value2&#34;</span><span style="color:#e6db74">`</span>
-	<span style="color:#a6e22e">Value3</span>    <span style="color:#66d9ef">string</span> <span style="color:#e6db74">`</span><span style="color:#e6db74">json:&#34;value3&#34;</span><span style="color:#e6db74">`</span>
+	<span style="color:#a6e22e">Key</span>       <span style="color:#66d9ef">string</span> <span style="color:#e6db74">`json:&#34;key&#34;`</span>
+	<span style="color:#a6e22e">EventName</span> <span style="color:#66d9ef">string</span> <span style="color:#e6db74">`json:&#34;event_name&#34;`</span>
+	<span style="color:#a6e22e">UrlFormat</span> <span style="color:#66d9ef">string</span> <span style="color:#e6db74">`json:&#34;url_format&#34;`</span>
+	<span style="color:#a6e22e">Value1</span>    <span style="color:#66d9ef">string</span> <span style="color:#e6db74">`json:&#34;value1&#34;`</span>
+	<span style="color:#a6e22e">Value2</span>    <span style="color:#66d9ef">string</span> <span style="color:#e6db74">`json:&#34;value2&#34;`</span>
+	<span style="color:#a6e22e">Value3</span>    <span style="color:#66d9ef">string</span> <span style="color:#e6db74">`json:&#34;value3&#34;`</span>
 }
 
 <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">conf</span> = new(<span style="color:#a6e22e">ConfStruct</span>)
@@ -193,9 +226,8 @@
 		<span style="color:#a6e22e">log</span>.<span style="color:#a6e22e">Fatalf</span>(<span style="color:#e6db74">&#34;ioutil.ReadAll error:%v&#34;</span>, <span style="color:#a6e22e">err</span>)
 	}
 	<span style="color:#a6e22e">log</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;resp:\n%s&#34;</span>, <span style="color:#a6e22e">d</span>)
-}
-
-</code></pre></div><h3 id="232httpclient的方式">2.3.2http.Client的方式</h3>
+}</code></pre></div>
+<h3 id="2-3-2http-client的方式">2.3.2http.Client的方式</h3>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang"><span style="color:#f92672">...</span>
 
 <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
@@ -239,8 +271,8 @@
 		<span style="color:#a6e22e">log</span>.<span style="color:#a6e22e">Fatalf</span>(<span style="color:#e6db74">&#34;ioutil.ReadAll error:%v&#34;</span>, <span style="color:#a6e22e">err</span>)
 	}
 	<span style="color:#a6e22e">log</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;resp:\n%s&#34;</span>, <span style="color:#a6e22e">d</span>)
-}
-</code></pre></div><h3 id="233使用gorequest库">2.3.3使用gorequest库</h3>
+}</code></pre></div>
+<h3 id="2-3-3使用gorequest库">2.3.3使用gorequest库</h3>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang"><span style="color:#f92672">...</span>
 
 <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
@@ -261,9 +293,9 @@
 	<span style="color:#a6e22e">log</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;url=%s&#34;</span>, <span style="color:#a6e22e">u</span>)
 
 	<span style="color:#66d9ef">type</span> <span style="color:#a6e22e">ValueStruct</span> <span style="color:#66d9ef">struct</span> {
-		<span style="color:#a6e22e">Value1</span> <span style="color:#66d9ef">string</span> <span style="color:#e6db74">`</span><span style="color:#e6db74">json:&#34;value1&#34;</span><span style="color:#e6db74">`</span>
-		<span style="color:#a6e22e">Value2</span> <span style="color:#66d9ef">string</span> <span style="color:#e6db74">`</span><span style="color:#e6db74">json:&#34;value2&#34;</span><span style="color:#e6db74">`</span>
-		<span style="color:#a6e22e">Value3</span> <span style="color:#66d9ef">string</span> <span style="color:#e6db74">`</span><span style="color:#e6db74">json:&#34;value3&#34;</span><span style="color:#e6db74">`</span>
+		<span style="color:#a6e22e">Value1</span> <span style="color:#66d9ef">string</span> <span style="color:#e6db74">`json:&#34;value1&#34;`</span>
+		<span style="color:#a6e22e">Value2</span> <span style="color:#66d9ef">string</span> <span style="color:#e6db74">`json:&#34;value2&#34;`</span>
+		<span style="color:#a6e22e">Value3</span> <span style="color:#66d9ef">string</span> <span style="color:#e6db74">`json:&#34;value3&#34;`</span>
 	}
 	<span style="color:#a6e22e">val</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">ValueStruct</span>{<span style="color:#a6e22e">Value1</span>: <span style="color:#a6e22e">conf</span>.<span style="color:#a6e22e">Value1</span>, <span style="color:#a6e22e">Value2</span>: <span style="color:#a6e22e">conf</span>.<span style="color:#a6e22e">Value2</span>, <span style="color:#a6e22e">Value3</span>: <span style="color:#a6e22e">conf</span>.<span style="color:#a6e22e">Value3</span>}
 	<span style="color:#a6e22e">request</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">gorequest</span>.<span style="color:#a6e22e">New</span>()
@@ -281,8 +313,7 @@
 	<span style="color:#a6e22e">log</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;resp=\n%s&#34;</span>, <span style="color:#a6e22e">d</span>)
 	<span style="color:#a6e22e">log</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;body.length=&#34;</span>, len(<span style="color:#a6e22e">body</span>))
 	<span style="color:#a6e22e">log</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;body=&#34;</span>, <span style="color:#a6e22e">body</span>)
-}
-</code></pre></div>
+}</code></pre></div>
         </div>
 
         
