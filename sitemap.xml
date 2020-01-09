@@ -4,16 +4,31 @@
   
   <url>
     <loc>https://liguoqinjim.com/</loc>
-    <lastmod>2019-12-12T11:02:37+08:00</lastmod>
+    <lastmod>2020-01-09T16:23:28+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://liguoqinjim.com/tags/linux/</loc>
-    <lastmod>2019-12-12T11:02:37+08:00</lastmod>
+    <loc>https://liguoqinjim.com/tags/mac/</loc>
+    <lastmod>2020-01-09T16:23:28+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://liguoqinjim.com/post/mac/mac%E5%BC%80%E6%9C%BA%E8%87%AA%E5%8A%A8%E5%90%AF%E5%8A%A8/</loc>
+    <lastmod>2020-01-09T16:23:28+08:00</lastmod>
   </url>
   
   <url>
     <loc>https://liguoqinjim.com/post/</loc>
+    <lastmod>2020-01-09T16:23:28+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://liguoqinjim.com/tags/</loc>
+    <lastmod>2020-01-09T16:23:28+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://liguoqinjim.com/tags/linux/</loc>
     <lastmod>2019-12-12T11:02:37+08:00</lastmod>
   </url>
   
@@ -24,11 +39,6 @@
   
   <url>
     <loc>https://liguoqinjim.com/post/tool/ssh%E7%99%BB%E5%BD%95%E6%85%A2/</loc>
-    <lastmod>2019-12-12T11:02:37+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://liguoqinjim.com/tags/</loc>
     <lastmod>2019-12-12T11:02:37+08:00</lastmod>
   </url>
   
@@ -59,11 +69,6 @@
   
   <url>
     <loc>https://liguoqinjim.com/tags/application/</loc>
-    <lastmod>2019-06-20T22:19:10+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://liguoqinjim.com/tags/mac/</loc>
     <lastmod>2019-06-20T22:19:10+08:00</lastmod>
   </url>
   
@@ -243,12 +248,12 @@
   </url>
   
   <url>
-    <loc>https://liguoqinjim.com/tags/markdown/</loc>
+    <loc>https://liguoqinjim.com/categories/markdown/</loc>
     <lastmod>2018-07-04T16:42:54+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://liguoqinjim.com/categories/markdown/</loc>
+    <loc>https://liguoqinjim.com/tags/markdown/</loc>
     <lastmod>2018-07-04T16:42:54+08:00</lastmod>
   </url>
   

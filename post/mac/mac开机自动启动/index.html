@@ -6,20 +6,20 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>使用docker部署gogs | Liguoqinjim&#39;s Blog</title>
-    <meta property="og:title" content="使用docker部署gogs - Liguoqinjim&#39;s Blog">
+    <title>MAC开机启动软件设置 | Liguoqinjim&#39;s Blog</title>
+    <meta property="og:title" content="MAC开机启动软件设置 - Liguoqinjim&#39;s Blog">
     <meta property="og:type" content="article">
         
-    <meta property="article:published_time" content='2018-12-31T21:44:33&#43;08:00'>
+    <meta property="article:published_time" content='2020-01-09T16:23:28&#43;08:00'>
         
         
-    <meta property="article:modified_time" content='2018-12-31T21:44:33&#43;08:00'>
+    <meta property="article:modified_time" content='2020-01-09T16:23:28&#43;08:00'>
         
     <meta name="Keywords" content="">
-    <meta name="description" content="使用docker部署gogs">
-        <meta name="author" content="liguoqinjim">
+    <meta name="description" content="MAC开机启动软件设置">
+        <meta name="author" content="Liguoqinjim">
         
-    <meta property="og:url" content="https://liguoqinjim.com/post/tool/%E4%BD%BF%E7%94%A8docker%E9%83%A8%E7%BD%B2gogs/">
+    <meta property="og:url" content="https://liguoqinjim.com/post/mac/mac%E5%BC%80%E6%9C%BA%E8%87%AA%E5%8A%A8%E5%90%AF%E5%8A%A8/">
     <link rel="shortcut icon" href="https://liguoqinjim.com/favicon.ico" type="image/x-icon">
 
     <link rel="stylesheet" href='https://liguoqinjim.com/css/normalize.css'>
@@ -135,9 +135,8 @@
     <div class="post-toc-content">
         <nav id="TableOfContents">
 <ul>
-<li><a href="#gogs是什么">gogs是什么？</a></li>
-<li><a href="#部署步骤">部署步骤</a></li>
-<li><a href="#迁移步骤">迁移步骤</a></li>
+<li><a href="#1-打开系统偏好设置-用户与群组">1.打开系统偏好设置-用户与群组</a></li>
+<li><a href="#2-登录项中添加或删除软件">2.登录项中添加或删除软件</a></li>
 </ul>
 </nav>
     </div>
@@ -171,10 +170,10 @@
 </script>
     <article class="post">
         <header>
-            <h1 class="post-title">使用docker部署gogs</h1>
+            <h1 class="post-title">MAC开机启动软件设置</h1>
         </header>
         <date class="post-meta meta-date">
-            2018年12月31日
+            2020年1月9日
         </date>
         
         
@@ -191,33 +190,15 @@
         </div>
         
         <div class="post-content">
-            <p>使用docker部署gogs</p>
+            <p>设置开机启动的软件</p>
 
-<h1 id="gogs是什么">gogs是什么？</h1>
+<h1 id="1-打开系统偏好设置-用户与群组">1.打开系统偏好设置-用户与群组</h1>
 
-<p>gogs是一款极易搭建的自助 Git 服务，是golang写的。官网地址是：<a href="https://gogs.io/">https://gogs.io/</a></p>
+<p><img src="https://liguoqinjim.com/images/mac/Snipaste_2020-01-09_16-25-53.png" alt="setting_1" /></p>
 
-<h1 id="部署步骤">部署步骤</h1>
+<h1 id="2-登录项中添加或删除软件">2.登录项中添加或删除软件</h1>
 
-<ul>
-<li>1. 下载gogs镜像：<code>docker pull gogs/gogs</code></li>
-<li>2. 创建文件夹作为volume，我一般在opt下创建：<code>mkdir -p /opt/gogs</code></li>
-<li>3. 运行docker容器：<code>docker run --name=gogs -d -p 10022:22 -p 10080:3000 -v /opt/gogs:/data gogs/gogs</code></li>
-<li>4. 首次配置：<code>http://x.x.x.x:10080</code>，然后会跳到首次配置界面，需要配置数据库地址，默认url等</li>
-<li>5. 再次启动：<code>docker start gogs</code>，要是容器关闭了可以这样直接启动</li>
-</ul>
-
-<h1 id="迁移步骤">迁移步骤</h1>
-
-<p>有的时候我们会需要迁移gogs到别的服务器，比如云服务器到期了要换一个平台。我们只需要简单几步就可以迁移了。</p>
-
-<ul>
-<li>1. 备份数据库，可以在app.ini里面查看到现在用的数据库信息</li>
-<li>2. 备份/opt/gogs文件夹(看具体路径)</li>
-<li>3. 复制/opt/gogs到新的服务器</li>
-<li>4. 修改/opt/gogs/conf/app.ini，比如新服务器的默认url，新的数据库等</li>
-<li>5. 都修改完之后启动容器即可，<code>docker start gogs</code></li>
-</ul>
+<p><img src="https://liguoqinjim.com/images/mac/Snipaste_2020-01-09_16-27-06.png" alt="setting_2" /></p>
         </div>
 
         
@@ -229,15 +210,7 @@
     <h2>See Also</h2>
     <ul class="listing">
         
-        <li><a href="https://liguoqinjim.com/post/tool/git%E5%85%8D%E5%AF%86%E7%A0%81/">Git免密码</a></li>
-        
-        <li><a href="https://liguoqinjim.com/post/docker/%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0docker-%E8%B7%B5%E8%A1%8Cdevops%E7%90%86%E5%BF%B5-%E7%AC%94%E8%AE%B0%E5%85%AB/">系统学习Docker 践行DevOps理念 笔记(八)|容器的的运维和监控</a></li>
-        
-        <li><a href="https://liguoqinjim.com/post/docker/%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0docker-%E8%B7%B5%E8%A1%8Cdevops%E7%90%86%E5%BF%B5-%E7%AC%94%E8%AE%B0%E4%B8%83/">系统学习Docker 践行DevOps理念 笔记(七)|容器编排Kubernetes</a></li>
-        
-        <li><a href="https://liguoqinjim.com/post/docker/%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0docker-%E8%B7%B5%E8%A1%8Cdevops%E7%90%86%E5%BF%B5-%E7%AC%94%E8%AE%B0%E5%85%AD/">系统学习Docker 践行DevOps理念 笔记(六)|容器编排Docker Swarm</a></li>
-        
-        <li><a href="https://liguoqinjim.com/post/docker/%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0docker-%E8%B7%B5%E8%A1%8Cdevops%E7%90%86%E5%BF%B5-%E7%AC%94%E8%AE%B0%E4%BA%94/">系统学习Docker 践行DevOps理念 笔记(五)|Docker Compose多容器部署</a></li>
+        <li><a href="https://liguoqinjim.com/post/note/mac%E8%BD%AF%E4%BB%B6%E6%95%B4%E7%90%86/">MAC软件整理</a></li>
         
     </ul>
 </div>
@@ -247,9 +220,7 @@
             
             <ul class="clearfix">
                 
-                <li><a href='https://liguoqinjim.com/tags/git'>git</a></li>
-                
-                <li><a href='https://liguoqinjim.com/tags/docker'>docker</a></li>
+                <li><a href='https://liguoqinjim.com/tags/mac'>mac</a></li>
                 
             </ul>
             
