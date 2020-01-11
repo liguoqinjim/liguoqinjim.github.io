@@ -2,148 +2,148 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on Liguoqinjim&#39;s Blog</title>
-    <link>https://liguoqinjim.cn/tags/</link>
+    <link>https://liguoqinjim.com/tags/</link>
     <description>Recent content in Tags on Liguoqinjim&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <copyright>© This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you wish to quote or reproduce.</copyright>
     <lastBuildDate>Thu, 09 Jan 2020 16:23:28 +0800</lastBuildDate>
     
-	<atom:link href="https://liguoqinjim.cn/tags/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://liguoqinjim.com/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>mac</title>
-      <link>https://liguoqinjim.cn/tags/mac/</link>
+      <link>https://liguoqinjim.com/tags/mac/</link>
       <pubDate>Thu, 09 Jan 2020 16:23:28 +0800</pubDate>
       
-      <guid>https://liguoqinjim.cn/tags/mac/</guid>
+      <guid>https://liguoqinjim.com/tags/mac/</guid>
       <description></description>
     </item>
     
     <item>
       <title>linux</title>
-      <link>https://liguoqinjim.cn/tags/linux/</link>
+      <link>https://liguoqinjim.com/tags/linux/</link>
       <pubDate>Thu, 12 Dec 2019 11:02:37 +0800</pubDate>
       
-      <guid>https://liguoqinjim.cn/tags/linux/</guid>
+      <guid>https://liguoqinjim.com/tags/linux/</guid>
       <description></description>
     </item>
     
     <item>
       <title>ssh</title>
-      <link>https://liguoqinjim.cn/tags/ssh/</link>
+      <link>https://liguoqinjim.com/tags/ssh/</link>
       <pubDate>Thu, 12 Dec 2019 11:02:37 +0800</pubDate>
       
-      <guid>https://liguoqinjim.cn/tags/ssh/</guid>
+      <guid>https://liguoqinjim.com/tags/ssh/</guid>
       <description></description>
     </item>
     
     <item>
       <title>大数据</title>
-      <link>https://liguoqinjim.cn/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE/</link>
+      <link>https://liguoqinjim.com/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE/</link>
       <pubDate>Wed, 20 Nov 2019 15:26:44 +0800</pubDate>
       
-      <guid>https://liguoqinjim.cn/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE/</guid>
+      <guid>https://liguoqinjim.com/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE/</guid>
       <description></description>
     </item>
     
     <item>
       <title>tensorflow</title>
-      <link>https://liguoqinjim.cn/tags/tensorflow/</link>
+      <link>https://liguoqinjim.com/tags/tensorflow/</link>
       <pubDate>Wed, 13 Nov 2019 13:48:52 +0800</pubDate>
       
-      <guid>https://liguoqinjim.cn/tags/tensorflow/</guid>
+      <guid>https://liguoqinjim.com/tags/tensorflow/</guid>
       <description></description>
     </item>
     
     <item>
       <title>git</title>
-      <link>https://liguoqinjim.cn/tags/git/</link>
+      <link>https://liguoqinjim.com/tags/git/</link>
       <pubDate>Wed, 20 Feb 2019 12:30:26 +0800</pubDate>
       
-      <guid>https://liguoqinjim.cn/tags/git/</guid>
+      <guid>https://liguoqinjim.com/tags/git/</guid>
       <description></description>
     </item>
     
     <item>
       <title>HBase</title>
-      <link>https://liguoqinjim.cn/tags/hbase/</link>
+      <link>https://liguoqinjim.com/tags/hbase/</link>
       <pubDate>Tue, 12 Feb 2019 15:57:17 +0800</pubDate>
       
-      <guid>https://liguoqinjim.cn/tags/hbase/</guid>
+      <guid>https://liguoqinjim.com/tags/hbase/</guid>
       <description></description>
     </item>
     
     <item>
       <title>hadoop</title>
-      <link>https://liguoqinjim.cn/tags/hadoop/</link>
+      <link>https://liguoqinjim.com/tags/hadoop/</link>
       <pubDate>Tue, 12 Feb 2019 15:30:38 +0800</pubDate>
       
-      <guid>https://liguoqinjim.cn/tags/hadoop/</guid>
+      <guid>https://liguoqinjim.com/tags/hadoop/</guid>
       <description></description>
     </item>
     
     <item>
       <title>docker</title>
-      <link>https://liguoqinjim.cn/tags/docker/</link>
+      <link>https://liguoqinjim.com/tags/docker/</link>
       <pubDate>Mon, 31 Dec 2018 21:44:33 +0800</pubDate>
       
-      <guid>https://liguoqinjim.cn/tags/docker/</guid>
+      <guid>https://liguoqinjim.com/tags/docker/</guid>
       <description></description>
     </item>
     
     <item>
       <title>tool</title>
-      <link>https://liguoqinjim.cn/tags/tool/</link>
+      <link>https://liguoqinjim.com/tags/tool/</link>
       <pubDate>Wed, 17 Oct 2018 10:17:38 +0800</pubDate>
       
-      <guid>https://liguoqinjim.cn/tags/tool/</guid>
+      <guid>https://liguoqinjim.com/tags/tool/</guid>
       <description></description>
     </item>
     
     <item>
       <title>vagrant</title>
-      <link>https://liguoqinjim.cn/tags/vagrant/</link>
+      <link>https://liguoqinjim.com/tags/vagrant/</link>
       <pubDate>Sun, 02 Sep 2018 14:07:36 +0800</pubDate>
       
-      <guid>https://liguoqinjim.cn/tags/vagrant/</guid>
+      <guid>https://liguoqinjim.com/tags/vagrant/</guid>
       <description></description>
     </item>
     
     <item>
       <title>leetcode</title>
-      <link>https://liguoqinjim.cn/tags/leetcode/</link>
+      <link>https://liguoqinjim.com/tags/leetcode/</link>
       <pubDate>Tue, 24 Jul 2018 11:46:25 +0800</pubDate>
       
-      <guid>https://liguoqinjim.cn/tags/leetcode/</guid>
+      <guid>https://liguoqinjim.com/tags/leetcode/</guid>
       <description></description>
     </item>
     
     <item>
       <title>hugo</title>
-      <link>https://liguoqinjim.cn/tags/hugo/</link>
+      <link>https://liguoqinjim.com/tags/hugo/</link>
       <pubDate>Wed, 04 Jul 2018 16:42:54 +0800</pubDate>
       
-      <guid>https://liguoqinjim.cn/tags/hugo/</guid>
+      <guid>https://liguoqinjim.com/tags/hugo/</guid>
       <description></description>
     </item>
     
     <item>
       <title>markdown</title>
-      <link>https://liguoqinjim.cn/tags/markdown/</link>
+      <link>https://liguoqinjim.com/tags/markdown/</link>
       <pubDate>Wed, 04 Jul 2018 16:42:54 +0800</pubDate>
       
-      <guid>https://liguoqinjim.cn/tags/markdown/</guid>
+      <guid>https://liguoqinjim.com/tags/markdown/</guid>
       <description></description>
     </item>
     
     <item>
       <title>golang</title>
-      <link>https://liguoqinjim.cn/tags/golang/</link>
+      <link>https://liguoqinjim.com/tags/golang/</link>
       <pubDate>Mon, 02 Jul 2018 18:20:02 +0800</pubDate>
       
-      <guid>https://liguoqinjim.cn/tags/golang/</guid>
+      <guid>https://liguoqinjim.com/tags/golang/</guid>
       <description></description>
     </item>
     

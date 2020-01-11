@@ -2,22 +2,22 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>tensorflow on Liguoqinjim&#39;s Blog</title>
-    <link>https://liguoqinjim.cn/tags/tensorflow/</link>
+    <link>https://liguoqinjim.com/tags/tensorflow/</link>
     <description>Recent content in tensorflow on Liguoqinjim&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <copyright>© This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you wish to quote or reproduce.</copyright>
     <lastBuildDate>Wed, 13 Nov 2019 13:48:52 +0800</lastBuildDate>
     
-	<atom:link href="https://liguoqinjim.cn/tags/tensorflow/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://liguoqinjim.com/tags/tensorflow/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Tensorflow安装及配置GPU</title>
-      <link>https://liguoqinjim.cn/post/tensorflow/tensorflow%E5%AE%89%E8%A3%85%E5%8F%8A%E9%85%8D%E7%BD%AEgpu/</link>
+      <link>https://liguoqinjim.com/post/tensorflow/tensorflow%E5%AE%89%E8%A3%85%E5%8F%8A%E9%85%8D%E7%BD%AEgpu/</link>
       <pubDate>Wed, 13 Nov 2019 13:48:52 +0800</pubDate>
       
-      <guid>https://liguoqinjim.cn/post/tensorflow/tensorflow%E5%AE%89%E8%A3%85%E5%8F%8A%E9%85%8D%E7%BD%AEgpu/</guid>
+      <guid>https://liguoqinjim.com/post/tensorflow/tensorflow%E5%AE%89%E8%A3%85%E5%8F%8A%E9%85%8D%E7%BD%AEgpu/</guid>
       <description>&lt;p&gt;Tensorflow安装及配置GPU&lt;/p&gt;</description>
     </item>
     
