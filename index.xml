@@ -2,112 +2,114 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Liguoqinjim&#39;s Blog</title>
-    <link>https://liguoqinjim.com/</link>
+    <link>https://liguoqinjim.cn/</link>
     <description>Recent content on Liguoqinjim&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <copyright>© This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you wish to quote or reproduce.</copyright>
     <lastBuildDate>Thu, 09 Jan 2020 16:23:28 +0800</lastBuildDate>
     
-	<atom:link href="https://liguoqinjim.com/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://liguoqinjim.cn/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>MAC开机启动软件设置</title>
-      <link>https://liguoqinjim.com/post/mac/mac%E5%BC%80%E6%9C%BA%E8%87%AA%E5%8A%A8%E5%90%AF%E5%8A%A8/</link>
+      <link>https://liguoqinjim.cn/post/mac/mac%E5%BC%80%E6%9C%BA%E8%87%AA%E5%8A%A8%E5%90%AF%E5%8A%A8/</link>
       <pubDate>Thu, 09 Jan 2020 16:23:28 +0800</pubDate>
       
-      <guid>https://liguoqinjim.com/post/mac/mac%E5%BC%80%E6%9C%BA%E8%87%AA%E5%8A%A8%E5%90%AF%E5%8A%A8/</guid>
-      <description>&lt;p&gt;设置开机启动的软件&lt;/p&gt;</description>
+      <guid>https://liguoqinjim.cn/post/mac/mac%E5%BC%80%E6%9C%BA%E8%87%AA%E5%8A%A8%E5%90%AF%E5%8A%A8/</guid>
+      <description> 设置开机启动的软件
+1.打开系统偏好设置-用户与群组 2.登录项中添加或删除软件 </description>
     </item>
     
     <item>
       <title>SSH登录慢</title>
-      <link>https://liguoqinjim.com/post/tool/ssh%E7%99%BB%E5%BD%95%E6%85%A2/</link>
+      <link>https://liguoqinjim.cn/post/tool/ssh%E7%99%BB%E5%BD%95%E6%85%A2/</link>
       <pubDate>Thu, 12 Dec 2019 11:02:37 +0800</pubDate>
       
-      <guid>https://liguoqinjim.com/post/tool/ssh%E7%99%BB%E5%BD%95%E6%85%A2/</guid>
-      <description>&lt;p&gt;解决ssh登录慢的问题&lt;/p&gt;</description>
+      <guid>https://liguoqinjim.cn/post/tool/ssh%E7%99%BB%E5%BD%95%E6%85%A2/</guid>
+      <description>解决ssh登录慢的问题
+ 备份/etc/ssh/sshd_config 修改/etc/ssh/sshd_config GSSAPIAuthentication设置为no UseDNS打开注释，然后设置为no 重启ssh，systemctl restart sshd  </description>
     </item>
     
     <item>
       <title>NTP时间同步配置</title>
-      <link>https://liguoqinjim.com/post/bigdata/ntp%E6%97%B6%E9%97%B4%E5%90%8C%E6%AD%A5%E9%85%8D%E7%BD%AE/</link>
+      <link>https://liguoqinjim.cn/post/bigdata/ntp%E6%97%B6%E9%97%B4%E5%90%8C%E6%AD%A5%E9%85%8D%E7%BD%AE/</link>
       <pubDate>Wed, 20 Nov 2019 15:26:44 +0800</pubDate>
       
-      <guid>https://liguoqinjim.com/post/bigdata/ntp%E6%97%B6%E9%97%B4%E5%90%8C%E6%AD%A5%E9%85%8D%E7%BD%AE/</guid>
+      <guid>https://liguoqinjim.cn/post/bigdata/ntp%E6%97%B6%E9%97%B4%E5%90%8C%E6%AD%A5%E9%85%8D%E7%BD%AE/</guid>
       <description>&lt;p&gt;NTP的服务端和客户端配置&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>深度学习概念</title>
-      <link>https://liguoqinjim.com/post/tensorflow/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%A6%82%E5%BF%B5/</link>
+      <link>https://liguoqinjim.cn/post/tensorflow/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%A6%82%E5%BF%B5/</link>
       <pubDate>Sun, 17 Nov 2019 23:05:10 +0800</pubDate>
       
-      <guid>https://liguoqinjim.com/post/tensorflow/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%A6%82%E5%BF%B5/</guid>
+      <guid>https://liguoqinjim.cn/post/tensorflow/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%A6%82%E5%BF%B5/</guid>
       <description>&lt;p&gt;深度学习中的一些概念&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>Tensorflow安装及配置GPU</title>
-      <link>https://liguoqinjim.com/post/tensorflow/tensorflow%E5%AE%89%E8%A3%85%E5%8F%8A%E9%85%8D%E7%BD%AEgpu/</link>
+      <link>https://liguoqinjim.cn/post/tensorflow/tensorflow%E5%AE%89%E8%A3%85%E5%8F%8A%E9%85%8D%E7%BD%AEgpu/</link>
       <pubDate>Wed, 13 Nov 2019 13:48:52 +0800</pubDate>
       
-      <guid>https://liguoqinjim.com/post/tensorflow/tensorflow%E5%AE%89%E8%A3%85%E5%8F%8A%E9%85%8D%E7%BD%AEgpu/</guid>
+      <guid>https://liguoqinjim.cn/post/tensorflow/tensorflow%E5%AE%89%E8%A3%85%E5%8F%8A%E9%85%8D%E7%BD%AEgpu/</guid>
       <description>&lt;p&gt;Tensorflow安装及配置GPU&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>MAC软件整理</title>
-      <link>https://liguoqinjim.com/post/note/mac%E8%BD%AF%E4%BB%B6%E6%95%B4%E7%90%86/</link>
+      <link>https://liguoqinjim.cn/post/mac/mac%E8%BD%AF%E4%BB%B6%E6%95%B4%E7%90%86/</link>
       <pubDate>Thu, 20 Jun 2019 22:19:10 +0800</pubDate>
       
-      <guid>https://liguoqinjim.com/post/note/mac%E8%BD%AF%E4%BB%B6%E6%95%B4%E7%90%86/</guid>
+      <guid>https://liguoqinjim.cn/post/mac/mac%E8%BD%AF%E4%BB%B6%E6%95%B4%E7%90%86/</guid>
       <description>&lt;p&gt;要用的MAC软件整理&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>JetBrains项目的gitignore</title>
-      <link>https://liguoqinjim.com/post/git/jetbrains%E9%A1%B9%E7%9B%AE%E7%9A%84gitignore/</link>
+      <link>https://liguoqinjim.cn/post/git/jetbrains%E9%A1%B9%E7%9B%AE%E7%9A%84gitignore/</link>
       <pubDate>Wed, 20 Feb 2019 12:30:26 +0800</pubDate>
       
-      <guid>https://liguoqinjim.com/post/git/jetbrains%E9%A1%B9%E7%9B%AE%E7%9A%84gitignore/</guid>
+      <guid>https://liguoqinjim.cn/post/git/jetbrains%E9%A1%B9%E7%9B%AE%E7%9A%84gitignore/</guid>
       <description>&lt;p&gt;JetBrains项目使用的gitignore&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>HBase的基本配置</title>
-      <link>https://liguoqinjim.com/post/bigdata/hbase%E7%9A%84%E5%9F%BA%E6%9C%AC%E9%85%8D%E7%BD%AE/</link>
+      <link>https://liguoqinjim.cn/post/bigdata/hbase%E7%9A%84%E5%9F%BA%E6%9C%AC%E9%85%8D%E7%BD%AE/</link>
       <pubDate>Tue, 12 Feb 2019 15:57:17 +0800</pubDate>
       
-      <guid>https://liguoqinjim.com/post/bigdata/hbase%E7%9A%84%E5%9F%BA%E6%9C%AC%E9%85%8D%E7%BD%AE/</guid>
+      <guid>https://liguoqinjim.cn/post/bigdata/hbase%E7%9A%84%E5%9F%BA%E6%9C%AC%E9%85%8D%E7%BD%AE/</guid>
       <description>&lt;p&gt;HBase的基本配置&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>HDFS的基本配置</title>
-      <link>https://liguoqinjim.com/post/bigdata/hdfs%E7%9A%84%E5%9F%BA%E6%9C%AC%E9%85%8D%E7%BD%AE/</link>
+      <link>https://liguoqinjim.cn/post/bigdata/hdfs%E7%9A%84%E5%9F%BA%E6%9C%AC%E9%85%8D%E7%BD%AE/</link>
       <pubDate>Tue, 12 Feb 2019 15:30:38 +0800</pubDate>
       
-      <guid>https://liguoqinjim.com/post/bigdata/hdfs%E7%9A%84%E5%9F%BA%E6%9C%AC%E9%85%8D%E7%BD%AE/</guid>
+      <guid>https://liguoqinjim.cn/post/bigdata/hdfs%E7%9A%84%E5%9F%BA%E6%9C%AC%E9%85%8D%E7%BD%AE/</guid>
       <description>&lt;p&gt;HDFS的基本配置&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>使用docker部署gogs</title>
-      <link>https://liguoqinjim.com/post/tool/%E4%BD%BF%E7%94%A8docker%E9%83%A8%E7%BD%B2gogs/</link>
+      <link>https://liguoqinjim.cn/post/tool/%E4%BD%BF%E7%94%A8docker%E9%83%A8%E7%BD%B2gogs/</link>
       <pubDate>Mon, 31 Dec 2018 21:44:33 +0800</pubDate>
       
-      <guid>https://liguoqinjim.com/post/tool/%E4%BD%BF%E7%94%A8docker%E9%83%A8%E7%BD%B2gogs/</guid>
+      <guid>https://liguoqinjim.cn/post/tool/%E4%BD%BF%E7%94%A8docker%E9%83%A8%E7%BD%B2gogs/</guid>
       <description>&lt;p&gt;使用docker部署gogs&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>判断两个文件是否相同</title>
-      <link>https://liguoqinjim.com/post/tool/%E5%88%A4%E6%96%AD%E4%B8%A4%E4%B8%AA%E6%96%87%E4%BB%B6%E6%98%AF%E5%90%A6%E7%9B%B8%E5%90%8C/</link>
+      <link>https://liguoqinjim.cn/post/tool/%E5%88%A4%E6%96%AD%E4%B8%A4%E4%B8%AA%E6%96%87%E4%BB%B6%E6%98%AF%E5%90%A6%E7%9B%B8%E5%90%8C/</link>
       <pubDate>Wed, 17 Oct 2018 10:17:38 +0800</pubDate>
       
-      <guid>https://liguoqinjim.com/post/tool/%E5%88%A4%E6%96%AD%E4%B8%A4%E4%B8%AA%E6%96%87%E4%BB%B6%E6%98%AF%E5%90%A6%E7%9B%B8%E5%90%8C/</guid>
+      <guid>https://liguoqinjim.cn/post/tool/%E5%88%A4%E6%96%AD%E4%B8%A4%E4%B8%AA%E6%96%87%E4%BB%B6%E6%98%AF%E5%90%A6%E7%9B%B8%E5%90%8C/</guid>
       <description>&lt;p&gt;有时我们需要判断两个文件是否相同，比如定时分析的软件，我们可以先判断数据有没有变，数据没变的话，本次定时就不运行了。这个时候就需要用到判断两个文件是否相同。&lt;br /&gt;
 有两种方法来实现。&lt;/p&gt;
 
@@ -116,10 +118,10 @@
     
     <item>
       <title>Git免密码</title>
-      <link>https://liguoqinjim.com/post/tool/git%E5%85%8D%E5%AF%86%E7%A0%81/</link>
+      <link>https://liguoqinjim.cn/post/tool/git%E5%85%8D%E5%AF%86%E7%A0%81/</link>
       <pubDate>Mon, 15 Oct 2018 22:43:17 +0800</pubDate>
       
-      <guid>https://liguoqinjim.com/post/tool/git%E5%85%8D%E5%AF%86%E7%A0%81/</guid>
+      <guid>https://liguoqinjim.cn/post/tool/git%E5%85%8D%E5%AF%86%E7%A0%81/</guid>
       <description>&lt;p&gt;git提交的时候不用输入密码&lt;/p&gt;
 
 &lt;!-- toc --&gt;</description>
@@ -127,192 +129,192 @@
     
     <item>
       <title>Vagrant入门</title>
-      <link>https://liguoqinjim.com/post/tool/vagrant%E5%85%A5%E9%97%A8/</link>
+      <link>https://liguoqinjim.cn/post/tool/vagrant%E5%85%A5%E9%97%A8/</link>
       <pubDate>Sun, 02 Sep 2018 14:07:36 +0800</pubDate>
       
-      <guid>https://liguoqinjim.com/post/tool/vagrant%E5%85%A5%E9%97%A8/</guid>
+      <guid>https://liguoqinjim.cn/post/tool/vagrant%E5%85%A5%E9%97%A8/</guid>
       <description>&lt;p&gt;Vagrant is a tool for building and managing virtual machine environments in a single workflow. With an easy-to-use workflow and focus on automation, Vagrant lowers development environment setup time, increases production parity, and makes the &amp;ldquo;works on my machine&amp;rdquo; excuse a relic of the past.&lt;br /&gt;
 Vagrant是一个在单一工作流中创建和管理虚拟机环境的工具。通过简单易用的工作流和对自动化的关注，Vagrant可以减少开发环境的配置时间，增加生产平价，并且使得&amp;rdquo;works on my machine&amp;rdquo;这个借口成为过去。&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>系统学习Docker 践行DevOps理念 笔记(八)|容器的的运维和监控</title>
-      <link>https://liguoqinjim.com/post/docker/%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0docker-%E8%B7%B5%E8%A1%8Cdevops%E7%90%86%E5%BF%B5-%E7%AC%94%E8%AE%B0%E5%85%AB/</link>
+      <link>https://liguoqinjim.cn/post/docker/%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0docker-%E8%B7%B5%E8%A1%8Cdevops%E7%90%86%E5%BF%B5-%E7%AC%94%E8%AE%B0%E5%85%AB/</link>
       <pubDate>Thu, 30 Aug 2018 22:18:05 +0800</pubDate>
       
-      <guid>https://liguoqinjim.com/post/docker/%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0docker-%E8%B7%B5%E8%A1%8Cdevops%E7%90%86%E5%BF%B5-%E7%AC%94%E8%AE%B0%E5%85%AB/</guid>
+      <guid>https://liguoqinjim.cn/post/docker/%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0docker-%E8%B7%B5%E8%A1%8Cdevops%E7%90%86%E5%BF%B5-%E7%AC%94%E8%AE%B0%E5%85%AB/</guid>
       <description>&lt;p&gt;容器的的运维和监控，是课程第十章的内容&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>系统学习Docker 践行DevOps理念 笔记(七)|容器编排Kubernetes</title>
-      <link>https://liguoqinjim.com/post/docker/%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0docker-%E8%B7%B5%E8%A1%8Cdevops%E7%90%86%E5%BF%B5-%E7%AC%94%E8%AE%B0%E4%B8%83/</link>
+      <link>https://liguoqinjim.cn/post/docker/%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0docker-%E8%B7%B5%E8%A1%8Cdevops%E7%90%86%E5%BF%B5-%E7%AC%94%E8%AE%B0%E4%B8%83/</link>
       <pubDate>Thu, 30 Aug 2018 15:28:22 +0800</pubDate>
       
-      <guid>https://liguoqinjim.com/post/docker/%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0docker-%E8%B7%B5%E8%A1%8Cdevops%E7%90%86%E5%BF%B5-%E7%AC%94%E8%AE%B0%E4%B8%83/</guid>
+      <guid>https://liguoqinjim.cn/post/docker/%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0docker-%E8%B7%B5%E8%A1%8Cdevops%E7%90%86%E5%BF%B5-%E7%AC%94%E8%AE%B0%E4%B8%83/</guid>
       <description>&lt;p&gt;容器编排Kubernetes，是课程第九章的内容&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>系统学习Docker 践行DevOps理念 笔记(六)|容器编排Docker Swarm</title>
-      <link>https://liguoqinjim.com/post/docker/%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0docker-%E8%B7%B5%E8%A1%8Cdevops%E7%90%86%E5%BF%B5-%E7%AC%94%E8%AE%B0%E5%85%AD/</link>
+      <link>https://liguoqinjim.cn/post/docker/%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0docker-%E8%B7%B5%E8%A1%8Cdevops%E7%90%86%E5%BF%B5-%E7%AC%94%E8%AE%B0%E5%85%AD/</link>
       <pubDate>Wed, 29 Aug 2018 17:40:55 +0800</pubDate>
       
-      <guid>https://liguoqinjim.com/post/docker/%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0docker-%E8%B7%B5%E8%A1%8Cdevops%E7%90%86%E5%BF%B5-%E7%AC%94%E8%AE%B0%E5%85%AD/</guid>
+      <guid>https://liguoqinjim.cn/post/docker/%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0docker-%E8%B7%B5%E8%A1%8Cdevops%E7%90%86%E5%BF%B5-%E7%AC%94%E8%AE%B0%E5%85%AD/</guid>
       <description>&lt;p&gt;容器编排Docker Swarm，是课程第七章的内容&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>系统学习Docker 践行DevOps理念 笔记(五)|Docker Compose多容器部署</title>
-      <link>https://liguoqinjim.com/post/docker/%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0docker-%E8%B7%B5%E8%A1%8Cdevops%E7%90%86%E5%BF%B5-%E7%AC%94%E8%AE%B0%E4%BA%94/</link>
+      <link>https://liguoqinjim.cn/post/docker/%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0docker-%E8%B7%B5%E8%A1%8Cdevops%E7%90%86%E5%BF%B5-%E7%AC%94%E8%AE%B0%E4%BA%94/</link>
       <pubDate>Wed, 29 Aug 2018 15:24:16 +0800</pubDate>
       
-      <guid>https://liguoqinjim.com/post/docker/%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0docker-%E8%B7%B5%E8%A1%8Cdevops%E7%90%86%E5%BF%B5-%E7%AC%94%E8%AE%B0%E4%BA%94/</guid>
+      <guid>https://liguoqinjim.cn/post/docker/%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0docker-%E8%B7%B5%E8%A1%8Cdevops%E7%90%86%E5%BF%B5-%E7%AC%94%E8%AE%B0%E4%BA%94/</guid>
       <description>&lt;p&gt;Docker Compose多容器部署，是课程第六章的内容&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>系统学习Docker 践行DevOps理念 笔记(四)|Docker的持久化存储和数据共享</title>
-      <link>https://liguoqinjim.com/post/docker/%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0docker-%E8%B7%B5%E8%A1%8Cdevops%E7%90%86%E5%BF%B5-%E7%AC%94%E8%AE%B0%E5%9B%9B/</link>
+      <link>https://liguoqinjim.cn/post/docker/%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0docker-%E8%B7%B5%E8%A1%8Cdevops%E7%90%86%E5%BF%B5-%E7%AC%94%E8%AE%B0%E5%9B%9B/</link>
       <pubDate>Wed, 29 Aug 2018 14:30:38 +0800</pubDate>
       
-      <guid>https://liguoqinjim.com/post/docker/%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0docker-%E8%B7%B5%E8%A1%8Cdevops%E7%90%86%E5%BF%B5-%E7%AC%94%E8%AE%B0%E5%9B%9B/</guid>
+      <guid>https://liguoqinjim.cn/post/docker/%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0docker-%E8%B7%B5%E8%A1%8Cdevops%E7%90%86%E5%BF%B5-%E7%AC%94%E8%AE%B0%E5%9B%9B/</guid>
       <description>&lt;p&gt;Docker的持久化存储和数据共享，是课程第五章的内容&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>系统学习Docker 践行DevOps理念 笔记(三)|Docker的网络</title>
-      <link>https://liguoqinjim.com/post/docker/%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0docker-%E8%B7%B5%E8%A1%8Cdevops%E7%90%86%E5%BF%B5-%E7%AC%94%E8%AE%B0%E4%B8%89/</link>
+      <link>https://liguoqinjim.cn/post/docker/%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0docker-%E8%B7%B5%E8%A1%8Cdevops%E7%90%86%E5%BF%B5-%E7%AC%94%E8%AE%B0%E4%B8%89/</link>
       <pubDate>Tue, 28 Aug 2018 17:25:59 +0800</pubDate>
       
-      <guid>https://liguoqinjim.com/post/docker/%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0docker-%E8%B7%B5%E8%A1%8Cdevops%E7%90%86%E5%BF%B5-%E7%AC%94%E8%AE%B0%E4%B8%89/</guid>
+      <guid>https://liguoqinjim.cn/post/docker/%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0docker-%E8%B7%B5%E8%A1%8Cdevops%E7%90%86%E5%BF%B5-%E7%AC%94%E8%AE%B0%E4%B8%89/</guid>
       <description>&lt;p&gt;Docker的网络，是课程第四章的内容&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>系统学习Docker 践行DevOps理念 笔记(二)|Docker的镜像和容器</title>
-      <link>https://liguoqinjim.com/post/docker/%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0docker-%E8%B7%B5%E8%A1%8Cdevops%E7%90%86%E5%BF%B5-%E7%AC%94%E8%AE%B0%E4%BA%8C/</link>
+      <link>https://liguoqinjim.cn/post/docker/%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0docker-%E8%B7%B5%E8%A1%8Cdevops%E7%90%86%E5%BF%B5-%E7%AC%94%E8%AE%B0%E4%BA%8C/</link>
       <pubDate>Tue, 28 Aug 2018 13:36:04 +0800</pubDate>
       
-      <guid>https://liguoqinjim.com/post/docker/%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0docker-%E8%B7%B5%E8%A1%8Cdevops%E7%90%86%E5%BF%B5-%E7%AC%94%E8%AE%B0%E4%BA%8C/</guid>
+      <guid>https://liguoqinjim.cn/post/docker/%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0docker-%E8%B7%B5%E8%A1%8Cdevops%E7%90%86%E5%BF%B5-%E7%AC%94%E8%AE%B0%E4%BA%8C/</guid>
       <description>&lt;p&gt;Docker的镜像和容器，是课程第三章的内容&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>系统学习Docker 践行DevOps理念 笔记(一)|Docker的安装</title>
-      <link>https://liguoqinjim.com/post/docker/%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0docker-%E8%B7%B5%E8%A1%8Cdevops%E7%90%86%E5%BF%B5-%E7%AC%94%E8%AE%B0%E4%B8%80/</link>
+      <link>https://liguoqinjim.cn/post/docker/%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0docker-%E8%B7%B5%E8%A1%8Cdevops%E7%90%86%E5%BF%B5-%E7%AC%94%E8%AE%B0%E4%B8%80/</link>
       <pubDate>Tue, 28 Aug 2018 11:50:22 +0800</pubDate>
       
-      <guid>https://liguoqinjim.com/post/docker/%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0docker-%E8%B7%B5%E8%A1%8Cdevops%E7%90%86%E5%BF%B5-%E7%AC%94%E8%AE%B0%E4%B8%80/</guid>
+      <guid>https://liguoqinjim.cn/post/docker/%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0docker-%E8%B7%B5%E8%A1%8Cdevops%E7%90%86%E5%BF%B5-%E7%AC%94%E8%AE%B0%E4%B8%80/</guid>
       <description>&lt;p&gt;Docker的安装&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>LeetCode-0008-String to Integer (atoi)</title>
-      <link>https://liguoqinjim.com/post/leetcode/lab0008/</link>
+      <link>https://liguoqinjim.cn/post/leetcode/lab0008/</link>
       <pubDate>Tue, 24 Jul 2018 11:46:25 +0800</pubDate>
       
-      <guid>https://liguoqinjim.com/post/leetcode/lab0008/</guid>
+      <guid>https://liguoqinjim.cn/post/leetcode/lab0008/</guid>
       <description></description>
     </item>
     
     <item>
       <title>LeetCode-0020-Valid Parentheses</title>
-      <link>https://liguoqinjim.com/post/leetcode/lab0020/</link>
+      <link>https://liguoqinjim.cn/post/leetcode/lab0020/</link>
       <pubDate>Mon, 23 Jul 2018 14:01:09 +0800</pubDate>
       
-      <guid>https://liguoqinjim.com/post/leetcode/lab0020/</guid>
+      <guid>https://liguoqinjim.cn/post/leetcode/lab0020/</guid>
       <description></description>
     </item>
     
     <item>
       <title>LeetCode-0014-Longest Common Prefix</title>
-      <link>https://liguoqinjim.com/post/leetcode/lab0014/</link>
+      <link>https://liguoqinjim.cn/post/leetcode/lab0014/</link>
       <pubDate>Sun, 22 Jul 2018 15:07:56 +0800</pubDate>
       
-      <guid>https://liguoqinjim.com/post/leetcode/lab0014/</guid>
+      <guid>https://liguoqinjim.cn/post/leetcode/lab0014/</guid>
       <description></description>
     </item>
     
     <item>
       <title>LeetCode-0035-Search Insert Position</title>
-      <link>https://liguoqinjim.com/post/leetcode/lab0035/</link>
+      <link>https://liguoqinjim.cn/post/leetcode/lab0035/</link>
       <pubDate>Sat, 21 Jul 2018 23:56:08 +0800</pubDate>
       
-      <guid>https://liguoqinjim.com/post/leetcode/lab0035/</guid>
+      <guid>https://liguoqinjim.cn/post/leetcode/lab0035/</guid>
       <description></description>
     </item>
     
     <item>
       <title>LeetCode-0007-Reverse Integer</title>
-      <link>https://liguoqinjim.com/post/leetcode/lab0007/</link>
+      <link>https://liguoqinjim.cn/post/leetcode/lab0007/</link>
       <pubDate>Fri, 20 Jul 2018 14:10:48 +0800</pubDate>
       
-      <guid>https://liguoqinjim.com/post/leetcode/lab0007/</guid>
+      <guid>https://liguoqinjim.cn/post/leetcode/lab0007/</guid>
       <description></description>
     </item>
     
     <item>
       <title>LeetCode-0001-Two Sum</title>
-      <link>https://liguoqinjim.com/post/leetcode/lab0001/</link>
+      <link>https://liguoqinjim.cn/post/leetcode/lab0001/</link>
       <pubDate>Thu, 19 Jul 2018 15:07:59 +0800</pubDate>
       
-      <guid>https://liguoqinjim.com/post/leetcode/lab0001/</guid>
+      <guid>https://liguoqinjim.cn/post/leetcode/lab0001/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Hugo的TOC</title>
-      <link>https://liguoqinjim.com/post/markdown/hugo%E7%9A%84toc/</link>
+      <link>https://liguoqinjim.cn/post/markdown/hugo%E7%9A%84toc/</link>
       <pubDate>Wed, 04 Jul 2018 16:42:54 +0800</pubDate>
       
-      <guid>https://liguoqinjim.com/post/markdown/hugo%E7%9A%84toc/</guid>
+      <guid>https://liguoqinjim.cn/post/markdown/hugo%E7%9A%84toc/</guid>
       <description>&lt;p&gt;在hugo里面使用TOC显示目录。但是这个需要使用的主题是支持的。我现在使用的是&lt;code&gt;hugo-tranquilpeak-theme&lt;/code&gt;这个标题。在markdown里面加上&lt;code&gt;&amp;lt;!--toc--&amp;gt;&lt;/code&gt;就会在文章里面自动生成TOC了。&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>设置markdown里面的图片大小</title>
-      <link>https://liguoqinjim.com/post/markdown/%E8%AE%BE%E7%BD%AEmarkdown%E9%87%8C%E9%9D%A2%E7%9A%84%E5%9B%BE%E7%89%87%E5%A4%A7%E5%B0%8F/</link>
+      <link>https://liguoqinjim.cn/post/markdown/%E8%AE%BE%E7%BD%AEmarkdown%E9%87%8C%E9%9D%A2%E7%9A%84%E5%9B%BE%E7%89%87%E5%A4%A7%E5%B0%8F/</link>
       <pubDate>Tue, 03 Jul 2018 14:12:17 +0800</pubDate>
       
-      <guid>https://liguoqinjim.com/post/markdown/%E8%AE%BE%E7%BD%AEmarkdown%E9%87%8C%E9%9D%A2%E7%9A%84%E5%9B%BE%E7%89%87%E5%A4%A7%E5%B0%8F/</guid>
+      <guid>https://liguoqinjim.cn/post/markdown/%E8%AE%BE%E7%BD%AEmarkdown%E9%87%8C%E9%9D%A2%E7%9A%84%E5%9B%BE%E7%89%87%E5%A4%A7%E5%B0%8F/</guid>
       <description>&lt;p&gt;在markdown里面添加图片的时候，图片显示出来可能会比我们需要的大很多。
 这时候我们会需要设置图片的大小。&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>用golang触发IFTTT，发送自定义的Notifications</title>
-      <link>https://liguoqinjim.com/post/tool/%E7%94%A8golang%E8%A7%A6%E5%8F%91ifttt%E5%8F%91%E9%80%81%E8%87%AA%E5%AE%9A%E4%B9%89%E7%9A%84notifications/</link>
+      <link>https://liguoqinjim.cn/post/tool/%E7%94%A8golang%E8%A7%A6%E5%8F%91ifttt%E5%8F%91%E9%80%81%E8%87%AA%E5%AE%9A%E4%B9%89%E7%9A%84notifications/</link>
       <pubDate>Mon, 02 Jul 2018 18:20:02 +0800</pubDate>
       
-      <guid>https://liguoqinjim.com/post/tool/%E7%94%A8golang%E8%A7%A6%E5%8F%91ifttt%E5%8F%91%E9%80%81%E8%87%AA%E5%AE%9A%E4%B9%89%E7%9A%84notifications/</guid>
+      <guid>https://liguoqinjim.cn/post/tool/%E7%94%A8golang%E8%A7%A6%E5%8F%91ifttt%E5%8F%91%E9%80%81%E8%87%AA%E5%AE%9A%E4%B9%89%E7%9A%84notifications/</guid>
       <description>&lt;p&gt;IFTTT众多的service里面，有一个非常强大的service，就是webhooks。当我们在IFTTT里面connect了这个service之后，我们会得到一个唯一的链接，我们访问这个链接就会被视作触发了这个service。&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>Hugo的使用</title>
-      <link>https://liguoqinjim.com/post/tool/hugo%E7%9A%84%E4%BD%BF%E7%94%A8/</link>
+      <link>https://liguoqinjim.cn/post/tool/hugo%E7%9A%84%E4%BD%BF%E7%94%A8/</link>
       <pubDate>Sat, 27 Jan 2018 12:37:47 +0800</pubDate>
       
-      <guid>https://liguoqinjim.com/post/tool/hugo%E7%9A%84%E4%BD%BF%E7%94%A8/</guid>
+      <guid>https://liguoqinjim.cn/post/tool/hugo%E7%9A%84%E4%BD%BF%E7%94%A8/</guid>
       <description>&lt;p&gt;Hugo是由Go语言实现的静态网站生成器。简单、易用、高效、易扩展、快速部署。&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>About</title>
-      <link>https://liguoqinjim.com/about/</link>
+      <link>https://liguoqinjim.cn/about/</link>
       <pubDate>Fri, 26 Jan 2018 17:57:27 +0800</pubDate>
       
-      <guid>https://liguoqinjim.com/about/</guid>
+      <guid>https://liguoqinjim.cn/about/</guid>
       <description>这是我的博客，记录了一些东西</description>
     </item>
     
     <item>
       <title>搜索</title>
-      <link>https://liguoqinjim.com/search/</link>
+      <link>https://liguoqinjim.cn/search/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://liguoqinjim.com/search/</guid>
+      <guid>https://liguoqinjim.cn/search/</guid>
       <description></description>
     </item>
     
