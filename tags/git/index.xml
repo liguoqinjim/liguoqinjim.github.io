@@ -7,10 +7,20 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <copyright>© This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you wish to quote or reproduce.</copyright>
-    <lastBuildDate>Wed, 20 Feb 2019 12:30:26 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 11 Mar 2020 10:41:33 +0800</lastBuildDate>
     
 	<atom:link href="https://liguoqinjim.com/tags/git/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Git中处理敏感的用户配置文件</title>
+      <link>https://liguoqinjim.com/post/git/git%E4%B8%AD%E5%A4%84%E7%90%86%E6%95%8F%E6%84%9F%E7%9A%84%E7%94%A8%E6%88%B7%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/</link>
+      <pubDate>Wed, 11 Mar 2020 10:41:33 +0800</pubDate>
+      
+      <guid>https://liguoqinjim.com/post/git/git%E4%B8%AD%E5%A4%84%E7%90%86%E6%95%8F%E6%84%9F%E7%9A%84%E7%94%A8%E6%88%B7%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/</guid>
+      <description>&lt;p&gt;我们很常会在项目中用到数据库配置，各种服务配置。如果这些配置提交到了github后之后，别人就可以看到我们的私有配置，这会导致各种问题，甚至产生危害，比如被删库等等。
+解决的办法是，首先不能在代码中写死这些配置，而是要放到配置文件中。然后我们只需保护好配置文件即可。下面是两种方法。&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>JetBrains项目的gitignore</title>

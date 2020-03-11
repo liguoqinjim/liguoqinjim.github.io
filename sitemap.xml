@@ -3,27 +3,37 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://liguoqinjim.com/tags/git/</loc>
+    <lastmod>2020-03-11T10:41:33+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://liguoqinjim.com/post/git/git%E4%B8%AD%E5%A4%84%E7%90%86%E6%95%8F%E6%84%9F%E7%9A%84%E7%94%A8%E6%88%B7%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/</loc>
+    <lastmod>2020-03-11T10:41:33+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://liguoqinjim.com/</loc>
+    <lastmod>2020-03-11T10:41:33+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://liguoqinjim.com/post/</loc>
+    <lastmod>2020-03-11T10:41:33+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://liguoqinjim.com/tags/</loc>
+    <lastmod>2020-03-11T10:41:33+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://liguoqinjim.com/post/golang/go_mod%E7%9A%84%E4%BD%BF%E7%94%A8/</loc>
     <lastmod>2020-03-07T21:22:50+08:00</lastmod>
   </url>
   
   <url>
     <loc>https://liguoqinjim.com/tags/golang/</loc>
-    <lastmod>2020-03-07T21:22:50+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://liguoqinjim.com/</loc>
-    <lastmod>2020-03-07T21:22:50+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://liguoqinjim.com/post/</loc>
-    <lastmod>2020-03-07T21:22:50+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://liguoqinjim.com/tags/</loc>
     <lastmod>2020-03-07T21:22:50+08:00</lastmod>
   </url>
   
@@ -85,11 +95,6 @@
   <url>
     <loc>https://liguoqinjim.com/post/mac/mac%E8%BD%AF%E4%BB%B6%E6%95%B4%E7%90%86/</loc>
     <lastmod>2019-06-20T22:19:10+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://liguoqinjim.com/tags/git/</loc>
-    <lastmod>2019-02-20T12:30:26+08:00</lastmod>
   </url>
   
   <url>
@@ -258,12 +263,12 @@
   </url>
   
   <url>
-    <loc>https://liguoqinjim.com/tags/markdown/</loc>
+    <loc>https://liguoqinjim.com/categories/markdown/</loc>
     <lastmod>2018-07-04T16:42:54+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://liguoqinjim.com/categories/markdown/</loc>
+    <loc>https://liguoqinjim.com/tags/markdown/</loc>
     <lastmod>2018-07-04T16:42:54+08:00</lastmod>
   </url>
   
