@@ -136,7 +136,10 @@
         <nav id="TableOfContents">
 <ul>
 <li><a href="#使用go-mod的步骤">使用go mod的步骤</a></li>
-<li><a href="#在go-mod中添加库">在go mod中添加库</a></li>
+<li><a href="#在go-mod中添加库">在go mod中添加库</a>
+<ul>
+<li><a href="#安装最新的库">安装最新的库</a></li>
+</ul></li>
 <li><a href="#更新库">更新库</a></li>
 <li><a href="#module开发">module开发</a>
 <ul>
@@ -144,6 +147,7 @@
 <li><a href="#在项目中import">在项目中import</a></li>
 </ul></li>
 <li><a href="#notice">NOTICE</a></li>
+<li><a href="#参考资料">参考资料</a></li>
 </ul>
 </nav>
     </div>
@@ -215,6 +219,10 @@
 
 <p>直接在go module项目中，<code>go get</code>即可</p>
 
+<h2 id="安装最新的库">安装最新的库</h2>
+
+<p>有的时候会遇到库的代码更新了，但是release还是在老版本，这个时候在go get时加上@master就可以了，<code>go get github.com/go-gota/gota@master</code></p>
+
 <h1 id="更新库">更新库</h1>
 
 <p>直接在go module项目中，<code>go get -u repo</code>可以更新指定的包。或者<code>go get -u</code>更新所有的包</p>
@@ -238,6 +246,12 @@ module name为<code>li.com/weixin/server</code>，这个li.com是可以我们自
 <ul>
 <li>之前使用<code>glide</code>的项目，可以直接运行go mod init，go mod会自动导入glide.lock里面的库和相对应的版本</li>
 <li>使用<code>goland</code>的话，在IDE中还有会独立的GOPROXY设置，不会使用go env的值</li>
+</ul>
+
+<h1 id="参考资料">参考资料</h1>
+
+<ul>
+<li><a href="https://stackoverflow.com/questions/53682247/how-to-point-go-module-dependency-in-go-mod-to-a-latest-commit-in-a-repo">go mod使用最新的代码，而不是最新的release</a></li>
 </ul>
         </div>
 
