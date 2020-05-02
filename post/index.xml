@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <copyright>© This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you wish to quote or reproduce.</copyright>
-    <lastBuildDate>Fri, 27 Mar 2020 22:12:04 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 02 May 2020 19:40:27 +0800</lastBuildDate>
     
 	<atom:link href="https://liguoqinjim.com/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Mysql中的时间处理</title>
+      <link>https://liguoqinjim.com/post/mysql/mysql%E4%B8%AD%E7%9A%84%E6%97%B6%E9%97%B4%E5%A4%84%E7%90%86/</link>
+      <pubDate>Sat, 02 May 2020 19:40:27 +0800</pubDate>
+      
+      <guid>https://liguoqinjim.com/post/mysql/mysql%E4%B8%AD%E7%9A%84%E6%97%B6%E9%97%B4%E5%A4%84%E7%90%86/</guid>
+      <description>&lt;p&gt;mysql里面关于时间的数据类型，一共有5种，&lt;code&gt;DATE&lt;/code&gt;, &lt;code&gt;TIME&lt;/code&gt;, &lt;code&gt;DATETIME&lt;/code&gt;, &lt;code&gt;TIMESTAMP&lt;/code&gt;, 和&lt;code&gt;YEAR&lt;/code&gt;。&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>Golang项目接入Travis CI</title>
