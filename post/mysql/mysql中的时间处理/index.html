@@ -156,7 +156,13 @@
 <li><a href="#sql对比">sql对比</a></li>
 </ul></li>
 </ul></li>
-<li><a href="#时区的设置">时区的设置</a></li>
+<li><a href="#时区的设置">时区的设置</a>
+<ul>
+<li><a href="#查看当前的时区">查看当前的时区</a></li>
+<li><a href="#修改当前连接时区">修改当前连接时区</a></li>
+<li><a href="#修改全局时区">修改全局时区</a></li>
+<li><a href="#查看效果">查看效果</a></li>
+</ul></li>
 <li><a href="#查询">查询</a>
 <ul>
 <li><a href="#2020年的订购总数">2020年的订购总数</a></li>
@@ -325,11 +331,26 @@ fsp的范围是从0到6，默认是0，用来指定小数秒的精度(fractional
 
 <h1 id="时区的设置">时区的设置</h1>
 
+<h2 id="查看当前的时区">查看当前的时区</h2>
+
+<p><code>show variables like '%time_zone%';</code></p>
+
 <ul>
-<li>查看当前时区，<code>show variables like '%time_zone%';</code></li>
-<li>修改当前连接时区，<code>set @@time_zone = '+8:00';</code></li>
-<li>永久修改时区，TODO</li>
+<li>全局：<code>select @@global.time_zone;</code></li>
+<li>当前连接：<code>select @@session.time_zone;</code></li>
 </ul>
+
+<h2 id="修改当前连接时区">修改当前连接时区</h2>
+
+<p><code>set @@time_zone = '+8:00'</code>，只有当前连接有效，重新连接之后或者别的连接都不会有这个配置</p>
+
+<h2 id="修改全局时区">修改全局时区</h2>
+
+<p><code>set global time_zone = '+8:00'</code>，改完之后，连接需要重新连接才能生效</p>
+
+<h2 id="查看效果">查看效果</h2>
+
+<p><code>SELECT TIMEDIFF(NOW(), UTC_TIMESTAMP);</code>，查看当前时间和UTC时间差多少</p>
 
 <h1 id="查询">查询</h1>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#f92672">#</span> <span style="color:#960050;background-color:#1e0010">订单表</span>
@@ -414,7 +435,8 @@ fsp的范围是从0到6，默认是0，用来指定小数秒的精度(fractional
 <h1 id="参考资料">参考资料</h1>
 
 <ul>
-<li><a href="https://www.cnblogs.com/jie-fang/p/10279439.html">mysql的时区设置</a></li>
+<li><a href="https://www.cnblogs.com/jie-fang/p/10279439.html">mysql时区设置</a></li>
+<li><a href="https://stackoverflow.com/questions/930900/how-do-i-set-the-time-zone-of-mysql">mysql时区设置</a></li>
 <li><a href="https://www.cnblogs.com/ivictor/p/5028368.html">datetime和timestamp的区别</a></li>
 <li><a href="https://dev.mysql.com/doc/refman/8.0/en/date-and-time-type-syntax.html">mysql文档</a></li>
 <li><a href="https://dev.mysql.com/doc/refman/8.0/en/date-and-time-functions.html">mysql中关于时间的函数</a></li>
