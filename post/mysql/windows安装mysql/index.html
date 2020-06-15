@@ -6,20 +6,20 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>HDFS的基本配置 | Liguoqinjim&#39;s Blog</title>
-    <meta property="og:title" content="HDFS的基本配置 - Liguoqinjim&#39;s Blog">
+    <title>Windows安装mysql | Liguoqinjim&#39;s Blog</title>
+    <meta property="og:title" content="Windows安装mysql - Liguoqinjim&#39;s Blog">
     <meta property="og:type" content="article">
         
-    <meta property="article:published_time" content='2019-02-12T15:30:38&#43;08:00'>
+    <meta property="article:published_time" content='2020-06-12T23:59:25&#43;08:00'>
         
         
-    <meta property="article:modified_time" content='2019-02-12T15:30:38&#43;08:00'>
+    <meta property="article:modified_time" content='2020-06-12T23:59:25&#43;08:00'>
         
     <meta name="Keywords" content="">
-    <meta name="description" content="HDFS的基本配置">
-        <meta name="author" content="liguoqinjim">
+    <meta name="description" content="Windows安装mysql">
+        <meta name="author" content="Liguoqinjim">
         
-    <meta property="og:url" content="https://liguoqinjim.com/post/bigdata/hdfs%E7%9A%84%E5%9F%BA%E6%9C%AC%E9%85%8D%E7%BD%AE/">
+    <meta property="og:url" content="https://liguoqinjim.com/post/mysql/windows%E5%AE%89%E8%A3%85mysql/">
     <link rel="shortcut icon" href="https://liguoqinjim.com/favicon.ico" type="image/x-icon">
 
     <link rel="stylesheet" href='https://liguoqinjim.com/css/normalize.css'>
@@ -135,12 +135,16 @@
     <div class="post-toc-content">
         <nav id="TableOfContents">
 <ul>
-<li><a href="#0-修改-hadoop-env-sh">0.修改<code>hadoop-env.sh</code></a></li>
-<li><a href="#1-修改-core-site-xml">1.修改<code>core-site.xml</code></a></li>
-<li><a href="#2-修改-hdfs-site-xml">2.修改<code>hdfs-site.xml</code></a></li>
-<li><a href="#3-修改-slaves">3.修改<code>slaves</code></a></li>
-<li><a href="#4-初始化">4.初始化</a></li>
-<li><a href="#5-启动">5.启动</a></li>
+<li><a href="#下载">下载</a></li>
+<li><a href="#安装">安装</a>
+<ul>
+<li><a href="#1-创建配置文件-my-ini">1.创建配置文件<code>my.ini</code></a></li>
+<li><a href="#2-安装mysql服务">2.安装mysql服务</a></li>
+<li><a href="#3-初始化数据">3.初始化数据</a></li>
+<li><a href="#启动服务">启动服务</a></li>
+<li><a href="#删除服务">删除服务</a></li>
+</ul></li>
+<li><a href="#参考资料">参考资料</a></li>
 </ul>
 </nav>
     </div>
@@ -174,10 +178,10 @@
 </script>
     <article class="post">
         <header>
-            <h1 class="post-title">HDFS的基本配置</h1>
+            <h1 class="post-title">Windows安装mysql</h1>
         </header>
         <date class="post-meta meta-date">
-            2019年2月12日
+            2020年6月12日
         </date>
         
         
@@ -194,43 +198,50 @@
         </div>
         
         <div class="post-content">
-            <p>HDFS的基本配置</p>
+            <p>在windows下手动安装mysql</p>
 
-<h1 id="0-修改-hadoop-env-sh">0.修改<code>hadoop-env.sh</code></h1>
+<h1 id="下载">下载</h1>
 
-<p>在hadoop-env.sh里面加上JAVA_HOME</p>
+<p>下载地址：<code>https://dev.mysql.com/downloads/mysql/5.7.html</code>，下载zip格式<br />
+解压之后的文件目录：
+<img src="https://liguoqinjim.com/images/mysql/windows下安装mysql/Snipaste_2020-06-15_11-29-15.jpg" alt="解压之后的文件目录" /></p>
 
-<h1 id="1-修改-core-site-xml">1.修改<code>core-site.xml</code></h1>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#f92672">&lt;configuration&gt;</span>
-    <span style="color:#f92672">&lt;property&gt;</span>
-        <span style="color:#f92672">&lt;name&gt;</span>fs.defaultFS<span style="color:#f92672">&lt;/name&gt;</span>
-        <span style="color:#f92672">&lt;value&gt;</span>hdfs://hp-111:9000<span style="color:#f92672">&lt;/value&gt;</span>
-    <span style="color:#f92672">&lt;/property&gt;</span>
+<h1 id="安装">安装</h1>
 
-    <span style="color:#f92672">&lt;property&gt;</span>
-        <span style="color:#f92672">&lt;name&gt;</span>hadoop.tmp.dir<span style="color:#f92672">&lt;/name&gt;</span>
-        <span style="color:#f92672">&lt;value&gt;</span>/opt/module1/module_data/hadoop/<span style="color:#f92672">&lt;/value&gt;</span>
-    <span style="color:#f92672">&lt;/property&gt;</span>
-<span style="color:#f92672">&lt;/configuration&gt;</span></code></pre></div>
-<h1 id="2-修改-hdfs-site-xml">2.修改<code>hdfs-site.xml</code></h1>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#f92672">&lt;configuration&gt;</span>
-    <span style="color:#f92672">&lt;property&gt;</span>
-        <span style="color:#f92672">&lt;name&gt;</span>dfs.replication<span style="color:#f92672">&lt;/name&gt;</span>
-        <span style="color:#f92672">&lt;value&gt;</span>1<span style="color:#f92672">&lt;/value&gt;</span>
-    <span style="color:#f92672">&lt;/property&gt;</span>
-<span style="color:#f92672">&lt;/configuration&gt;</span></code></pre></div>
-<h1 id="3-修改-slaves">3.修改<code>slaves</code></h1>
+<h2 id="1-创建配置文件-my-ini">1.创建配置文件<code>my.ini</code></h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ini" data-lang="ini"><span style="color:#66d9ef">[mysqld]</span>
 
-<p>在这个里面加上所有要运行datanode的机器</p>
+<span style="color:#75715e"># mysql运行的端口</span>
+<span style="color:#a6e22e">port</span><span style="color:#f92672">=</span><span style="color:#e6db74">3306</span>
+<span style="color:#75715e"># mysql解压之后的路径</span>
+<span style="color:#a6e22e">basedir</span><span style="color:#f92672">=</span><span style="color:#e6db74">D:/workspace/mysql-5.7.28-winx64</span>
+<span style="color:#75715e"># mysql存放数据的路径</span>
+<span style="color:#a6e22e">datadir</span><span style="color:#f92672">=</span><span style="color:#e6db74">D:/workspace/3306/data</span></code></pre></div>
+<h2 id="2-安装mysql服务">2.安装mysql服务</h2>
 
-<h1 id="4-初始化">4.初始化</h1>
+<p>命令：<code>mysqld install 3306 --defaults-file=&quot;D:\workspace\mysql-5.7.28-winx64\bin\my.ini&quot;</code>，3306是服务名称，<code>--defaults-file</code>指定配置文件的路径<br />
+安装完成之后，可以在系统服务里面找到，如：
+<img src="https://liguoqinjim.com/images/mysql/windows下安装mysql/Snipaste_2020-06-15_11-33-30.jpg" alt="服务" /></p>
 
-<p><code>hadoop namenode -format</code><br />
-这个操作会在我们设置的<code>hadoop.tmp.dir</code>目录下创建文件夹</p>
+<h2 id="3-初始化数据">3.初始化数据</h2>
 
-<h1 id="5-启动">5.启动</h1>
+<p>手动从zip包安装的时候，需要手动初始化数据<br />
+命令：<code>mysqld --defaults-file=&quot;D:\workspace\mysql-5.7.28-winx64\bin\my.ini&quot; --initialize --console</code><br />
+<code>--intialize</code>可以换成<code>--initialize-insecure</code>，两者区别是<code>--intialize</code>会给root用户生成一个随机密码，会输出在命令行中。<code>--intialize-insecure</code>会给root用户一个空密码。</p>
 
-<p><code>$HADOOP_HOME/sbin/start-dfs.sh</code></p>
+<h2 id="启动服务">启动服务</h2>
+
+<p>命令：<code>net start 3306</code>，3306就是服务名</p>
+
+<h2 id="删除服务">删除服务</h2>
+
+<p>命令：<code>mysqld remove 3306</code></p>
+
+<h1 id="参考资料">参考资料</h1>
+
+<ul>
+<li><a href="https://dev.mysql.com/doc/refman/5.7/en/data-directory-initialization.html">https://dev.mysql.com/doc/refman/5.7/en/data-directory-initialization.html</a></li>
+</ul>
         </div>
 
         
@@ -238,14 +249,21 @@
 
         
 
+<div class="post-archive">
+    <h2>See Also</h2>
+    <ul class="listing">
+        
+        <li><a href="https://liguoqinjim.com/post/mysql/mysql%E4%B8%AD%E7%9A%84%E6%97%B6%E9%97%B4%E5%A4%84%E7%90%86/">Mysql中的时间处理</a></li>
+        
+    </ul>
+</div>
+
 
         <div class="post-meta meta-tags">
             
             <ul class="clearfix">
                 
-                <li><a href='https://liguoqinjim.com/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE'>大数据</a></li>
-                
-                <li><a href='https://liguoqinjim.com/tags/hadoop'>hadoop</a></li>
+                <li><a href='https://liguoqinjim.com/tags/mysql'>mysql</a></li>
                 
             </ul>
             
