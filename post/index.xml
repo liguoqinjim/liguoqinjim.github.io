@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <copyright>© This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you wish to quote or reproduce.</copyright>
-    <lastBuildDate>Fri, 26 Jun 2020 11:36:19 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 14 Aug 2020 10:17:22 +0800</lastBuildDate>
     
 	<atom:link href="https://liguoqinjim.com/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>自建sentry服务</title>
+      <link>https://liguoqinjim.com/post/tool/%E8%87%AA%E5%BB%BAsentry/</link>
+      <pubDate>Fri, 14 Aug 2020 10:17:22 +0800</pubDate>
+      
+      <guid>https://liguoqinjim.com/post/tool/%E8%87%AA%E5%BB%BAsentry/</guid>
+      <description>&lt;p&gt;使用docker自建sentry服务&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>Mysql主从复制配置</title>
