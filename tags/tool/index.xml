@@ -1,32 +1,32 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>tool on LI的技术笔记</title>
-    <link>https://liguoqinjim.cn/tags/tool/</link>
-    <description>Recent content in tool on LI的技术笔记</description>
+    <title>tool on Liguoqinjim&#39;s Blog</title>
+    <link>https://liguoqinjim.com/tags/tool/</link>
+    <description>Recent content in tool on Liguoqinjim&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <copyright>© This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you wish to quote or reproduce.</copyright>
     <lastBuildDate>Fri, 14 Aug 2020 10:17:22 +0800</lastBuildDate>
     
-	<atom:link href="https://liguoqinjim.cn/tags/tool/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://liguoqinjim.com/tags/tool/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>自建sentry服务</title>
-      <link>https://liguoqinjim.cn/post/tool/%E8%87%AA%E5%BB%BAsentry/</link>
+      <link>https://liguoqinjim.com/post/tool/%E8%87%AA%E5%BB%BAsentry/</link>
       <pubDate>Fri, 14 Aug 2020 10:17:22 +0800</pubDate>
       
-      <guid>https://liguoqinjim.cn/post/tool/%E8%87%AA%E5%BB%BAsentry/</guid>
+      <guid>https://liguoqinjim.com/post/tool/%E8%87%AA%E5%BB%BAsentry/</guid>
       <description>&lt;p&gt;使用docker自建sentry服务&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>判断两个文件是否相同</title>
-      <link>https://liguoqinjim.cn/post/tool/%E5%88%A4%E6%96%AD%E4%B8%A4%E4%B8%AA%E6%96%87%E4%BB%B6%E6%98%AF%E5%90%A6%E7%9B%B8%E5%90%8C/</link>
+      <link>https://liguoqinjim.com/post/tool/%E5%88%A4%E6%96%AD%E4%B8%A4%E4%B8%AA%E6%96%87%E4%BB%B6%E6%98%AF%E5%90%A6%E7%9B%B8%E5%90%8C/</link>
       <pubDate>Wed, 17 Oct 2018 10:17:38 +0800</pubDate>
       
-      <guid>https://liguoqinjim.cn/post/tool/%E5%88%A4%E6%96%AD%E4%B8%A4%E4%B8%AA%E6%96%87%E4%BB%B6%E6%98%AF%E5%90%A6%E7%9B%B8%E5%90%8C/</guid>
+      <guid>https://liguoqinjim.com/post/tool/%E5%88%A4%E6%96%AD%E4%B8%A4%E4%B8%AA%E6%96%87%E4%BB%B6%E6%98%AF%E5%90%A6%E7%9B%B8%E5%90%8C/</guid>
       <description>&lt;p&gt;有时我们需要判断两个文件是否相同，比如定时分析的软件，我们可以先判断数据有没有变，数据没变的话，本次定时就不运行了。这个时候就需要用到判断两个文件是否相同。&lt;br /&gt;
 有两种方法来实现。&lt;/p&gt;
 
@@ -35,39 +35,39 @@
     
     <item>
       <title>Vagrant入门</title>
-      <link>https://liguoqinjim.cn/post/tool/vagrant%E5%85%A5%E9%97%A8/</link>
+      <link>https://liguoqinjim.com/post/tool/vagrant%E5%85%A5%E9%97%A8/</link>
       <pubDate>Sun, 02 Sep 2018 14:07:36 +0800</pubDate>
       
-      <guid>https://liguoqinjim.cn/post/tool/vagrant%E5%85%A5%E9%97%A8/</guid>
+      <guid>https://liguoqinjim.com/post/tool/vagrant%E5%85%A5%E9%97%A8/</guid>
       <description>&lt;p&gt;Vagrant is a tool for building and managing virtual machine environments in a single workflow. With an easy-to-use workflow and focus on automation, Vagrant lowers development environment setup time, increases production parity, and makes the &amp;ldquo;works on my machine&amp;rdquo; excuse a relic of the past.&lt;br /&gt;
 Vagrant是一个在单一工作流中创建和管理虚拟机环境的工具。通过简单易用的工作流和对自动化的关注，Vagrant可以减少开发环境的配置时间，增加生产平价，并且使得&amp;rdquo;works on my machine&amp;rdquo;这个借口成为过去。&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>设置markdown里面的图片大小</title>
-      <link>https://liguoqinjim.cn/post/markdown/%E8%AE%BE%E7%BD%AEmarkdown%E9%87%8C%E9%9D%A2%E7%9A%84%E5%9B%BE%E7%89%87%E5%A4%A7%E5%B0%8F/</link>
+      <link>https://liguoqinjim.com/post/markdown/%E8%AE%BE%E7%BD%AEmarkdown%E9%87%8C%E9%9D%A2%E7%9A%84%E5%9B%BE%E7%89%87%E5%A4%A7%E5%B0%8F/</link>
       <pubDate>Tue, 03 Jul 2018 14:12:17 +0800</pubDate>
       
-      <guid>https://liguoqinjim.cn/post/markdown/%E8%AE%BE%E7%BD%AEmarkdown%E9%87%8C%E9%9D%A2%E7%9A%84%E5%9B%BE%E7%89%87%E5%A4%A7%E5%B0%8F/</guid>
+      <guid>https://liguoqinjim.com/post/markdown/%E8%AE%BE%E7%BD%AEmarkdown%E9%87%8C%E9%9D%A2%E7%9A%84%E5%9B%BE%E7%89%87%E5%A4%A7%E5%B0%8F/</guid>
       <description>&lt;p&gt;在markdown里面添加图片的时候，图片显示出来可能会比我们需要的大很多。
 这时候我们会需要设置图片的大小。&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>用golang触发IFTTT，发送自定义的Notifications</title>
-      <link>https://liguoqinjim.cn/post/tool/%E7%94%A8golang%E8%A7%A6%E5%8F%91ifttt%E5%8F%91%E9%80%81%E8%87%AA%E5%AE%9A%E4%B9%89%E7%9A%84notifications/</link>
+      <link>https://liguoqinjim.com/post/tool/%E7%94%A8golang%E8%A7%A6%E5%8F%91ifttt%E5%8F%91%E9%80%81%E8%87%AA%E5%AE%9A%E4%B9%89%E7%9A%84notifications/</link>
       <pubDate>Mon, 02 Jul 2018 18:20:02 +0800</pubDate>
       
-      <guid>https://liguoqinjim.cn/post/tool/%E7%94%A8golang%E8%A7%A6%E5%8F%91ifttt%E5%8F%91%E9%80%81%E8%87%AA%E5%AE%9A%E4%B9%89%E7%9A%84notifications/</guid>
+      <guid>https://liguoqinjim.com/post/tool/%E7%94%A8golang%E8%A7%A6%E5%8F%91ifttt%E5%8F%91%E9%80%81%E8%87%AA%E5%AE%9A%E4%B9%89%E7%9A%84notifications/</guid>
       <description>&lt;p&gt;IFTTT众多的service里面，有一个非常强大的service，就是webhooks。当我们在IFTTT里面connect了这个service之后，我们会得到一个唯一的链接，我们访问这个链接就会被视作触发了这个service。&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>Hugo的使用</title>
-      <link>https://liguoqinjim.cn/post/tool/hugo%E7%9A%84%E4%BD%BF%E7%94%A8/</link>
+      <link>https://liguoqinjim.com/post/tool/hugo%E7%9A%84%E4%BD%BF%E7%94%A8/</link>
       <pubDate>Sat, 27 Jan 2018 12:37:47 +0800</pubDate>
       
-      <guid>https://liguoqinjim.cn/post/tool/hugo%E7%9A%84%E4%BD%BF%E7%94%A8/</guid>
+      <guid>https://liguoqinjim.com/post/tool/hugo%E7%9A%84%E4%BD%BF%E7%94%A8/</guid>
       <description>&lt;p&gt;Hugo是由Go语言实现的静态网站生成器。简单、易用、高效、易扩展、快速部署。&lt;/p&gt;</description>
     </item>
     

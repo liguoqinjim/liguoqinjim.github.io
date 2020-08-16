@@ -1,33 +1,33 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>linux on LI的技术笔记</title>
-    <link>https://liguoqinjim.cn/tags/linux/</link>
-    <description>Recent content in linux on LI的技术笔记</description>
+    <title>linux on Liguoqinjim&#39;s Blog</title>
+    <link>https://liguoqinjim.com/tags/linux/</link>
+    <description>Recent content in linux on Liguoqinjim&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <copyright>© This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you wish to quote or reproduce.</copyright>
     <lastBuildDate>Thu, 12 Dec 2019 11:02:37 +0800</lastBuildDate>
     
-	<atom:link href="https://liguoqinjim.cn/tags/linux/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://liguoqinjim.com/tags/linux/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>SSH登录慢</title>
-      <link>https://liguoqinjim.cn/post/tool/ssh%E7%99%BB%E5%BD%95%E6%85%A2/</link>
+      <link>https://liguoqinjim.com/post/tool/ssh%E7%99%BB%E5%BD%95%E6%85%A2/</link>
       <pubDate>Thu, 12 Dec 2019 11:02:37 +0800</pubDate>
       
-      <guid>https://liguoqinjim.cn/post/tool/ssh%E7%99%BB%E5%BD%95%E6%85%A2/</guid>
+      <guid>https://liguoqinjim.com/post/tool/ssh%E7%99%BB%E5%BD%95%E6%85%A2/</guid>
       <description>解决ssh登录慢的问题
  备份/etc/ssh/sshd_config 修改/etc/ssh/sshd_config GSSAPIAuthentication设置为no UseDNS打开注释，然后设置为no 重启ssh，systemctl restart sshd  </description>
     </item>
     
     <item>
       <title>NTP时间同步配置</title>
-      <link>https://liguoqinjim.cn/post/bigdata/ntp%E6%97%B6%E9%97%B4%E5%90%8C%E6%AD%A5%E9%85%8D%E7%BD%AE/</link>
+      <link>https://liguoqinjim.com/post/bigdata/ntp%E6%97%B6%E9%97%B4%E5%90%8C%E6%AD%A5%E9%85%8D%E7%BD%AE/</link>
       <pubDate>Wed, 20 Nov 2019 15:26:44 +0800</pubDate>
       
-      <guid>https://liguoqinjim.cn/post/bigdata/ntp%E6%97%B6%E9%97%B4%E5%90%8C%E6%AD%A5%E9%85%8D%E7%BD%AE/</guid>
+      <guid>https://liguoqinjim.com/post/bigdata/ntp%E6%97%B6%E9%97%B4%E5%90%8C%E6%AD%A5%E9%85%8D%E7%BD%AE/</guid>
       <description>&lt;p&gt;NTP的服务端和客户端配置&lt;/p&gt;</description>
     </item>
     

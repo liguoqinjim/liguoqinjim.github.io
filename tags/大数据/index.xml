@@ -1,41 +1,41 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>大数据 on LI的技术笔记</title>
-    <link>https://liguoqinjim.cn/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE/</link>
-    <description>Recent content in 大数据 on LI的技术笔记</description>
+    <title>大数据 on Liguoqinjim&#39;s Blog</title>
+    <link>https://liguoqinjim.com/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE/</link>
+    <description>Recent content in 大数据 on Liguoqinjim&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <copyright>© This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you wish to quote or reproduce.</copyright>
     <lastBuildDate>Wed, 20 Nov 2019 15:26:44 +0800</lastBuildDate>
     
-	<atom:link href="https://liguoqinjim.cn/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://liguoqinjim.com/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>NTP时间同步配置</title>
-      <link>https://liguoqinjim.cn/post/bigdata/ntp%E6%97%B6%E9%97%B4%E5%90%8C%E6%AD%A5%E9%85%8D%E7%BD%AE/</link>
+      <link>https://liguoqinjim.com/post/bigdata/ntp%E6%97%B6%E9%97%B4%E5%90%8C%E6%AD%A5%E9%85%8D%E7%BD%AE/</link>
       <pubDate>Wed, 20 Nov 2019 15:26:44 +0800</pubDate>
       
-      <guid>https://liguoqinjim.cn/post/bigdata/ntp%E6%97%B6%E9%97%B4%E5%90%8C%E6%AD%A5%E9%85%8D%E7%BD%AE/</guid>
+      <guid>https://liguoqinjim.com/post/bigdata/ntp%E6%97%B6%E9%97%B4%E5%90%8C%E6%AD%A5%E9%85%8D%E7%BD%AE/</guid>
       <description>&lt;p&gt;NTP的服务端和客户端配置&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>HBase的基本配置</title>
-      <link>https://liguoqinjim.cn/post/bigdata/hbase%E7%9A%84%E5%9F%BA%E6%9C%AC%E9%85%8D%E7%BD%AE/</link>
+      <link>https://liguoqinjim.com/post/bigdata/hbase%E7%9A%84%E5%9F%BA%E6%9C%AC%E9%85%8D%E7%BD%AE/</link>
       <pubDate>Tue, 12 Feb 2019 15:57:17 +0800</pubDate>
       
-      <guid>https://liguoqinjim.cn/post/bigdata/hbase%E7%9A%84%E5%9F%BA%E6%9C%AC%E9%85%8D%E7%BD%AE/</guid>
+      <guid>https://liguoqinjim.com/post/bigdata/hbase%E7%9A%84%E5%9F%BA%E6%9C%AC%E9%85%8D%E7%BD%AE/</guid>
       <description>&lt;p&gt;HBase的基本配置&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>HDFS的基本配置</title>
-      <link>https://liguoqinjim.cn/post/bigdata/hdfs%E7%9A%84%E5%9F%BA%E6%9C%AC%E9%85%8D%E7%BD%AE/</link>
+      <link>https://liguoqinjim.com/post/bigdata/hdfs%E7%9A%84%E5%9F%BA%E6%9C%AC%E9%85%8D%E7%BD%AE/</link>
       <pubDate>Tue, 12 Feb 2019 15:30:38 +0800</pubDate>
       
-      <guid>https://liguoqinjim.cn/post/bigdata/hdfs%E7%9A%84%E5%9F%BA%E6%9C%AC%E9%85%8D%E7%BD%AE/</guid>
+      <guid>https://liguoqinjim.com/post/bigdata/hdfs%E7%9A%84%E5%9F%BA%E6%9C%AC%E9%85%8D%E7%BD%AE/</guid>
       <description>&lt;p&gt;HDFS的基本配置&lt;/p&gt;</description>
     </item>
     
