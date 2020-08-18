@@ -7,10 +7,46 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <copyright>© This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you wish to quote or reproduce.</copyright>
-    <lastBuildDate>Fri, 14 Aug 2020 10:17:22 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 18 Aug 2020 12:12:51 +0800</lastBuildDate>
     
 	<atom:link href="https://liguoqinjim.com/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>mac</title>
+      <link>https://liguoqinjim.com/tags/mac/</link>
+      <pubDate>Tue, 18 Aug 2020 12:12:51 +0800</pubDate>
+      
+      <guid>https://liguoqinjim.com/tags/mac/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>nginx</title>
+      <link>https://liguoqinjim.com/tags/nginx/</link>
+      <pubDate>Mon, 17 Aug 2020 12:08:40 +0800</pubDate>
+      
+      <guid>https://liguoqinjim.com/tags/nginx/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>tool</title>
+      <link>https://liguoqinjim.com/tags/tool/</link>
+      <pubDate>Sun, 16 Aug 2020 13:22:15 +0800</pubDate>
+      
+      <guid>https://liguoqinjim.com/tags/tool/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>travis</title>
+      <link>https://liguoqinjim.com/tags/travis/</link>
+      <pubDate>Sun, 16 Aug 2020 13:22:15 +0800</pubDate>
+      
+      <guid>https://liguoqinjim.com/tags/travis/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>sentry</title>
@@ -18,15 +54,6 @@
       <pubDate>Fri, 14 Aug 2020 10:17:22 +0800</pubDate>
       
       <guid>https://liguoqinjim.com/tags/sentry/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>tool</title>
-      <link>https://liguoqinjim.com/tags/tool/</link>
-      <pubDate>Fri, 14 Aug 2020 10:17:22 +0800</pubDate>
-      
-      <guid>https://liguoqinjim.com/tags/tool/</guid>
       <description></description>
     </item>
     
@@ -54,15 +81,6 @@
       <pubDate>Wed, 11 Mar 2020 10:41:33 +0800</pubDate>
       
       <guid>https://liguoqinjim.com/tags/git/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>mac</title>
-      <link>https://liguoqinjim.com/tags/mac/</link>
-      <pubDate>Thu, 09 Jan 2020 16:23:28 +0800</pubDate>
-      
-      <guid>https://liguoqinjim.com/tags/mac/</guid>
       <description></description>
     </item>
     

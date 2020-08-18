@@ -7,15 +7,33 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <copyright>© This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you wish to quote or reproduce.</copyright>
-    <lastBuildDate>Wed, 17 Oct 2018 10:17:38 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 18 Aug 2020 12:12:51 +0800</lastBuildDate>
     
 	<atom:link href="https://liguoqinjim.com/categories/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
+      <title>mac</title>
+      <link>https://liguoqinjim.com/categories/mac/</link>
+      <pubDate>Tue, 18 Aug 2020 12:12:51 +0800</pubDate>
+      
+      <guid>https://liguoqinjim.com/categories/mac/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>nginx</title>
+      <link>https://liguoqinjim.com/categories/nginx/</link>
+      <pubDate>Mon, 17 Aug 2020 12:08:40 +0800</pubDate>
+      
+      <guid>https://liguoqinjim.com/categories/nginx/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>tool</title>
       <link>https://liguoqinjim.com/categories/tool/</link>
-      <pubDate>Wed, 17 Oct 2018 10:17:38 +0800</pubDate>
+      <pubDate>Sun, 16 Aug 2020 13:22:15 +0800</pubDate>
       
       <guid>https://liguoqinjim.com/categories/tool/</guid>
       <description></description>

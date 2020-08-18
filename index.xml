@@ -7,10 +7,37 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <copyright>© This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you wish to quote or reproduce.</copyright>
-    <lastBuildDate>Fri, 14 Aug 2020 10:17:22 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 18 Aug 2020 12:12:51 +0800</lastBuildDate>
     
 	<atom:link href="https://liguoqinjim.com/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>MAC自带文件服务器</title>
+      <link>https://liguoqinjim.com/post/mac/mac%E8%87%AA%E5%B8%A6%E6%96%87%E4%BB%B6%E6%9C%8D%E5%8A%A1%E5%99%A8/</link>
+      <pubDate>Tue, 18 Aug 2020 12:12:51 +0800</pubDate>
+      
+      <guid>https://liguoqinjim.com/post/mac/mac%E8%87%AA%E5%B8%A6%E6%96%87%E4%BB%B6%E6%9C%8D%E5%8A%A1%E5%99%A8/</guid>
+      <description>&lt;p&gt;mac自带有apache服务器，启动便可以使用了。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Nginx流量复制</title>
+      <link>https://liguoqinjim.com/post/nginx/nginx%E6%B5%81%E9%87%8F%E5%A4%8D%E5%88%B6/</link>
+      <pubDate>Mon, 17 Aug 2020 12:08:40 +0800</pubDate>
+      
+      <guid>https://liguoqinjim.com/post/nginx/nginx%E6%B5%81%E9%87%8F%E5%A4%8D%E5%88%B6/</guid>
+      <description>&lt;p&gt;有时，虽然我们搭建了测试服务器，也可以模拟流量来对服务器进行测试，但是真实的线上流量还是会很难完全模拟。这时候我们就可以使用nginx的mirror模块，可以把线上的实时流量复制到测试环境中，来更真实地测试服务器。可以实现版本的预先测试，或者流量放大后进行压测等功能。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Travis CI推送文件到服务器</title>
+      <link>https://liguoqinjim.com/post/tool/travis%E6%8E%A8%E9%80%81%E6%96%87%E4%BB%B6%E5%88%B0%E6%9C%8D%E5%8A%A1%E5%99%A8/</link>
+      <pubDate>Sun, 16 Aug 2020 13:22:15 +0800</pubDate>
+      
+      <guid>https://liguoqinjim.com/post/tool/travis%E6%8E%A8%E9%80%81%E6%96%87%E4%BB%B6%E5%88%B0%E6%9C%8D%E5%8A%A1%E5%99%A8/</guid>
+      <description>&lt;p&gt;travis ci推送文件到自己的服务器&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>自建sentry服务</title>
