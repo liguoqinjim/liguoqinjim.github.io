@@ -1,687 +1,168 @@
-<!doctype html>
-<html lang="zh-cn">
-<head>
+<!doctype html><html lang=zh-cn><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1"><title>用golang触发IFTTT，发送自定义的Notifications | Liguoqinjim&#39;s Blog</title><meta property=og:title content="用golang触发IFTTT，发送自定义的Notifications - Liguoqinjim's Blog"><meta property=og:type content=article><meta property=article:published_time content=2018-07-02T18:20:02&#43;08:00><meta property=article:modified_time content=2018-07-02T18:20:02&#43;08:00><meta name=Keywords content><meta name=description content=用golang触发IFTTT，发送自定义的Notifications><meta name=author content=liguoqinjim><meta property=og:url content=https://liguoqinjim.com/post/tool/%E7%94%A8golang%E8%A7%A6%E5%8F%91ifttt%E5%8F%91%E9%80%81%E8%87%AA%E5%AE%9A%E4%B9%89%E7%9A%84notifications/><link rel="shortcut icon" href=https://liguoqinjim.com/favicon.ico type=image/x-icon><link rel=stylesheet href=https://liguoqinjim.com/css/normalize.css><link rel=stylesheet href=https://liguoqinjim.com/css/style.css><script type=text/javascript src=//cdn.bootcdn.net/ajax/libs/jquery/3.4.1/jquery.min.js></script></head><body><header id=header class=clearfix><div class=container><div class=col-group><div class=site-name><a id=logo href=https://liguoqinjim.com>Liguoqinjim&#39;s Blog</a><p class=description>~ Keep It Simple &amp; Stupid ~</p></div><div><nav id=nav-menu class=clearfix><a class=current href=https://liguoqinjim.com>首页</a>
+<a href=https://liguoqinjim.com/ title=Home>Home</a>
+<a href=https://github.com/liguoqinjim title=Works>Works</a>
+<a href=https://liguoqinjim.com/tags/ title=Tags>Tags</a></nav></div></div></div></header><div id=body><div class=container><div class=col-group><div class=col-8 id=main><div class=res-cons><style type=text/css>.post-toc{position:fixed;width:200px;margin-left:-210px;padding:5px 10px;font-family:Athelas,STHeiti,Microsoft Yahei,serif;font-size:12px;border:1px solid rgba(0,0,0,.07);border-radius:5px;background-color:rgba(255,255,255,.98);background-clip:padding-box;-webkit-box-shadow:1px 1px 2px rgba(0,0,0,.125);box-shadow:1px 1px 2px rgba(0,0,0,.125);word-wrap:break-word;white-space:nowrap;-webkit-box-sizing:border-box;box-sizing:border-box;z-index:999;cursor:pointer;max-height:70%;overflow-y:auto;overflow-x:hidden}.post-toc .post-toc-title{width:100%;margin:0 auto;font-size:20px;font-weight:400;text-transform:uppercase;text-align:center}.post-toc .post-toc-content{font-size:15px}.post-toc .post-toc-content>nav>ul{margin:10px 0}.post-toc .post-toc-content ul{padding-left:20px;list-style:square;margin:.5em;line-height:1.8em}.post-toc .post-toc-content ul ul{padding-left:15px;display:none}@media print,screen and (max-width:1057px){.post-toc{display:none}}</style><div class=post-toc style=position:absolute;top:188px><h2 class=post-toc-title>文章目录</h2><div class=post-toc-content><nav id=TableOfContents><ul><li><a href=#1-创建applet>1.创建Applet</a><ul><li><a href=#1-1新建applet>1.1新建Applet</a></li><li><a href=#1-2选择webhooks作为service>1.2选择webhooks作为service</a></li><li><a href=#1-3选择receive-a-web-request作为trigger>1.3选择Receive a web request作为trigger</a></li><li><a href=#1-4设置一个-event-name>1.4设置一个<code>Event Name</code></a></li><li><a href=#1-5选择action-service>1.5选择action service</a></li><li><a href=#1-6选择一个action>1.6选择一个action</a></li><li><a href=#1-7配置action>1.7配置action</a></li></ul></li><li><a href=#2-触发webhooks>2.触发webhooks</a><ul><li><a href=#2-1使用webhooks的documentation里面的测试来触发>2.1使用webhooks的Documentation里面的测试来触发</a></li><li><a href=#2-2使用curl来触发>2.2使用curl来触发</a></li><li><a href=#2-3使用golang来触发>2.3使用golang来触发</a><ul><li><a href=#2-3-1http-post实现>2.3.1http.Post实现</a></li><li><a href=#2-3-2http-client的方式>2.3.2http.Client的方式</a></li><li><a href=#2-3-3使用gorequest库>2.3.3使用gorequest库</a></li></ul></li></ul></li></ul></nav></div></div><script type=text/javascript>$(document).ready(function(){var postToc=$(".post-toc");if(postToc.length){var leftPos=$("#main").offset().left;if(leftPos<220){postToc.css({"width":leftPos-10,"margin-left":(0-leftPos)})}
+var t=postToc.offset().top-20,a={start:{position:"absolute",top:t},process:{position:"fixed",top:20},};$(window).scroll(function(){var e=$(window).scrollTop();e<t?postToc.css(a.start):postToc.css(a.process)})}})</script><article class=post><header><h1 class=post-title>用golang触发IFTTT，发送自定义的Notifications</h1></header><date class="post-meta meta-date">2018年7月2日</date><div class=post-meta><span id=busuanzi_container_page_pv>|<span id=busuanzi_value_page_pv></span><span>
+阅读</span></span></div><div class=clear style=display:none><div class=toc-article><div class=toc-title>文章目录</div></div></div><div class=post-content><p>IFTTT众多的service里面，有一个非常强大的service，就是webhooks。当我们在IFTTT里面connect了这个service之后，我们会得到一个唯一的链接，我们访问这个链接就会被视作触发了这个service。</p><h1 id=1-创建applet>1.创建Applet</h1><h2 id=1-1新建applet>1.1新建Applet</h2><p>在<code>My Applets</code>界面选择<code>New Applet</code>，然后选择<code>+this</code></p><h2 id=1-2选择webhooks作为service>1.2选择webhooks作为service</h2><p><img src=https://liguoqinjim.com/images/IFTTT/snipaste20180703_154911.png width=500 alt=选择webhooks作为service></p><h2 id=1-3选择receive-a-web-request作为trigger>1.3选择Receive a web request作为trigger</h2><p><img src=https://liguoqinjim.com/images/IFTTT/snipaste20180703_155431.png width=750 alt="选择Receive a web request作为trigger"></p><h2 id=1-4设置一个-event-name>1.4设置一个<code>Event Name</code></h2><p>为webhooks设置一个<code>Event Name</code>，作为这个Applet的触发条件。因为可能另外的Applet也用了webhooks这个service，那么就要使用这个<code>Event Name</code>来区分到底是哪个Applet
+<img src=https://liguoqinjim.com/images/IFTTT/snipaste20180703_173058.png width=500 alt="设置一个Event Name"></p><h2 id=1-5选择action-service>1.5选择action service</h2><p>IFTTT里面，最终的动作被称作action。我们现在已经选好了webhooks作为trigger，现在就要来选择action了。我们选择<code>Notifications</code>作为action service
+<img src=https://liguoqinjim.com/images/IFTTT/snipaste20180703_162444.png width=500 alt="选择action service"></p><h2 id=1-6选择一个action>1.6选择一个action</h2><p><code>Notifications</code>这个service有两个action，一个是普通的通知，另一个是富文本的通知，也就是可以在通知里面显示图片。我们这里选择富文本的通知，普通通知的用法也是类似的
+<img src=https://liguoqinjim.com/images/IFTTT/snipaste20180703_163859.png width=750 alt=选择一个action></p><h2 id=1-7配置action>1.7配置action</h2><p>配置action，可以设置<code>Notifications</code>的标题还有内容，还可以设置要显示的图片。这里还可以使用<code>Add ingredient</code>来添加webhooks里面传过来的数据。配置完成之后我们create，然后finish，Applet就创建完成了
+<img src=https://liguoqinjim.com/images/IFTTT/snipaste20180703_164610.png width=500 alt=配置action></p><h1 id=2-触发webhooks>2.触发webhooks</h1><h2 id=2-1使用webhooks的documentation里面的测试来触发>2.1使用webhooks的Documentation里面的测试来触发</h2><p>一开始的时候，我们可以使用这个测试模式来测试自己的配置是否正确。访问<a href=https://ifttt.com/maker_webhooks>webhooks</a>页面，选择<code>Documentation</code>。输入之前设置好的<code>Event Name</code>，然后在下面的内容里面也可以填，<code>value1</code>、<code>value2</code>这些值都是可以在action的配置里面得到的。之前我们配置了<code>value1</code>的值是填要在通知里面显示的图片地址。填好之后按<code>Test it</code>
+<img src=https://liguoqinjim.com/images/IFTTT/snipaste20180703_171859.png width=900 alt=webhooks测试></p><p>收到的通知
+<img src=https://liguoqinjim.com/images/IFTTT/notifications1.jpg width=300 alt=notifications1></p><h2 id=2-2使用curl来触发>2.2使用curl来触发</h2><p>我们在2.1里面的测试界面也可以得到自动生成好的curl命令。我们直接拿来使用即可。</p><p><img src=https://liguoqinjim.com/images/IFTTT/snipaste20180703_173541.png width=900 alt=curl测试></p><p>收到的通知
+<img src=https://liguoqinjim.com/images/IFTTT/notifications2.jpg width=300 alt=notifications1></p><h2 id=2-3使用golang来触发>2.3使用golang来触发</h2><p>所有的代码都放在github上了，地址<code>https://github.com/liguoqinjim/go-labs/tree/master/lab143</code></p><h3 id=2-3-1http-post实现>2.3.1http.Post实现</h3><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-golang data-lang=golang><span style=color:#f92672>package</span> <span style=color:#a6e22e>main</span>
 
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <title>用golang触发IFTTT，发送自定义的Notifications | Liguoqinjim&#39;s Blog</title>
-    <meta property="og:title" content="用golang触发IFTTT，发送自定义的Notifications - Liguoqinjim&#39;s Blog">
-    <meta property="og:type" content="article">
-        
-    <meta property="article:published_time" content='2018-07-02T18:20:02&#43;08:00'>
-        
-        
-    <meta property="article:modified_time" content='2018-07-02T18:20:02&#43;08:00'>
-        
-    <meta name="Keywords" content="">
-    <meta name="description" content="用golang触发IFTTT，发送自定义的Notifications">
-        <meta name="author" content="liguoqinjim">
-        
-    <meta property="og:url" content="https://liguoqinjim.com/post/tool/%E7%94%A8golang%E8%A7%A6%E5%8F%91ifttt%E5%8F%91%E9%80%81%E8%87%AA%E5%AE%9A%E4%B9%89%E7%9A%84notifications/">
-    <link rel="shortcut icon" href="https://liguoqinjim.com/favicon.ico" type="image/x-icon">
-
-    <link rel="stylesheet" href='https://liguoqinjim.com/css/normalize.css'>
-    <link rel="stylesheet" href='https://liguoqinjim.com/css/style.css'>
-    <script type="text/javascript" src="//cdn.bootcdn.net/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-
-    
-    
-    
-    
-    
-    
-</head>
-
-
-<body>
-    <header id="header" class="clearfix">
-    <div class="container">
-        <div class="col-group">
-            <div class="site-name ">
-                
-                    <a id="logo" href="https://liguoqinjim.com">
-                        Liguoqinjim&#39;s Blog
-                    </a>
-                
-                <p class="description">~ Keep It Simple &amp; Stupid ~</p>
-            </div>
-            <div>
-                <nav id="nav-menu" class="clearfix">
-                    <a class="current" href="https://liguoqinjim.com">首页</a>
-                    
-                    <a  href="https://liguoqinjim.com/" title="Home">Home</a>
-                    
-                    <a  href="https://github.com/liguoqinjim" title="Works">Works</a>
-                    
-                    <a  href="https://liguoqinjim.com/tags/" title="Tags">Tags</a>
-                    
-                </nav>
-            </div>
-        </div>
-    </div>
-</header>
-
-    <div id="body">
-        <div class="container">
-            <div class="col-group">
-
-                <div class="col-8" id="main">
-                    
-<div class="res-cons">
-    <style type="text/css">
-    .post-toc {
-        position: fixed;
-        width: 200px;
-        margin-left: -210px;
-        padding: 5px 10px;
-        font-family: Athelas, STHeiti, Microsoft Yahei, serif;
-        font-size: 12px;
-        border: 1px solid rgba(0, 0, 0, .07);
-        border-radius: 5px;
-        background-color: rgba(255, 255, 255, 0.98);
-        background-clip: padding-box;
-        -webkit-box-shadow: 1px 1px 2px rgba(0, 0, 0, .125);
-        box-shadow: 1px 1px 2px rgba(0, 0, 0, .125);
-        word-wrap: break-word;
-        white-space: nowrap;
-        -webkit-box-sizing: border-box;
-        box-sizing: border-box;
-        z-index: 999;
-        cursor: pointer;
-        max-height: 70%;
-        overflow-y: auto;
-        overflow-x: hidden;
-    }
-
-    .post-toc .post-toc-title {
-        width: 100%;
-        margin: 0 auto;
-        font-size: 20px;
-        font-weight: 400;
-        text-transform: uppercase;
-        text-align: center;
-    }
-
-    .post-toc .post-toc-content {
-        font-size: 15px;
-    }
-
-    .post-toc .post-toc-content>nav>ul {
-        margin: 10px 0;
-    }
-
-    .post-toc .post-toc-content ul {
-        padding-left: 20px;
-        list-style: square;
-        margin: 0.5em;
-        line-height: 1.8em;
-    }
-
-    .post-toc .post-toc-content ul ul {
-        padding-left: 15px;
-        display: none;
-    }
-
-    @media print,
-    screen and (max-width:1057px) {
-        .post-toc {
-            display: none;
-        }
-    }
-</style>
-<div class="post-toc" style="position: absolute; top: 188px;">
-    <h2 class="post-toc-title">文章目录</h2>
-    <div class="post-toc-content">
-        <nav id="TableOfContents">
-<ul>
-<li><a href="#1-创建applet">1.创建Applet</a>
-<ul>
-<li><a href="#1-1新建applet">1.1新建Applet</a></li>
-<li><a href="#1-2选择webhooks作为service">1.2选择webhooks作为service</a></li>
-<li><a href="#1-3选择receive-a-web-request作为trigger">1.3选择Receive a web request作为trigger</a></li>
-<li><a href="#1-4设置一个-event-name">1.4设置一个<code>Event Name</code></a></li>
-<li><a href="#1-5选择action-service">1.5选择action service</a></li>
-<li><a href="#1-6选择一个action">1.6选择一个action</a></li>
-<li><a href="#1-7配置action">1.7配置action</a></li>
-</ul></li>
-<li><a href="#2-触发webhooks">2.触发webhooks</a>
-<ul>
-<li><a href="#2-1使用webhooks的documentation里面的测试来触发">2.1使用webhooks的Documentation里面的测试来触发</a></li>
-<li><a href="#2-2使用curl来触发">2.2使用curl来触发</a></li>
-<li><a href="#2-3使用golang来触发">2.3使用golang来触发</a>
-<ul>
-<li><a href="#2-3-1http-post实现">2.3.1http.Post实现</a></li>
-<li><a href="#2-3-2http-client的方式">2.3.2http.Client的方式</a></li>
-<li><a href="#2-3-3使用gorequest库">2.3.3使用gorequest库</a></li>
-</ul></li>
-</ul></li>
-</ul>
-</nav>
-    </div>
-</div>
-<script type="text/javascript">
-    $(document).ready(function () {
-        var postToc = $(".post-toc");
-        if (postToc.length) {
-            var leftPos = $("#main").offset().left;
-            if(leftPos<220){
-                postToc.css({"width":leftPos-10,"margin-left":(0-leftPos)})
-            }
-
-            var t = postToc.offset().top - 20,
-                a = {
-                    start: {
-                        position: "absolute",
-                        top: t
-                    },
-                    process: {
-                        position: "fixed",
-                        top: 20
-                    },
-                };
-            $(window).scroll(function () {
-                var e = $(window).scrollTop();
-                e < t ? postToc.css(a.start) : postToc.css(a.process)
-            })
-        }
-    })
-</script>
-    <article class="post">
-        <header>
-            <h1 class="post-title">用golang触发IFTTT，发送自定义的Notifications</h1>
-        </header>
-        <date class="post-meta meta-date">
-            2018年7月2日
-        </date>
-        
-        
-        <div class="post-meta">
-            <span id="busuanzi_container_page_pv">|<span id="busuanzi_value_page_pv"></span><span>
-                    阅读</span></span>
-        </div>
-        
-        
-        <div class="clear" style="display: none">
-            <div class="toc-article">
-                <div class="toc-title">文章目录</div>
-            </div>
-        </div>
-        
-        <div class="post-content">
-            <p>IFTTT众多的service里面，有一个非常强大的service，就是webhooks。当我们在IFTTT里面connect了这个service之后，我们会得到一个唯一的链接，我们访问这个链接就会被视作触发了这个service。</p>
-
-<!-- toc -->
-
-<h1 id="1-创建applet">1.创建Applet</h1>
-
-<h2 id="1-1新建applet">1.1新建Applet</h2>
-
-<p>在<code>My Applets</code>界面选择<code>New Applet</code>，然后选择<code>+this</code></p>
-
-<h2 id="1-2选择webhooks作为service">1.2选择webhooks作为service</h2>
-
-<!-- E:\Workspace\hugo_site\static\img\IFTTT\snipaste20180703_154911.png -->
-
-<!-- ![选择webhooks作为service](/images/IFTTT/snipaste20180703_154911.png) -->
-
-<p><img src="https://liguoqinjim.com/images/IFTTT/snipaste20180703_154911.png" width="500" alt="选择webhooks作为service"></p>
-
-<h2 id="1-3选择receive-a-web-request作为trigger">1.3选择Receive a web request作为trigger</h2>
-
-<!-- E:\Workspace\hugo_site\static\img\IFTTT\snipaste20180703_155431.png -->
-
-<!-- ![选择Receive a web request作为trigger](/images/IFTTT/snipaste20180703_155431.png) -->
-
-<p><img src="https://liguoqinjim.com/images/IFTTT/snipaste20180703_155431.png" width="750" alt="选择Receive a web request作为trigger"></p>
-
-<h2 id="1-4设置一个-event-name">1.4设置一个<code>Event Name</code></h2>
-
-<p>为webhooks设置一个<code>Event Name</code>，作为这个Applet的触发条件。因为可能另外的Applet也用了webhooks这个service，那么就要使用这个<code>Event Name</code>来区分到底是哪个Applet
-<!-- E:\Workspace\hugo_site\static\img\IFTTT\snipaste20180703_173058.png -->
-<!-- E:\Workspace\hugo_site\static\img\IFTTT\snipaste20180703_161526.png -->
-<!-- ![设置一个Event Name](/images/IFTTT/snipaste20180703_161526.png) -->
-<img src="https://liguoqinjim.com/images/IFTTT/snipaste20180703_173058.png" width="500" alt="设置一个Event Name"></p>
-
-<h2 id="1-5选择action-service">1.5选择action service</h2>
-
-<p>IFTTT里面，最终的动作被称作action。我们现在已经选好了webhooks作为trigger，现在就要来选择action了。我们选择<code>Notifications</code>作为action service
-<!-- E:\Workspace\hugo_site\static\img\IFTTT\snipaste20180703_162444.png -->
-<!-- ![选择action service](/images/IFTTT/snipaste20180703_162444.png) -->
-<img src="https://liguoqinjim.com/images/IFTTT/snipaste20180703_162444.png" width="500" alt="选择action service"></p>
-
-<h2 id="1-6选择一个action">1.6选择一个action</h2>
-
-<p><code>Notifications</code>这个service有两个action，一个是普通的通知，另一个是富文本的通知，也就是可以在通知里面显示图片。我们这里选择富文本的通知，普通通知的用法也是类似的
-<!-- E:\Workspace\hugo_site\static\img\IFTTT\snipaste20180703_163859.png -->
-<!-- ![选择一个action](/images/IFTTT/snipaste20180703_163859.png) -->
-<img src="https://liguoqinjim.com/images/IFTTT/snipaste20180703_163859.png" width="750" alt="选择一个action"></p>
-
-<h2 id="1-7配置action">1.7配置action</h2>
-
-<p>配置action，可以设置<code>Notifications</code>的标题还有内容，还可以设置要显示的图片。这里还可以使用<code>Add ingredient</code>来添加webhooks里面传过来的数据。配置完成之后我们create，然后finish，Applet就创建完成了
-<!-- E:\Workspace\hugo_site\static\img\IFTTT\snipaste20180703_164610.png -->
-<!-- ![配置action](/images/IFTTT/snipaste20180703_164610.png) -->
-<img src="https://liguoqinjim.com/images/IFTTT/snipaste20180703_164610.png" width="500" alt="配置action"></p>
-
-<h1 id="2-触发webhooks">2.触发webhooks</h1>
-
-<h2 id="2-1使用webhooks的documentation里面的测试来触发">2.1使用webhooks的Documentation里面的测试来触发</h2>
-
-<p>一开始的时候，我们可以使用这个测试模式来测试自己的配置是否正确。访问<a href="https://ifttt.com/maker_webhooks">webhooks</a>页面，选择<code>Documentation</code>。输入之前设置好的<code>Event Name</code>，然后在下面的内容里面也可以填，<code>value1</code>、<code>value2</code>这些值都是可以在action的配置里面得到的。之前我们配置了<code>value1</code>的值是填要在通知里面显示的图片地址。填好之后按<code>Test it</code>
-<!-- E:\Workspace\hugo_site\static\img\IFTTT\snipaste20180703_171859.png -->
-<!-- ![webhooks测试](/images/IFTTT/snipaste20180703_171859.png) -->
-<img src="https://liguoqinjim.com/images/IFTTT/snipaste20180703_171859.png" width="900" alt="webhooks测试"></p>
-
-<p>收到的通知
-<!-- E:\Workspace\hugo_site\static\img\IFTTT\notifications1.jpg -->
-<!-- ![notifications1](/images/IFTTT/notifications1.jpg) -->
-<img src="https://liguoqinjim.com/images/IFTTT/notifications1.jpg" width="300" alt="notifications1"></p>
-
-<h2 id="2-2使用curl来触发">2.2使用curl来触发</h2>
-
-<p>我们在2.1里面的测试界面也可以得到自动生成好的curl命令。我们直接拿来使用即可。</p>
-
-<!-- E:\Workspace\hugo_site\static\img\IFTTT\snipaste20180703_173541.png -->
-
-<!-- ![curl测试](/images/IFTTT/snipaste20180703_173541.png) -->
-
-<p><img src="https://liguoqinjim.com/images/IFTTT/snipaste20180703_173541.png" width="900" alt="curl测试"></p>
-
-<p>收到的通知
-<!-- E:\Workspace\hugo_site\static\img\IFTTT\notifications2.jpg -->
-<!-- ![notifications1](/images/IFTTT/notifications2.jpg) -->
-<img src="https://liguoqinjim.com/images/IFTTT/notifications2.jpg" width="300" alt="notifications1"></p>
-
-<h2 id="2-3使用golang来触发">2.3使用golang来触发</h2>
-
-<p>所有的代码都放在github上了，地址<code>https://github.com/liguoqinjim/go-labs/tree/master/lab143</code></p>
-
-<h3 id="2-3-1http-post实现">2.3.1http.Post实现</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang"><span style="color:#f92672">package</span> <span style="color:#a6e22e">main</span>
-
-<span style="color:#f92672">import</span> (
-	<span style="color:#e6db74">&#34;bytes&#34;</span>
-	<span style="color:#e6db74">&#34;encoding/json&#34;</span>
-	<span style="color:#e6db74">&#34;fmt&#34;</span>
-	<span style="color:#e6db74">&#34;io/ioutil&#34;</span>
-	<span style="color:#e6db74">&#34;log&#34;</span>
-	<span style="color:#e6db74">&#34;net/http&#34;</span>
+<span style=color:#f92672>import</span> (
+	<span style=color:#e6db74>&#34;bytes&#34;</span>
+	<span style=color:#e6db74>&#34;encoding/json&#34;</span>
+	<span style=color:#e6db74>&#34;fmt&#34;</span>
+	<span style=color:#e6db74>&#34;io/ioutil&#34;</span>
+	<span style=color:#e6db74>&#34;log&#34;</span>
+	<span style=color:#e6db74>&#34;net/http&#34;</span>
 )
 
-<span style="color:#66d9ef">type</span> <span style="color:#a6e22e">ConfStruct</span> <span style="color:#66d9ef">struct</span> {
-	<span style="color:#a6e22e">Key</span>       <span style="color:#66d9ef">string</span> <span style="color:#e6db74">`json:&#34;key&#34;`</span>
-	<span style="color:#a6e22e">EventName</span> <span style="color:#66d9ef">string</span> <span style="color:#e6db74">`json:&#34;event_name&#34;`</span>
-	<span style="color:#a6e22e">UrlFormat</span> <span style="color:#66d9ef">string</span> <span style="color:#e6db74">`json:&#34;url_format&#34;`</span>
-	<span style="color:#a6e22e">Value1</span>    <span style="color:#66d9ef">string</span> <span style="color:#e6db74">`json:&#34;value1&#34;`</span>
-	<span style="color:#a6e22e">Value2</span>    <span style="color:#66d9ef">string</span> <span style="color:#e6db74">`json:&#34;value2&#34;`</span>
-	<span style="color:#a6e22e">Value3</span>    <span style="color:#66d9ef">string</span> <span style="color:#e6db74">`json:&#34;value3&#34;`</span>
+<span style=color:#66d9ef>type</span> <span style=color:#a6e22e>ConfStruct</span> <span style=color:#66d9ef>struct</span> {
+	<span style=color:#a6e22e>Key</span>       <span style=color:#66d9ef>string</span> <span style=color:#e6db74>`json:&#34;key&#34;`</span>
+	<span style=color:#a6e22e>EventName</span> <span style=color:#66d9ef>string</span> <span style=color:#e6db74>`json:&#34;event_name&#34;`</span>
+	<span style=color:#a6e22e>UrlFormat</span> <span style=color:#66d9ef>string</span> <span style=color:#e6db74>`json:&#34;url_format&#34;`</span>
+	<span style=color:#a6e22e>Value1</span>    <span style=color:#66d9ef>string</span> <span style=color:#e6db74>`json:&#34;value1&#34;`</span>
+	<span style=color:#a6e22e>Value2</span>    <span style=color:#66d9ef>string</span> <span style=color:#e6db74>`json:&#34;value2&#34;`</span>
+	<span style=color:#a6e22e>Value3</span>    <span style=color:#66d9ef>string</span> <span style=color:#e6db74>`json:&#34;value3&#34;`</span>
 }
 
-<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">conf</span> = new(<span style="color:#a6e22e">ConfStruct</span>)
+<span style=color:#66d9ef>var</span> <span style=color:#a6e22e>conf</span> = new(<span style=color:#a6e22e>ConfStruct</span>)
 
-<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
-	<span style="color:#75715e">//读取配置文件
-</span><span style="color:#75715e"></span>	<span style="color:#a6e22e">data</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">ioutil</span>.<span style="color:#a6e22e">ReadFile</span>(<span style="color:#e6db74">&#34;conf.json&#34;</span>)
-	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
-		<span style="color:#a6e22e">log</span>.<span style="color:#a6e22e">Fatalf</span>(<span style="color:#e6db74">&#34;ioutil.ReadFile error:%v&#34;</span>, <span style="color:#a6e22e">err</span>)
+<span style=color:#66d9ef>func</span> <span style=color:#a6e22e>main</span>() {
+	<span style=color:#75715e>//读取配置文件
+</span><span style=color:#75715e></span>	<span style=color:#a6e22e>data</span>, <span style=color:#a6e22e>err</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>ioutil</span>.<span style=color:#a6e22e>ReadFile</span>(<span style=color:#e6db74>&#34;conf.json&#34;</span>)
+	<span style=color:#66d9ef>if</span> <span style=color:#a6e22e>err</span> <span style=color:#f92672>!=</span> <span style=color:#66d9ef>nil</span> {
+		<span style=color:#a6e22e>log</span>.<span style=color:#a6e22e>Fatalf</span>(<span style=color:#e6db74>&#34;ioutil.ReadFile error:%v&#34;</span>, <span style=color:#a6e22e>err</span>)
 	}
-	<span style="color:#a6e22e">log</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;data=\n%s&#34;</span>, <span style="color:#a6e22e">data</span>)
+	<span style=color:#a6e22e>log</span>.<span style=color:#a6e22e>Printf</span>(<span style=color:#e6db74>&#34;data=\n%s&#34;</span>, <span style=color:#a6e22e>data</span>)
 
-	<span style="color:#a6e22e">err</span> = <span style="color:#a6e22e">json</span>.<span style="color:#a6e22e">Unmarshal</span>(<span style="color:#a6e22e">data</span>, <span style="color:#a6e22e">conf</span>)
-	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
-		<span style="color:#a6e22e">log</span>.<span style="color:#a6e22e">Fatalf</span>(<span style="color:#e6db74">&#34;json.Unmarshal error:%v&#34;</span>, <span style="color:#a6e22e">err</span>)
-	}
-
-	<span style="color:#75715e">//拼接url
-</span><span style="color:#75715e"></span>	<span style="color:#a6e22e">u</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Sprintf</span>(<span style="color:#a6e22e">conf</span>.<span style="color:#a6e22e">UrlFormat</span>, <span style="color:#a6e22e">conf</span>.<span style="color:#a6e22e">EventName</span>, <span style="color:#a6e22e">conf</span>.<span style="color:#a6e22e">Key</span>)
-	<span style="color:#a6e22e">log</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;url=%s&#34;</span>, <span style="color:#a6e22e">u</span>)
-
-	<span style="color:#75715e">//post
-</span><span style="color:#75715e"></span>	<span style="color:#a6e22e">values</span> <span style="color:#f92672">:=</span> <span style="color:#66d9ef">map</span>[<span style="color:#66d9ef">string</span>]<span style="color:#66d9ef">string</span>{<span style="color:#e6db74">&#34;value1&#34;</span>: <span style="color:#a6e22e">conf</span>.<span style="color:#a6e22e">Value1</span>, <span style="color:#e6db74">&#34;value2&#34;</span>: <span style="color:#a6e22e">conf</span>.<span style="color:#a6e22e">Value2</span>, <span style="color:#e6db74">&#34;value3&#34;</span>: <span style="color:#a6e22e">conf</span>.<span style="color:#a6e22e">Value3</span>}
-	<span style="color:#a6e22e">jsonStr</span>, <span style="color:#a6e22e">_</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">json</span>.<span style="color:#a6e22e">Marshal</span>(<span style="color:#a6e22e">values</span>)
-	<span style="color:#a6e22e">resp</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">http</span>.<span style="color:#a6e22e">Post</span>(<span style="color:#a6e22e">u</span>, <span style="color:#e6db74">&#34;application/json&#34;</span>, <span style="color:#a6e22e">bytes</span>.<span style="color:#a6e22e">NewBuffer</span>(<span style="color:#a6e22e">jsonStr</span>))
-	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
-		<span style="color:#a6e22e">log</span>.<span style="color:#a6e22e">Fatalf</span>(<span style="color:#e6db74">&#34;http.Post error:%v&#34;</span>, <span style="color:#a6e22e">err</span>)
-	}
-	<span style="color:#a6e22e">d</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">ioutil</span>.<span style="color:#a6e22e">ReadAll</span>(<span style="color:#a6e22e">resp</span>.<span style="color:#a6e22e">Body</span>)
-	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
-		<span style="color:#a6e22e">log</span>.<span style="color:#a6e22e">Fatalf</span>(<span style="color:#e6db74">&#34;ioutil.ReadAll error:%v&#34;</span>, <span style="color:#a6e22e">err</span>)
-	}
-	<span style="color:#a6e22e">log</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;resp:\n%s&#34;</span>, <span style="color:#a6e22e">d</span>)
-}</code></pre></div>
-<h3 id="2-3-2http-client的方式">2.3.2http.Client的方式</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang"><span style="color:#f92672">...</span>
-
-<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
-	<span style="color:#75715e">//读取配置文件
-</span><span style="color:#75715e"></span>	<span style="color:#a6e22e">data</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">ioutil</span>.<span style="color:#a6e22e">ReadFile</span>(<span style="color:#e6db74">&#34;conf.json&#34;</span>)
-	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
-		<span style="color:#a6e22e">log</span>.<span style="color:#a6e22e">Fatalf</span>(<span style="color:#e6db74">&#34;ioutil.ReadFile error:%v&#34;</span>, <span style="color:#a6e22e">err</span>)
-	}
-	<span style="color:#a6e22e">log</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;data=\n%s&#34;</span>, <span style="color:#a6e22e">data</span>)
-
-	<span style="color:#a6e22e">err</span> = <span style="color:#a6e22e">json</span>.<span style="color:#a6e22e">Unmarshal</span>(<span style="color:#a6e22e">data</span>, <span style="color:#a6e22e">conf</span>)
-	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
-		<span style="color:#a6e22e">log</span>.<span style="color:#a6e22e">Fatalf</span>(<span style="color:#e6db74">&#34;json.Unmarshal error:%v&#34;</span>, <span style="color:#a6e22e">err</span>)
+	<span style=color:#a6e22e>err</span> = <span style=color:#a6e22e>json</span>.<span style=color:#a6e22e>Unmarshal</span>(<span style=color:#a6e22e>data</span>, <span style=color:#a6e22e>conf</span>)
+	<span style=color:#66d9ef>if</span> <span style=color:#a6e22e>err</span> <span style=color:#f92672>!=</span> <span style=color:#66d9ef>nil</span> {
+		<span style=color:#a6e22e>log</span>.<span style=color:#a6e22e>Fatalf</span>(<span style=color:#e6db74>&#34;json.Unmarshal error:%v&#34;</span>, <span style=color:#a6e22e>err</span>)
 	}
 
-	<span style="color:#75715e">//拼接url
-</span><span style="color:#75715e"></span>	<span style="color:#a6e22e">u</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Sprintf</span>(<span style="color:#a6e22e">conf</span>.<span style="color:#a6e22e">UrlFormat</span>, <span style="color:#a6e22e">conf</span>.<span style="color:#a6e22e">EventName</span>, <span style="color:#a6e22e">conf</span>.<span style="color:#a6e22e">Key</span>)
-	<span style="color:#a6e22e">log</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;url=%s&#34;</span>, <span style="color:#a6e22e">u</span>)
+	<span style=color:#75715e>//拼接url
+</span><span style=color:#75715e></span>	<span style=color:#a6e22e>u</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>fmt</span>.<span style=color:#a6e22e>Sprintf</span>(<span style=color:#a6e22e>conf</span>.<span style=color:#a6e22e>UrlFormat</span>, <span style=color:#a6e22e>conf</span>.<span style=color:#a6e22e>EventName</span>, <span style=color:#a6e22e>conf</span>.<span style=color:#a6e22e>Key</span>)
+	<span style=color:#a6e22e>log</span>.<span style=color:#a6e22e>Printf</span>(<span style=color:#e6db74>&#34;url=%s&#34;</span>, <span style=color:#a6e22e>u</span>)
 
-	<span style="color:#75715e">//client
-</span><span style="color:#75715e"></span>	<span style="color:#a6e22e">client</span> <span style="color:#f92672">:=</span> <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">http</span>.<span style="color:#a6e22e">Client</span>{}
-	<span style="color:#a6e22e">values</span> <span style="color:#f92672">:=</span> <span style="color:#66d9ef">map</span>[<span style="color:#66d9ef">string</span>]<span style="color:#66d9ef">string</span>{
-		<span style="color:#e6db74">&#34;value1&#34;</span>: <span style="color:#a6e22e">conf</span>.<span style="color:#a6e22e">Value1</span>,
-		<span style="color:#e6db74">&#34;value2&#34;</span>: <span style="color:#a6e22e">conf</span>.<span style="color:#a6e22e">Value2</span>,
-		<span style="color:#e6db74">&#34;value3&#34;</span>: <span style="color:#a6e22e">conf</span>.<span style="color:#a6e22e">Value3</span>,
+	<span style=color:#75715e>//post
+</span><span style=color:#75715e></span>	<span style=color:#a6e22e>values</span> <span style=color:#f92672>:=</span> <span style=color:#66d9ef>map</span>[<span style=color:#66d9ef>string</span>]<span style=color:#66d9ef>string</span>{<span style=color:#e6db74>&#34;value1&#34;</span>: <span style=color:#a6e22e>conf</span>.<span style=color:#a6e22e>Value1</span>, <span style=color:#e6db74>&#34;value2&#34;</span>: <span style=color:#a6e22e>conf</span>.<span style=color:#a6e22e>Value2</span>, <span style=color:#e6db74>&#34;value3&#34;</span>: <span style=color:#a6e22e>conf</span>.<span style=color:#a6e22e>Value3</span>}
+	<span style=color:#a6e22e>jsonStr</span>, <span style=color:#a6e22e>_</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>json</span>.<span style=color:#a6e22e>Marshal</span>(<span style=color:#a6e22e>values</span>)
+	<span style=color:#a6e22e>resp</span>, <span style=color:#a6e22e>err</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>http</span>.<span style=color:#a6e22e>Post</span>(<span style=color:#a6e22e>u</span>, <span style=color:#e6db74>&#34;application/json&#34;</span>, <span style=color:#a6e22e>bytes</span>.<span style=color:#a6e22e>NewBuffer</span>(<span style=color:#a6e22e>jsonStr</span>))
+	<span style=color:#66d9ef>if</span> <span style=color:#a6e22e>err</span> <span style=color:#f92672>!=</span> <span style=color:#66d9ef>nil</span> {
+		<span style=color:#a6e22e>log</span>.<span style=color:#a6e22e>Fatalf</span>(<span style=color:#e6db74>&#34;http.Post error:%v&#34;</span>, <span style=color:#a6e22e>err</span>)
 	}
-	<span style="color:#a6e22e">jsonStr</span>, <span style="color:#a6e22e">_</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">json</span>.<span style="color:#a6e22e">Marshal</span>(<span style="color:#a6e22e">values</span>)
+	<span style=color:#a6e22e>d</span>, <span style=color:#a6e22e>err</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>ioutil</span>.<span style=color:#a6e22e>ReadAll</span>(<span style=color:#a6e22e>resp</span>.<span style=color:#a6e22e>Body</span>)
+	<span style=color:#66d9ef>if</span> <span style=color:#a6e22e>err</span> <span style=color:#f92672>!=</span> <span style=color:#66d9ef>nil</span> {
+		<span style=color:#a6e22e>log</span>.<span style=color:#a6e22e>Fatalf</span>(<span style=color:#e6db74>&#34;ioutil.ReadAll error:%v&#34;</span>, <span style=color:#a6e22e>err</span>)
+	}
+	<span style=color:#a6e22e>log</span>.<span style=color:#a6e22e>Printf</span>(<span style=color:#e6db74>&#34;resp:\n%s&#34;</span>, <span style=color:#a6e22e>d</span>)
+}</code></pre></div><h3 id=2-3-2http-client的方式>2.3.2http.Client的方式</h3><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-golang data-lang=golang><span style=color:#f92672>...</span>
 
-	<span style="color:#a6e22e">req</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">http</span>.<span style="color:#a6e22e">NewRequest</span>(<span style="color:#a6e22e">http</span>.<span style="color:#a6e22e">MethodPost</span>, <span style="color:#a6e22e">u</span>, <span style="color:#a6e22e">bytes</span>.<span style="color:#a6e22e">NewBuffer</span>(<span style="color:#a6e22e">jsonStr</span>))
-	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
-		<span style="color:#a6e22e">log</span>.<span style="color:#a6e22e">Fatalf</span>(<span style="color:#e6db74">&#34;http.NewRequest error:%v&#34;</span>, <span style="color:#a6e22e">err</span>)
+<span style=color:#66d9ef>func</span> <span style=color:#a6e22e>main</span>() {
+	<span style=color:#75715e>//读取配置文件
+</span><span style=color:#75715e></span>	<span style=color:#a6e22e>data</span>, <span style=color:#a6e22e>err</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>ioutil</span>.<span style=color:#a6e22e>ReadFile</span>(<span style=color:#e6db74>&#34;conf.json&#34;</span>)
+	<span style=color:#66d9ef>if</span> <span style=color:#a6e22e>err</span> <span style=color:#f92672>!=</span> <span style=color:#66d9ef>nil</span> {
+		<span style=color:#a6e22e>log</span>.<span style=color:#a6e22e>Fatalf</span>(<span style=color:#e6db74>&#34;ioutil.ReadFile error:%v&#34;</span>, <span style=color:#a6e22e>err</span>)
 	}
-	<span style="color:#a6e22e">req</span>.<span style="color:#a6e22e">Header</span>.<span style="color:#a6e22e">Add</span>(<span style="color:#e6db74">&#34;Content-Type&#34;</span>, <span style="color:#e6db74">&#34;application/json&#34;</span>)
+	<span style=color:#a6e22e>log</span>.<span style=color:#a6e22e>Printf</span>(<span style=color:#e6db74>&#34;data=\n%s&#34;</span>, <span style=color:#a6e22e>data</span>)
 
-	<span style="color:#a6e22e">resp</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">client</span>.<span style="color:#a6e22e">Do</span>(<span style="color:#a6e22e">req</span>)
-	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
-		<span style="color:#a6e22e">log</span>.<span style="color:#a6e22e">Fatalf</span>(<span style="color:#e6db74">&#34;client.Do error:%v&#34;</span>, <span style="color:#a6e22e">err</span>)
-	}
-	<span style="color:#a6e22e">d</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">ioutil</span>.<span style="color:#a6e22e">ReadAll</span>(<span style="color:#a6e22e">resp</span>.<span style="color:#a6e22e">Body</span>)
-	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
-		<span style="color:#a6e22e">log</span>.<span style="color:#a6e22e">Fatalf</span>(<span style="color:#e6db74">&#34;ioutil.ReadAll error:%v&#34;</span>, <span style="color:#a6e22e">err</span>)
-	}
-	<span style="color:#a6e22e">log</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;resp:\n%s&#34;</span>, <span style="color:#a6e22e">d</span>)
-}</code></pre></div>
-<h3 id="2-3-3使用gorequest库">2.3.3使用gorequest库</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang"><span style="color:#f92672">...</span>
-
-<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
-	<span style="color:#75715e">//读取配置文件
-</span><span style="color:#75715e"></span>	<span style="color:#a6e22e">data</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">ioutil</span>.<span style="color:#a6e22e">ReadFile</span>(<span style="color:#e6db74">&#34;conf.json&#34;</span>)
-	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
-		<span style="color:#a6e22e">log</span>.<span style="color:#a6e22e">Fatalf</span>(<span style="color:#e6db74">&#34;ioutil.ReadFile error:%v&#34;</span>, <span style="color:#a6e22e">err</span>)
-	}
-	<span style="color:#a6e22e">log</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;data=\n%s&#34;</span>, <span style="color:#a6e22e">data</span>)
-
-	<span style="color:#a6e22e">err</span> = <span style="color:#a6e22e">json</span>.<span style="color:#a6e22e">Unmarshal</span>(<span style="color:#a6e22e">data</span>, <span style="color:#a6e22e">conf</span>)
-	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
-		<span style="color:#a6e22e">log</span>.<span style="color:#a6e22e">Fatalf</span>(<span style="color:#e6db74">&#34;json.Unmarshal error:%v&#34;</span>, <span style="color:#a6e22e">err</span>)
+	<span style=color:#a6e22e>err</span> = <span style=color:#a6e22e>json</span>.<span style=color:#a6e22e>Unmarshal</span>(<span style=color:#a6e22e>data</span>, <span style=color:#a6e22e>conf</span>)
+	<span style=color:#66d9ef>if</span> <span style=color:#a6e22e>err</span> <span style=color:#f92672>!=</span> <span style=color:#66d9ef>nil</span> {
+		<span style=color:#a6e22e>log</span>.<span style=color:#a6e22e>Fatalf</span>(<span style=color:#e6db74>&#34;json.Unmarshal error:%v&#34;</span>, <span style=color:#a6e22e>err</span>)
 	}
 
-	<span style="color:#75715e">//拼接url
-</span><span style="color:#75715e"></span>	<span style="color:#a6e22e">u</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Sprintf</span>(<span style="color:#a6e22e">conf</span>.<span style="color:#a6e22e">UrlFormat</span>, <span style="color:#a6e22e">conf</span>.<span style="color:#a6e22e">EventName</span>, <span style="color:#a6e22e">conf</span>.<span style="color:#a6e22e">Key</span>)
-	<span style="color:#a6e22e">log</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;url=%s&#34;</span>, <span style="color:#a6e22e">u</span>)
+	<span style=color:#75715e>//拼接url
+</span><span style=color:#75715e></span>	<span style=color:#a6e22e>u</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>fmt</span>.<span style=color:#a6e22e>Sprintf</span>(<span style=color:#a6e22e>conf</span>.<span style=color:#a6e22e>UrlFormat</span>, <span style=color:#a6e22e>conf</span>.<span style=color:#a6e22e>EventName</span>, <span style=color:#a6e22e>conf</span>.<span style=color:#a6e22e>Key</span>)
+	<span style=color:#a6e22e>log</span>.<span style=color:#a6e22e>Printf</span>(<span style=color:#e6db74>&#34;url=%s&#34;</span>, <span style=color:#a6e22e>u</span>)
 
-	<span style="color:#66d9ef">type</span> <span style="color:#a6e22e">ValueStruct</span> <span style="color:#66d9ef">struct</span> {
-		<span style="color:#a6e22e">Value1</span> <span style="color:#66d9ef">string</span> <span style="color:#e6db74">`json:&#34;value1&#34;`</span>
-		<span style="color:#a6e22e">Value2</span> <span style="color:#66d9ef">string</span> <span style="color:#e6db74">`json:&#34;value2&#34;`</span>
-		<span style="color:#a6e22e">Value3</span> <span style="color:#66d9ef">string</span> <span style="color:#e6db74">`json:&#34;value3&#34;`</span>
+	<span style=color:#75715e>//client
+</span><span style=color:#75715e></span>	<span style=color:#a6e22e>client</span> <span style=color:#f92672>:=</span> <span style=color:#f92672>&amp;</span><span style=color:#a6e22e>http</span>.<span style=color:#a6e22e>Client</span>{}
+	<span style=color:#a6e22e>values</span> <span style=color:#f92672>:=</span> <span style=color:#66d9ef>map</span>[<span style=color:#66d9ef>string</span>]<span style=color:#66d9ef>string</span>{
+		<span style=color:#e6db74>&#34;value1&#34;</span>: <span style=color:#a6e22e>conf</span>.<span style=color:#a6e22e>Value1</span>,
+		<span style=color:#e6db74>&#34;value2&#34;</span>: <span style=color:#a6e22e>conf</span>.<span style=color:#a6e22e>Value2</span>,
+		<span style=color:#e6db74>&#34;value3&#34;</span>: <span style=color:#a6e22e>conf</span>.<span style=color:#a6e22e>Value3</span>,
 	}
-	<span style="color:#a6e22e">val</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">ValueStruct</span>{<span style="color:#a6e22e">Value1</span>: <span style="color:#a6e22e">conf</span>.<span style="color:#a6e22e">Value1</span>, <span style="color:#a6e22e">Value2</span>: <span style="color:#a6e22e">conf</span>.<span style="color:#a6e22e">Value2</span>, <span style="color:#a6e22e">Value3</span>: <span style="color:#a6e22e">conf</span>.<span style="color:#a6e22e">Value3</span>}
-	<span style="color:#a6e22e">request</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">gorequest</span>.<span style="color:#a6e22e">New</span>()
-	<span style="color:#75715e">//http://httpbin.org/post
-</span><span style="color:#75715e"></span>	<span style="color:#a6e22e">resp</span>, <span style="color:#a6e22e">body</span>, <span style="color:#a6e22e">errs</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">request</span>.<span style="color:#a6e22e">Post</span>(<span style="color:#a6e22e">u</span>).
-		<span style="color:#a6e22e">Send</span>(<span style="color:#a6e22e">val</span>).
-		<span style="color:#a6e22e">End</span>()
-	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">errs</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
-		<span style="color:#a6e22e">log</span>.<span style="color:#a6e22e">Fatalf</span>(<span style="color:#e6db74">&#34;errs:%+v&#34;</span>, <span style="color:#a6e22e">errs</span>)
+	<span style=color:#a6e22e>jsonStr</span>, <span style=color:#a6e22e>_</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>json</span>.<span style=color:#a6e22e>Marshal</span>(<span style=color:#a6e22e>values</span>)
+
+	<span style=color:#a6e22e>req</span>, <span style=color:#a6e22e>err</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>http</span>.<span style=color:#a6e22e>NewRequest</span>(<span style=color:#a6e22e>http</span>.<span style=color:#a6e22e>MethodPost</span>, <span style=color:#a6e22e>u</span>, <span style=color:#a6e22e>bytes</span>.<span style=color:#a6e22e>NewBuffer</span>(<span style=color:#a6e22e>jsonStr</span>))
+	<span style=color:#66d9ef>if</span> <span style=color:#a6e22e>err</span> <span style=color:#f92672>!=</span> <span style=color:#66d9ef>nil</span> {
+		<span style=color:#a6e22e>log</span>.<span style=color:#a6e22e>Fatalf</span>(<span style=color:#e6db74>&#34;http.NewRequest error:%v&#34;</span>, <span style=color:#a6e22e>err</span>)
 	}
-	<span style="color:#a6e22e">d</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">ioutil</span>.<span style="color:#a6e22e">ReadAll</span>(<span style="color:#a6e22e">resp</span>.<span style="color:#a6e22e">Body</span>)
-	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
-		<span style="color:#a6e22e">log</span>.<span style="color:#a6e22e">Fatalf</span>(<span style="color:#e6db74">&#34;ioutil.ReadAll error:%v&#34;</span>, <span style="color:#a6e22e">err</span>)
+	<span style=color:#a6e22e>req</span>.<span style=color:#a6e22e>Header</span>.<span style=color:#a6e22e>Add</span>(<span style=color:#e6db74>&#34;Content-Type&#34;</span>, <span style=color:#e6db74>&#34;application/json&#34;</span>)
+
+	<span style=color:#a6e22e>resp</span>, <span style=color:#a6e22e>err</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>client</span>.<span style=color:#a6e22e>Do</span>(<span style=color:#a6e22e>req</span>)
+	<span style=color:#66d9ef>if</span> <span style=color:#a6e22e>err</span> <span style=color:#f92672>!=</span> <span style=color:#66d9ef>nil</span> {
+		<span style=color:#a6e22e>log</span>.<span style=color:#a6e22e>Fatalf</span>(<span style=color:#e6db74>&#34;client.Do error:%v&#34;</span>, <span style=color:#a6e22e>err</span>)
 	}
-	<span style="color:#a6e22e">log</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;resp=\n%s&#34;</span>, <span style="color:#a6e22e">d</span>)
-	<span style="color:#a6e22e">log</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;body.length=&#34;</span>, len(<span style="color:#a6e22e">body</span>))
-	<span style="color:#a6e22e">log</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;body=&#34;</span>, <span style="color:#a6e22e">body</span>)
-}</code></pre></div>
-        </div>
+	<span style=color:#a6e22e>d</span>, <span style=color:#a6e22e>err</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>ioutil</span>.<span style=color:#a6e22e>ReadAll</span>(<span style=color:#a6e22e>resp</span>.<span style=color:#a6e22e>Body</span>)
+	<span style=color:#66d9ef>if</span> <span style=color:#a6e22e>err</span> <span style=color:#f92672>!=</span> <span style=color:#66d9ef>nil</span> {
+		<span style=color:#a6e22e>log</span>.<span style=color:#a6e22e>Fatalf</span>(<span style=color:#e6db74>&#34;ioutil.ReadAll error:%v&#34;</span>, <span style=color:#a6e22e>err</span>)
+	}
+	<span style=color:#a6e22e>log</span>.<span style=color:#a6e22e>Printf</span>(<span style=color:#e6db74>&#34;resp:\n%s&#34;</span>, <span style=color:#a6e22e>d</span>)
+}</code></pre></div><h3 id=2-3-3使用gorequest库>2.3.3使用gorequest库</h3><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-golang data-lang=golang><span style=color:#f92672>...</span>
 
-        
+<span style=color:#66d9ef>func</span> <span style=color:#a6e22e>main</span>() {
+	<span style=color:#75715e>//读取配置文件
+</span><span style=color:#75715e></span>	<span style=color:#a6e22e>data</span>, <span style=color:#a6e22e>err</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>ioutil</span>.<span style=color:#a6e22e>ReadFile</span>(<span style=color:#e6db74>&#34;conf.json&#34;</span>)
+	<span style=color:#66d9ef>if</span> <span style=color:#a6e22e>err</span> <span style=color:#f92672>!=</span> <span style=color:#66d9ef>nil</span> {
+		<span style=color:#a6e22e>log</span>.<span style=color:#a6e22e>Fatalf</span>(<span style=color:#e6db74>&#34;ioutil.ReadFile error:%v&#34;</span>, <span style=color:#a6e22e>err</span>)
+	}
+	<span style=color:#a6e22e>log</span>.<span style=color:#a6e22e>Printf</span>(<span style=color:#e6db74>&#34;data=\n%s&#34;</span>, <span style=color:#a6e22e>data</span>)
 
+	<span style=color:#a6e22e>err</span> = <span style=color:#a6e22e>json</span>.<span style=color:#a6e22e>Unmarshal</span>(<span style=color:#a6e22e>data</span>, <span style=color:#a6e22e>conf</span>)
+	<span style=color:#66d9ef>if</span> <span style=color:#a6e22e>err</span> <span style=color:#f92672>!=</span> <span style=color:#66d9ef>nil</span> {
+		<span style=color:#a6e22e>log</span>.<span style=color:#a6e22e>Fatalf</span>(<span style=color:#e6db74>&#34;json.Unmarshal error:%v&#34;</span>, <span style=color:#a6e22e>err</span>)
+	}
 
-        
+	<span style=color:#75715e>//拼接url
+</span><span style=color:#75715e></span>	<span style=color:#a6e22e>u</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>fmt</span>.<span style=color:#a6e22e>Sprintf</span>(<span style=color:#a6e22e>conf</span>.<span style=color:#a6e22e>UrlFormat</span>, <span style=color:#a6e22e>conf</span>.<span style=color:#a6e22e>EventName</span>, <span style=color:#a6e22e>conf</span>.<span style=color:#a6e22e>Key</span>)
+	<span style=color:#a6e22e>log</span>.<span style=color:#a6e22e>Printf</span>(<span style=color:#e6db74>&#34;url=%s&#34;</span>, <span style=color:#a6e22e>u</span>)
 
-<div class="post-archive">
-    <h2>See Also</h2>
-    <ul class="listing">
-        
-        <li><a href="https://liguoqinjim.com/post/tool/hugo%E7%9A%84%E4%BD%BF%E7%94%A8/">Hugo的使用</a></li>
-        
-    </ul>
-</div>
-
-
-        <div class="post-meta meta-tags">
-            
-            <ul class="clearfix">
-                
-                <li><a href='https://liguoqinjim.com/tags/tool'>tool</a></li>
-                
-                <li><a href='https://liguoqinjim.com/tags/golang'>golang</a></li>
-                
-            </ul>
-            
-        </div>
-    </article>
-    
-    <div id="disqus_thread"></div>
-<script type="application/javascript">
-    var disqus_config = function () {
-    
-    
-    
-    };
-    (function() {
-        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
-            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
-            return;
-        }
-        var d = document, s = d.createElement('script'); s.async = true;
-        s.src = '//' + "liguoqinjim" + '.disqus.com/embed.js';
-        s.setAttribute('data-timestamp', +new Date());
-        (d.head || d.body).appendChild(s);
-    })();
-</script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
-
-    
-    
-</div>
-
-                    <footer id="footer">
-    <div>
-        &copy; 2020 <a href="https://liguoqinjim.com">Liguoqinjim&#39;s Blog By </a>
-        
-    </div>
-    <br />
-    <div>
-        <div class="github-badge">
-            <a href="https://gohugo.io/" target="_black" rel="nofollow"><span class="badge-subject">Powered by</span><span class="badge-value bg-blue">Hugo</span></a>
-        </div>
-        <div class="github-badge">
-            <a href="https://www.flysnow.org/" target="_black"><span class="badge-subject">Design by</span><span class="badge-value bg-brightgreen">飞雪无情</span></a>
-        </div>
-        <div class="github-badge">
-            <a href="https://github.com/flysnow-org/maupassant-hugo" target="_black"><span class="badge-subject">Theme</span><span class="badge-value bg-yellowgreen">Maupassant</span></a>
-        </div>
-    </div>
-</footer>
-
-
-    
-    <script type="text/javascript">
-        window.MathJax = {
-            tex2jax: {
-                inlineMath: [['$', '$']],
-                processEscapes: true
-                }
-            };
-    </script>
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
-
-<a id="rocket" href="#top"></a>
-<script type="text/javascript" src='https://liguoqinjim.com/js/totop.js?v=0.0.0' async=""></script>
-
-<script type="application/javascript">
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-	ga('create', 'UA-113128130-1', 'auto');
-	
-	ga('send', 'pageview');
-}
-</script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
-
-
-
-    <script type="text/javascript" src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script>
-
-
-
-
-                </div>
-
-                <div id="secondary">
-    <section class="widget">
-        <form id="search" action='https://liguoqinjim.com/search/' method="get" accept-charset="utf-8" target="_blank" _lpchecked="1">
-      
-      <input type="text" name="q" maxlength="20" placeholder="Search">
-      <input type="hidden" name="sitesearch" value="https://liguoqinjim.com">
-      <button type="submit" class="submit icon-search"></button>
-</form>
-    </section>
-    
-    <section class="widget">
-        <h3 class="widget-title">最近文章</h3>
-<ul class="widget-list">
-    
-    <li>
-        <a href="https://liguoqinjim.com/post/mac/mac%E8%87%AA%E5%B8%A6%E6%96%87%E4%BB%B6%E6%9C%8D%E5%8A%A1%E5%99%A8/" title="MAC自带文件服务器">MAC自带文件服务器</a>
-    </li>
-    
-    <li>
-        <a href="https://liguoqinjim.com/post/nginx/nginx%E6%B5%81%E9%87%8F%E5%A4%8D%E5%88%B6/" title="Nginx流量复制">Nginx流量复制</a>
-    </li>
-    
-    <li>
-        <a href="https://liguoqinjim.com/post/tool/travis%E6%8E%A8%E9%80%81%E6%96%87%E4%BB%B6%E5%88%B0%E6%9C%8D%E5%8A%A1%E5%99%A8/" title="Travis CI推送文件到服务器">Travis CI推送文件到服务器</a>
-    </li>
-    
-    <li>
-        <a href="https://liguoqinjim.com/post/tool/%E8%87%AA%E5%BB%BAsentry/" title="自建sentry服务">自建sentry服务</a>
-    </li>
-    
-    <li>
-        <a href="https://liguoqinjim.com/post/mysql/mysql%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6%E9%85%8D%E7%BD%AE/" title="Mysql主从复制配置">Mysql主从复制配置</a>
-    </li>
-    
-    <li>
-        <a href="https://liguoqinjim.com/post/mysql/windows%E5%AE%89%E8%A3%85mysql/" title="Windows安装mysql">Windows安装mysql</a>
-    </li>
-    
-    <li>
-        <a href="https://liguoqinjim.com/post/mysql/mysql%E4%B8%AD%E7%9A%84%E6%97%B6%E9%97%B4%E5%A4%84%E7%90%86/" title="Mysql中的时间处理">Mysql中的时间处理</a>
-    </li>
-    
-    <li>
-        <a href="https://liguoqinjim.com/post/golang/golang%E9%A1%B9%E7%9B%AE%E6%8E%A5%E5%85%A5travis-ci/" title="Golang项目接入Travis CI">Golang项目接入Travis CI</a>
-    </li>
-    
-    <li>
-        <a href="https://liguoqinjim.com/post/git/git%E4%B8%AD%E5%A4%84%E7%90%86%E6%95%8F%E6%84%9F%E7%9A%84%E7%94%A8%E6%88%B7%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/" title="Git中处理敏感的用户配置文件">Git中处理敏感的用户配置文件</a>
-    </li>
-    
-    <li>
-        <a href="https://liguoqinjim.com/post/golang/go_mod%E7%9A%84%E4%BD%BF%E7%94%A8/" title="go mod的使用">go mod的使用</a>
-    </li>
-    
-</ul>
-    </section>
-
-    
-
-    <section class="widget">
-        <h3 class="widget-title">分类</h3>
-<ul class="widget-list">
-    
-    <li><a href="https://liguoqinjim.com/categories/docker/">docker (8)</a></li>
-    
-    <li><a href="https://liguoqinjim.com/categories/leetcode/">leetcode (6)</a></li>
-    
-    <li><a href="https://liguoqinjim.com/categories/mac/">mac (3)</a></li>
-    
-    <li><a href="https://liguoqinjim.com/categories/markdown/">markdown (2)</a></li>
-    
-    <li><a href="https://liguoqinjim.com/categories/nginx/">nginx (1)</a></li>
-    
-    <li><a href="https://liguoqinjim.com/categories/tool/">tool (3)</a></li>
-    
-</ul>
-    </section>
-
-    <section class="widget">
-        <h3 class="widget-title">标签</h3>
-<div class="tagcloud">
-    
-    <a href="https://liguoqinjim.com/tags/docker/">docker</a>
-    
-    <a href="https://liguoqinjim.com/tags/git/">git</a>
-    
-    <a href="https://liguoqinjim.com/tags/golang/">golang</a>
-    
-    <a href="https://liguoqinjim.com/tags/hadoop/">hadoop</a>
-    
-    <a href="https://liguoqinjim.com/tags/hbase/">HBase</a>
-    
-    <a href="https://liguoqinjim.com/tags/hugo/">hugo</a>
-    
-    <a href="https://liguoqinjim.com/tags/leetcode/">leetcode</a>
-    
-    <a href="https://liguoqinjim.com/tags/linux/">linux</a>
-    
-    <a href="https://liguoqinjim.com/tags/mac/">mac</a>
-    
-    <a href="https://liguoqinjim.com/tags/markdown/">markdown</a>
-    
-    <a href="https://liguoqinjim.com/tags/mysql/">mysql</a>
-    
-    <a href="https://liguoqinjim.com/tags/nginx/">nginx</a>
-    
-    <a href="https://liguoqinjim.com/tags/sentry/">sentry</a>
-    
-    <a href="https://liguoqinjim.com/tags/ssh/">ssh</a>
-    
-    <a href="https://liguoqinjim.com/tags/tensorflow/">tensorflow</a>
-    
-    <a href="https://liguoqinjim.com/tags/tool/">tool</a>
-    
-    <a href="https://liguoqinjim.com/tags/travis/">travis</a>
-    
-    <a href="https://liguoqinjim.com/tags/vagrant/">vagrant</a>
-    
-    <a href="https://liguoqinjim.com/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE/">大数据</a>
-    
-</div>
-    </section>
-
-    
-
-    <section class="widget">
-        <h3 class="widget-title">其它</h3>
-        <ul class="widget-list">
-            <li><a href="https://liguoqinjim.com/index.xml">文章 RSS</a></li>
-        </ul>
-    </section>
-</div>
-            </div>
-        </div>
-    </div>
-</body>
-
-</html>
+	<span style=color:#66d9ef>type</span> <span style=color:#a6e22e>ValueStruct</span> <span style=color:#66d9ef>struct</span> {
+		<span style=color:#a6e22e>Value1</span> <span style=color:#66d9ef>string</span> <span style=color:#e6db74>`json:&#34;value1&#34;`</span>
+		<span style=color:#a6e22e>Value2</span> <span style=color:#66d9ef>string</span> <span style=color:#e6db74>`json:&#34;value2&#34;`</span>
+		<span style=color:#a6e22e>Value3</span> <span style=color:#66d9ef>string</span> <span style=color:#e6db74>`json:&#34;value3&#34;`</span>
+	}
+	<span style=color:#a6e22e>val</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>ValueStruct</span>{<span style=color:#a6e22e>Value1</span>: <span style=color:#a6e22e>conf</span>.<span style=color:#a6e22e>Value1</span>, <span style=color:#a6e22e>Value2</span>: <span style=color:#a6e22e>conf</span>.<span style=color:#a6e22e>Value2</span>, <span style=color:#a6e22e>Value3</span>: <span style=color:#a6e22e>conf</span>.<span style=color:#a6e22e>Value3</span>}
+	<span style=color:#a6e22e>request</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>gorequest</span>.<span style=color:#a6e22e>New</span>()
+	<span style=color:#75715e>//http://httpbin.org/post
+</span><span style=color:#75715e></span>	<span style=color:#a6e22e>resp</span>, <span style=color:#a6e22e>body</span>, <span style=color:#a6e22e>errs</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>request</span>.<span style=color:#a6e22e>Post</span>(<span style=color:#a6e22e>u</span>).
+		<span style=color:#a6e22e>Send</span>(<span style=color:#a6e22e>val</span>).
+		<span style=color:#a6e22e>End</span>()
+	<span style=color:#66d9ef>if</span> <span style=color:#a6e22e>errs</span> <span style=color:#f92672>!=</span> <span style=color:#66d9ef>nil</span> {
+		<span style=color:#a6e22e>log</span>.<span style=color:#a6e22e>Fatalf</span>(<span style=color:#e6db74>&#34;errs:%+v&#34;</span>, <span style=color:#a6e22e>errs</span>)
+	}
+	<span style=color:#a6e22e>d</span>, <span style=color:#a6e22e>err</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>ioutil</span>.<span style=color:#a6e22e>ReadAll</span>(<span style=color:#a6e22e>resp</span>.<span style=color:#a6e22e>Body</span>)
+	<span style=color:#66d9ef>if</span> <span style=color:#a6e22e>err</span> <span style=color:#f92672>!=</span> <span style=color:#66d9ef>nil</span> {
+		<span style=color:#a6e22e>log</span>.<span style=color:#a6e22e>Fatalf</span>(<span style=color:#e6db74>&#34;ioutil.ReadAll error:%v&#34;</span>, <span style=color:#a6e22e>err</span>)
+	}
+	<span style=color:#a6e22e>log</span>.<span style=color:#a6e22e>Printf</span>(<span style=color:#e6db74>&#34;resp=\n%s&#34;</span>, <span style=color:#a6e22e>d</span>)
+	<span style=color:#a6e22e>log</span>.<span style=color:#a6e22e>Println</span>(<span style=color:#e6db74>&#34;body.length=&#34;</span>, len(<span style=color:#a6e22e>body</span>))
+	<span style=color:#a6e22e>log</span>.<span style=color:#a6e22e>Println</span>(<span style=color:#e6db74>&#34;body=&#34;</span>, <span style=color:#a6e22e>body</span>)
+}</code></pre></div></div><div class=post-archive><h2>See Also</h2><ul class=listing><li><a href=https://liguoqinjim.com/post/tool/hugo%E7%9A%84%E4%BD%BF%E7%94%A8/>Hugo的使用</a></li></ul></div><div class="post-meta meta-tags"><ul class=clearfix><li><a href=https://liguoqinjim.com/tags/tool>tool</a></li><li><a href=https://liguoqinjim.com/tags/golang>golang</a></li></ul></div></article><div id=disqus_thread></div><script type=application/javascript>var disqus_config=function(){};(function(){if(["localhost","127.0.0.1"].indexOf(window.location.hostname)!=-1){document.getElementById('disqus_thread').innerHTML='Disqus comments not available by default when the website is previewed locally.';return;}
+var d=document,s=d.createElement('script');s.async=true;s.src='//'+"liguoqinjim"+'.disqus.com/embed.js';s.setAttribute('data-timestamp',+new Date());(d.head||d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript><a href=https://disqus.com class=dsq-brlink>comments powered by <span class=logo-disqus>Disqus</span></a></div><footer id=footer><div>&copy; 2020 <a href=https://liguoqinjim.com>Liguoqinjim&#39;s Blog By</a></div><br><div><div class=github-badge><a href=https://gohugo.io/ target=_black rel=nofollow><span class=badge-subject>Powered by</span><span class="badge-value bg-blue">Hugo</span></a></div><div class=github-badge><a href=https://www.flysnow.org/ target=_black><span class=badge-subject>Design by</span><span class="badge-value bg-brightgreen">飞雪无情</span></a></div><div class=github-badge><a href=https://github.com/flysnow-org/maupassant-hugo target=_black><span class=badge-subject>Theme</span><span class="badge-value bg-yellowgreen">Maupassant</span></a></div></div></footer><script type=text/javascript>window.MathJax={tex2jax:{inlineMath:[['$','$']],processEscapes:true}};</script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML" async></script><a id=rocket href=#top></a><script type=text/javascript src="https://liguoqinjim.com/js/totop.js?v=0.0.0" async></script><script type=application/javascript>var doNotTrack=false;if(!doNotTrack){window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;ga('create','UA-113128130-1','auto');ga('send','pageview');}</script><script async src=https://www.google-analytics.com/analytics.js></script><script type=text/javascript src=//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js async></script></div><div id=secondary><section class=widget><form id=search action=https://liguoqinjim.com/search/ method=get accept-charset=utf-8 target=_blank _lpchecked=1><input type=text name=q maxlength=20 placeholder=Search>
+<input type=hidden name=sitesearch value=https://liguoqinjim.com>
+<button type=submit class="submit icon-search"></button></form></section><section class=widget><h3 class=widget-title>最近文章</h3><ul class=widget-list><li><a href=https://liguoqinjim.com/post/mac/mac%E8%87%AA%E5%B8%A6%E6%96%87%E4%BB%B6%E6%9C%8D%E5%8A%A1%E5%99%A8/ title=MAC自带文件服务器>MAC自带文件服务器</a></li><li><a href=https://liguoqinjim.com/post/nginx/nginx%E6%B5%81%E9%87%8F%E5%A4%8D%E5%88%B6/ title=Nginx流量复制>Nginx流量复制</a></li><li><a href=https://liguoqinjim.com/post/tool/travis%E6%8E%A8%E9%80%81%E6%96%87%E4%BB%B6%E5%88%B0%E6%9C%8D%E5%8A%A1%E5%99%A8/ title="Travis CI推送文件到服务器">Travis CI推送文件到服务器</a></li><li><a href=https://liguoqinjim.com/post/tool/%E8%87%AA%E5%BB%BAsentry/ title=自建sentry服务>自建sentry服务</a></li><li><a href=https://liguoqinjim.com/post/mysql/mysql%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6%E9%85%8D%E7%BD%AE/ title=Mysql主从复制配置>Mysql主从复制配置</a></li><li><a href=https://liguoqinjim.com/post/mysql/windows%E5%AE%89%E8%A3%85mysql/ title=Windows安装mysql>Windows安装mysql</a></li><li><a href=https://liguoqinjim.com/post/mysql/mysql%E4%B8%AD%E7%9A%84%E6%97%B6%E9%97%B4%E5%A4%84%E7%90%86/ title=Mysql中的时间处理>Mysql中的时间处理</a></li><li><a href=https://liguoqinjim.com/post/golang/golang%E9%A1%B9%E7%9B%AE%E6%8E%A5%E5%85%A5travis-ci/ title="Golang项目接入Travis CI">Golang项目接入Travis CI</a></li><li><a href=https://liguoqinjim.com/post/git/git%E4%B8%AD%E5%A4%84%E7%90%86%E6%95%8F%E6%84%9F%E7%9A%84%E7%94%A8%E6%88%B7%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/ title=Git中处理敏感的用户配置文件>Git中处理敏感的用户配置文件</a></li><li><a href=https://liguoqinjim.com/post/golang/go_mod%E7%9A%84%E4%BD%BF%E7%94%A8/ title="go mod的使用">go mod的使用</a></li></ul></section><section class=widget><h3 class=widget-title>分类</h3><ul class=widget-list><li><a href=https://liguoqinjim.com/categories/docker/>docker (8)</a></li><li><a href=https://liguoqinjim.com/categories/leetcode/>leetcode (6)</a></li><li><a href=https://liguoqinjim.com/categories/mac/>mac (3)</a></li><li><a href=https://liguoqinjim.com/categories/markdown/>markdown (2)</a></li><li><a href=https://liguoqinjim.com/categories/nginx/>nginx (1)</a></li><li><a href=https://liguoqinjim.com/categories/tool/>tool (3)</a></li></ul></section><section class=widget><h3 class=widget-title>标签</h3><div class=tagcloud><a href=https://liguoqinjim.com/tags/docker/>docker</a>
+<a href=https://liguoqinjim.com/tags/git/>git</a>
+<a href=https://liguoqinjim.com/tags/golang/>golang</a>
+<a href=https://liguoqinjim.com/tags/hadoop/>hadoop</a>
+<a href=https://liguoqinjim.com/tags/hbase/>HBase</a>
+<a href=https://liguoqinjim.com/tags/hugo/>hugo</a>
+<a href=https://liguoqinjim.com/tags/leetcode/>leetcode</a>
+<a href=https://liguoqinjim.com/tags/linux/>linux</a>
+<a href=https://liguoqinjim.com/tags/mac/>mac</a>
+<a href=https://liguoqinjim.com/tags/markdown/>markdown</a>
+<a href=https://liguoqinjim.com/tags/mysql/>mysql</a>
+<a href=https://liguoqinjim.com/tags/nginx/>nginx</a>
+<a href=https://liguoqinjim.com/tags/sentry/>sentry</a>
+<a href=https://liguoqinjim.com/tags/ssh/>ssh</a>
+<a href=https://liguoqinjim.com/tags/tensorflow/>tensorflow</a>
+<a href=https://liguoqinjim.com/tags/tool/>tool</a>
+<a href=https://liguoqinjim.com/tags/travis/>travis</a>
+<a href=https://liguoqinjim.com/tags/vagrant/>vagrant</a>
+<a href=https://liguoqinjim.com/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE/>大数据</a></div></section><section class=widget><h3 class=widget-title>其它</h3><ul class=widget-list><li><a href=https://liguoqinjim.com/index.xml>文章 RSS</a></li></ul></section></div></div></div></div></body></html>

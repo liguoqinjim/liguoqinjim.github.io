@@ -1,564 +1,74 @@
-<!doctype html>
-<html lang="zh-cn">
-<head>
+<!doctype html><html lang=zh-cn><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1"><title>Vagrant入门 | Liguoqinjim&#39;s Blog</title><meta property=og:title content="Vagrant入门 - Liguoqinjim's Blog"><meta property=og:type content=article><meta property=article:published_time content=2018-09-02T14:07:36&#43;08:00><meta property=article:modified_time content=2018-09-02T14:07:36&#43;08:00><meta name=Keywords content><meta name=description content=Vagrant入门><meta name=author content=liguoqinjim><meta property=og:url content=https://liguoqinjim.com/post/tool/vagrant%E5%85%A5%E9%97%A8/><link rel="shortcut icon" href=https://liguoqinjim.com/favicon.ico type=image/x-icon><link rel=stylesheet href=https://liguoqinjim.com/css/normalize.css><link rel=stylesheet href=https://liguoqinjim.com/css/style.css><script type=text/javascript src=//cdn.bootcdn.net/ajax/libs/jquery/3.4.1/jquery.min.js></script></head><body><header id=header class=clearfix><div class=container><div class=col-group><div class=site-name><a id=logo href=https://liguoqinjim.com>Liguoqinjim&#39;s Blog</a><p class=description>~ Keep It Simple &amp; Stupid ~</p></div><div><nav id=nav-menu class=clearfix><a class=current href=https://liguoqinjim.com>首页</a>
+<a href=https://liguoqinjim.com/ title=Home>Home</a>
+<a href=https://github.com/liguoqinjim title=Works>Works</a>
+<a href=https://liguoqinjim.com/tags/ title=Tags>Tags</a></nav></div></div></div></header><div id=body><div class=container><div class=col-group><div class=col-8 id=main><div class=res-cons><style type=text/css>.post-toc{position:fixed;width:200px;margin-left:-210px;padding:5px 10px;font-family:Athelas,STHeiti,Microsoft Yahei,serif;font-size:12px;border:1px solid rgba(0,0,0,.07);border-radius:5px;background-color:rgba(255,255,255,.98);background-clip:padding-box;-webkit-box-shadow:1px 1px 2px rgba(0,0,0,.125);box-shadow:1px 1px 2px rgba(0,0,0,.125);word-wrap:break-word;white-space:nowrap;-webkit-box-sizing:border-box;box-sizing:border-box;z-index:999;cursor:pointer;max-height:70%;overflow-y:auto;overflow-x:hidden}.post-toc .post-toc-title{width:100%;margin:0 auto;font-size:20px;font-weight:400;text-transform:uppercase;text-align:center}.post-toc .post-toc-content{font-size:15px}.post-toc .post-toc-content>nav>ul{margin:10px 0}.post-toc .post-toc-content ul{padding-left:20px;list-style:square;margin:.5em;line-height:1.8em}.post-toc .post-toc-content ul ul{padding-left:15px;display:none}@media print,screen and (max-width:1057px){.post-toc{display:none}}</style><div class=post-toc style=position:absolute;top:188px><h2 class=post-toc-title>文章目录</h2><div class=post-toc-content><nav id=TableOfContents><ul><li><a href=#为什么使用vagrant>为什么使用Vagrant</a></li><li><a href=#quickstart>QuickStart</a><ul><li><a href=#安装>安装</a></li><li><a href=#相关命令>相关命令</a></li><li><a href=#vagrantfile配置>Vagrantfile配置</a></li></ul></li><li><a href=#插件>插件</a><ul><li><a href=#vagrant-vbguest>vagrant-vbguest</a></li><li><a href=#vagrant-scp>vagrant-scp</a></li></ul></li><li><a href=#参考资料>参考资料</a></li></ul></nav></div></div><script type=text/javascript>$(document).ready(function(){var postToc=$(".post-toc");if(postToc.length){var leftPos=$("#main").offset().left;if(leftPos<220){postToc.css({"width":leftPos-10,"margin-left":(0-leftPos)})}
+var t=postToc.offset().top-20,a={start:{position:"absolute",top:t},process:{position:"fixed",top:20},};$(window).scroll(function(){var e=$(window).scrollTop();e<t?postToc.css(a.start):postToc.css(a.process)})}})</script><article class=post><header><h1 class=post-title>Vagrant入门</h1></header><date class="post-meta meta-date">2018年9月2日</date><div class=post-meta><span id=busuanzi_container_page_pv>|<span id=busuanzi_value_page_pv></span><span>
+阅读</span></span></div><div class=clear style=display:none><div class=toc-article><div class=toc-title>文章目录</div></div></div><div class=post-content><p>Vagrant is a tool for building and managing virtual machine environments in a single workflow. With an easy-to-use workflow and focus on automation, Vagrant lowers development environment setup time, increases production parity, and makes the &ldquo;works on my machine&rdquo; excuse a relic of the past.<br>Vagrant是一个在单一工作流中创建和管理虚拟机环境的工具。通过简单易用的工作流和对自动化的关注，Vagrant可以减少开发环境的配置时间，增加生产平价，并且使得&rdquo;works on my machine&rdquo;这个借口成为过去。</p><h1 id=为什么使用vagrant>为什么使用Vagrant</h1><p>Vagrant提供了一种易于配置、可复用、编写的工作环境。它是建立在行业标准技术和单一一致工作流控制的基础上，可以使得你和你团队的生产力和灵活性最大化。<br>Vagrang是站在了巨人的肩膀上实现了这些需求。配置的虚拟机是基于VirtualBox, VMware, AWS和其他的一些提供商。然后，行业标准配置工具(如shell脚本，Cher或者Puppte)，可以自动在虚拟机上安装和配置软件。</p><p>如果你是一名开发者，只要你创建了一个Vagrantfile，然后只要运行vagrant up，你配置的软件都会自动安装好。你还可以把Vagrantfile传给你团队里面的其他人，这样你们团队人都可以在一个相同的环境里面进行开发了。可以对&rdquo;works on my machine&rdquo;说再见了。<br>如果你是一名运维或者DevOps开发，Vagrant可以给你一个一次性环境和一致的工作流程，用于开发和测试脚本。你可以在本地虚拟化技术如VirtualBox或者VMware上快速测试shell脚本，Chef或者Puppet。然后使用相同的配置去远程机器上测试。</p><h1 id=quickstart>QuickStart</h1><h2 id=安装>安装</h2><p>去<a href=https://www.vagrantup.com/downloads.html>https://www.vagrantup.com/downloads.html</a> ，下载系统对应版本的Vagrant安装即可</p><h2 id=相关命令>相关命令</h2><ul><li><code>vagrant init centos/7</code><br>初始化Vagrantfile，init后面的名字可以在<a href=https://app.vagrantup.com/boxes/search>https://app.vagrantup.com/boxes/search</a> 里面找到，可以选择很多系统。一个Vagrantfile可以配置多台虚拟机</li><li><code>vagrant up [name]</code><br>启动虚拟机，可以加上name，name是Vagrantfile里面虚拟机的名称(下面的命令里面的name也是一样)，那么就只启动name这台机器。不然默认是Vagrantfile里面的机器都启动。<br><code>-provider=vmware_fusion</code>，加上-provider参数可以指定只有什么虚拟器。但是要注意vagrant要使用vmware的虚拟机的脚本是收费的，所以还是推荐virtual box。</li><li><code>vagrant ssh [name]</code><br>ssh到虚拟机</li><li><code>vagrant suspend [name]</code><br>暂停虚拟机</li><li><code>vagrant halt [name]</code><br>关闭虚拟机</li><li><code>vagrant destroy [name]</code><br>删除虚拟机</li><li><code>vagrant plugin list</code><br>列出所有的vagrant插件</li><li><code>vagrant plugin install vagrant-scp</code><br>安装插件，因为网络原因，可能会需要一点时间。</li></ul><h2 id=vagrantfile配置>Vagrantfile配置</h2><p>一个简单Vagrantfile例子</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell><span style=color:#75715e># -*- mode: ruby -*-</span>
+<span style=color:#75715e># vi: set ft=ruby :</span>
 
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+Vagrant.require_version <span style=color:#e6db74>&#34;&gt;= 1.6.0&#34;</span>
 
-    <title>Vagrant入门 | Liguoqinjim&#39;s Blog</title>
-    <meta property="og:title" content="Vagrant入门 - Liguoqinjim&#39;s Blog">
-    <meta property="og:type" content="article">
-        
-    <meta property="article:published_time" content='2018-09-02T14:07:36&#43;08:00'>
-        
-        
-    <meta property="article:modified_time" content='2018-09-02T14:07:36&#43;08:00'>
-        
-    <meta name="Keywords" content="">
-    <meta name="description" content="Vagrant入门">
-        <meta name="author" content="liguoqinjim">
-        
-    <meta property="og:url" content="https://liguoqinjim.com/post/tool/vagrant%E5%85%A5%E9%97%A8/">
-    <link rel="shortcut icon" href="https://liguoqinjim.com/favicon.ico" type="image/x-icon">
+boxes <span style=color:#f92672>=</span> <span style=color:#f92672>[</span>
+    <span style=color:#f92672>{</span>
+        <span style=color:#75715e># 虚拟机的名称，ip，内存和cpu</span>
+        :name <span style=color:#f92672>=</span>&gt; <span style=color:#e6db74>&#34;docker-node1&#34;</span>,
+        :eth1 <span style=color:#f92672>=</span>&gt; <span style=color:#e6db74>&#34;192.168.205.10&#34;</span>,
+        :mem <span style=color:#f92672>=</span>&gt; <span style=color:#e6db74>&#34;1024&#34;</span>,
+        :cpu <span style=color:#f92672>=</span>&gt; <span style=color:#e6db74>&#34;1&#34;</span>
+    <span style=color:#f92672>}</span>,
+    <span style=color:#f92672>{</span>
+        :name <span style=color:#f92672>=</span>&gt; <span style=color:#e6db74>&#34;docker-node2&#34;</span>,
+        :eth1 <span style=color:#f92672>=</span>&gt; <span style=color:#e6db74>&#34;192.168.205.11&#34;</span>,
+        :mem <span style=color:#f92672>=</span>&gt; <span style=color:#e6db74>&#34;1024&#34;</span>,
+        :cpu <span style=color:#f92672>=</span>&gt; <span style=color:#e6db74>&#34;1&#34;</span>
+    <span style=color:#f92672>}</span>
+<span style=color:#f92672>]</span>
 
-    <link rel="stylesheet" href='https://liguoqinjim.com/css/normalize.css'>
-    <link rel="stylesheet" href='https://liguoqinjim.com/css/style.css'>
-    <script type="text/javascript" src="//cdn.bootcdn.net/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+Vagrant.configure<span style=color:#f92672>(</span><span style=color:#ae81ff>2</span><span style=color:#f92672>)</span> <span style=color:#66d9ef>do</span> |config|
+  <span style=color:#75715e># 系统版本</span>
+  config.vm.box <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;centos/7&#34;</span>
 
-    
-    
-    
-    
-    
-    
-</head>
-
-
-<body>
-    <header id="header" class="clearfix">
-    <div class="container">
-        <div class="col-group">
-            <div class="site-name ">
-                
-                    <a id="logo" href="https://liguoqinjim.com">
-                        Liguoqinjim&#39;s Blog
-                    </a>
-                
-                <p class="description">~ Keep It Simple &amp; Stupid ~</p>
-            </div>
-            <div>
-                <nav id="nav-menu" class="clearfix">
-                    <a class="current" href="https://liguoqinjim.com">首页</a>
-                    
-                    <a  href="https://liguoqinjim.com/" title="Home">Home</a>
-                    
-                    <a  href="https://github.com/liguoqinjim" title="Works">Works</a>
-                    
-                    <a  href="https://liguoqinjim.com/tags/" title="Tags">Tags</a>
-                    
-                </nav>
-            </div>
-        </div>
-    </div>
-</header>
-
-    <div id="body">
-        <div class="container">
-            <div class="col-group">
-
-                <div class="col-8" id="main">
-                    
-<div class="res-cons">
-    <style type="text/css">
-    .post-toc {
-        position: fixed;
-        width: 200px;
-        margin-left: -210px;
-        padding: 5px 10px;
-        font-family: Athelas, STHeiti, Microsoft Yahei, serif;
-        font-size: 12px;
-        border: 1px solid rgba(0, 0, 0, .07);
-        border-radius: 5px;
-        background-color: rgba(255, 255, 255, 0.98);
-        background-clip: padding-box;
-        -webkit-box-shadow: 1px 1px 2px rgba(0, 0, 0, .125);
-        box-shadow: 1px 1px 2px rgba(0, 0, 0, .125);
-        word-wrap: break-word;
-        white-space: nowrap;
-        -webkit-box-sizing: border-box;
-        box-sizing: border-box;
-        z-index: 999;
-        cursor: pointer;
-        max-height: 70%;
-        overflow-y: auto;
-        overflow-x: hidden;
-    }
-
-    .post-toc .post-toc-title {
-        width: 100%;
-        margin: 0 auto;
-        font-size: 20px;
-        font-weight: 400;
-        text-transform: uppercase;
-        text-align: center;
-    }
-
-    .post-toc .post-toc-content {
-        font-size: 15px;
-    }
-
-    .post-toc .post-toc-content>nav>ul {
-        margin: 10px 0;
-    }
-
-    .post-toc .post-toc-content ul {
-        padding-left: 20px;
-        list-style: square;
-        margin: 0.5em;
-        line-height: 1.8em;
-    }
-
-    .post-toc .post-toc-content ul ul {
-        padding-left: 15px;
-        display: none;
-    }
-
-    @media print,
-    screen and (max-width:1057px) {
-        .post-toc {
-            display: none;
-        }
-    }
-</style>
-<div class="post-toc" style="position: absolute; top: 188px;">
-    <h2 class="post-toc-title">文章目录</h2>
-    <div class="post-toc-content">
-        <nav id="TableOfContents">
-<ul>
-<li><a href="#为什么使用vagrant">为什么使用Vagrant</a></li>
-<li><a href="#quickstart">QuickStart</a>
-<ul>
-<li><a href="#安装">安装</a></li>
-<li><a href="#相关命令">相关命令</a></li>
-<li><a href="#vagrantfile配置">Vagrantfile配置</a></li>
-</ul></li>
-<li><a href="#插件">插件</a>
-<ul>
-<li><a href="#vagrant-vbguest">vagrant-vbguest</a></li>
-<li><a href="#vagrant-scp">vagrant-scp</a></li>
-</ul></li>
-<li><a href="#参考资料">参考资料</a></li>
-</ul>
-</nav>
-    </div>
-</div>
-<script type="text/javascript">
-    $(document).ready(function () {
-        var postToc = $(".post-toc");
-        if (postToc.length) {
-            var leftPos = $("#main").offset().left;
-            if(leftPos<220){
-                postToc.css({"width":leftPos-10,"margin-left":(0-leftPos)})
-            }
-
-            var t = postToc.offset().top - 20,
-                a = {
-                    start: {
-                        position: "absolute",
-                        top: t
-                    },
-                    process: {
-                        position: "fixed",
-                        top: 20
-                    },
-                };
-            $(window).scroll(function () {
-                var e = $(window).scrollTop();
-                e < t ? postToc.css(a.start) : postToc.css(a.process)
-            })
-        }
-    })
-</script>
-    <article class="post">
-        <header>
-            <h1 class="post-title">Vagrant入门</h1>
-        </header>
-        <date class="post-meta meta-date">
-            2018年9月2日
-        </date>
-        
-        
-        <div class="post-meta">
-            <span id="busuanzi_container_page_pv">|<span id="busuanzi_value_page_pv"></span><span>
-                    阅读</span></span>
-        </div>
-        
-        
-        <div class="clear" style="display: none">
-            <div class="toc-article">
-                <div class="toc-title">文章目录</div>
-            </div>
-        </div>
-        
-        <div class="post-content">
-            <p>Vagrant is a tool for building and managing virtual machine environments in a single workflow. With an easy-to-use workflow and focus on automation, Vagrant lowers development environment setup time, increases production parity, and makes the &ldquo;works on my machine&rdquo; excuse a relic of the past.<br />
-Vagrant是一个在单一工作流中创建和管理虚拟机环境的工具。通过简单易用的工作流和对自动化的关注，Vagrant可以减少开发环境的配置时间，增加生产平价，并且使得&rdquo;works on my machine&rdquo;这个借口成为过去。</p>
-
-<h1 id="为什么使用vagrant">为什么使用Vagrant</h1>
-
-<p>Vagrant提供了一种易于配置、可复用、编写的工作环境。它是建立在行业标准技术和单一一致工作流控制的基础上，可以使得你和你团队的生产力和灵活性最大化。<br />
-Vagrang是站在了巨人的肩膀上实现了这些需求。配置的虚拟机是基于VirtualBox, VMware, AWS和其他的一些提供商。然后，行业标准配置工具(如shell脚本，Cher或者Puppte)，可以自动在虚拟机上安装和配置软件。</p>
-
-<p>如果你是一名开发者，只要你创建了一个Vagrantfile，然后只要运行vagrant up，你配置的软件都会自动安装好。你还可以把Vagrantfile传给你团队里面的其他人，这样你们团队人都可以在一个相同的环境里面进行开发了。可以对&rdquo;works on my machine&rdquo;说再见了。<br />
-如果你是一名运维或者DevOps开发，Vagrant可以给你一个一次性环境和一致的工作流程，用于开发和测试脚本。你可以在本地虚拟化技术如VirtualBox或者VMware上快速测试shell脚本，Chef或者Puppet。然后使用相同的配置去远程机器上测试。</p>
-
-<h1 id="quickstart">QuickStart</h1>
-
-<h2 id="安装">安装</h2>
-
-<p>去<a href="https://www.vagrantup.com/downloads.html">https://www.vagrantup.com/downloads.html</a> ，下载系统对应版本的Vagrant安装即可</p>
-
-<h2 id="相关命令">相关命令</h2>
-
-<ul>
-<li><code>vagrant init centos/7</code><br />
-初始化Vagrantfile，init后面的名字可以在<a href="https://app.vagrantup.com/boxes/search">https://app.vagrantup.com/boxes/search</a> 里面找到，可以选择很多系统。一个Vagrantfile可以配置多台虚拟机</li>
-<li><code>vagrant up [name]</code><br />
-启动虚拟机，可以加上name，name是Vagrantfile里面虚拟机的名称(下面的命令里面的name也是一样)，那么就只启动name这台机器。不然默认是Vagrantfile里面的机器都启动。<br />
-<code>-provider=vmware_fusion</code>，加上-provider参数可以指定只有什么虚拟器。但是要注意vagrant要使用vmware的虚拟机的脚本是收费的，所以还是推荐virtual box。</li>
-<li><code>vagrant ssh [name]</code><br />
-ssh到虚拟机</li>
-<li><code>vagrant suspend [name]</code><br />
-暂停虚拟机</li>
-<li><code>vagrant halt [name]</code><br />
-关闭虚拟机</li>
-<li><code>vagrant destroy [name]</code><br />
-删除虚拟机</li>
-<li><code>vagrant plugin list</code><br />
-列出所有的vagrant插件</li>
-<li><code>vagrant plugin install vagrant-scp</code><br />
-安装插件，因为网络原因，可能会需要一点时间。</li>
-</ul>
-
-<h2 id="vagrantfile配置">Vagrantfile配置</h2>
-
-<p>一个简单Vagrantfile例子</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#75715e"># -*- mode: ruby -*-</span>
-<span style="color:#75715e"># vi: set ft=ruby :</span>
-
-Vagrant.require_version <span style="color:#e6db74">&#34;&gt;= 1.6.0&#34;</span>
-
-boxes <span style="color:#f92672">=</span> <span style="color:#f92672">[</span>
-    <span style="color:#f92672">{</span>
-        <span style="color:#75715e"># 虚拟机的名称，ip，内存和cpu</span>
-        :name <span style="color:#f92672">=</span>&gt; <span style="color:#e6db74">&#34;docker-node1&#34;</span>,
-        :eth1 <span style="color:#f92672">=</span>&gt; <span style="color:#e6db74">&#34;192.168.205.10&#34;</span>,
-        :mem <span style="color:#f92672">=</span>&gt; <span style="color:#e6db74">&#34;1024&#34;</span>,
-        :cpu <span style="color:#f92672">=</span>&gt; <span style="color:#e6db74">&#34;1&#34;</span>
-    <span style="color:#f92672">}</span>,
-    <span style="color:#f92672">{</span>
-        :name <span style="color:#f92672">=</span>&gt; <span style="color:#e6db74">&#34;docker-node2&#34;</span>,
-        :eth1 <span style="color:#f92672">=</span>&gt; <span style="color:#e6db74">&#34;192.168.205.11&#34;</span>,
-        :mem <span style="color:#f92672">=</span>&gt; <span style="color:#e6db74">&#34;1024&#34;</span>,
-        :cpu <span style="color:#f92672">=</span>&gt; <span style="color:#e6db74">&#34;1&#34;</span>
-    <span style="color:#f92672">}</span>
-<span style="color:#f92672">]</span>
-
-Vagrant.configure<span style="color:#f92672">(</span><span style="color:#ae81ff">2</span><span style="color:#f92672">)</span> <span style="color:#66d9ef">do</span> |config|
-  <span style="color:#75715e"># 系统版本</span>
-  config.vm.box <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;centos/7&#34;</span>
-
-  boxes.each <span style="color:#66d9ef">do</span> |opts|
-      config.vm.define opts<span style="color:#f92672">[</span>:name<span style="color:#f92672">]</span> <span style="color:#66d9ef">do</span> |config|
-        config.vm.hostname <span style="color:#f92672">=</span> opts<span style="color:#f92672">[</span>:name<span style="color:#f92672">]</span>
-        config.vm.provider <span style="color:#e6db74">&#34;vmware_fusion&#34;</span> <span style="color:#66d9ef">do</span> |v|
-          v.vmx<span style="color:#f92672">[</span><span style="color:#e6db74">&#34;memsize&#34;</span><span style="color:#f92672">]</span> <span style="color:#f92672">=</span> opts<span style="color:#f92672">[</span>:mem<span style="color:#f92672">]</span>
-          v.vmx<span style="color:#f92672">[</span><span style="color:#e6db74">&#34;numvcpus&#34;</span><span style="color:#f92672">]</span> <span style="color:#f92672">=</span> opts<span style="color:#f92672">[</span>:cpu<span style="color:#f92672">]</span>
+  boxes.each <span style=color:#66d9ef>do</span> |opts|
+      config.vm.define opts<span style=color:#f92672>[</span>:name<span style=color:#f92672>]</span> <span style=color:#66d9ef>do</span> |config|
+        config.vm.hostname <span style=color:#f92672>=</span> opts<span style=color:#f92672>[</span>:name<span style=color:#f92672>]</span>
+        config.vm.provider <span style=color:#e6db74>&#34;vmware_fusion&#34;</span> <span style=color:#66d9ef>do</span> |v|
+          v.vmx<span style=color:#f92672>[</span><span style=color:#e6db74>&#34;memsize&#34;</span><span style=color:#f92672>]</span> <span style=color:#f92672>=</span> opts<span style=color:#f92672>[</span>:mem<span style=color:#f92672>]</span>
+          v.vmx<span style=color:#f92672>[</span><span style=color:#e6db74>&#34;numvcpus&#34;</span><span style=color:#f92672>]</span> <span style=color:#f92672>=</span> opts<span style=color:#f92672>[</span>:cpu<span style=color:#f92672>]</span>
         end
 
-        config.vm.provider <span style="color:#e6db74">&#34;virtualbox&#34;</span> <span style="color:#66d9ef">do</span> |v|
-          v.customize <span style="color:#f92672">[</span><span style="color:#e6db74">&#34;modifyvm&#34;</span>, :id, <span style="color:#e6db74">&#34;--memory&#34;</span>, opts<span style="color:#f92672">[</span>:mem<span style="color:#f92672">]]</span>
-          v.customize <span style="color:#f92672">[</span><span style="color:#e6db74">&#34;modifyvm&#34;</span>, :id, <span style="color:#e6db74">&#34;--cpus&#34;</span>, opts<span style="color:#f92672">[</span>:cpu<span style="color:#f92672">]]</span>
+        config.vm.provider <span style=color:#e6db74>&#34;virtualbox&#34;</span> <span style=color:#66d9ef>do</span> |v|
+          v.customize <span style=color:#f92672>[</span><span style=color:#e6db74>&#34;modifyvm&#34;</span>, :id, <span style=color:#e6db74>&#34;--memory&#34;</span>, opts<span style=color:#f92672>[</span>:mem<span style=color:#f92672>]]</span>
+          v.customize <span style=color:#f92672>[</span><span style=color:#e6db74>&#34;modifyvm&#34;</span>, :id, <span style=color:#e6db74>&#34;--cpus&#34;</span>, opts<span style=color:#f92672>[</span>:cpu<span style=color:#f92672>]]</span>
         end
 
-        config.vm.network :private_network, ip: opts<span style="color:#f92672">[</span>:eth1<span style="color:#f92672">]</span>
+        config.vm.network :private_network, ip: opts<span style=color:#f92672>[</span>:eth1<span style=color:#f92672>]</span>
       end
   end
 
-  <span style="color:#75715e"># 映射外部文件夹</span>
-  config.vm.synced_folder <span style="color:#e6db74">&#34;../../lab001&#34;</span>, <span style="color:#e6db74">&#34;/home/vagrant/lab001&#34;</span>
+  <span style=color:#75715e># 映射外部文件夹</span>
+  config.vm.synced_folder <span style=color:#e6db74>&#34;../../lab001&#34;</span>, <span style=color:#e6db74>&#34;/home/vagrant/lab001&#34;</span>
 
-  <span style="color:#75715e"># 运行外部脚本(比如安装软件等)</span>
-  config.vm.provision <span style="color:#e6db74">&#34;shell&#34;</span>, privileged: true, path: <span style="color:#e6db74">&#34;./setup.sh&#34;</span>
-end</code></pre></div>
-<h1 id="插件">插件</h1>
-
-<h2 id="vagrant-vbguest">vagrant-vbguest</h2>
-
-<p>vagrant up的时候可能会遇到vagrant was unable to mount VirtualBox shared folders的错误，安装了这个插件再vagrant up应该就好了</p>
-
-<h2 id="vagrant-scp">vagrant-scp</h2>
-
-<p>可以给vagrant虚拟机传文件<br />
-<code>vagrant scp ../lab005/ docker-node1:/home/vagrant/lab005</code>，可以把本地的lab005传送到docker-node1这台虚拟机里面</p>
-
-<h1 id="参考资料">参考资料</h1>
-
-<ol>
-<li>vagrant文档：<a href="https://www.vagrantup.com/docs/index.html">https://www.vagrantup.com/docs/index.html</a></li>
-<li>vagrant的所有镜像：<a href="https://app.vagrantup.com/boxes/search">https://app.vagrantup.com/boxes/search</a></li>
-<li>unable to mount VirtualBox shared folders错误：<a href="https://github.com/scotch-io/scotch-box/issues/296">https://github.com/scotch-io/scotch-box/issues/296</a></li>
-<li>vagrant-scp主页：<a href="https://github.com/invernizzi/vagrant-scp">https://github.com/invernizzi/vagrant-scp</a></li>
-</ol>
-        </div>
-
-        
-
-
-        
-
-<div class="post-archive">
-    <h2>See Also</h2>
-    <ul class="listing">
-        
-        <li><a href="https://liguoqinjim.com/post/markdown/%E8%AE%BE%E7%BD%AEmarkdown%E9%87%8C%E9%9D%A2%E7%9A%84%E5%9B%BE%E7%89%87%E5%A4%A7%E5%B0%8F/">设置markdown里面的图片大小</a></li>
-        
-        <li><a href="https://liguoqinjim.com/post/tool/%E7%94%A8golang%E8%A7%A6%E5%8F%91ifttt%E5%8F%91%E9%80%81%E8%87%AA%E5%AE%9A%E4%B9%89%E7%9A%84notifications/">用golang触发IFTTT，发送自定义的Notifications</a></li>
-        
-        <li><a href="https://liguoqinjim.com/post/tool/hugo%E7%9A%84%E4%BD%BF%E7%94%A8/">Hugo的使用</a></li>
-        
-    </ul>
-</div>
-
-
-        <div class="post-meta meta-tags">
-            
-            <ul class="clearfix">
-                
-                <li><a href='https://liguoqinjim.com/tags/tool'>tool</a></li>
-                
-                <li><a href='https://liguoqinjim.com/tags/vagrant'>vagrant</a></li>
-                
-            </ul>
-            
-        </div>
-    </article>
-    
-    <div id="disqus_thread"></div>
-<script type="application/javascript">
-    var disqus_config = function () {
-    
-    
-    
-    };
-    (function() {
-        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
-            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
-            return;
-        }
-        var d = document, s = d.createElement('script'); s.async = true;
-        s.src = '//' + "liguoqinjim" + '.disqus.com/embed.js';
-        s.setAttribute('data-timestamp', +new Date());
-        (d.head || d.body).appendChild(s);
-    })();
-</script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
-
-    
-    
-</div>
-
-                    <footer id="footer">
-    <div>
-        &copy; 2020 <a href="https://liguoqinjim.com">Liguoqinjim&#39;s Blog By </a>
-        
-    </div>
-    <br />
-    <div>
-        <div class="github-badge">
-            <a href="https://gohugo.io/" target="_black" rel="nofollow"><span class="badge-subject">Powered by</span><span class="badge-value bg-blue">Hugo</span></a>
-        </div>
-        <div class="github-badge">
-            <a href="https://www.flysnow.org/" target="_black"><span class="badge-subject">Design by</span><span class="badge-value bg-brightgreen">飞雪无情</span></a>
-        </div>
-        <div class="github-badge">
-            <a href="https://github.com/flysnow-org/maupassant-hugo" target="_black"><span class="badge-subject">Theme</span><span class="badge-value bg-yellowgreen">Maupassant</span></a>
-        </div>
-    </div>
-</footer>
-
-
-    
-    <script type="text/javascript">
-        window.MathJax = {
-            tex2jax: {
-                inlineMath: [['$', '$']],
-                processEscapes: true
-                }
-            };
-    </script>
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
-
-<a id="rocket" href="#top"></a>
-<script type="text/javascript" src='https://liguoqinjim.com/js/totop.js?v=0.0.0' async=""></script>
-
-<script type="application/javascript">
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-	ga('create', 'UA-113128130-1', 'auto');
-	
-	ga('send', 'pageview');
-}
-</script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
-
-
-
-    <script type="text/javascript" src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script>
-
-
-
-
-                </div>
-
-                <div id="secondary">
-    <section class="widget">
-        <form id="search" action='https://liguoqinjim.com/search/' method="get" accept-charset="utf-8" target="_blank" _lpchecked="1">
-      
-      <input type="text" name="q" maxlength="20" placeholder="Search">
-      <input type="hidden" name="sitesearch" value="https://liguoqinjim.com">
-      <button type="submit" class="submit icon-search"></button>
-</form>
-    </section>
-    
-    <section class="widget">
-        <h3 class="widget-title">最近文章</h3>
-<ul class="widget-list">
-    
-    <li>
-        <a href="https://liguoqinjim.com/post/mac/mac%E8%87%AA%E5%B8%A6%E6%96%87%E4%BB%B6%E6%9C%8D%E5%8A%A1%E5%99%A8/" title="MAC自带文件服务器">MAC自带文件服务器</a>
-    </li>
-    
-    <li>
-        <a href="https://liguoqinjim.com/post/nginx/nginx%E6%B5%81%E9%87%8F%E5%A4%8D%E5%88%B6/" title="Nginx流量复制">Nginx流量复制</a>
-    </li>
-    
-    <li>
-        <a href="https://liguoqinjim.com/post/tool/travis%E6%8E%A8%E9%80%81%E6%96%87%E4%BB%B6%E5%88%B0%E6%9C%8D%E5%8A%A1%E5%99%A8/" title="Travis CI推送文件到服务器">Travis CI推送文件到服务器</a>
-    </li>
-    
-    <li>
-        <a href="https://liguoqinjim.com/post/tool/%E8%87%AA%E5%BB%BAsentry/" title="自建sentry服务">自建sentry服务</a>
-    </li>
-    
-    <li>
-        <a href="https://liguoqinjim.com/post/mysql/mysql%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6%E9%85%8D%E7%BD%AE/" title="Mysql主从复制配置">Mysql主从复制配置</a>
-    </li>
-    
-    <li>
-        <a href="https://liguoqinjim.com/post/mysql/windows%E5%AE%89%E8%A3%85mysql/" title="Windows安装mysql">Windows安装mysql</a>
-    </li>
-    
-    <li>
-        <a href="https://liguoqinjim.com/post/mysql/mysql%E4%B8%AD%E7%9A%84%E6%97%B6%E9%97%B4%E5%A4%84%E7%90%86/" title="Mysql中的时间处理">Mysql中的时间处理</a>
-    </li>
-    
-    <li>
-        <a href="https://liguoqinjim.com/post/golang/golang%E9%A1%B9%E7%9B%AE%E6%8E%A5%E5%85%A5travis-ci/" title="Golang项目接入Travis CI">Golang项目接入Travis CI</a>
-    </li>
-    
-    <li>
-        <a href="https://liguoqinjim.com/post/git/git%E4%B8%AD%E5%A4%84%E7%90%86%E6%95%8F%E6%84%9F%E7%9A%84%E7%94%A8%E6%88%B7%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/" title="Git中处理敏感的用户配置文件">Git中处理敏感的用户配置文件</a>
-    </li>
-    
-    <li>
-        <a href="https://liguoqinjim.com/post/golang/go_mod%E7%9A%84%E4%BD%BF%E7%94%A8/" title="go mod的使用">go mod的使用</a>
-    </li>
-    
-</ul>
-    </section>
-
-    
-
-    <section class="widget">
-        <h3 class="widget-title">分类</h3>
-<ul class="widget-list">
-    
-    <li><a href="https://liguoqinjim.com/categories/docker/">docker (8)</a></li>
-    
-    <li><a href="https://liguoqinjim.com/categories/leetcode/">leetcode (6)</a></li>
-    
-    <li><a href="https://liguoqinjim.com/categories/mac/">mac (3)</a></li>
-    
-    <li><a href="https://liguoqinjim.com/categories/markdown/">markdown (2)</a></li>
-    
-    <li><a href="https://liguoqinjim.com/categories/nginx/">nginx (1)</a></li>
-    
-    <li><a href="https://liguoqinjim.com/categories/tool/">tool (3)</a></li>
-    
-</ul>
-    </section>
-
-    <section class="widget">
-        <h3 class="widget-title">标签</h3>
-<div class="tagcloud">
-    
-    <a href="https://liguoqinjim.com/tags/docker/">docker</a>
-    
-    <a href="https://liguoqinjim.com/tags/git/">git</a>
-    
-    <a href="https://liguoqinjim.com/tags/golang/">golang</a>
-    
-    <a href="https://liguoqinjim.com/tags/hadoop/">hadoop</a>
-    
-    <a href="https://liguoqinjim.com/tags/hbase/">HBase</a>
-    
-    <a href="https://liguoqinjim.com/tags/hugo/">hugo</a>
-    
-    <a href="https://liguoqinjim.com/tags/leetcode/">leetcode</a>
-    
-    <a href="https://liguoqinjim.com/tags/linux/">linux</a>
-    
-    <a href="https://liguoqinjim.com/tags/mac/">mac</a>
-    
-    <a href="https://liguoqinjim.com/tags/markdown/">markdown</a>
-    
-    <a href="https://liguoqinjim.com/tags/mysql/">mysql</a>
-    
-    <a href="https://liguoqinjim.com/tags/nginx/">nginx</a>
-    
-    <a href="https://liguoqinjim.com/tags/sentry/">sentry</a>
-    
-    <a href="https://liguoqinjim.com/tags/ssh/">ssh</a>
-    
-    <a href="https://liguoqinjim.com/tags/tensorflow/">tensorflow</a>
-    
-    <a href="https://liguoqinjim.com/tags/tool/">tool</a>
-    
-    <a href="https://liguoqinjim.com/tags/travis/">travis</a>
-    
-    <a href="https://liguoqinjim.com/tags/vagrant/">vagrant</a>
-    
-    <a href="https://liguoqinjim.com/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE/">大数据</a>
-    
-</div>
-    </section>
-
-    
-
-    <section class="widget">
-        <h3 class="widget-title">其它</h3>
-        <ul class="widget-list">
-            <li><a href="https://liguoqinjim.com/index.xml">文章 RSS</a></li>
-        </ul>
-    </section>
-</div>
-            </div>
-        </div>
-    </div>
-</body>
-
-</html>
+  <span style=color:#75715e># 运行外部脚本(比如安装软件等)</span>
+  config.vm.provision <span style=color:#e6db74>&#34;shell&#34;</span>, privileged: true, path: <span style=color:#e6db74>&#34;./setup.sh&#34;</span>
+end</code></pre></div><h1 id=插件>插件</h1><h2 id=vagrant-vbguest>vagrant-vbguest</h2><p>vagrant up的时候可能会遇到vagrant was unable to mount VirtualBox shared folders的错误，安装了这个插件再vagrant up应该就好了</p><h2 id=vagrant-scp>vagrant-scp</h2><p>可以给vagrant虚拟机传文件<br><code>vagrant scp ../lab005/ docker-node1:/home/vagrant/lab005</code>，可以把本地的lab005传送到docker-node1这台虚拟机里面</p><h1 id=参考资料>参考资料</h1><ol><li>vagrant文档：<a href=https://www.vagrantup.com/docs/index.html>https://www.vagrantup.com/docs/index.html</a></li><li>vagrant的所有镜像：<a href=https://app.vagrantup.com/boxes/search>https://app.vagrantup.com/boxes/search</a></li><li>unable to mount VirtualBox shared folders错误：<a href=https://github.com/scotch-io/scotch-box/issues/296>https://github.com/scotch-io/scotch-box/issues/296</a></li><li>vagrant-scp主页：<a href=https://github.com/invernizzi/vagrant-scp>https://github.com/invernizzi/vagrant-scp</a></li></ol></div><div class=post-archive><h2>See Also</h2><ul class=listing><li><a href=https://liguoqinjim.com/post/markdown/%E8%AE%BE%E7%BD%AEmarkdown%E9%87%8C%E9%9D%A2%E7%9A%84%E5%9B%BE%E7%89%87%E5%A4%A7%E5%B0%8F/>设置markdown里面的图片大小</a></li><li><a href=https://liguoqinjim.com/post/tool/%E7%94%A8golang%E8%A7%A6%E5%8F%91ifttt%E5%8F%91%E9%80%81%E8%87%AA%E5%AE%9A%E4%B9%89%E7%9A%84notifications/>用golang触发IFTTT，发送自定义的Notifications</a></li><li><a href=https://liguoqinjim.com/post/tool/hugo%E7%9A%84%E4%BD%BF%E7%94%A8/>Hugo的使用</a></li></ul></div><div class="post-meta meta-tags"><ul class=clearfix><li><a href=https://liguoqinjim.com/tags/tool>tool</a></li><li><a href=https://liguoqinjim.com/tags/vagrant>vagrant</a></li></ul></div></article><div id=disqus_thread></div><script type=application/javascript>var disqus_config=function(){};(function(){if(["localhost","127.0.0.1"].indexOf(window.location.hostname)!=-1){document.getElementById('disqus_thread').innerHTML='Disqus comments not available by default when the website is previewed locally.';return;}
+var d=document,s=d.createElement('script');s.async=true;s.src='//'+"liguoqinjim"+'.disqus.com/embed.js';s.setAttribute('data-timestamp',+new Date());(d.head||d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript><a href=https://disqus.com class=dsq-brlink>comments powered by <span class=logo-disqus>Disqus</span></a></div><footer id=footer><div>&copy; 2020 <a href=https://liguoqinjim.com>Liguoqinjim&#39;s Blog By</a></div><br><div><div class=github-badge><a href=https://gohugo.io/ target=_black rel=nofollow><span class=badge-subject>Powered by</span><span class="badge-value bg-blue">Hugo</span></a></div><div class=github-badge><a href=https://www.flysnow.org/ target=_black><span class=badge-subject>Design by</span><span class="badge-value bg-brightgreen">飞雪无情</span></a></div><div class=github-badge><a href=https://github.com/flysnow-org/maupassant-hugo target=_black><span class=badge-subject>Theme</span><span class="badge-value bg-yellowgreen">Maupassant</span></a></div></div></footer><script type=text/javascript>window.MathJax={tex2jax:{inlineMath:[['$','$']],processEscapes:true}};</script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML" async></script><a id=rocket href=#top></a><script type=text/javascript src="https://liguoqinjim.com/js/totop.js?v=0.0.0" async></script><script type=application/javascript>var doNotTrack=false;if(!doNotTrack){window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;ga('create','UA-113128130-1','auto');ga('send','pageview');}</script><script async src=https://www.google-analytics.com/analytics.js></script><script type=text/javascript src=//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js async></script></div><div id=secondary><section class=widget><form id=search action=https://liguoqinjim.com/search/ method=get accept-charset=utf-8 target=_blank _lpchecked=1><input type=text name=q maxlength=20 placeholder=Search>
+<input type=hidden name=sitesearch value=https://liguoqinjim.com>
+<button type=submit class="submit icon-search"></button></form></section><section class=widget><h3 class=widget-title>最近文章</h3><ul class=widget-list><li><a href=https://liguoqinjim.com/post/mac/mac%E8%87%AA%E5%B8%A6%E6%96%87%E4%BB%B6%E6%9C%8D%E5%8A%A1%E5%99%A8/ title=MAC自带文件服务器>MAC自带文件服务器</a></li><li><a href=https://liguoqinjim.com/post/nginx/nginx%E6%B5%81%E9%87%8F%E5%A4%8D%E5%88%B6/ title=Nginx流量复制>Nginx流量复制</a></li><li><a href=https://liguoqinjim.com/post/tool/travis%E6%8E%A8%E9%80%81%E6%96%87%E4%BB%B6%E5%88%B0%E6%9C%8D%E5%8A%A1%E5%99%A8/ title="Travis CI推送文件到服务器">Travis CI推送文件到服务器</a></li><li><a href=https://liguoqinjim.com/post/tool/%E8%87%AA%E5%BB%BAsentry/ title=自建sentry服务>自建sentry服务</a></li><li><a href=https://liguoqinjim.com/post/mysql/mysql%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6%E9%85%8D%E7%BD%AE/ title=Mysql主从复制配置>Mysql主从复制配置</a></li><li><a href=https://liguoqinjim.com/post/mysql/windows%E5%AE%89%E8%A3%85mysql/ title=Windows安装mysql>Windows安装mysql</a></li><li><a href=https://liguoqinjim.com/post/mysql/mysql%E4%B8%AD%E7%9A%84%E6%97%B6%E9%97%B4%E5%A4%84%E7%90%86/ title=Mysql中的时间处理>Mysql中的时间处理</a></li><li><a href=https://liguoqinjim.com/post/golang/golang%E9%A1%B9%E7%9B%AE%E6%8E%A5%E5%85%A5travis-ci/ title="Golang项目接入Travis CI">Golang项目接入Travis CI</a></li><li><a href=https://liguoqinjim.com/post/git/git%E4%B8%AD%E5%A4%84%E7%90%86%E6%95%8F%E6%84%9F%E7%9A%84%E7%94%A8%E6%88%B7%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/ title=Git中处理敏感的用户配置文件>Git中处理敏感的用户配置文件</a></li><li><a href=https://liguoqinjim.com/post/golang/go_mod%E7%9A%84%E4%BD%BF%E7%94%A8/ title="go mod的使用">go mod的使用</a></li></ul></section><section class=widget><h3 class=widget-title>分类</h3><ul class=widget-list><li><a href=https://liguoqinjim.com/categories/docker/>docker (8)</a></li><li><a href=https://liguoqinjim.com/categories/leetcode/>leetcode (6)</a></li><li><a href=https://liguoqinjim.com/categories/mac/>mac (3)</a></li><li><a href=https://liguoqinjim.com/categories/markdown/>markdown (2)</a></li><li><a href=https://liguoqinjim.com/categories/nginx/>nginx (1)</a></li><li><a href=https://liguoqinjim.com/categories/tool/>tool (3)</a></li></ul></section><section class=widget><h3 class=widget-title>标签</h3><div class=tagcloud><a href=https://liguoqinjim.com/tags/docker/>docker</a>
+<a href=https://liguoqinjim.com/tags/git/>git</a>
+<a href=https://liguoqinjim.com/tags/golang/>golang</a>
+<a href=https://liguoqinjim.com/tags/hadoop/>hadoop</a>
+<a href=https://liguoqinjim.com/tags/hbase/>HBase</a>
+<a href=https://liguoqinjim.com/tags/hugo/>hugo</a>
+<a href=https://liguoqinjim.com/tags/leetcode/>leetcode</a>
+<a href=https://liguoqinjim.com/tags/linux/>linux</a>
+<a href=https://liguoqinjim.com/tags/mac/>mac</a>
+<a href=https://liguoqinjim.com/tags/markdown/>markdown</a>
+<a href=https://liguoqinjim.com/tags/mysql/>mysql</a>
+<a href=https://liguoqinjim.com/tags/nginx/>nginx</a>
+<a href=https://liguoqinjim.com/tags/sentry/>sentry</a>
+<a href=https://liguoqinjim.com/tags/ssh/>ssh</a>
+<a href=https://liguoqinjim.com/tags/tensorflow/>tensorflow</a>
+<a href=https://liguoqinjim.com/tags/tool/>tool</a>
+<a href=https://liguoqinjim.com/tags/travis/>travis</a>
+<a href=https://liguoqinjim.com/tags/vagrant/>vagrant</a>
+<a href=https://liguoqinjim.com/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE/>大数据</a></div></section><section class=widget><h3 class=widget-title>其它</h3><ul class=widget-list><li><a href=https://liguoqinjim.com/index.xml>文章 RSS</a></li></ul></section></div></div></div></div></body></html>

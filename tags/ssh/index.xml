@@ -1,26 +1,2 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>ssh on Liguoqinjim&#39;s Blog</title>
-    <link>https://liguoqinjim.com/tags/ssh/</link>
-    <description>Recent content in ssh on Liguoqinjim&#39;s Blog</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>zh-cn</language>
-    <copyright>© This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you wish to quote or reproduce.</copyright>
-    <lastBuildDate>Thu, 12 Dec 2019 11:02:37 +0800</lastBuildDate>
-    
-	<atom:link href="https://liguoqinjim.com/tags/ssh/index.xml" rel="self" type="application/rss+xml" />
-    
-    
-    <item>
-      <title>SSH登录慢</title>
-      <link>https://liguoqinjim.com/post/tool/ssh%E7%99%BB%E5%BD%95%E6%85%A2/</link>
-      <pubDate>Thu, 12 Dec 2019 11:02:37 +0800</pubDate>
-      
-      <guid>https://liguoqinjim.com/post/tool/ssh%E7%99%BB%E5%BD%95%E6%85%A2/</guid>
-      <description>解决ssh登录慢的问题
- 备份/etc/ssh/sshd_config 修改/etc/ssh/sshd_config GSSAPIAuthentication设置为no UseDNS打开注释，然后设置为no 重启ssh，systemctl restart sshd  </description>
-    </item>
-    
-  </channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>ssh on Liguoqinjim&#39;s Blog</title><link>https://liguoqinjim.com/tags/ssh/</link><description>Recent content in ssh on Liguoqinjim&#39;s Blog</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><copyright>© This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you wish to quote or reproduce.</copyright><lastBuildDate>Thu, 12 Dec 2019 11:02:37 +0800</lastBuildDate><atom:link href="https://liguoqinjim.com/tags/ssh/index.xml" rel="self" type="application/rss+xml"/><item><title>SSH登录慢</title><link>https://liguoqinjim.com/post/tool/ssh%E7%99%BB%E5%BD%95%E6%85%A2/</link><pubDate>Thu, 12 Dec 2019 11:02:37 +0800</pubDate><guid>https://liguoqinjim.com/post/tool/ssh%E7%99%BB%E5%BD%95%E6%85%A2/</guid><description>解决ssh登录慢的问题
+备份/etc/ssh/sshd_config 修改/etc/ssh/sshd_config GSSAPIAuthentication设置为no UseDNS打开注释，然后设置为no 重启ssh，systemctl restart sshd</description></item></channel></rss>
