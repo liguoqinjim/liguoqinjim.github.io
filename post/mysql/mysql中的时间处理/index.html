@@ -30,6 +30,8 @@
     
     
     
+    
+    
 </head>
 
 
@@ -261,7 +263,7 @@ fsp的范围是从0到6，默认是0，用来指定小数秒的精度(fractional
 <span style="color:#f92672">#</span>      , (<span style="color:#e6db74">&#39;2020-05-02 195609&#39;</span>,<span style="color:#e6db74">&#39;2020-05-02 195609&#39;</span>)<span style="color:#f92672">#</span>error
 
 <span style="color:#66d9ef">select</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">from</span> t_log_1;</code></pre></div>
-<p><img src="https://liguoqinjim.com/images/mysql/Snipaste_2020-05-02_22-46-47.jpg" alt="datetime查询结果" /></p>
+<p><img src="https://liguoqinjim.com/images/mysql/mysql中的时间处理/Snipaste_2020-05-02_22-46-47.jpg" alt="datetime查询结果" /></p>
 
 <h1 id="timestamp-fsp"><code>timestamp[(fsp)]</code></h1>
 
@@ -323,16 +325,18 @@ fsp的范围是从0到6，默认是0，用来指定小数秒的精度(fractional
 <span style="color:#66d9ef">set</span> <span style="color:#f92672">@@</span>time_zone <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;+8:00&#39;</span>;
 <span style="color:#66d9ef">select</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">from</span> t_log_3;</code></pre></div>
 <p>UTC时区下查询：
-<img src="https://liguoqinjim.com/images/mysql/Snipaste_2020-05-02_22-56-59.jpg" alt="UTC时区下查询" /></p>
+<img src="https://liguoqinjim.com/images/mysql/mysql中的时间处理/Snipaste_2020-05-02_22-56-59.jpg" alt="UTC时区下查询" /></p>
 
 <p>+8:00时区下查询:
-<img src="https://liguoqinjim.com/images/mysql/Snipaste_2020-05-02_22-57-10.jpg" alt="+8:00时区下查询" /></p>
+<img src="https://liguoqinjim.com/images/mysql/mysql中的时间处理/Snipaste_2020-05-02_22-57-10.jpg" alt="+8:00时区下查询" /></p>
 
 <h1 id="时区的设置">时区的设置</h1>
 
 <h2 id="查看当前的时区">查看当前的时区</h2>
 
 <p><code>show variables like '%time_zone%';</code></p>
+
+<p><img src="https://liguoqinjim.com/images/mysql/mysql中的时间处理/Snipaste_2020-08-19_14-52-52.jpg" alt="时间配置" /></p>
 
 <ul>
 <li>全局：<code>select @@global.time_zone;</code></li>
@@ -370,19 +374,19 @@ fsp的范围是从0到6，默认是0，用来指定小数秒的精度(fractional
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#66d9ef">select</span> <span style="color:#66d9ef">sum</span>(num) <span style="color:#66d9ef">as</span> <span style="color:#e6db74">&#39;total&#39;</span>, <span style="color:#66d9ef">year</span>(order_time) <span style="color:#66d9ef">as</span> <span style="color:#f92672">`</span><span style="color:#66d9ef">year</span><span style="color:#f92672">`</span>
 <span style="color:#66d9ef">from</span> t_order
 <span style="color:#66d9ef">where</span> <span style="color:#66d9ef">year</span>(order_time) <span style="color:#f92672">=</span> <span style="color:#ae81ff">2020</span>;</code></pre></div>
-<p><img src="https://liguoqinjim.com/images/mysql/Snipaste_2020-05-02_23-15-20.jpg" alt="2020年的订购总数" /></p>
+<p><img src="https://liguoqinjim.com/images/mysql/mysql中的时间处理/Snipaste_2020-05-02_23-15-20.jpg" alt="2020年的订购总数" /></p>
 
 <h2 id="20200101到20200229的订单">20200101到20200229的订单</h2>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#66d9ef">select</span> <span style="color:#f92672">*</span>
 <span style="color:#66d9ef">from</span> t_order
 <span style="color:#66d9ef">where</span> order_time <span style="color:#f92672">&gt;=</span> <span style="color:#e6db74">&#39;20200101&#39;</span>
   <span style="color:#66d9ef">and</span> order_time <span style="color:#f92672">&lt;=</span> <span style="color:#e6db74">&#39;20200229&#39;</span>;</code></pre></div>
-<p><img src="https://liguoqinjim.com/images/mysql/Snipaste_2020-05-02_23-15-38.jpg" alt="20200101到20200229的订单" /></p>
+<p><img src="https://liguoqinjim.com/images/mysql/mysql中的时间处理/Snipaste_2020-05-02_23-15-38.jpg" alt="20200101到20200229的订单" /></p>
 
 <h2 id="返回订单的时候-给定datetime格式">返回订单的时候，给定datetime格式</h2>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#66d9ef">select</span> num, DATE_FORMAT(order_time, <span style="color:#e6db74">&#39;%Y%m%d %H:%i:%s&#39;</span>)
 <span style="color:#66d9ef">from</span> t_order;</code></pre></div>
-<p><img src="https://liguoqinjim.com/images/mysql/Snipaste_2020-05-02_23-15-55.jpg" alt="返回订单的时候，给定datetime格式" /></p>
+<p><img src="https://liguoqinjim.com/images/mysql/mysql中的时间处理/Snipaste_2020-05-02_23-15-55.jpg" alt="返回订单的时候，给定datetime格式" /></p>
 
 <h1 id="function">function</h1>
 
@@ -515,7 +519,6 @@ fsp的范围是从0到6，默认是0，用来指定小数秒的精度(fractional
             };
     </script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
-
 
 <a id="rocket" href="#top"></a>
 <script type="text/javascript" src='https://liguoqinjim.com/js/totop.js?v=0.0.0' async=""></script>
