@@ -1,0 +1,162 @@
+<!doctype html><html lang=zh-cn><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1"><meta name=referrer content=no-referrer-when-downgrade><title>Plotly | Liguoqinjim&#39;s Blog</title><meta property=og:title content="Plotly - Liguoqinjim's Blog"><meta property=og:type content=article><meta property=article:published_time content=2022-10-27T16:52:55&#43;08:00><meta property=article:modified_time content=2022-10-27T16:52:55&#43;08:00><meta name=Keywords content><meta name=description content=Plotly><meta name=author content=Liguoqinjim><meta property=og:url content=https://liguoqinjim.com/post/python/plotly/><link rel="shortcut icon" href=https://liguoqinjim.com/favicon.ico type=image/x-icon><link rel=stylesheet href=https://liguoqinjim.com/css/normalize.css><link rel=stylesheet href=https://liguoqinjim.com/css/style.css><script type=text/javascript src=//cdn.bootcdn.net/ajax/libs/jquery/3.4.1/jquery.min.js></script></head><body><header id=header class=clearfix><div class=container><div class=col-group><div class=site-name><a id=logo href=https://liguoqinjim.com>Liguoqinjim&#39;s Blog</a><p class=description>~ Keep It Simple &amp; Stupid ~</p></div><div><nav id=nav-menu class=clearfix><a class=current href=https://liguoqinjim.com></a><a href=https://liguoqinjim.com/ title=Home>Home</a>
+<a href=https://github.com/liguoqinjim title=Works>Works</a>
+<a href=https://liguoqinjim.com/tags/ title=Tags>Tags</a></nav></div></div></div></header><div id=body><div class=container><div class=col-group><div class=col-8 id=main><div class=res-cons><style type=text/css>.post-toc{position:fixed;width:200px;margin-left:-210px;padding:5px 10px;font-family:Athelas,STHeiti,Microsoft Yahei,serif;font-size:12px;border:1px solid rgba(0,0,0,.07);border-radius:5px;background-color:rgba(255,255,255,.98);background-clip:padding-box;-webkit-box-shadow:1px 1px 2px rgba(0,0,0,.125);box-shadow:1px 1px 2px rgba(0,0,0,.125);word-wrap:break-word;white-space:nowrap;-webkit-box-sizing:border-box;box-sizing:border-box;z-index:999;cursor:pointer;max-height:70%;overflow-y:auto;overflow-x:hidden}.post-toc .post-toc-title{width:100%;margin:0 auto;font-size:20px;font-weight:400;text-transform:uppercase;text-align:center}.post-toc .post-toc-content{font-size:15px}.post-toc .post-toc-content>nav>ul{margin:10px 0}.post-toc .post-toc-content ul{padding-left:20px;list-style:square;margin:.5em;line-height:1.8em}.post-toc .post-toc-content ul ul{padding-left:15px;display:none}@media print,screen and (max-width:1057px){.post-toc{display:none}}</style><div class=post-toc style=position:absolute;top:188px><h2 class=post-toc-title></h2><div class=post-toc-content><nav id=TableOfContents><ul><li><a href=#简介>简介：</a></li><li><a href=#使用>使用：</a></li><li><a href=#plotly-express简单图形>plotly.express简单图形：</a><ul><li><a href=#折线图>折线图：</a></li></ul></li><li><a href=#plotly-graph-objects简单图形>plotly.graph_objects简单图形：</a><ul><li><a href=#散点图>散点图：</a></li></ul></li><li><a href=#子图>子图：</a><ul><li><a href=#plotly-graph-objects>plotly.graph_objects</a></li><li><a href=#plotly-express>plotly.express</a></li></ul></li><li><a href=#详细配置>详细配置：</a><ul><li><a href=#x轴日期格式化>x轴日期格式化</a></li><li><a href=#使用高德地图>使用高德地图：</a></li></ul></li></ul></nav></div></div><script type=text/javascript>$(document).ready(function(){var postToc=$(".post-toc");if(postToc.length){var leftPos=$("#main").offset().left;if(leftPos<220){postToc.css({"width":leftPos-10,"margin-left":(0-leftPos)})}
+var t=postToc.offset().top-20,a={start:{position:"absolute",top:t},process:{position:"fixed",top:20},};$(window).scroll(function(){var e=$(window).scrollTop();e<t?postToc.css(a.start):postToc.css(a.process)})}
+if($("#TableOfContents").children().length<1){$(".post-toc").remove();}})</script><article class=post><header><h1 class=post-title>Plotly</h1></header><time datetime=2022-10-27T08:52:55Z class="post-meta meta-date dt-published"></time><div class="post-meta meta-category"><span>&nbsp;|</span>
+<a href=https://liguoqinjim.com/categories/python target=_blank>python</a>
+<a href=https://liguoqinjim.com/categories/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90 target=_blank>数据分析</a>
+<a href=https://liguoqinjim.com/categories/%E6%95%B0%E6%8D%AE target=_blank>数据</a>
+<a href=https://liguoqinjim.com/categories/%E5%8F%AF%E8%A7%86%E5%8C%96 target=_blank>可视化</a></div><div class=post-meta><span id=busuanzi_container_page_pv>&nbsp;|
+<span id=busuanzi_value_page_pv></span><span></span></span></div><div class=clear style=display:none><div class=toc-article><div class=toc-title></div></div></div><div class=post-content><p>plotly的使用</p><h1 id=简介>简介：</h1><p><a href=https://plotly.com/python/>plotly</a>是python下的开源图形库。</p><h1 id=使用>使用：</h1><p>有两种调用方式，一种用<code>plotly.express</code>，另一种是<code>plotly.graph_objects</code>。两者区别是<code>plotly.express</code>方便，但是有些配置还不支持，比如子图的设置，还是要用到<code>plotly.graph_objects</code>。</p><p>两者的区别详见：<a href=https://plotly.com/python/graph-objects/>Graph Objects</a>。</p><h1 id=plotly-express简单图形>plotly.express简单图形：</h1><h2 id=折线图>折线图：</h2><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=color:#f92672>import</span> plotly.express <span style=color:#f92672>as</span> px
+
+df <span style=color:#f92672>=</span> px<span style=color:#f92672>.</span>data<span style=color:#f92672>.</span>gapminder()<span style=color:#f92672>.</span>query(<span style=color:#e6db74>&#34;continent==&#39;Oceania&#39;&#34;</span>)
+fig <span style=color:#f92672>=</span> px<span style=color:#f92672>.</span>line(df, x<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;year&#34;</span>, y<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;lifeExp&#34;</span>, color<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;country&#39;</span>)
+fig<span style=color:#f92672>.</span>show()</code></pre></div><p><img src=https://cdn.jsdelivr.net/gh/liguoqinjim/images/2023/02/08/121809_f99a.png alt=image-20230208121801398></p><h1 id=plotly-graph-objects简单图形>plotly.graph_objects简单图形：</h1><h2 id=散点图>散点图：</h2><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=color:#f92672>import</span> plotly.graph_objects <span style=color:#f92672>as</span> go
+
+fig <span style=color:#f92672>=</span> go<span style=color:#f92672>.</span>Figure(
+    data<span style=color:#f92672>=</span>go<span style=color:#f92672>.</span>Scatter(x<span style=color:#f92672>=</span>[<span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>2</span>, <span style=color:#ae81ff>3</span>, <span style=color:#ae81ff>4</span>],
+                    y<span style=color:#f92672>=</span>[<span style=color:#ae81ff>10</span>, <span style=color:#ae81ff>11</span>, <span style=color:#ae81ff>12</span>, <span style=color:#ae81ff>13</span>],
+                    mode<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;markers&#39;</span>,
+                    marker<span style=color:#f92672>=</span>dict(size<span style=color:#f92672>=</span>[<span style=color:#ae81ff>40</span>, <span style=color:#ae81ff>60</span>, <span style=color:#ae81ff>80</span>, <span style=color:#ae81ff>100</span>], color<span style=color:#f92672>=</span>[<span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>2</span>, <span style=color:#ae81ff>3</span>])))
+
+fig<span style=color:#f92672>.</span>show()</code></pre></div><p><img src=https://cdn.jsdelivr.net/gh/liguoqinjim/images/2023/02/08/150208_9816.png alt=image-20230208150204093></p><h1 id=子图>子图：</h1><h2 id=plotly-graph-objects>plotly.graph_objects</h2><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=color:#f92672>from</span> plotly.subplots <span style=color:#f92672>import</span> make_subplots
+<span style=color:#f92672>import</span> plotly.graph_objects <span style=color:#f92672>as</span> go
+
+fig <span style=color:#f92672>=</span> make_subplots(rows<span style=color:#f92672>=</span><span style=color:#ae81ff>3</span>, cols<span style=color:#f92672>=</span><span style=color:#ae81ff>1</span>)
+
+fig<span style=color:#f92672>.</span>append_trace(go<span style=color:#f92672>.</span>Scatter(
+    x<span style=color:#f92672>=</span>[<span style=color:#ae81ff>3</span>, <span style=color:#ae81ff>4</span>, <span style=color:#ae81ff>5</span>],
+    y<span style=color:#f92672>=</span>[<span style=color:#ae81ff>1000</span>, <span style=color:#ae81ff>1100</span>, <span style=color:#ae81ff>1200</span>],
+), row<span style=color:#f92672>=</span><span style=color:#ae81ff>1</span>, col<span style=color:#f92672>=</span><span style=color:#ae81ff>1</span>)
+
+fig<span style=color:#f92672>.</span>append_trace(go<span style=color:#f92672>.</span>Scatter(
+    x<span style=color:#f92672>=</span>[<span style=color:#ae81ff>2</span>, <span style=color:#ae81ff>3</span>, <span style=color:#ae81ff>4</span>],
+    y<span style=color:#f92672>=</span>[<span style=color:#ae81ff>100</span>, <span style=color:#ae81ff>110</span>, <span style=color:#ae81ff>120</span>],
+), row<span style=color:#f92672>=</span><span style=color:#ae81ff>2</span>, col<span style=color:#f92672>=</span><span style=color:#ae81ff>1</span>)
+
+fig<span style=color:#f92672>.</span>append_trace(go<span style=color:#f92672>.</span>Scatter(x<span style=color:#f92672>=</span>[<span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>2</span>], y<span style=color:#f92672>=</span>[<span style=color:#ae81ff>10</span>, <span style=color:#ae81ff>11</span>, <span style=color:#ae81ff>12</span>]), row<span style=color:#f92672>=</span><span style=color:#ae81ff>3</span>, col<span style=color:#f92672>=</span><span style=color:#ae81ff>1</span>)
+
+fig<span style=color:#f92672>.</span>update_layout(height<span style=color:#f92672>=</span><span style=color:#ae81ff>600</span>, width<span style=color:#f92672>=</span><span style=color:#ae81ff>600</span>, title_text<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;Stacked Subplots&#34;</span>)
+fig<span style=color:#f92672>.</span>show()</code></pre></div><p><img src=https://cdn.jsdelivr.net/gh/liguoqinjim/images/2023/02/08/151655_ecb6.png alt=image-20230208151650084></p><h2 id=plotly-express>plotly.express</h2><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=color:#f92672>import</span> plotly.express <span style=color:#f92672>as</span> px
+<span style=color:#f92672>import</span> plotly.subplots <span style=color:#f92672>as</span> sp
+
+data_canada <span style=color:#f92672>=</span> px<span style=color:#f92672>.</span>data<span style=color:#f92672>.</span>gapminder()<span style=color:#f92672>.</span>query(<span style=color:#e6db74>&#34;country == &#39;Canada&#39;&#34;</span>)
+
+figures <span style=color:#f92672>=</span> []
+fig1 <span style=color:#f92672>=</span> px<span style=color:#f92672>.</span>bar(data_canada, x<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;year&#39;</span>, y<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;pop&#39;</span>)
+fig2 <span style=color:#f92672>=</span> px<span style=color:#f92672>.</span>bar(data_canada, x<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;year&#39;</span>, y<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;pop&#39;</span>)
+fig3 <span style=color:#f92672>=</span> px<span style=color:#f92672>.</span>bar(data_canada, x<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;year&#39;</span>, y<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;pop&#39;</span>)
+
+figures<span style=color:#f92672>.</span>append(fig1)
+figures<span style=color:#f92672>.</span>append(fig2)
+figures<span style=color:#f92672>.</span>append(fig3)
+
+figure_traceses <span style=color:#f92672>=</span> []
+<span style=color:#66d9ef>for</span> n, f <span style=color:#f92672>in</span> enumerate(figures):
+    fts <span style=color:#f92672>=</span> []
+    <span style=color:#66d9ef>for</span> trace <span style=color:#f92672>in</span> range(len(f[<span style=color:#e6db74>&#34;data&#34;</span>])):
+        fts<span style=color:#f92672>.</span>append(f[<span style=color:#e6db74>&#34;data&#34;</span>][trace])
+    figure_traceses<span style=color:#f92672>.</span>append(fts)
+
+<span style=color:#75715e># Create a 1x2 subplot</span>
+this_figure <span style=color:#f92672>=</span> sp<span style=color:#f92672>.</span>make_subplots(rows<span style=color:#f92672>=</span>len(figures),
+                               cols<span style=color:#f92672>=</span><span style=color:#ae81ff>1</span>,
+                               subplot_titles<span style=color:#f92672>=</span>[<span style=color:#e6db74>&#39;1图&#39;</span>, <span style=color:#e6db74>&#39;2图&#39;</span>, <span style=color:#e6db74>&#39;3图&#39;</span>])
+this_figure<span style=color:#f92672>.</span>update_layout(height<span style=color:#f92672>=</span><span style=color:#ae81ff>600</span>,
+                          width<span style=color:#f92672>=</span><span style=color:#ae81ff>600</span>,
+                          title_text<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;Test Title&#34;</span>,
+                          title_font_size<span style=color:#f92672>=</span><span style=color:#ae81ff>25</span>)
+
+<span style=color:#75715e># Get the Express fig broken down as traces and add the traces to the proper plot within the subplot</span>
+<span style=color:#66d9ef>for</span> n, ft <span style=color:#f92672>in</span> enumerate(figure_traceses):
+    <span style=color:#66d9ef>for</span> traces <span style=color:#f92672>in</span> ft:
+        this_figure<span style=color:#f92672>.</span>add_trace(traces, row<span style=color:#f92672>=</span><span style=color:#ae81ff>1</span> <span style=color:#f92672>+</span> n, col<span style=color:#f92672>=</span><span style=color:#ae81ff>1</span>)
+
+this_figure<span style=color:#f92672>.</span>show()</code></pre></div><p><img src=https://cdn.jsdelivr.net/gh/liguoqinjim/images/2023/02/08/152932_4da7.png alt=image-20230208152929367></p><h1 id=详细配置>详细配置：</h1><h2 id=x轴日期格式化>x轴日期格式化</h2><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python>fig<span style=color:#f92672>.</span>update_layout(xaxis<span style=color:#f92672>=</span>dict(tickformat<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;%y-%m-</span><span style=color:#e6db74>%d</span><span style=color:#e6db74>&#34;</span>))</code></pre></div><h2 id=使用高德地图>使用高德地图：</h2><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=color:#f92672>import</span> plotly.graph_objects <span style=color:#f92672>as</span> go
+
+data <span style=color:#f92672>=</span> []
+
+<span style=color:#75715e># scattermapbox = go.Scattermapbox()</span>
+my_map <span style=color:#f92672>=</span> go<span style=color:#f92672>.</span>Scattermapbox(
+    lat<span style=color:#f92672>=</span>df[<span style=color:#e6db74>&#39;latitude&#39;</span>],
+    lon<span style=color:#f92672>=</span>df[<span style=color:#e6db74>&#39;longitude&#39;</span>],
+    mode<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;markers&#39;</span>,
+    marker<span style=color:#f92672>=</span>go<span style=color:#f92672>.</span>scattermapbox<span style=color:#f92672>.</span>Marker(size<span style=color:#f92672>=</span><span style=color:#ae81ff>14</span>),
+    <span style=color:#75715e>#     text=[&#39;Montreal&#39;],</span>
+    text<span style=color:#f92672>=</span>df[<span style=color:#e6db74>&#39;name&#39;</span>],
+)
+data<span style=color:#f92672>.</span>append(my_map)
+
+basemap_layer <span style=color:#f92672>=</span> [
+    dict(
+        below<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;traces&#34;</span>,
+        sourcetype<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;raster&#34;</span>,
+        sourceattribution<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;高德地图&#34;</span>,
+        source<span style=color:#f92672>=</span>[
+            <span style=color:#e6db74>&#34;http://wprd01.is.autonavi.com/appmaptile?x={x}&amp;y={y}&amp;z={z}&amp;lang=zh_cn&amp;size=1&amp;scl=1&amp;style=7&#34;</span>
+        ])
+]
+
+mapbox_kargs <span style=color:#f92672>=</span> dict(
+    zoom<span style=color:#f92672>=</span><span style=color:#ae81ff>10</span>,
+    center<span style=color:#f92672>=</span>dict(
+        lat<span style=color:#f92672>=</span><span style=color:#ae81ff>30.272934</span>,
+        lon<span style=color:#f92672>=</span><span style=color:#ae81ff>120.147376</span>,
+    ),
+    style<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;white-bg&#34;</span>,
+    layers<span style=color:#f92672>=</span>basemap_layer,
+)
+
+layout_kargs <span style=color:#f92672>=</span> dict(
+    autosize<span style=color:#f92672>=</span>False,
+    width<span style=color:#f92672>=</span><span style=color:#ae81ff>1000</span>,
+    height<span style=color:#f92672>=</span><span style=color:#ae81ff>500</span>,
+    margin<span style=color:#f92672>=</span>dict(r<span style=color:#f92672>=</span><span style=color:#ae81ff>0</span>, t<span style=color:#f92672>=</span><span style=color:#ae81ff>38</span>, l<span style=color:#f92672>=</span><span style=color:#ae81ff>0</span>, b<span style=color:#f92672>=</span><span style=color:#ae81ff>0</span>, pad<span style=color:#f92672>=</span><span style=color:#ae81ff>0</span>),
+)
+
+layout <span style=color:#f92672>=</span> go<span style=color:#f92672>.</span>Layout(mapbox<span style=color:#f92672>=</span>mapbox_kargs, <span style=color:#f92672>**</span>layout_kargs)
+
+fig <span style=color:#f92672>=</span> go<span style=color:#f92672>.</span>Figure(data<span style=color:#f92672>=</span>data, layout<span style=color:#f92672>=</span>layout)
+
+fig<span style=color:#f92672>.</span>show()</code></pre></div></div><div class=post-archive><h2></h2><ul class=listing><li><a href=https://liguoqinjim.com/post/python/pandas%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95/>Pandas常用方法</a></li><li><a href=https://liguoqinjim.com/post/python/matplotlib%E4%B8%ADfig%E5%92%8Cax%E7%9A%84%E6%A6%82%E5%BF%B5/>Matplotlib中fig和ax的概念</a></li></ul></div><div class="post-meta meta-tags"><ul class=clearfix><li><a href=https://liguoqinjim.com/tags/python target=_blank>python</a></li><li><a href=https://liguoqinjim.com/tags/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90 target=_blank>数据分析</a></li><li><a href=https://liguoqinjim.com/tags/%E5%8F%AF%E8%A7%86%E5%8C%96 target=_blank>可视化</a></li></ul></div></article><div id=disqus_thread></div><script type=application/javascript>var disqus_config=function(){};(function(){if(["localhost","127.0.0.1"].indexOf(window.location.hostname)!=-1){document.getElementById('disqus_thread').innerHTML='Disqus comments not available by default when the website is previewed locally.';return;}
+var d=document,s=d.createElement('script');s.async=true;s.src='//'+"liguoqinjim"+'.disqus.com/embed.js';s.setAttribute('data-timestamp',+new Date());(d.head||d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript><a href=https://disqus.com class=dsq-brlink>comments powered by <span class=logo-disqus>Disqus</span></a></div><footer id=footer><div>&copy; 2023 <a href=https://liguoqinjim.com>Liguoqinjim&#39;s Blog By</a></div><br><div><div class=github-badge><a href=https://gohugo.io/ target=_black rel=nofollow><span class=badge-subject>Powered by</span><span class="badge-value bg-blue">Hugo</span></a></div><div class=github-badge><a href=https://www.flysnow.org/ target=_black><span class=badge-subject>Design by</span><span class="badge-value bg-brightgreen">飞雪无情</span></a></div><div class=github-badge><a href=https://github.com/flysnow-org/maupassant-hugo target=_black><span class=badge-subject>Theme</span><span class="badge-value bg-yellowgreen">Maupassant</span></a></div></div></footer><script type=text/javascript>window.MathJax={tex2jax:{inlineMath:[['$','$']],processEscapes:true}};</script><script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML" async></script><a id=rocket href=#top></a><script type=text/javascript src="https://liguoqinjim.com/js/totop.js?v=0.0.0" async></script><script type=application/javascript>var doNotTrack=false;if(!doNotTrack){window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;ga('create','UA-113128130-1','auto');ga('send','pageview');}</script><script async src=https://www.google-analytics.com/analytics.js></script><style type=text/css>div.highlight{position:relative;margin:1em 0}.copy-code{display:none;position:absolute;top:4px;right:4px;color:rgba(255,255,255,.8);background:rgba(78,78,78,.8);border-radius:var(--radius);padding:0 5px;font:inherit;user-select:none;cursor:pointer;border:0;--radius: 8px}div.highlight:hover .copy-code,pre:hover .copy-code{display:block}</style><script>document.querySelectorAll('pre > code').forEach((codeblock)=>{const container=codeblock.parentNode.parentNode;const copybutton=document.createElement('button');copybutton.classList.add('copy-code');copybutton.innerHTML='copy';function copyingDone(){copybutton.innerHTML='copied!';setTimeout(()=>{copybutton.innerHTML='copy';},2000);}
+copybutton.addEventListener('click',(cb)=>{if('clipboard'in navigator){navigator.clipboard.writeText(codeblock.textContent);copyingDone();return;}
+const range=document.createRange();range.selectNodeContents(codeblock);const selection=window.getSelection();selection.removeAllRanges();selection.addRange(range);try{document.execCommand('copy');copyingDone();}catch(e){};selection.removeRange(range);});if(container.classList.contains("highlight")){container.appendChild(copybutton);}else if(container.parentNode.firstChild==container){}else if(codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"){codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);}else{codeblock.parentNode.appendChild(copybutton);}});</script><script type=text/javascript src=//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js async></script></div><div id=secondary><section class=widget><form id=search action=https://liguoqinjim.com/search method=get accept-charset=utf-8 target=_blank _lpchecked=1><input type=text name=q maxlength=20 placeholder=Search>
+<input type=hidden name=sitesearch value=https://liguoqinjim.com>
+<button type=submit class="submit icon-search"></button></form></section><section class=widget><h3 class=widget-title></h3><ul class=widget-list><li><a href=https://liguoqinjim.com/post/python/plotly/ title=Plotly target=_blank>Plotly</a></li><li><a href=https://liguoqinjim.com/post/mysql/mysql%E5%88%9B%E5%BB%BA%E7%94%A8%E6%88%B7%E9%85%8D%E7%BD%AE%E6%9D%83%E9%99%90/ title=Mysql创建用户配置权限 target=_blank>Mysql创建用户配置权限</a></li><li><a href=https://liguoqinjim.com/post/tool/vnc&#43;frp%E5%AE%9E%E7%8E%B0mac%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2/ title=VNC&#43;FRP实现MAC远程桌面 target=_blank>VNC&#43;FRP实现MAC远程桌面</a></li><li><a href=https://liguoqinjim.com/post/tool/github%E5%9B%BE%E5%BA%8A/ title=github图床&amp;jsdelivr&amp;Picgo使用 target=_blank>github图床&amp;jsdelivr&amp;Picgo使用</a></li><li><a href=https://liguoqinjim.com/post/tool/%E8%85%BE%E8%AE%AF%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%BF%81%E7%A7%BB/ title=腾讯云服务器迁移 target=_blank>腾讯云服务器迁移</a></li><li><a href=https://liguoqinjim.com/post/python/pandas%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95/ title=Pandas常用方法 target=_blank>Pandas常用方法</a></li><li><a href=https://liguoqinjim.com/post/quant/fq_price/ title=前复权、后复权、不复权价格区别与计算 target=_blank>前复权、后复权、不复权价格区别与计算</a></li><li><a href=https://liguoqinjim.com/post/python/matplotlib%E4%B8%ADfig%E5%92%8Cax%E7%9A%84%E6%A6%82%E5%BF%B5/ title=Matplotlib中fig和ax的概念 target=_blank>Matplotlib中fig和ax的概念</a></li><li><a href=https://liguoqinjim.com/post/tool/%E4%B8%AD%E5%85%B4%E5%85%89%E7%8C%AB%E7%AE%A1%E7%90%86%E5%91%98%E5%AF%86%E7%A0%81%E8%8E%B7%E5%8F%96/ title=中兴光猫超级F450G管理员密码获取 target=_blank>中兴光猫超级F450G管理员密码获取</a></li><li><a href=https://liguoqinjim.com/post/tool/%E4%BD%BF%E7%94%A8%E9%A3%9E%E4%B9%A6%E5%88%9B%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E9%80%9A%E7%9F%A5%E6%9C%BA%E5%99%A8%E4%BA%BA/ title=使用飞书创建自己的通知机器人 target=_blank>使用飞书创建自己的通知机器人</a></li></ul></section><section class=widget><h3 class=widget-title><a href=https://liguoqinjim.com/categories/></a></h3><ul class=widget-list><li><a href=https://liguoqinjim.com/categories/database/>database (1)</a></li><li><a href=https://liguoqinjim.com/categories/docker/>docker (8)</a></li><li><a href=https://liguoqinjim.com/categories/go/>go (1)</a></li><li><a href=https://liguoqinjim.com/categories/golang/>golang (1)</a></li><li><a href=https://liguoqinjim.com/categories/leetcode/>leetcode (6)</a></li><li><a href=https://liguoqinjim.com/categories/linux/>linux (3)</a></li><li><a href=https://liguoqinjim.com/categories/mac/>mac (5)</a></li><li><a href=https://liguoqinjim.com/categories/markdown/>markdown (2)</a></li><li><a href=https://liguoqinjim.com/categories/matplotlib/>matplotlib (1)</a></li><li><a href=https://liguoqinjim.com/categories/mysql/>mysql (1)</a></li><li><a href=https://liguoqinjim.com/categories/nginx/>nginx (1)</a></li><li><a href=https://liguoqinjim.com/categories/pandas/>pandas (1)</a></li><li><a href=https://liguoqinjim.com/categories/python/>python (3)</a></li><li><a href=https://liguoqinjim.com/categories/quant/>quant (1)</a></li><li><a href=https://liguoqinjim.com/categories/tensorflow/>tensorflow (1)</a></li><li><a href=https://liguoqinjim.com/categories/tool/>tool (12)</a></li><li><a href=https://liguoqinjim.com/categories/%E5%8F%AF%E8%A7%86%E5%8C%96/>可视化 (1)</a></li><li><a href=https://liguoqinjim.com/categories/%E5%9B%BE%E5%BA%8A/>图床 (1)</a></li><li><a href=https://liguoqinjim.com/categories/%E5%B7%A5%E5%85%B7/>工具 (1)</a></li><li><a href=https://liguoqinjim.com/categories/%E6%95%B0%E6%8D%AE/>数据 (3)</a></li><li><a href=https://liguoqinjim.com/categories/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/>数据分析 (3)</a></li><li><a href=https://liguoqinjim.com/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/>数据库 (1)</a></li><li><a href=https://liguoqinjim.com/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/>机器学习 (1)</a></li><li><a href=https://liguoqinjim.com/categories/%E9%87%8F%E5%8C%96/>量化 (1)</a></li></ul></section><section class=widget><h3 class=widget-title><a href=https://liguoqinjim.com/tags/></a></h3><div class=tagcloud><a href=https://liguoqinjim.com/tags/database/>database</a>
+<a href=https://liguoqinjim.com/tags/docker/>docker</a>
+<a href=https://liguoqinjim.com/tags/frp/>frp</a>
+<a href=https://liguoqinjim.com/tags/git/>git</a>
+<a href=https://liguoqinjim.com/tags/go/>go</a>
+<a href=https://liguoqinjim.com/tags/golang/>golang</a>
+<a href=https://liguoqinjim.com/tags/hadoop/>hadoop</a>
+<a href=https://liguoqinjim.com/tags/hbase/>HBase</a>
+<a href=https://liguoqinjim.com/tags/hugo/>hugo</a>
+<a href=https://liguoqinjim.com/tags/leetcode/>leetcode</a>
+<a href=https://liguoqinjim.com/tags/linux/>linux</a>
+<a href=https://liguoqinjim.com/tags/mac/>mac</a>
+<a href=https://liguoqinjim.com/tags/markdown/>markdown</a>
+<a href=https://liguoqinjim.com/tags/matplotlib/>matplotlib</a>
+<a href=https://liguoqinjim.com/tags/mysql/>mysql</a>
+<a href=https://liguoqinjim.com/tags/nginx/>nginx</a>
+<a href=https://liguoqinjim.com/tags/pandas/>pandas</a>
+<a href=https://liguoqinjim.com/tags/pg/>pg</a>
+<a href=https://liguoqinjim.com/tags/postgresql/>postgresql</a>
+<a href=https://liguoqinjim.com/tags/python/>python</a>
+<a href=https://liguoqinjim.com/tags/quant/>quant</a>
+<a href=https://liguoqinjim.com/tags/sentry/>sentry</a>
+<a href=https://liguoqinjim.com/tags/ssh/>ssh</a>
+<a href=https://liguoqinjim.com/tags/tensorflow/>tensorflow</a>
+<a href=https://liguoqinjim.com/tags/tool/>tool</a>
+<a href=https://liguoqinjim.com/tags/travis/>travis</a>
+<a href=https://liguoqinjim.com/tags/vagrant/>vagrant</a>
+<a href=https://liguoqinjim.com/tags/vnc/>vnc</a>
+<a href=https://liguoqinjim.com/tags/%E5%8F%AF%E8%A7%86%E5%8C%96/>可视化</a>
+<a href=https://liguoqinjim.com/tags/%E5%9B%BE%E5%BA%8A/>图床</a>
+<a href=https://liguoqinjim.com/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE/>大数据</a>
+<a href=https://liguoqinjim.com/tags/%E5%B7%A5%E5%85%B7/>工具</a>
+<a href=https://liguoqinjim.com/tags/%E6%95%B0%E6%8D%AE/>数据</a>
+<a href=https://liguoqinjim.com/tags/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/>数据分析</a>
+<a href=https://liguoqinjim.com/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/>数据库</a>
+<a href=https://liguoqinjim.com/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/>机器学习</a>
+<a href=https://liguoqinjim.com/tags/%E9%87%8F%E5%8C%96/>量化</a></div></section><section class=widget><h3 class=widget-title></h3><ul class=widget-list><li><a href=https://liguoqinjim.com/index.xml></a></li></ul></section></div></div></div></div></body></html>
