@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>GIS on Liguoqinjim's Blog</title><link>https://liguoqinjim.com/categories/gis/</link><description>Recent content in GIS on Liguoqinjim's Blog</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><copyright>© This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you wish to quote or reproduce.</copyright><lastBuildDate>Mon, 24 Jul 2023 19:55:54 +0800</lastBuildDate><atom:link href="https://liguoqinjim.com/categories/gis/index.xml" rel="self" type="application/rss+xml"/><item><title>使用shapely处理地图数据</title><link>https://liguoqinjim.com/post/python/%E4%BD%BF%E7%94%A8shapely%E5%A4%84%E7%90%86%E5%9C%B0%E5%9B%BE%E6%95%B0%E6%8D%AE/</link><pubDate>Mon, 24 Jul 2023 19:55:54 +0800</pubDate><guid>https://liguoqinjim.com/post/python/%E4%BD%BF%E7%94%A8shapely%E5%A4%84%E7%90%86%E5%9C%B0%E5%9B%BE%E6%95%B0%E6%8D%AE/</guid><description>&lt;p>使用shapely处理地图数据：&lt;/p>
-&lt;ol>
-&lt;li>计算区域面积&lt;/li>
-&lt;li>计算区域时候相交&lt;/li>
-&lt;li>计算相交面积&lt;/li>
-&lt;li>地图坐标系转换&lt;/li>
-&lt;li>区域多边形修正&lt;/li>
-&lt;/ol></description></item></channel></rss>
