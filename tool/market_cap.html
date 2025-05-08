@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A股大小市值对比</title>
+    
+    <!-- Primary Meta Tags -->
+    <meta name="description" content="交互式A股市值分布分析工具，支持实时拖动分割线对比大小市值分布，帮助投资者直观了解A股市场结构。提供市值统计、百分比计算等功能。">
+    <meta name="keywords" content="A股市值分布, 大小市值对比, 股票市值分析, 市值可视化, 市场结构分析, 交互式图表, 金融数据分析, 中国股市">
+    <meta name="author" content="市值分析工具">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="A股市值分布可视化分析工具 | 实时大小市值对比">
+    <meta property="og:description" content="使用交互式拖动分割线，直观分析A股市场大小市值分布情况，实时计算不同市值区间的总和与占比，助力投资决策。">
+    
+    <!-- Twitter -->
+    <meta property="twitter:title" content="A股市值分布可视化分析工具">
+    <meta property="twitter:description" content="专业的A股市值分布分析工具，支持实时拖动分割线分析大小市值占比，掌握市场结构变化。">
+    
+    <!-- Additional Meta Tags -->
+    <meta name="application-name" content="A股市值分析">
+    <meta name="robots" content="index, follow">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <meta name="format-detection" content="telephone=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <style>
+        /* 基本页面重置和字体设置 */
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+            font-family: 'Inter', Arial, sans-serif;
+            background-color: #f4f7f9;
+        }
+
+        /* 图表容器 */
+        #chart-container {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* 总和显示区域 */
+        #sum-display {
+            padding: 15px 20px;
+            background-color: #2c3e50;
+            color: white;
+            /* text-align: center; */ /* 此处的 text-align: center; 对 flex item 布局无直接影响，但可移除或保留，子元素会覆盖 */
+            display: flex;
+            /* justify-content: space-between; */ /* 移除此行 */
+            align-items: center; /* 保持垂直居中对齐 */
+            font-size: 16px;
+            font-weight: 500;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            z-index: 5;
+        }
+
+        #sum-display .sum-box {
+            padding: 8px 15px;
+            background-color: #34495e;
+            border-radius: 6px;
+            text-align: left; /* 确保 sum-box 内文本左对齐 */
+        }
+
+        #header-page-title {
+            margin-right: 20px; /* 与左侧 spacer 或 stats container 的间距 */
+            flex-shrink: 0; /* 防止标题收缩 */
+            font-size: 30px;
+            font-weight: 600;
+        }
+
+        /* 移除之前针对 #left-sum 的 margin-right: auto; (如果存在) */
+        #left-sum {
+            /* margin-right: auto; */ /* 此行应被移除或注释 */
+        }
+
+        .stats-block-container { /* 新增：包裹左右统计信息的容器 */
+            display: flex;
+            gap: 25px; /* 左右统计信息块之间的间距，根据需要调整 */
+            flex-shrink: 0; /* 防止此容器收缩 */
+        }
+
+        .flex-spacer { /* 新增：用于将 stats-block-container 推向中间的 spacer */
+            flex-grow: 1;
+        }
+
+        /* Canvas 包裹层 */
+        #canvas-wrapper {
+            position: relative;
+            flex-grow: 1;
+            background-color: #ffffff;
+            border-radius: 8px;
+            margin: 15px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            overflow: hidden;
+        }
+
+        /* Canvas 元素 */
+        #chart-canvas {
+            display: block;
+            width: 100%;
+            height: 100%;
+            border-radius: 8px;
+        }
+
+        /* 可拖动分割线 */
+        #divider {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 8px;
+            background-color: #e74c3c;
+            cursor: ew-resize;
+            z-index: 10;
+            border-radius: 4px;
+            box-shadow: 0 0 8px rgba(0,0,0,0.3);
+        }
+
+        /* 鼠标悬停提示框 */
+        #tooltip {
+            position: absolute;
+            background-color: rgba(44, 62, 80, 0.9);
+            color: white;
+            padding: 10px 15px;
+            border-radius: 6px;
+            pointer-events: none;
+            display: none;
+            z-index: 20;
+            font-size: 14px;
+            white-space: nowrap;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        /* 遮盖层样式 */
+        .overlay {
+            position: absolute;
+            top: 0;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.7);
+            z-index: 3;
+            display: none;
+        }
+
+        #left-overlay {
+            left: 0;
+            width: 0%;
+        }
+
+        #right-overlay {
+            right: 0;
+            width: 0%;
+        }
+
+        /* 中间百分比显示 (覆盖层) */
+        #percentage-display {
+            position: absolute;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(255, 255, 255, 0.8);
+            color: #333;
+            padding: 8px 15px;
+            border-radius: 6px;
+            font-size: 14px;
+            z-index: 11;
+            white-space: nowrap;
+            display: none;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="chart-container">
+        <div id="sum-display">
+            <div id="left-sum" class="sum-box">左侧总市值: 0</div> 
+            <div id="right-sum" class="sum-box">右侧总市值: 0</div> 
+        </div>
+        <div id="canvas-wrapper">
+            <canvas id="chart-canvas"></canvas>
+            <div id="divider"></div>
+            <div id="tooltip"></div>
+            <div id="left-overlay" class="overlay"></div>
+            <div id="right-overlay" class="overlay"></div>
+            <div id="percentage-display"></div>
+        </div>
+    </div>
+    <script>
+        // --- DOM 元素获取 ---
+        const canvas = document.getElementById('chart-canvas');
+        const ctx = canvas.getContext('2d');
+        const divider = document.getElementById('divider');
+        const tooltip = document.getElementById('tooltip');
+        const leftSumDisplay = document.getElementById('left-sum');
+        const rightSumDisplay = document.getElementById('right-sum');
+        const sumDisplay = document.getElementById('sum-display'); // 获取 sum-display 元素
+        const canvasWrapper = document.getElementById('canvas-wrapper');
+        const leftOverlay = document.getElementById('left-overlay');
+        const rightOverlay = document.getElementById('right-overlay');
+        const percentageDisplay = document.getElementById('percentage-display');
+
+        // 在 sum-display 的最左边添加页面标题
+        if (sumDisplay) {
+            const titleElement = document.createElement('div');
+            titleElement.id = 'header-page-title';
+            titleElement.textContent = document.title;
+            sumDisplay.insertBefore(titleElement, sumDisplay.firstChild);
+
+            // **确保移除了之前在 leftSumDisplay 和 rightSumDisplay 之间添加 spacer 的代码**
+
+            // 创建新的布局元素
+            const statsBlockContainer = document.createElement('div');
+            statsBlockContainer.className = 'stats-block-container';
+
+            const leftSpacer = document.createElement('div');
+            leftSpacer.className = 'flex-spacer';
+
+            const rightSpacer = document.createElement('div');
+            rightSpacer.className = 'flex-spacer';
+
+            // 将 leftSumDisplay 和 rightSumDisplay 移入 statsBlockContainer
+            // 注意：appendChild 会自动从原父元素中移除它们
+            if (leftSumDisplay) {
+                statsBlockContainer.appendChild(leftSumDisplay);
+            }
+            if (rightSumDisplay) {
+                statsBlockContainer.appendChild(rightSumDisplay);
+            }
+
+            // 将新的布局元素添加到 sumDisplay
+            // sumDisplay 当前子元素：[titleElement, (可能原有的leftSum), (可能原有的rightSum)]
+            // 如果 leftSum 和 rightSum 已被移走，则 sumDisplay.firstChild.nextSibling 可能不存在或不是预期的
+            // 因此，直接在 titleElement 之后追加
+            
+            // 清理 sumDisplay 中除了 titleElement 之外的旧元素（leftSum, rightSum）
+            // 这一步很重要，因为 leftSumDisplay 和 rightSumDisplay 已经被 appendChild 到 statsBlockContainer
+            // 它们在 DOM 中的原始位置的引用已经失效，但它们可能仍然作为 sumDisplay 的子节点存在于其 childNodes 列表中，直到被 statsBlockContainer.appendChild() 实际移动。
+            // 为了安全起见，在将它们移入 statsBlockContainer 后，sumDisplay 中不应再有对它们的直接子引用（除了 titleElement）。
+
+            // 将 leftSpacer, statsBlockContainer, rightSpacer 添加到 sumDisplay 的末尾
+            // 此时 sumDisplay 应该只包含 titleElement (如果 leftSum 和 rightSum 成功移入 statsBlockContainer)
+            sumDisplay.appendChild(leftSpacer);
+            sumDisplay.appendChild(statsBlockContainer);
+            sumDisplay.appendChild(rightSpacer);
+        }
+
+        // --- 图表配置 ---
+        const NUM_BARS_FALLBACK = 50; // 用于无外部数据时生成随机数据的数量
+        let chartData = [];
+        let maxDataValue = 0;
+        let barWidth = 0;
+        let dividerPositionRatio = 0.5;
+        let isDragging = false;
+        let leftOverlayEnabled = false;
+        let rightOverlayEnabled = false;
+        
+        // --- 新增配置项 ---
+        let configShowPercentageInMiddle = false; // 控制是否显示中间的百分比对比
+        let configEnableLogScale = true; // 控制是否对数据启用对数刻度
+        let configConvertMarketCapUnit = true; // 控制是否将市值单位转换为亿元
+
+        // --- 单位配置 ---
+        const MARKET_CAP_UNIT_DIVISOR = 100000000;
+        const UNIT_STRING_BASE = "元";
+        const UNIT_STRING_CONVERTED = "亿元";
+
+        // --- 颜色配置 ---
+        const LEFT_BAR_COLOR = '#58508d';
+        const RIGHT_BAR_COLOR = '#ffa600';
+        const BAR_BORDER_COLOR = 'rgba(0, 0, 0, 0.05)';
+
+        // --- 生成数据 ---
+        function generateData(inputData) {
+            chartData = [];
+            maxDataValue = 0;
+            if (inputData && inputData.length > 0) {
+                inputData.forEach(item => {
+                    let originalValue = item.m;
+                    if (configConvertMarketCapUnit) {
+                        originalValue /= MARKET_CAP_UNIT_DIVISOR;
+                    }
+                    const displayValue = configEnableLogScale ? (originalValue > 0 ? Math.log10(originalValue + 1) : 0) : originalValue;
+                    chartData.push({ value: displayValue, originalValue: originalValue, label: item.s });
+                    if (displayValue > maxDataValue) {
+                        maxDataValue = displayValue;
+                    }
+                });
+            } else {
+                // Fallback to random data if inputData is empty or not provided
+                for (let i = 0; i < NUM_BARS_FALLBACK; i++) {
+                    let originalValue = Math.floor(Math.random() * 10000000000) + 500000000; // 随机生成较大市值
+                    if (configConvertMarketCapUnit) {
+                        originalValue /= MARKET_CAP_UNIT_DIVISOR;
+                    }
+                    const displayValue = configEnableLogScale ? (originalValue > 0 ? Math.log10(originalValue + 1) : 0) : originalValue;
+                    chartData.push({ value: displayValue, originalValue: originalValue, label: `股票 ${i + 1}` });
+                    if (displayValue > maxDataValue) {
+                        maxDataValue = displayValue;
+                    }
+                }
+            }
+        }
+
+        // --- 绘制图表 ---
+        function drawChart() {
+            canvas.width = canvasWrapper.clientWidth;
+            canvas.height = canvasWrapper.clientHeight;
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            if (chartData.length === 0) return;
+
+            barWidth = canvas.width / chartData.length;
+            const dividerPixelX = dividerPositionRatio * canvas.width;
+
+            for (let i = 0; i < chartData.length; i++) {
+                const data = chartData[i];
+                // 使用 data.value (可能是对数转换后的值) 来计算高度
+                const barHeight = maxDataValue > 0 ? (data.value / maxDataValue) * canvas.height * 0.95 : 0;
+                const x = i * barWidth;
+                const y = canvas.height - barHeight;
+                const barCenterX = x + barWidth / 2;
+                ctx.fillStyle = (barCenterX < dividerPixelX) ? LEFT_BAR_COLOR : RIGHT_BAR_COLOR;
+                ctx.fillRect(x, y, barWidth, barHeight);
+            }
+        }
+
+        // --- 更新左右两侧总和 ---
+        function updateSums() {
+            let leftSum = 0;
+            let rightSum = 0;
+            let totalSum = 0;
+            let leftCount = 0;
+            let rightCount = 0;
+            const dividerPixelX = dividerPositionRatio * canvas.width;
+            const currentUnit = configConvertMarketCapUnit ? UNIT_STRING_CONVERTED : UNIT_STRING_BASE;
+            const totalCount = chartData.length;
+
+            if (chartData.length === 0) { // 处理 chartData 为空的情况
+                leftSumDisplay.innerHTML = `左侧总市值: 0 ${currentUnit} (0.0%)<br>左侧股票数量: 0只 (数量占比: 0.0%)`;
+                rightSumDisplay.innerHTML = `右侧总市值: 0 ${currentUnit} (0.0%)<br>右侧股票数量: 0只 (数量占比: 0.0%)`;
+                percentageDisplay.style.display = 'none';
+                if (leftOverlayEnabled) leftOverlay.style.width = `${dividerPositionRatio * 100}%`;
+                if (rightOverlayEnabled) rightOverlay.style.width = `${(1 - dividerPositionRatio) * 100}%`;
+                return;
+            }
+            
+            for (let i = 0; i < chartData.length; i++) {
+                const barCenterX = (i + 0.5) * barWidth;
+                // 使用 originalValue 进行求和
+                if (barCenterX < dividerPixelX) {
+                    leftSum += chartData[i].originalValue;
+                    leftCount++;
+                } else {
+                    rightSum += chartData[i].originalValue;
+                    rightCount++;
+                }
+                totalSum += chartData[i].originalValue;
+            }
+
+            let leftPercentage = totalSum > 0 ? (leftSum / totalSum) * 100 : 0;
+            let rightPercentage = totalSum > 0 ? (rightSum / totalSum) * 100 : 0;
+
+            let leftCountPercentage = totalCount > 0 ? (leftCount / totalCount) * 100 : 0;
+            let rightCountPercentage = totalCount > 0 ? (rightCount / totalCount) * 100 : 0;
+
+            leftSumDisplay.innerHTML = `左侧总市值: ${leftSum.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})} ${currentUnit} (${leftPercentage.toFixed(1)}%)<br>左侧股票数量: ${leftCount}只 (数量占比: ${leftCountPercentage.toFixed(1)}%)`;
+            rightSumDisplay.innerHTML = `右侧总市值: ${rightSum.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})} ${currentUnit} (${rightPercentage.toFixed(1)}%)<br>右侧股票数量: ${rightCount}只 (数量占比: ${rightCountPercentage.toFixed(1)}%)`;
+            
+            // 根据 configShowPercentageInMiddle 控制显示
+            if (configShowPercentageInMiddle) {
+                percentageDisplay.textContent = `${leftPercentage.toFixed(1)}% | ${rightPercentage.toFixed(1)}%`;
+                percentageDisplay.style.display = (leftPercentage > 0 || rightPercentage > 0) ? 'block' : 'none';
+            } else {
+                percentageDisplay.style.display = 'none';
+            }
+
+            if (leftOverlayEnabled) {
+                leftOverlay.style.display = 'block';
+                leftOverlay.style.width = `${dividerPositionRatio * 100}%`;
+            } else {
+                leftOverlay.style.display = 'none';
+            }
+            if (rightOverlayEnabled) {
+                rightOverlay.style.display = 'block';
+                rightOverlay.style.width = `${(1 - dividerPositionRatio) * 100}%`;
+            } else {
+                rightOverlay.style.display = 'none';
+            }
+        }
+
+        // --- 分割线拖动 ---
+        divider.addEventListener('mousedown', (e) => {
+            e.preventDefault();
+            isDragging = true;
+            document.body.style.cursor = 'ew-resize';
+        });
+
+        document.addEventListener('mousemove', (e) => {
+            if (!isDragging) return;
+            const wrapperRect = canvasWrapper.getBoundingClientRect();
+            let newX = e.clientX - wrapperRect.left;
+            newX = Math.max(0, Math.min(wrapperRect.width, newX));
+            dividerPositionRatio = newX / wrapperRect.width;
+            divider.style.left = `${newX - (divider.offsetWidth / 2)}px`;
+            requestAnimationFrame(() => {
+                drawChart();
+                updateSums();
+            });
+        });
+
+        document.addEventListener('mouseup', () => {
+            if (isDragging) {
+                isDragging = false;
+                document.body.style.cursor = 'default';
+            }
+        });
+
+        // --- 提示框 ---
+        canvas.addEventListener('mousemove', (e) => {
+            if (isDragging) {
+                tooltip.style.display = 'none';
+                return;
+            }
+            const rect = canvas.getBoundingClientRect();
+            const mouseX = e.clientX - rect.left;
+            const barIndex = Math.floor(mouseX / barWidth);
+
+            if (barIndex >= 0 && barIndex < chartData.length && chartData[barIndex]) { // 使用 chartData.length
+                const currentBar = chartData[barIndex];
+                const currentUnit = configConvertMarketCapUnit ? UNIT_STRING_CONVERTED : UNIT_STRING_BASE;
+                tooltip.style.display = 'block';
+                // 显示 originalValue
+                tooltip.innerHTML = `<strong>${currentBar.label}</strong><br>市值: ${currentBar.originalValue.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})} ${currentUnit}`;
+                let tipX = e.pageX + 15;
+                let tipY = e.pageY + 15;
+                if (tipX + tooltip.offsetWidth > window.innerWidth) {
+                    tipX = e.pageX - tooltip.offsetWidth - 15;
+                }
+                if (tipY + tooltip.offsetHeight > window.innerHeight) {
+                    tipY = e.pageY - tooltip.offsetHeight - 15;
+                }
+                tooltip.style.left = `${tipX}px`;
+                tooltip.style.top = `${tipY}px`;
+            } else {
+                tooltip.style.display = 'none';
+            }
+        });
+
+        canvas.addEventListener('mouseout', () => {
+            tooltip.style.display = 'none';
+        });
+
+        // --- 窗口大小调整 ---
+        function handleResize() {
+            const currentDividerPixelX = dividerPositionRatio * canvasWrapper.clientWidth;
+            divider.style.left = `${currentDividerPixelX - (divider.offsetWidth / 2)}px`;
+            drawChart();
+            updateSums();
+        }
+
+        if (typeof ResizeObserver !== 'undefined') {
+            new ResizeObserver(handleResize).observe(canvasWrapper);
+        } else {
+            window.addEventListener('resize', handleResize);
+        }
+
+        // --- 初始化 ---
+        function init() {
+            // 从外部JSON文件加载数据
+            fetch('data.json') // 假设 data.json 与 HTML 文件在同一目录
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    generateData(data);
+                    
+                    requestAnimationFrame(() => {
+                        const initialDividerPixelX = dividerPositionRatio * canvasWrapper.clientWidth;
+                        if (canvasWrapper.clientWidth > 0) {
+                             divider.style.left = `${initialDividerPixelX - (divider.offsetWidth / 2)}px`;
+                        }
+                        handleResize(); // 这会调用 drawChart 和 updateSums
+                    });
+
+                    // 这些可以根据需要配置或保持默认
+                    leftOverlayEnabled = true; 
+                    rightOverlayEnabled = true;
+                    
+                    // updateSums 会根据 configShowPercentageInMiddle 处理 percentageDisplay
+                    // 所以这里不需要显式设置 percentageDisplay.style.display
+                    if (leftOverlayEnabled) leftOverlay.style.display = 'block';
+                    if (rightOverlayEnabled) rightOverlay.style.display = 'block';
+                    
+                    updateSums(); // 初始加载数据后更新一次总和和百分比
+                })
+                .catch(error => {
+                    console.error('无法加载或解析数据:', error);
+                    // 可选: 加载默认/随机数据作为回退
+                    generateData(null); // 生成随机数据
+                    requestAnimationFrame(() => {
+                        const initialDividerPixelX = dividerPositionRatio * canvasWrapper.clientWidth;
+                        if (canvasWrapper.clientWidth > 0) {
+                             divider.style.left = `${initialDividerPixelX - (divider.offsetWidth / 2)}px`;
+                        }
+                        handleResize();
+                    });
+                    leftOverlayEnabled = true; 
+                    rightOverlayEnabled = true;
+                    if (leftOverlayEnabled) leftOverlay.style.display = 'block';
+                    if (rightOverlayEnabled) rightOverlay.style.display = 'block';
+                    updateSums();
+                    // 可以在页面上显示错误信息给用户
+                    const sumDisplay = document.getElementById('sum-display');
+                    const errorDiv = document.createElement('div');
+                    errorDiv.textContent = '数据加载失败，显示示例数据。';
+                    errorDiv.style.color = 'red';
+                    errorDiv.style.backgroundColor = 'white';
+                    errorDiv.style.padding = '10px';
+                    sumDisplay.parentNode.insertBefore(errorDiv, sumDisplay.nextSibling);
+
+                });
+        }
+
+        // --- 导出 ---
+        init();
+    </script>
+</body>
+</html>
